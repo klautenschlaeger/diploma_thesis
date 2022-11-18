@@ -1,0 +1,273 @@
+\documentclass[]{nsm-thesis}
+% options:
+% [germanthesis] - Thesis is written in German
+% [plainunnumbered] - Don't print numbers on plain pages
+% [earlydraft] - Settings for quick draft printouts
+% [watermark] - Print current time/date at bottom of each page
+% [phdthesis] - switch to PhD thesis style
+% [twoside] - double sided
+% [cutmargins] - text body fills complete page
+
+% Author name. Separate multiple authors with commas.
+
+\usepackage{acro}
+
+
+
+\author{Karl Christian Lautenschläger}
+\birthday{29. Juni 1998}
+\birthplace{Magdeburg}
+
+% Title of your thesis.
+\title{Suitability of Modern Wi-Fi for Wireless-Infield-Communication of Agricultural	Machines}
+
+% Choose one of the following lines, changing the word "Computer Science" to match your degree program.
+\thesistype{Diploma Thesis in Information Systems Engineering}\thesiscite{Diploma Thesis~(Diplomarbeit)}
+
+\advisors{Christoph Sommer}
+% List of advisors (without academic titles), separated by commas.
+
+% List of referees (without academic titles), separated by commas.
+\referees{Christoph Sommer, Burkhard Hensel}
+
+
+
+
+
+\DeclareAcronym{WIC}{
+	short=WIC,
+	long=Wireless-Infield Communication,
+}
+\DeclareAcronym{M2M}{
+	short=M2M,
+	long=Machine-To-Machine,
+}
+
+\DeclareAcronym{MIMO}{
+	short=MIMO,
+	long=Multiple Input Multiple Output,
+}
+\DeclareAcronym{MCS}{
+	short=MCS,
+	long=Modulation
+	and Coding Scheme,
+}
+\DeclareAcronym{MANET}{
+	short=MANET,
+	long=Mobile Ad Hoc Network
+	and Coding Scheme,
+}  
+
+\DeclareAcronym{ASC}{
+	short=ASC,
+	long=Automatic Section Control,
+}
+\DeclareAcronym{m-ASC}{
+	short=m-ASC,
+	long=Meshed Automatic Section Control,
+}
+\DeclareAcronym{AEF}{
+	short=AEF,
+	long=Agricultural Industry Electronics Foundation,
+}
+\DeclareAcronym{FMIS}{
+	short=FMIS,
+	long=Farm Management Information System,
+}
+\DeclareAcronym{hTMM}{
+	short=hTMM,
+	long=Hybrid Threat Modeling Method,
+}
+\DeclareAcronym{STRIDE}{
+	short=STRIDE,
+	long= Spoofing\, Tampering\, Repudiation\, Information disclosure\, Denial of services\, and Escalation
+	of privileges,
+}
+\DeclareAcronym{PASTA}{
+	short=PASTA,
+	long= Process for Attack Simulation and Threat Analysis,
+}
+
+\DeclareAcronym{ac}{
+	short=802.11ac,
+	long= IEEE 802.11ac,
+}
+
+\DeclareAcronym{ax}{
+	short=802.11ax,
+	long= IEEE 802.11ax,
+}
+
+\DeclareAcronym{OFDMA}{
+	short=OFDMA,
+	long= Orthogonal Frequency-Division Multiple Access,
+}
+\DeclareAcronym{OFDM}{
+	short=OFDM,
+	long= Orthogonal Frequency-Division Multiplexing,
+}
+\DeclareAcronym{RU}{
+	short=RU,
+	long= Resource Unit,
+}
+\DeclareAcronym{SINR}{
+	short=SINR,
+	long= Signal-to-Interference-plus-Noise Ratio,
+}
+\DeclareAcronym{QAM}{
+	short=QAM,
+	long=Quadrature Amplitude Modulation,
+}
+\DeclareAcronym{RSS}{
+	short=RSS,
+	long=Received Signal Strength,
+}
+\DeclareAcronym{PDR}{
+	short=PDR,
+	long=Packet Delivery Ratio,
+}
+\DeclareAcronym{LOS}{
+	short=LOS,
+	long=Line-of-sight,
+}
+
+% Define abbreviations used in the thesis here.
+\acrodef{WSN}{Wireless Sensor Network}
+
+\acrodef{ROI}{Region of Interest}{short-indefinite={an}, long-plural-form={Regions of Interest}}
+\acrodef{ADAC}{German Automobile Association}{foreign={Allgemeiner Deutscher Automobilclub}}
+\acrodef{CANhashing}[CAN]{Content Addressable Network}{extra={when referring to the distributed hash table}}
+\acrodef{CANproto}[CAN]{Controller Area Network}{extra={when referring to the bus protocol}}
+
+\begin{document}
+
+\pagenumbering{roman}
+
+\maketitle
+
+\cleardoublepage
+
+\TODO{This template is for use with \texttt{pdflatex} and \texttt{biber}. It has been tested with TeX~Live 2020 (as of 25 Oct 2020).}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\begin{otherlanguage*}{american}
+
+about 1/2 page:
+\begin{enumerate}
+    \item Motivation (Why do we care?)
+    \item Problem statement (What problem are we trying to solve?)
+    \item Approach (How did we go about it)
+    \item Results (What's the answer?)
+    \item Conclusion (What are the implications of the answer?)
+\end{enumerate}
+
+The abstract is a miniature version of the thesis.
+It should be treated as an entirely separate document.
+Do not assume that a reader who has access to an abstract will also have access to the thesis.
+Do not assume that a reader who reads the thesis has read the abstract.
+
+\end{otherlanguage*}
+
+
+\chapter*{Kurzfassung}
+\addcontentsline{toc}{chapter}{Kurzfassung}
+\begin{otherlanguage*}{ngerman}
+
+Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
+
+\end{otherlanguage*}
+\acresetall
+
+\cleardoublepage
+\tableofcontents
+\TODO{The table of contents should fit on one page. When in doubt, adjust the \texttt{tocdepth} counter.}
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+
+\chapter{Introduction}
+%\chapter{Einleitung}
+\label{sec:introduction}
+
+\begin{itemize}
+\item general motivation for your work, context and goals.
+\item context: make sure to link where your work fits in
+\item problem: gap in knowledge, too expensive, too slow, a deficiency, superseded technology
+\item strategy: the way you will address the problem
+\item recommended length: 1-2 pages.
+\end{itemize}
+
+\section{\acl{WIC}}
+\input{wic.tex}
+
+
+\chapter{Fundamentals}
+\label{sec:fundamentals}
+
+
+\begin{itemize}
+\item describe methods and techniques that build the basis of your work
+\item include what's needed to understand your work (e.g., techniques, protocols, models, hardware, software, ...)
+\item exclude what's not (e.g., anything you yourself did, anything your reader can be expected to know, ...)
+\item review related work(!)
+\item recommended length: approximately one third of the thesis.
+\end{itemize}
+
+
+\chapter{Field Measurements}
+
+
+\chapter{Developed architecture / System design / Implementation / ...}
+
+
+\begin{itemize}
+\item describe everything you yourself did (as opposed to the fundamentals chapter, which explains what you built on)
+\item start with a theoretical approach
+\item describe the developed system/algorithm/method from a high-level point of view
+\item go ahead in presenting your developments in more detail
+\item recommended length: approximately one third of the thesis.
+\end{itemize}
+
+\chapter{Simulation}
+
+\chapter{Evaluation}
+
+
+\begin{itemize}
+\item measurement setup / results / evaluation / discussion
+\item whatever you have done, you must comment it, compare it to other systems, evaluate it
+\item usually, adequate graphs help to show the benefits of your approach
+\item each result/graph must not only be described, but also discussed (What's the reason for this peak? Why have you observed this effect? What does this tell about your architecture/system/implementation?)
+\item recommended length: approximately one third of the thesis.
+\end{itemize}
+
+
+
+\chapter{Conclusion}
+
+
+\begin{itemize}
+\item summarize again what your paper did, but now emphasize more the results, and comparisons
+\item write conclusions that can be drawn from the results found and the discussion presented in the paper
+\item future work (be very brief, explain what, but not much how, do not speculate about results or impact)
+\item recommended length: one page.
+\end{itemize}
+
+
+
+\cleardoublepage
+
+\listofabbreviations
+\clearpage
+
+\listoffigures
+\clearpage
+
+\listoftables
+\clearpage
+
+\printbibliography
+
+\end{document}
