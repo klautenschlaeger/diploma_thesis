@@ -219,7 +219,8 @@ Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
 \textcite{kauffels_wireless_2002} 
 
 IEEE 802.11 =  Ethernet network mit der Grundlage Funk Kommunikation
-3 grundlegende Architekturen vorgesehen
+\textcite{kauffels_wireless_2002} definiert die folgenden drei grundlegende Architekturen für IEEE 802.11. Der Infrastructure BSS Moder ermöglicht allen Station über einen zentralen AP zu kommunizieren. Dieser Modus erlaubt es  sind drei grundlege
+Da man mit der begrenzten Reichweite einen AP nur einen bestimmten Bereich abdecken kann, wurde das Extended Service Set ESS eingeführt. 
 Basic service set = AP and multiple Stations
 Extended service Set = multiple AP and multiple Station
 Adhoc Modus = mehrere Stations ohne AP
@@ -262,20 +263,42 @@ Data Link Layer
 Medium Access Control
 
 Zugriffsverfahren:
+
 CSMA /CA
 Point Coordination Function
+
+\textcite{sauter_wireless_2022}
+DCF oberbegriff für CSMA /CA
+ 
+IEEE 802.11e DCF erweiterung für Video Streaming
+
+CSMA CA Backoff zeit
+Network allocation Vector NAV Zeitspanne Datensendungsdauer
+
+MAC Header
 
 Netzeintritt:
 passives und Aktives Scanning
 Service Set Identifier
 Timing Synchronisationsfunktion TSF Timer-Wert
 
+\textcite{sauter_wireless_2022}
+every package management or usage data send ackknowledgement
+
+Hidden Station Szenario
+Reservieren
+RTS CTS
+meist nicht konfiguriert / ausgeschalten, bei großen Paketen sinnvoll
+
+
+
 Authentifizierung
 - Open System -Authentification
 - Shared key Authentification
+(nach neu nicht mehr verwendet
 
 
-
+\input{80211ax_ac.tex}
 
 
 \section{Modell für drahtlose Übertragungssysteme}
@@ -290,7 +313,31 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 
 \section{Analyzing Corn Harvest Processes}
 
+
+Definition Feldhäcksler
+Nach Feldhäcksler 1962 ist ein Feldhäcksler eine Lademaschine für fast alle Futterarten:
+
+Heu und
+
+Mais als Grünmais für die tägliche Fütterung und als Silomais
+Gras und Klee für die tägliche Fütterung und für die Silage
+Heu und Stroh 
+
 Introduction Corn Harvest, Forage Harvesters
+
+
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.85\textwidth]{figures/distanceHarvestSzenario.pdf}
+	\caption{Distance Harvest Szenario}%
+	\label{fig:distance}%
+\end{figure}
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.85\textwidth]{figures/speedHarvestSzenario.pdf}
+	\caption{Speed Harvest Szenario}%
+	\label{fig:speed}%
+\end{figure}
 \chapter{Field Measurements}
 
 
