@@ -11,7 +11,7 @@
 % Author name. Separate multiple authors with commas.
 
 \usepackage{acro}
-
+\usetikzlibrary{quotes,angles}
 
 
 \author{Karl Christian Lautenschläger}
@@ -30,10 +30,22 @@
 % List of referees (without academic titles), separated by commas.
 \referees{Christoph Sommer, Burkhard Hensel}
 
-
-
-
-
+\DeclareAcronym{TM}{
+	short=TM,
+	long=Transport Machine,
+}
+\DeclareAcronym{FH}{
+	short=FH,
+	long=Forage Harvester,
+}
+\DeclareAcronym{IBSS}{
+	short=IBSS,
+	long=Independent Basic Service Set,
+}
+\DeclareAcronym{AP}{
+	short=AP,
+	long=Access Point,
+}
 \DeclareAcronym{WIC}{
 	short=WIC,
 	long=Wireless-Infield Communication,
@@ -130,6 +142,15 @@
 	short=LOS,
 	long=Line-of-sight,
 }
+\DeclareAcronym{ESS}{
+	short=ESS,
+	long=Extended Service Set,
+}
+\DeclareAcronym{BSS}{
+	short=BSS,
+	long=Basic Service Set,
+}
+
 
 % Define abbreviations used in the thesis here.
 \acrodef{WSN}{Wireless Sensor Network}
@@ -216,11 +237,15 @@ Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
 \end{itemize}
 
 \section{Wireless Lans according to IEEE 802.11}
-\textcite{kauffels_wireless_2002} 
+According to \textcite{kauffels_wireless_2002} the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to token-ring - or Ethernet networks.
 
-IEEE 802.11 =  Ethernet network mit der Grundlage Funk Kommunikation
-\textcite{kauffels_wireless_2002} definiert die folgenden drei grundlegende Architekturen für IEEE 802.11. Der Infrastructure BSS Moder ermöglicht allen Station über einen zentralen AP zu kommunizieren. Dieser Modus erlaubt es  sind drei grundlege
-Da man mit der begrenzten Reichweite einen AP nur einen bestimmten Bereich abdecken kann, wurde das Extended Service Set ESS eingeführt. 
+The author defines the following three basic architectures for IEEE 802.11.
+
+The Infrastructure \ac{BSS} mode allows all stations to communicate via a central \ac{AP}. This mode allows three basic
+Since the limited range of an AP can only cover a certain area, the Extended Service Set ESS was introduced.
+
+If two or more stations communicate directly without an AP, they form an ad hoc network. According to the author, this can be set up quickly and easily and is also called \ac{IBSS}.
+Wenn kein 
 Basic service set = AP and multiple Stations
 Extended service Set = multiple AP and multiple Station
 Adhoc Modus = mehrere Stations ohne AP
@@ -325,6 +350,54 @@ Heu und Stroh
 
 Introduction Corn Harvest, Forage Harvesters
 
+\begin{figure}%
+	\centering
+	\begin{tikzpicture}
+		\node[label=below:A](a) at (0,0) {\textbullet};
+		\node[label=above:North](d) at (-2,4) {\textbullet};
+		\node[label=above:Heading](c) at (0,4) {\textbullet};
+		\node[label=below:B](b) at (4,0) {\textbullet};
+		\draw [thick] (a) -- (b);
+		\draw [thick] (a) -- (c);
+		\draw [thick] (a) -- (d);
+		\draw
+		pic["$Bearing$", draw, <-,angle eccentricity=1.3, angle radius=1.5cm]
+		{angle=b--a--d}
+		pic["$Relative Bearing$", draw, <-, angle eccentricity=1.3, angle radius=3.5cm]
+		{angle=b--a--c};
+	\end{tikzpicture}
+	\caption{Relative and True bearing between A and B}%
+	\label{fig:bearing_fh_tm}%
+\end{figure}
+
+\begin{figure}%
+	\centering
+	\begin{tikzpicture}
+		\node[label=below right:FH](a) at (0,0) {\textbullet};
+		\node[label=above:North](d) at (0,1) {\textbullet};
+		\node[label=above:Heading](c) at (2,3) {\textbullet};
+		\node[label=below:TM](b) at (4,0) {\textbullet};
+		\node[label=below:FHprev](e) at (-2,-3) {\textbullet};
+		\node[label=above:North](f) at (-2,-2) {\textbullet};
+		\draw [thick] (a) -- (b);
+		\draw [thick] (a) -- (c);
+		\draw [thick] (a) -- (d);
+		\draw [thick] (a) -- (e);
+		\draw [thick] (e) -- (f);
+		\draw 
+		pic["$\beta$", draw, <-,angle eccentricity=1.3, angle radius=1.0cm]
+		{angle=b--a--d}
+		pic["$\alpha$", draw, <-,angle eccentricity=1.2, angle radius=1.0cm]
+		{angle=a--e--f}
+		pic["$Relative Bearing$", draw, <-, angle eccentricity=1.3, angle radius=2.5cm]
+		{angle=b--a--c};
+	\end{tikzpicture}
+	\caption{Relative bearing between \ac{FH} and \ac{TM} which is calculated using the previous location of \ac{FH} by the difference of $\beta$ minus $\alpha$}%
+	\label{fig:bearing_plain}%
+\end{figure}
+
+
+
 
 \begin{figure}%
 	\centering
@@ -337,6 +410,12 @@ Introduction Corn Harvest, Forage Harvesters
 	\includegraphics[width=0.85\textwidth]{figures/speedHarvestSzenario.pdf}
 	\caption{Speed Harvest Szenario}%
 	\label{fig:speed}%
+\end{figure}
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.99\textwidth]{figures/bearingHarvestScenario.pdf}
+	\caption{Relative Bearing Harvest Szenario}%
+	\label{fig:bearing}%
 \end{figure}
 \chapter{Field Measurements}
 
