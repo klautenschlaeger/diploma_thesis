@@ -64,6 +64,10 @@
 	long=Modulation
 	and Coding Scheme,
 }
+\DeclareAcronym{GI}{
+	short=GI,
+	long=Guard Interval,
+}
 \DeclareAcronym{MANET}{
 	short=MANET,
 	long=Mobile Ad Hoc Network
@@ -338,8 +342,47 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 
 \section{Analyzing Corn Harvest Processes}
 
+\textcite{seifert_feldhacksler_1962} defines a forage harvester as an agricultural loading machine for nearly all types of animal feed. By mounting different cutting and loading devices, a forage harvester can load the following types of animal feed according to the authors:
+\begin{itemize}
+	\item Hey
+	\item Straw
+	\item Corn
+	\item Grass
+		\item Clover 
+\end{itemize}
+
+\textcite{Faustzahlen_Landwirtschaft}
+
+In the harvesting and loading process of these large quantities of forage, the \ac{FH} loads the goods directly onto a \ac{TM}, which drives next to or behind the vehicle.
+
+This harvesting process is an example for the use of an agricultural platooning system as described by 
+\textcite{zhang_method_2009}. This creates a leader and follower system in which an unmanned tractor follows a leading manned tractor.
+
+In the harvesting process, the \ac{FH} sets the path and speed and the \ac{TM} follows with a longitudinal and lateral offset as it is displayed in \autoref{fig:offset}
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/offset_platoon.pdf}
+	\caption{Lateral and longitudinal Offset between the two agricultural machines \ac{FH} and \ac{TM} in a corn harvest scenario}%
+	\label{fig:offset}%
+\end{figure}
+
+At the same time, the harvesting process is also an example of the video streaming use case. During the harvesting process of the spout of the \ac{FH} must be controlled to set the loading position of the forage into the trailer of the \ac{TM}.
+
+According to \textcite{HMThesis}, different spout guidance and control systems have been developed for this reason, which use a camera attached to the spout to determine via machine vision the fill volume at each point of the trailer and set the spout to fill the empty parts of the trailer accordingly. The author describes the Autofill -  system from Claas and the Intellifill - system from CNH Industrial as examples of spout guidance systems. 
+
+Streaming the video of the camera at the spout from the \ac{FH} to the \ac{TM} would be a useful application of the video streaming use case in the harvesting process. If the driver of the \ac{TM} can watch a livestream of the trailer's fill level, he is always informed and knows when the trailer is full so he can drive the feed back to the farm.
+
+To gain a better insight into the some requirements for the application ot the \ac{WIC} use cases Platooning and Streaming Services in a corn harvest scenario, I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on two days on a field in Germany in September. For this, I placed tablets in the driver's cabs of the agricultural vehicles, which recorded the NMEA data stream of the GPS every second. 
+
+The workflow of the corn harvest was as follows. 
+I handed out the tablets to the drivers, which left the farm with the tablets in the driver's cabs to drive to the field in the morning. The tablets recorded position and speed of the tractors all day long. During breaks, the tablets continued to capture NMEA data stream of their GPS even if the positions and speed did not change.
+
+First, I anonymized the timestamps of the recorded NMEA files by deleting the first data points of the log files for the timestamps where the recorded accuracy of all log files was not yet less than 2 m. From the time when the accuracy of all log files was less than 2 m, I overwrote the timestamp and the date for all further data points with a continuous index.
+
 
 Definition Feldhäcksler
+
+
 Nach Feldhäcksler 1962 ist ein Feldhäcksler eine Lademaschine für fast alle Futterarten:
 
 Heu und
@@ -402,19 +445,19 @@ Introduction Corn Harvest, Forage Harvesters
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.85\textwidth]{figures/distanceHarvestSzenario.pdf}
-	\caption{Distance Harvest Szenario}%
+	\caption{Distribution of time proportions where a given distance was between \ac{FH} and \ac{TM} in a harvest platoon scenario.}%
 	\label{fig:distance}%
 \end{figure}
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.85\textwidth]{figures/speedHarvestSzenario.pdf}
-	\caption{Speed Harvest Szenario}%
+	\caption{Distribution of time proportions where FH and TM drove with a certain speed in a harvest platoon scenario}%
 	\label{fig:speed}%
 \end{figure}
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/bearingHarvestScenario.pdf}
-	\caption{Relative Bearing Harvest Szenario}%
+	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
 	\label{fig:bearing}%
 \end{figure}
 \chapter{Field Measurements}
