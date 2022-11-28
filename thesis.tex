@@ -30,14 +30,58 @@
 % List of referees (without academic titles), separated by commas.
 \referees{Christoph Sommer, Burkhard Hensel}
 
-\DeclareAcronym{TM}{
-	short=TM,
-	long=Transport Machine,
-}
 \DeclareAcronym{FH}{
 	short=FH,
 	long=Forage Harvester,
 }
+\DeclareAcronym{TM}{
+	short=TM,
+	long=Transport Machine,
+}
+
+\DeclareAcronym{FEC}{
+	short=FEC,
+	long=Forward Error Correction,
+}
+\DeclareAcronym{WPA}{
+	short=WPA,
+	long=Wi-Fi Protected Access,
+}
+
+\DeclareAcronym{DCF}{
+	short=DCF,
+	long=Distribution Coordination Function,
+}
+\DeclareAcronym{DIFS}{
+	short=DIFS,
+	long=Distributed Coordination Function Interframe Space,
+}
+\DeclareAcronym{SSID}{
+	short=SSID,
+	long=Service Set Identifier,
+}
+\DeclareAcronym{SIFS}{
+	short=SIFS,
+	long=Short Interframe Space,
+}
+\DeclareAcronym{ACK}{
+	short=ACK,
+	long=Acknowledgement,
+}
+\DeclareAcronym{NAV}{
+	short=NAV,
+	long=Network Allocation Vector,
+}
+\DeclareAcronym{PCF}{
+	short=PCF,
+	long=Point Coordination Function,
+}
+\DeclareAcronym{CSMACA}{
+	short=CSMA/CA,
+	long=Carrier Sense Multiple
+	Access/Collision Avoidance,
+}
+
 \DeclareAcronym{IBSS}{
 	short=IBSS,
 	long=Independent Basic Service Set,
@@ -133,6 +177,10 @@
 \DeclareAcronym{QAM}{
 	short=QAM,
 	long=Quadrature Amplitude Modulation,
+}
+\DeclareAcronym{PSK}{
+	short=PSK,
+	long=Phase Shift Keying,
 }
 \DeclareAcronym{RSS}{
 	short=RSS,
@@ -240,64 +288,101 @@ Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
 \item recommended length: approximately one third of the thesis.
 \end{itemize}
 
+\TODO{
+	-1/3 ist kurz, weil der Bezug und die Relation zur Landwirtschaft groß ist... Aber wen interessiert das? 
+-1/3  related Work erwähnt man dann Unterstützung von Professor Klingler wie und wo? erwähnt man sich selber ?  
+`}
+
 \section{Wireless Lans according to IEEE 802.11}
-According to \textcite{kauffels_wireless_2002} the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to token-ring - or Ethernet networks.
+According to \textcite{kauffels_wireless_2002} the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to Ethernet - or Token-Ring - networks.
+\textcite{sauter_wireless_2022} considers IEEE 802.11 also to be an implementation of Ethernet with the help of wirless radio technologies. The author lists the extensions to the original standard, which range from 802.11b, 802.11g, 802.11a, 802.11n, 802.11ac to the latest enhancement 802.11ax. The different IEEE 802.11 standards can operate in the  \SI{2.4}{\giga\hertz} - , \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} - frequency band. 
 
-The author defines the following three basic architectures for IEEE 802.11.
 
-The Infrastructure \ac{BSS} mode allows all stations to communicate via a central \ac{AP}. This mode allows three basic
-Since the limited range of an AP can only cover a certain area, the Extended Service Set ESS was introduced.
+\textcite{kauffels_wireless_2002} defines the following three basic architectures for IEEE 802.11.
 
 If two or more stations communicate directly without an AP, they form an ad hoc network. According to the author, this can be set up quickly and easily and is also called \ac{IBSS}.
-Wenn kein 
-Basic service set = AP and multiple Stations
-Extended service Set = multiple AP and multiple Station
-Adhoc Modus = mehrere Stations ohne AP
 
-Zugriffsverfahren:
-CSMA-CA
+The Infrastructure \ac{BSS} mode allows all stations within the range of defined range around the \ac{AP} to communicate via a central \ac{AP}. Within the area of the \ac{BSS}, all stations can move freely and communicate with one another.
 
-2.4 GHz  Spread Spectrum 2 options = Frequency Hopping Sprectrum or Direct Sequence Spread Spectrum
-Spread Sectrum mehr Bandbreite für besseres SNR
+Since an \ac{AP} has limited range and can only cover a certain area, the \ac{ESS} was introduced. It contains a distribution system, which links several \ac{BSS} with each other.
 
-Modulation Coding Schemes QAM
+Thereby, the BSS coverage areas can physically overlap so that continuous connection of stations within the ESS can be provided. For a better performance the \ac{BSS} can be placed physically on top of each other. One can also have physically separate \ac{BSS}s so that these \ac{BSS}s can be linked together over long distances. According to the author, the standard does not specify a distance limit for such connections. 
 
-auswirkungen auf die Stabilität
+He also mentions, that the standard defines the following three mobility types for station in an \ac{ESS}, where a station can do no-transition and thereby stay within a \ac{BSS}, \ac{BSS}-transitioning and move from one \ac{BSS} to another \ac{BSS} within the same \ac{ESS} and \ac{ESS}-transition, where the Station moves from a \ac{ESS} to another one but no stable connection can be guaranteed.
 
-ab 802.11a OFDM 
-auswirkungen Stabilität
+\textcite{sauter_wireless_2022} adds, that usually Ethernet is used to link \ac{AP}s in within an \ac{ESS}. But according to the author this can be replaced by a wireless connection, which is called wireless bridge.
+\TODO{Sauter 2022 Ad-Hoc Infos}
+The further development of IEEE 802.11 is accompanied by a constant change of the physical layer. \textcite{sauter_wireless_2022} mentions, that all new enhancements of the physical layer of IEEE 802.11 are backward compatible to previous definitions of the it.
 
+According to the Author, IEEE 802.11 initially used DSSS and FHSS as modulation methods.
+Since IEEE 802.11g the modulation method \ac{OFDM} can be used in the \SI{2.4}{\giga\hertz} frequency band. \ac{OFDM} divides the transmission channel in subcarriers with different amplitudes, frequencies and phases. Each subcarrier is orthogonal to another one, as they send the information "Low", where only one other subcarrier is sending the information "High".
+For the modulation and demodulation the FFT and IFFT are used respectively.
+\textcite{kauffels_wireless_2002} states, that \ac{OFDM} can be used in the \SI{5}{\giga\hertz} frequency band since IEEE 802.11a.
 
-Roll-Off-Faktor 
-QAM-Verfahren höherer Roll-Off-Faktor need for Guard interval
-
-intersymbol interferenz
+Convolutional encoders are used to increase redundancy. This enables \ac{FEC}, which can distribute a bit sequence over the \ac{OFDM} subcarriers in such a way that an original bit sequence can be decoded at the receiver even in the event of interference. \textcite{kauffels_wireless_2002}
 
 
-Wellenausbreitung
-Überlagerungseffekte
-Reflexsion
-
-Reflexsion nicht bei Metall.
-
-
-
-Physical Layer
+Various \ac{MCS}s can be selected in the physical layer in order to transmit as many bits as possible in the signal. 
+These \ac{MCS}s are based on \ac{PSK} or \ac{QAM}. 
+\textcite{kauffels_wireless_2002} recommends setting the parameters in an \ac{OFDM} system in such a way that first the coding rate and then the complexity of the \ac{MCS} is reduced in difficult transmission environments.\TODO{Viel aus gleichem Lehrbuch Quellen? / Lieblingsautor / }
+An imaginary, theoretical transmission channel is usually specified as a square-wave signal in the frequency domain with the limits of both minimum and maximum amplitude and cut-off frequency. \textcite{kauffels_wireless_2002} defines the roll-off factor as a cosine-shaped flattening of the square signal between 0 and 1. In addition, the author points out that \ac{QAM} can generate high roll-off factors, so that signals interfere significantly more with adjacent channels.
+The author recommends increasing the frequency spacing between transmission channels.
+\todo{Symbol length, GI, subcarrier spacing reciprocal}
+\todo{Wellenausbreitung, Überlagerungseffekte, Reflexsion, Reflexsion nicht bei Metall}
+\todo{Knauffel OFDM PHY}
 
 
 
 
-Data Link Layer
 
-Medium Access Control
+The next layer in the OSI model is the Data Link Layer.
+The Data Link Layer consists of Medium Access - and Logic Link Control functionalities.
 
-Zugriffsverfahren:
+
+According to \textcite{kauffels_wireless_2002}, the medium access control functionalities cover network entry - ,network authentication - and media access methods.
+The author explains, that every \ac{AP} send beacon frames periodically to synchronise its stations in the \ac{BSS} and that the beacon frame contains the \ac{SSID}, which identifies the \ac{BSS} or \ac{ESS} of the station. \textcite{sauter_wireless_2022} adds that a beacon frame contains a \SI{16}{\bit} - long capability information element. Each bit here signals that the \ac{AP} provides a particular function or has a specific feature. 
+
+\textcite{kauffels_wireless_2002} explains the procedure for network entry of a station. A station can use the passive or the active scanning mode. In passive scanning mode, the station listens for a beacon frame in the various transmission channels. Alternatively, in active scanning mode, a station can also send out a probe frame. This can contain an already known \ac{SSID} to test the presence of the \ac{AP}. To get an \ac{AP} in range, the probe-frame can also contain a broadcast SSID that causes all nearby \ac{AP}s to respond. The response of an \ac{AP} to the probe frame is the probe-response frame, which contains the same information as a beacon frame. With the information from the beacon frame, a station can start the authentication process.
+ 
+For this process, \textcite{kauffels_wireless_2002} names the two methods Open System Authentication and Shared Key Authentication. \textcite{sauter_wireless_2022} explains that Open System Authentication is based on a device making an authentication request to the \ac{AP}. If the \ac{AP} answers with a positive status in the Authentication Frame, the station is included in the \ac{BSS}. The actual encryption and authentication is then performed by the \ac{WPA} functions. The author points out that Shared Key Authentication is no longer used today. 
+
+ the IEEE 802.11 standard describes the two media access methods \ac{DCF} and \ac{PCF}.
+
+\textcite{sauter_wireless_2022} explains that \ac{DCF} is based on the media access method \ac{CSMACA}. In \ac{CSMACA} a device that is willing to transmit senses in the air transmission medium for a transmitting activity. If no other device is transmitting, the device can transmit. In the case of transmit activity, the terminal must wait at least until the transmission and \ac{DIFS} are over.
+Since data transmission via the air transmission medium is very vulnerable to errors, the standard IEEE 802.11 requires that each received packet must be confirmed with an \ac{ACK} frame.
+The \ac{DIFS} ensures that an \ac{ACK} frame can be sent before another station uses the same channel to send a data frame. 
+To avoid multiple devices transmitting at the same time after \ac{DIFS}, each ready-to-transmit device determines a random backoff time. The device with the shortest backoff time transmits next and all other ready-to-transmit devices restart the media access procedure. In case two devices start sending next because they both randomly chose the shortest backoff time, the transmitted signal will interfere and the packets will not be answered with an \ac{ACK} frame.
+In case of such a faulty transmission, the backoff time of the ready-to-transmit devices can increase exponentially afterwards.
+
+To share the knowledge of a transmission time and the subsequently interframe space, a packet contains a \ac{NAV} that specifies the time the air transmission medium is used.
+
+In various network architectures the "hidden station"-problem may occur. As you can see in \autoref{fig:hidden_station}, Station A is not able to sense a transmission of station B and vise versa. In case of simultaneous transmission of both stations, interference around the \ac{AP} may occur. 
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.75\textwidth]{figures/hidden_station.pdf}
+	\caption{Hidden Station Problem}%
+	\label{fig:hidden_station}%
+\end{figure}
+Um das hidden station problem zu umgehen kann eine Station nach \textcite{sauter_wireless_2022} 
+Point coordinator 
+ohne Wettbewerb mit optionaler Priorisierung
+
+PIFS interval kürzer, 
+beacon frame
+CF Parameter set-element
+\todo{nicht genauer eingehen, weil nicht relevant für die Arbeit? Darf ich das schreiben?}
 
 CSMA /CA
 Point Coordination Function
 
 \textcite{sauter_wireless_2022}
 DCF oberbegriff für CSMA /CA
+ 
+ 
+Short Interframe Space SIFS ACK Frame 
+ 
+Hidden Station Problem 
+CTS and RTS
  
 IEEE 802.11e DCF erweiterung für Video Streaming
 
