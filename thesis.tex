@@ -272,12 +272,12 @@ Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
 \item recommended length: 1-2 pages.
 \end{itemize}
 
-\section{\acl{WIC}}
-\input{wic.tex}
+
 
 
 \chapter{Fundamentals}
 \label{sec:fundamentals}
+
 
 
 \begin{itemize}
@@ -292,8 +292,52 @@ Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
 	-1/3 ist kurz, weil der Bezug und die Relation zur Landwirtschaft groß ist... Aber wen interessiert das? 
 -1/3  related Work erwähnt man dann Unterstützung von Professor Klingler wie und wo? erwähnt man sich selber ?  
 `}
+\section{\acl{WIC}}
+Given that there are many different agricultural technology companies worldwide and  mix of their machines is often used together in an agricultural company, a demand for interoperability between agricultural machines of different brands emerged. In 2008, the \ac{AEF} was founded to develop and standardize this interoperability w\footnote{https://www.aef-online.org/about-us/about-the-aef.html Accessed: 24.07.2022}.
 
+The AEF has defined a binary unit system, the ISO 11783 standard, for agricultural machinery communication, mainly tractors and implements \cite{iglesias_enabling_2014}. According to \textcite{schlingmann_aef_2019}, the ISO 11783 standard is known as the ISOBUS system.
+
+The authors mention that the AEF is currently working on other issues. Among them is also the \ac{WIC}. In the associated project group \ac{WIC}, solutions for \ac{M2M} communication between cooperating, agricultural machines are to be developed and standardized.
+
+For this purpose, the authors name the following use cases:
+\input{wic.tex}
+
+Considering that I investigate the Suitability of modern Wifi for Wireless-Infield-Communication and Wi-Fi 6 and Wi-Fi 5 are no long range technologies, I will focus on investigating the suitability of these two Wi-Fi standards for the \ac{WIC} use cases Real-Time Machine-to-Machine Control and Streaming Services. Throughout this thesis, I will refer to real-time machine-to-machine control as Agricultural Platooning.
+\section{Related Work}
+AEF Vorgehen
+
+Lösungen
+Technologien
+
+Außer AEF Platooning:
+
+	OMNiDRIVE Raven Industries Technology? Starfire In einem Manual?
+	Machine Sync Starfire 6000 - SF1 Gen4 4240 Display Autotrac 300 
+	CartACE Nothing named? 
+	
+	AutoSync Trimble m-ASC
+
+Außer AEF Video Streaming:
+
+	OcuSync
+	Lightbridge DJI Mavic
+	Herelink
+
+\todo{What is it? 2.4 GHz? But is it Wifi? }
+
+In order to implement these described \ac{WIC} use cases, the \ac{WIC} project group has been searching for a technology that can realize the required data rates, latencies and high transmission range. The plans for doing so are written down by members of the \ac{WIC} project group in \cite{schlingmann_challenges_2017}.
+
+The authors consider the fundamental use of cellular networks as very problematic because, according to \cite{noauthor_ict_2016}, only \SI{30}{\percent} of the land surface has network coverage. For this reason, there is a major concern that the required data cannot be exchanged because there is no network connectivity in many fields. Nevertheless, the authors want to leave the future \ac{WIC} system open to cellular standards.
+
+The current focus of the authors is on IEEE 802.11 technologies, which must first be evaluated for use in the agricultural environment.
+
+In collaboration with \textcite{klingler_agriculture_2018}, the authors investigated IEEE 802.11p technology for \ac{WIC} in agricultural scenarios. Experiments revealed that data could be exchanged over a maximum range of \SI{1700}{\metre}. But during the measurement in an agricultural work scenario from the corn harvest, there were collapses in the Received Signal Strength due to shadowing effects of the machines. The high range, data rate, and possible latencies make IEEE 802.11p a good technology for \ac{WIC} according to \textcite{schlingmann_challenges_2017}.
+
+As of July 2, 2021, the frequency spectrum of IEEE 802.11p in the United States of America, ranging from \SIrange{5,850}{5,925}{\giga\hertz}, has been split. The upper \SI{30}{\mega\hertz} are reserved for Intelligent transportation systems now. The lower \SI{45}{\mega\hertz} have been released for unlicensed operations \cite{noauthor_use_2021}.
+
+Since the use of IEEE 802.11p has now been newly regulated by the FCC, the \ac{WIC} project group is looking for an alternative technology that enables \ac{WIC}.
 \section{Wireless Lans according to IEEE 802.11}
+\todo{Paper Christoph Sommer, Doktorarbeit, Diplomarbeit, Mario Franke, Tobias Hardes}
 According to \textcite{kauffels_wireless_2002} the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to Ethernet - or Token-Ring - networks.
 \textcite{sauter_wireless_2022} considers IEEE 802.11 also to be an implementation of Ethernet with the help of wirless radio technologies. The author lists the extensions to the original standard, which range from 802.11b, 802.11g, 802.11a, 802.11n, 802.11ac to the latest enhancement 802.11ax. The different IEEE 802.11 standards can operate in the  \SI{2.4}{\giga\hertz} - , \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} - frequency band. 
 
@@ -414,7 +458,7 @@ Authentifizierung
 
 \input{80211ax_ac.tex}
 
-
+\iffalse
 \section{Modell für drahtlose Übertragungssysteme}
 
 Abb 2.3.1  Modell einen Übertragungssystems
@@ -422,10 +466,9 @@ Abb 2.3.1  Modell einen Übertragungssystems
 Beschränkungen und Regelungen Frequenzwahl, Sendeleistung
 
 Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
+\fi
 
-
-
-\section{Analyzing Corn Harvest Processes}
+\section{Corn Harvest Processes as a Use Case for \ac{WIC}}
 
 \textcite{seifert_feldhacksler_1962} defines a forage harvester as an agricultural loading machine for nearly all types of animal feed. By mounting different cutting and loading devices, a forage harvester can load the following types of animal feed according to the authors:
 \begin{itemize}
@@ -453,16 +496,11 @@ In the harvesting process, the \ac{FH} sets the path and speed and the \ac{TM} f
 
 At the same time, the harvesting process is also an example of the video streaming use case. During the harvesting process of the spout of the \ac{FH} must be controlled to set the loading position of the forage into the trailer of the \ac{TM}.
 
-According to \textcite{HMThesis}, different spout guidance and control systems have been developed for this reason, which use a camera attached to the spout to determine via machine vision the fill volume at each point of the trailer and set the spout to fill the empty parts of the trailer accordingly. The author describes the Autofill -  system from Claas and the Intellifill - system from CNH Industrial as examples of spout guidance systems. 
+According to \textcite{HMThesis}, different spout guidance and control systems have been developed for this reason, which use a camera attached to the spout to determine via machine vision the fill volume at each point of the trailer and set the spout to fill the empty parts of the trailer accordingly. The author describes the Autofill - system from Claas and the Intellifill - system from CNH Industrial as examples of spout guidance systems. 
 
 Streaming the video of the camera at the spout from the \ac{FH} to the \ac{TM} would be a useful application of the video streaming use case in the harvesting process. If the driver of the \ac{TM} can watch a livestream of the trailer's fill level, he is always informed and knows when the trailer is full so he can drive the feed back to the farm.
 
-To gain a better insight into the some requirements for the application ot the \ac{WIC} use cases Platooning and Streaming Services in a corn harvest scenario, I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on two days on a field in Germany in September. For this, I placed tablets in the driver's cabs of the agricultural vehicles, which recorded the NMEA data stream of the GPS every second. 
 
-The workflow of the corn harvest was as follows. 
-I handed out the tablets to the drivers, which left the farm with the tablets in the driver's cabs to drive to the field in the morning. The tablets recorded position and speed of the tractors all day long. During breaks, the tablets continued to capture NMEA data stream of their GPS even if the positions and speed did not change.
-
-First, I anonymized the timestamps of the recorded NMEA files by deleting the first data points of the log files for the timestamps where the recorded accuracy of all log files was not yet less than 2 m. From the time when the accuracy of all log files was less than 2 m, I overwrote the timestamp and the date for all further data points with a continuous index.
 
 
 Definition Feldhäcksler
@@ -477,6 +515,47 @@ Gras und Klee für die tägliche Fütterung und für die Silage
 Heu und Stroh 
 
 Introduction Corn Harvest, Forage Harvesters
+
+
+\chapter{Analyzing Corn Harvest Process Data}
+To gain a better insight into the some requirements for the application ot the \ac{WIC} use cases Platooning and Streaming Services in a corn harvest scenario, I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September. For this, I placed tablets in the driver's cabs of the agricultural vehicles, which recorded the NMEA data stream of the GPS every second. 
+
+The workflow for collecting the corn harvest process data was as follows. 
+I handed out the tablets to the drivers, which left the farm with the tablets in the driver's cabs to drive to the field in the morning. The tablets recorded position and speed of the \ac{FH} and the \ac{TM}s all day long. During breaks, the tablets continued to capture NMEA data stream of their GPS even if the positions and speed did not change.
+
+First, I anonymized the timestamps of the recorded NMEA files by deleting the first data points of the log files for the timestamps where the recorded accuracy of all log files was not yet less than 2 m. From the time when the accuracy of all log files was less than 2 m, I replaced the timestamp and the date for all further data points with a continuous index.
+
+After that I anonymized the location data by adding a random offset to the GPS coordinates. Damit wurden die Flächen auf eine zufällige Stelle auf der Welt verschoben.
+
+The goal of analysing the corn harvest data was to investigate the machines move in the working scenarios relative to each other. The speed and distance of the machines in tracked data may result in new use case requirements for e.g. latency or communication range. The machinery movement profile can be used to identify when shadowing effects may occur in the work scenario or when machines meet in the field.
+Da im Harvest Process das overloading scenario das work scenario ist, musste ich zunächst einen intelligenten Algorithmus entwickeln. Dieser kann in den aufgezeichneten Daten overloading scenarios entdecken.
+
+Dazu habe ich mir zu Beginn Dashboard mit dem python Framework \textit{Dash}\footnote{https://dash.plotly.com/introduction Accessed: 5.12.2022} gebaut. Darin habe ich mir über auf einer Karte zunächst für jede Maschine alle Positionen in einer Polyline geplotted. Über einen Slider konnte man dann ein Zeitinterval festlegen, für welches welches man den Geschwindigkeits - und Positionsverlauf genauer anschauen möchte. Zusätzlich konnte man auswählen, welche \ac{TM}s man zusätzlich zum \ac{FH} angezeigt haben möchte. Nur die ausgewählten \ac{TM}s und der \ac{FH} wurden dann für das Zeitinterval betrachtet. Die Positionen des ausgewählten Zeitintervals habe ich ebenso in eine Karte als Polyline geplotted. Zusätzlich wurden für das Zeitinterval die Distanz der ausgewählten \ac{TM}s zum \ac{FH}, die Geschwindigkeitsdifferenz zwischen den \ac{TM}s und \ac{FH} und die jeweiligen Geschwindigkeiten der ausgewählten Maschinen in Graphen als Zeitverläufe dargestellt. 
+
+Über diese Visualisierung der Daten konnte ich mir zunächst einen Überblick über das Verhalten der Maschinen vor, während, nach dem Overloading scenario schaffen. Dabei ist im überblick zu erkennen, dass der \ac{FH} nahezu durchgängig neben einer \ac{TM} fährt und mit ihr im Overloading Prozess ist.
+Dabei kann der \ac{FH} immer mal auf der Stelle stehen, wenn das Schneidewerk verstopft ist oder ein Übergang ist, wo die volle \ac{TM} sich vom \ac{FH} entfernt und eine leere \ac{TM} zum \ac{FH} aufschließt, um Corn aufzunehmen. 
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.85\textwidth]{figures/distanceHarvestSzenario.pdf}
+	\caption{Distribution of time proportions where a given distance was between \ac{FH} and \ac{TM} in a harvest platoon scenario.}%
+	\label{fig:distance}%
+\end{figure}
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.85\textwidth]{figures/speedHarvestSzenario.pdf}
+	\caption{Distribution of time proportions where FH and TM drove with a certain speed in a harvest platoon scenario}%
+	\label{fig:speed}%
+\end{figure}
+
+\textcite{klingler_agriculture_2018} hat bereits die Suitability von IEEE 802.11p für \ac{WIC} untersucht. Dabei haben die Autoren festgestellt, dass es im Harvest scenario zu shadowing effecten kommen kann, wo die RSS plötzlich sehr stark singt. Die Autoren erklären sich das, weil entweder ein anderen Traktor oder der Spout des \ac{FH} sich in der \ac{LOS} befunden haben. 
+
+Um einen Überblick zu bekommen, wo sich der \ac{TM} im Overloading Process im Verhältnis zum \ac{FH} befindet, habe ich die aufgezeichneten Positionsdaten aus dem Corn Harvest Scenario untersucht. Dazu habe ich jeden Zeitpunkt in im Overloading Scenario das relative Bearing zwischen dem Heading des \ac{FH} und der \ac{TM} berechnet. Das relative Bearing ist der Winkel zwischen B und dem Heading es Punktes A, wie in \autoref{fig:bearing_plain} zu sehen ist.  
+
+Heading Annahme Vorwärts Fahrt. Ansonsten Überprüfen und nochmal Einzelfahrt plotten und anschauen. 
+Wie oft dreht sich das Heading ?
+Möglicherweise Rückwärtsfahrt erkennen? 
+
+
 
 \begin{figure}%
 	\centering
@@ -527,18 +606,7 @@ Introduction Corn Harvest, Forage Harvesters
 
 
 
-\begin{figure}%
-	\centering
-	\includegraphics[width=0.85\textwidth]{figures/distanceHarvestSzenario.pdf}
-	\caption{Distribution of time proportions where a given distance was between \ac{FH} and \ac{TM} in a harvest platoon scenario.}%
-	\label{fig:distance}%
-\end{figure}
-\begin{figure}%
-	\centering
-	\includegraphics[width=0.85\textwidth]{figures/speedHarvestSzenario.pdf}
-	\caption{Distribution of time proportions where FH and TM drove with a certain speed in a harvest platoon scenario}%
-	\label{fig:speed}%
-\end{figure}
+
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/bearingHarvestScenario.pdf}
@@ -560,6 +628,16 @@ Introduction Corn Harvest, Forage Harvesters
 \end{itemize}
 
 \chapter{Simulation}
+
+Propagation Model:
+ Two Ray Ground only mathematics Rappaport
+ Jakes Model
+ Three Log Distance
+ 
+ 
+ Data Simulation
+ 
+
 
 \chapter{Evaluation}
 
