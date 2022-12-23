@@ -19,7 +19,7 @@
 \birthplace{Magdeburg}
 
 % Title of your thesis.
-\title{Suitability of Modern Wi-Fi for Wireless-Infield-Communication of Agricultural	Machines}
+\title{Suitability of Modern Wi-Fi for Wireless-Infield-Communication of Agricultural Machines}
 
 % Choose one of the following lines, changing the word "Computer Science" to match your degree program.
 \thesistype{Diploma Thesis in Information Systems Engineering}\thesiscite{Diploma Thesis~(Diplomarbeit)}
@@ -89,6 +89,10 @@
 \DeclareAcronym{AP}{
 	short=AP,
 	long=Access Point,
+}
+\DeclareAcronym{PPD}{
+	short=PPD,
+	long=Plant Population Density,
 }
 \DeclareAcronym{WIC}{
 	short=WIC,
@@ -468,72 +472,90 @@ Beschränkungen und Regelungen Frequenzwahl, Sendeleistung
 Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 \fi
 
-\section{Corn Harvest Processes as a Use Case for \ac{WIC}}
+\section{Harvest and Loading Processes as a Use Cases for \ac{WIC}}
 
-\textcite{seifert_feldhacksler_1962} defines a forage harvester as an agricultural loading machine for nearly all types of animal feed. By mounting different cutting and loading devices, a forage harvester can load the following types of animal feed according to the authors:
-\begin{itemize}
-	\item Hey
-	\item Straw
-	\item Corn
-	\item Grass
-		\item Clover 
-\end{itemize}
+\textcite{seifert_feldhacksler_1962} define a forage harvester as an agricultural loading machine for nearly all types of animal feed. By mounting different cutting and loading devices, a forage harvester can load the following types of animal feed according to the authors: Hey, Straw, Corn, Grass and Clover.
+While harvesting and loading large quantities of forage, the \ac{FH} needs to load the harvested goods directly onto a \ac{TM}, which drives next to or behind the vehicle. 
+Unlike the Combine Harvester, the \ac{FH} cannot store the forage in the tank because the harvested volume is too large. Therefore, a \ac{TM} always drives next to the forage harvester to take over and transport the harvest to the farm.
 
-\textcite{Faustzahlen_Landwirtschaft}
 
-In the harvesting and loading process of these large quantities of forage, the \ac{FH} loads the goods directly onto a \ac{TM}, which drives next to or behind the vehicle.
+Taking a corn harvest scenario as an example, key figures can be looked up in \cite{faustzahlen2018}, a standard reference book in agricultural literature. This book contains key figures of agricultural processes, which have been compiled by 80 experts. The key figures, which are shown in \autoref{tab:DataSilageHarvest}, are dependent on the \ac{PPD} and show the large amount of forage harvested by a \ac{FH} every hour.
+\begin{table}
+	\centering
+	\begin{tabular}{>{\raggedright}p{5.5cm}p{1.6cm}p{1.6cm}p{1.6cm}}
+		\toprule
+		Kennzahlen & \ac{PPD} \SI{20}{\tonne\per\hectare} & \ac{PPD} \SI{30}{\tonne\per\hectare} & \ac{PPD} \SI{50}{\tonne\per\hectare}\\
+		\midrule
+		Required \ac{TM}s & \num{5}&
+		\num{7} & \num{10} \\
+		Harvesting performance volume [\si{\cubic\metre\per\hour}] &
+		\num{285.7}-\num{333.3}
+		& \num{428.6}-\num{500.0} &
+		\num{595.7}-\num{695.0}\\
+		Harvesting performance \ac{TM} loads [\si{\per\hour}] &
+		\num{5.7} - \num{6.7}
+		& \num{8.6} - \num{10.0} &
+		\num{11.9} - \num{13.9}\\
+		Harvesting performance mass [\si{\tonne\per\hour}] & \num{100}
+		 & \num{150} &
+		\num{208.5} \\
+		\bottomrule
+	\end{tabular}
+	\caption{Key figures from \cite{faustzahlen2018} of corn harvest of a \ac{FH} with a working width of \SI{6.2}{\metre} in a \SI{80}{\hectare}-field in regards to \ac{PPD}}
+	\label{tab:DataSilageHarvest}
+\end{table}
 
-This harvesting process is an example for the use of an agricultural platooning system as described by 
-\textcite{zhang_method_2009}. This creates a leader and follower system in which an unmanned tractor follows a leading manned tractor.
+The harvesting and loading processes are examples for the use of an agricultural platooning system as described by 
+\textcite{zhang_method_2009}. This creates a leader and follower system where an unmanned agricultural machine follows a leading manned agricultural machine.
 
-In the harvesting process, the \ac{FH} sets the path and speed and the \ac{TM} follows with a longitudinal and lateral offset as it is displayed in \autoref{fig:offset}
+In a harvesting and loading process, the \ac{FH}, as a leader, sets the path and speed and the \ac{TM} follows unmanned with a longitudinal and lateral offset as it is displayed in \autoref{fig:offset}
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/offset_platoon.pdf}
 	\caption{Lateral and longitudinal Offset between the two agricultural machines \ac{FH} and \ac{TM} in a corn harvest scenario}%
 	\label{fig:offset}%
 \end{figure}
+This system positions the \ac{TM} optimally to the \ac{FH}, so that the foarge can be loaded ideally from the \ac{FH} onto the \ac{TM}. 
 
-At the same time, the harvesting process is also an example of the video streaming use case. During the harvesting process of the spout of the \ac{FH} must be controlled to set the loading position of the forage into the trailer of the \ac{TM}.
+As stated in \autoref{tab:DataSilageHarvest}, already ten drivers for the \ac{TM}s are needed in the corn harvest process with a high \ac{PPD}. 
+By using a leader and follower system based on the description of \textcite{zhang_method_2009}, each \ac{TM} can drive unmanned in the field leading to a smaller number of workers needed in the corn harvest process.
 
-According to \textcite{HMThesis}, different spout guidance and control systems have been developed for this reason, which use a camera attached to the spout to determine via machine vision the fill volume at each point of the trailer and set the spout to fill the empty parts of the trailer accordingly. The author describes the Autofill - system from Claas and the Intellifill - system from CNH Industrial as examples of spout guidance systems. 
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/AKLandwirtschaft.pdf}
+	\caption{Decrease in the agricultural labor force in Germany \cite{bmel2020}}%
+	\label{fig:workforce_agri}%
+\end{figure}
 
-Streaming the video of the camera at the spout from the \ac{FH} to the \ac{TM} would be a useful application of the video streaming use case in the harvesting process. If the driver of the \ac{TM} can watch a livestream of the trailer's fill level, he is always informed and knows when the trailer is full so he can drive the feed back to the farm.
+At the same time, the harvesting and loading processes are also examples of the video streaming use case. During these processes the spout of the \ac{FH} must be controlled to set the loading position of the forage into the trailer of the \ac{TM}.
 
+According to \textcite{murcia_quadrotor_2014}, different spout guidance and control systems have been developed for this reason, which use a camera attached to the spout to determine the fill volume at each point of the trailer via machine vision and set the spout to fill the empty parts of the trailer accordingly. The author describes Autofill - systems from Claas and Intellifill - systems from CNH Industrial as examples of spout guidance systems. 
 
-
-
-Definition Feldhäcksler
-
-
-Nach Feldhäcksler 1962 ist ein Feldhäcksler eine Lademaschine für fast alle Futterarten:
-
-Heu und
-
-Mais als Grünmais für die tägliche Fütterung und als Silomais
-Gras und Klee für die tägliche Fütterung und für die Silage
-Heu und Stroh 
-
-Introduction Corn Harvest, Forage Harvesters
+Streaming the video of a camera at the spout from the \ac{FH} to the \ac{TM} would be a useful application of the video streaming use case in the harvesting process. If the driver of the \ac{TM} can watch a livestream of the trailer's fill level, he is always informed and knows when the trailer is full and can drive the forage back to the farm.
 
 
 \chapter{Analyzing Corn Harvest Process Data}
-To gain a better insight into the some requirements for the application ot the \ac{WIC} use cases Platooning and Streaming Services in a corn harvest scenario, I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September. For this, I placed tablets in the driver's cabs of the agricultural vehicles, which recorded the NMEA data stream of the GPS every second. 
 
+To gain a better insight into requirements of the\ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario as the example for I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September. For this, I placed tablets in the driver's cabs of a \ac{FH} and three \ac{TM}s, which recorded the position and the speed in a NMEA data stream of the tablet's GPS every second. 
+
+% wahrscheinlich raus
 The workflow for collecting the corn harvest process data was as follows. 
 I handed out the tablets to the drivers, which left the farm with the tablets in the driver's cabs to drive to the field in the morning. The tablets recorded position and speed of the \ac{FH} and the \ac{TM}s all day long. During breaks, the tablets continued to capture NMEA data stream of their GPS even if the positions and speed did not change.
 
-First, I anonymized the timestamps of the recorded NMEA files by deleting the first data points of the log files for the timestamps where the recorded accuracy of all log files was not yet less than 2 m. From the time when the accuracy of all log files was less than 2 m, I replaced the timestamp and the date for all further data points with a continuous index.
+After recording the process data, I anonymized it. 
+First, I delete data points of the log files where the recorded accuracy was not yet less than \SI{2}{\metre}. When the accuracy of following data points was less than \SI{2}{\metre}, I replaced the timestamp and the date for all data points with a continuous index.
 
-After that I anonymized the location data by adding a random offset to the GPS coordinates. Damit wurden die Flächen auf eine zufällige Stelle auf der Welt verschoben.
+After that I anonymized the location data by adding a random offset to the GPS coordinates. As a result, the areas were moved to a random location in the world.
 
 The goal of analysing the corn harvest data was to investigate the machines move in the working scenarios relative to each other. The speed and distance of the machines in tracked data may result in new use case requirements for e.g. latency or communication range. The machinery movement profile can be used to identify when shadowing effects may occur in the work scenario or when machines meet in the field.
-Da im Harvest Process das overloading scenario das work scenario ist, musste ich zunächst einen intelligenten Algorithmus entwickeln. Dieser kann in den aufgezeichneten Daten overloading scenarios entdecken.
 
-Dazu habe ich mir zu Beginn Dashboard mit dem python Framework \textit{Dash}\footnote{https://dash.plotly.com/introduction Accessed: 5.12.2022} gebaut. Darin habe ich mir über auf einer Karte zunächst für jede Maschine alle Positionen in einer Polyline geplotted. Über einen Slider konnte man dann ein Zeitinterval festlegen, für welches welches man den Geschwindigkeits - und Positionsverlauf genauer anschauen möchte. Zusätzlich konnte man auswählen, welche \ac{TM}s man zusätzlich zum \ac{FH} angezeigt haben möchte. Nur die ausgewählten \ac{TM}s und der \ac{FH} wurden dann für das Zeitinterval betrachtet. Die Positionen des ausgewählten Zeitintervals habe ich ebenso in eine Karte als Polyline geplotted. Zusätzlich wurden für das Zeitinterval die Distanz der ausgewählten \ac{TM}s zum \ac{FH}, die Geschwindigkeitsdifferenz zwischen den \ac{TM}s und \ac{FH} und die jeweiligen Geschwindigkeiten der ausgewählten Maschinen in Graphen als Zeitverläufe dargestellt. 
+To detect overloading of crops from \ac{FH} to a \ac{TM} in the Harvest Process, I had to develop an intelligent algorithm. It can detect overloading scenarios in the recorded process data.
 
-Über diese Visualisierung der Daten konnte ich mir zunächst einen Überblick über das Verhalten der Maschinen vor, während, nach dem Overloading scenario schaffen. Dabei ist im überblick zu erkennen, dass der \ac{FH} nahezu durchgängig neben einer \ac{TM} fährt und mit ihr im Overloading Prozess ist.
-Dabei kann der \ac{FH} immer mal auf der Stelle stehen, wenn das Schneidewerk verstopft ist oder ein Übergang ist, wo die volle \ac{TM} sich vom \ac{FH} entfernt und eine leere \ac{TM} zum \ac{FH} aufschließt, um Corn aufzunehmen. 
+For this purpose I started to build a Dashboard with the Python framework \textit{Dash}\footnote{https://dash.plotly.com/introduction Accessed: 5.12.2022}. In the Dashboard, I initially plotted all the positions in a polyline for each machine on a map. A slider allows one to set a time interval that narrows down the data points for display in the dashboard. In addition, one could select which \ac{TM}s are displayed next to the \ac{FH}. For the chosen time interval, the distance and velocity difference between the selected \ac{TM}s and the \ac{FH} were plotted in graphs as time histories. 
+
+In the dashboard, I was able to get an overview of the behavior of the machines before, during, after the overloading scenario.
+In the overview, it can be seen that a \ac{FH} is nearly always in the overleading process with a \ac{TM}. In doing so, the FH may occasionally stay in the same place if the cutter is clogged or there is a transition of \ac{TM}s where a full \ac{TM} moves away from the \ac{FH} and a empty \ac{TM} catches up to the \ac{FH} to take over the forage.
+
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.85\textwidth]{figures/distanceHarvestSzenario.pdf}
@@ -547,9 +569,9 @@ Dabei kann der \ac{FH} immer mal auf der Stelle stehen, wenn das Schneidewerk ve
 	\label{fig:speed}%
 \end{figure}
 
-\textcite{klingler_agriculture_2018} hat bereits die Suitability von IEEE 802.11p für \ac{WIC} untersucht. Dabei haben die Autoren festgestellt, dass es im Harvest scenario zu shadowing effecten kommen kann, wo die RSS plötzlich sehr stark singt. Die Autoren erklären sich das, weil entweder ein anderen Traktor oder der Spout des \ac{FH} sich in der \ac{LOS} befunden haben. 
+\textcite{klingler_agriculture_2018} investigated the suitability of IEEE 802.11p for \ac{WIC}. The authors detected that shadowing effects occur in the harvest scenario. The authors explain the effect because either another tractor or the spout of the \ac{FH} was in the \ac{LOS}.  
 
-Um einen Überblick zu bekommen, wo sich der \ac{TM} im Overloading Process im Verhältnis zum \ac{FH} befindet, habe ich die aufgezeichneten Positionsdaten aus dem Corn Harvest Scenario untersucht. Dazu habe ich jeden Zeitpunkt in im Overloading Scenario das relative Bearing zwischen dem Heading des \ac{FH} und der \ac{TM} berechnet. Das relative Bearing ist der Winkel zwischen B und dem Heading es Punktes A, wie in \autoref{fig:bearing_plain} zu sehen ist.  
+To get an overview of where a \ac{TM} is in the overloading process relative to the \ac{FH}, I reviewed the recorded position data. The relative bearing is the angle between B and the heading of point A, as shown in \autoref{fig:bearing_plain}. I calculated the relative bearing between the heading of the \ac{FH} and the \ac{TM} at each time point in the overloading scenario.
 
 Heading Annahme Vorwärts Fahrt. Ansonsten Überprüfen und nochmal Einzelfahrt plotten und anschauen. 
 Wie oft dreht sich das Heading ?
@@ -604,7 +626,19 @@ Möglicherweise Rückwärtsfahrt erkennen?
 \end{figure}
 
 
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.99\textwidth]{figures/distanceHarvestScenario.pdf}
+	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
+	\label{fig:distance}%
+\end{figure}
 
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.99\textwidth]{figures/speedHarvestScenario.pdf}
+	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
+	\label{fig:speed}%
+\end{figure}
 
 
 \begin{figure}%
@@ -612,6 +646,20 @@ Möglicherweise Rückwärtsfahrt erkennen?
 	\includegraphics[width=0.99\textwidth]{figures/bearingHarvestScenario.pdf}
 	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
 	\label{fig:bearing}%
+\end{figure}
+
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/claas_harvest_behind.png}
+	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
+	\label{fig:startpart}%
+\end{figure}
+
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/claas_harvest_side.png}
+	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
+	\label{fig:normal}%
 \end{figure}
 \chapter{Field Measurements}
 
@@ -637,8 +685,24 @@ Propagation Model:
  
  Data Simulation
  
+ 
+\section{ns-3 Network Simulator}
+
+Bei der Wahl der Network Simulator Wifi 6 Implementierungen 
 
 
+\todo{Warum nicht was anderes GNS3, MININET, ... ?}
+
+According to \cite{ns3manual} ns-3 is a discrete-event network simulator project, which was founded in 2006. The ns-3 project is open source with a licence based on n GNU GPLv2 compatibility. It aims to procide an open, extensible network simulator for research and educational use. Ns-3 scripts can be written in C++ or Python.
+ns-API Python uses models in C++
+build system Cmake
+
+ATM no pre-built libraries and packages for operating systems
+ 
+The concept of ns3 is based on the abstraction of simulated systems. For this purpose, the term node was introduced for basic computing devices. The Node class offers the possibility to install protocol stacks and applications or to add peripheral cards and mobility models to the node.
+Applications are the abstraction of the user-level applications, which represent an activity to be simulated. For this purpose, the applications use resources and functionalities provided by the system software of a node. An example for the 
+
+\todo{ns-3 erklären?}
 \chapter{Evaluation}
 
 
