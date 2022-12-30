@@ -112,6 +112,10 @@
 	long=Modulation
 	and Coding Scheme,
 }
+\DeclareAcronym{CR}{
+	short=CR,
+	long=Coding Rate,
+}
 \DeclareAcronym{GI}{
 	short=GI,
 	long=Guard Interval,
@@ -475,9 +479,15 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 \section{Harvest and Loading Processes as a Use Cases for \ac{WIC}}
 
 \textcite{seifert_feldhacksler_1962} define a forage harvester as an agricultural loading machine for nearly all types of animal feed. By mounting different cutting and loading devices, a forage harvester can load the following types of animal feed according to the authors: Hey, Straw, Corn, Grass and Clover.
-While harvesting and loading large quantities of forage, the \ac{FH} needs to load the harvested goods directly onto a \ac{TM}, which drives next to or behind the vehicle. 
-Unlike the Combine Harvester, the \ac{FH} cannot store the forage in the tank because the harvested volume is too large. Therefore, a \ac{TM} always drives next to the forage harvester to take over and transport the harvest to the farm.
 
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.6\textwidth]{figures/claas_harvest_side.png}
+	\caption{\ac{FH} and \ac{TM} while }%
+	\label{fig:normal}%
+\end{figure}
+
+In the harvesting and loading process, a \ac{TM} normally drives alongside or behind the \ac{FH} so that the \ac{FH} can load the harvested goods onto the trailer of the \ac{TM} using the spout.Both machines are manned and both drivers try to keep the speed and distance so that the spout only throws the harvested goods into the trailer of the TM. An image of such a harvesting and loading process for corn can be seen in \autoref{fig:normal}.
 
 Taking a corn harvest scenario as an example, key figures can be looked up in \cite{faustzahlen2018}, a standard reference book in agricultural literature. This book contains key figures of agricultural processes, which have been compiled by 80 experts. The key figures, which are shown in \autoref{tab:DataSilageHarvest}, are dependent on the \ac{PPD} and show the large amount of forage harvested by a \ac{FH} every hour.
 \begin{table}
@@ -505,17 +515,19 @@ Taking a corn harvest scenario as an example, key figures can be looked up in \c
 	\label{tab:DataSilageHarvest}
 \end{table}
 
-The harvesting and loading processes are examples for the use of an agricultural platooning system as described by 
-\textcite{zhang_method_2009}. This creates a leader and follower system where an unmanned agricultural machine follows a leading manned agricultural machine.
-
-In a harvesting and loading process, the \ac{FH}, as a leader, sets the path and speed and the \ac{TM} follows unmanned with a longitudinal and lateral offset as it is displayed in \autoref{fig:offset}
+The harvesting and loading processes are examples for the use of an agricultural Platooning Services as described by 
+\textcite{zhang_method_2009}.
+This creates a leader and follower system where an unmanned agricultural machine follows a leading manned agricultural machine.
+For the harvesting and loading process, a Platooning service could be used as follows.
+The manned \ac{FH}, as a leader, sets the path and speed and transmits the data via \ac{WIC} to the \ac{TM}. Based on the path and speed data of the \ac{FH},\ac{TM} follows unmanned with a longitudinal and lateral offset as it is displayed in \autoref{fig:offset}
 \begin{figure}%
 	\centering
-	\includegraphics[width=0.95\textwidth]{figures/offset_platoon.pdf}
+	\includegraphics[width=0.65\textwidth]{figures/offset_platoon.pdf}
 	\caption{Lateral and longitudinal Offset between the two agricultural machines \ac{FH} and \ac{TM} in a corn harvest scenario}%
 	\label{fig:offset}%
 \end{figure}
-This system positions the \ac{TM} optimally to the \ac{FH}, so that the foarge can be loaded ideally from the \ac{FH} onto the \ac{TM}. 
+
+This Platooning Service positions the \ac{TM} optimally to the \ac{FH}, so that the forage can be loaded ideally from the \ac{FH} onto the \ac{TM}.
 
 As stated in \autoref{tab:DataSilageHarvest}, already ten drivers for the \ac{TM}s are needed in the corn harvest process with a high \ac{PPD}. 
 By using a leader and follower system based on the description of \textcite{zhang_method_2009}, each \ac{TM} can drive unmanned in the field leading to a smaller number of workers needed in the corn harvest process.
@@ -526,6 +538,7 @@ By using a leader and follower system based on the description of \textcite{zhan
 	\caption{Decrease in the agricultural labor force in Germany \cite{bmel2020}}%
 	\label{fig:workforce_agri}%
 \end{figure}
+
 
 At the same time, the harvesting and loading processes are also examples of the video streaming use case. During these processes the spout of the \ac{FH} must be controlled to set the loading position of the forage into the trailer of the \ac{TM}.
 
@@ -547,14 +560,28 @@ First, I delete data points of the log files where the recorded accuracy was not
 
 After that I anonymized the location data by adding a random offset to the GPS coordinates. As a result, the areas were moved to a random location in the world.
 
-The goal of analysing the corn harvest data was to investigate the machines move in the working scenarios relative to each other. The speed and distance of the machines in tracked data may result in new use case requirements for e.g. latency or communication range. The machinery movement profile can be used to identify when shadowing effects may occur in the work scenario or when machines meet in the field.
+The goal of analysing the corn harvest data was to investigate the machines move in the working scenarios relative to each other. The speed and distance of the machines in tracked data of harvest platoons may result in new use case requirements for e.g. latency or communication range of Platooning and Streaming Services. The machinery movement profile can be used to identify when shadowing effects may occur in the work scenario or when machines meet in the field.
 
-To detect overloading of crops from \ac{FH} to a \ac{TM} in the Harvest Process, I had to develop an intelligent algorithm. It can detect overloading scenarios in the recorded process data.
+To detect harvest platoons in the Harvest Process data, I had to develop an intelligent algorithm. It can detect them in the recorded process data.
 
 For this purpose I started to build a Dashboard with the Python framework \textit{Dash}\footnote{https://dash.plotly.com/introduction Accessed: 5.12.2022}. In the Dashboard, I initially plotted all the positions in a polyline for each machine on a map. A slider allows one to set a time interval that narrows down the data points for display in the dashboard. In addition, one could select which \ac{TM}s are displayed next to the \ac{FH}. For the chosen time interval, the distance and velocity difference between the selected \ac{TM}s and the \ac{FH} were plotted in graphs as time histories. 
 
 In the dashboard, I was able to get an overview of the behavior of the machines before, during, after the overloading scenario.
-In the overview, it can be seen that a \ac{FH} is nearly always in the overleading process with a \ac{TM}. In doing so, the FH may occasionally stay in the same place if the cutter is clogged or there is a transition of \ac{TM}s where a full \ac{TM} moves away from the \ac{FH} and a empty \ac{TM} catches up to the \ac{FH} to take over the forage.
+In the overview, it can be seen that a \ac{FH} is nearly always in the overloading process with a \ac{TM}. In doing so, the FH may occasionally stay in the same place if the cutter is clogged or there is a transition of \ac{TM}s where a full \ac{TM} moves away from the \ac{FH} and a empty \ac{TM} catches up to the \ac{FH} to take over the forage.
+
+A \ac{TM} is in a platoon with a \ac{FH} if it is close to the \ac{FH} and they are moving at
+with nearly the same speed. During a turning maneuver on the field, the distance between
+increase the distance between the \ac{TM} and the \ac{FH} for a short time. Since in a turning maneuver both machines have different curve radii, a different speed can be observed on both machines in order to finish turing at the same time.
+As soon as the machines are at the beginning of a new lane after the turn, a new harvesting process begins.
+where the machines drive closely and nearly with the same speed. 
+
+Furthermore it occurs that sometimes another TM can be close to the \ac{FH}. This is empty and waits to work with the FH in the platoon next. For that purpose, the empty TM drives close behind the current platoon at the same speed so as not to catch up even closer to the platoon and be ready in the close vicinity.
+
+Aus dieses Beobachtungen lässt sich der intelligente Algorithmus entwickeln, welcher die Platooning Scenarios entdeckt. 
+
+It can be observed  that a fully loaded TM leaves the field via one of the N outputs to bring the crop to a farm building. Via a
+check if a TM has left the field after leaving a platoon,
+wrongly recognized platoons can be discarded.
 
 \begin{figure}%
 	\centering
@@ -573,9 +600,14 @@ In the overview, it can be seen that a \ac{FH} is nearly always in the overleadi
 
 To get an overview of where a \ac{TM} is in the overloading process relative to the \ac{FH}, I reviewed the recorded position data. The relative bearing is the angle between B and the heading of point A, as shown in \autoref{fig:bearing_plain}. I calculated the relative bearing between the heading of the \ac{FH} and the \ac{TM} at each time point in the overloading scenario.
 
+Unter der Annahme, dass der \ac{FH} nicht rückwärts fährt, kann man aus dem relativen Bearing entnehmen in welchem Winkel von der \ac{FH} sich die \ac{TM} befindet. Das Ergebnis ist in \autoref{fig:bearing} zu sehen. Es ist zu sehen, dass sich die TM meist in einem Winkel von \SIrange{67.5}{112.5}{\degree} in einer Distanz von \SIrange{0}{10}{\metre} befindet.
+Zusätzlich fällt auf, dass sich die Maschine auch direkt hinter dem FH befinden kann. Dieses Hintereinanderfahren ist üblich, wenn ein neuer Teil des Feldes angeschnitten wird zur Ernte, wie in \autoref{fig:startpart} zu sehen ist. 
+Weiterhin fällt auf, dass sich die TM kaum links von der FH aufgehalten hat. Da immer die FH oftmals Linkskurven gefahren ist, war immer rechts von der FH abgeernet, sodass die TM da fahren konnte ohne Erntegut zu überfahren.
+
+\TODO{
 Heading Annahme Vorwärts Fahrt. Ansonsten Überprüfen und nochmal Einzelfahrt plotten und anschauen. 
 Wie oft dreht sich das Heading ?
-Möglicherweise Rückwärtsfahrt erkennen? 
+Möglicherweise Rückwärtsfahrt erkennen? }
 
 
 
@@ -655,12 +687,6 @@ Möglicherweise Rückwärtsfahrt erkennen?
 	\label{fig:startpart}%
 \end{figure}
 
-\begin{figure}%
-	\centering
-	\includegraphics[width=0.8\textwidth]{figures/claas_harvest_side.png}
-	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
-	\label{fig:normal}%
-\end{figure}
 \chapter{Field Measurements}
 
 
@@ -703,6 +729,35 @@ The concept of ns3 is based on the abstraction of simulated systems. For this pu
 Applications are the abstraction of the user-level applications, which represent an activity to be simulated. For this purpose, the applications use resources and functionalities provided by the system software of a node. An example for the 
 
 \todo{ns-3 erklären?}
+
+\section{Data Rate}
+
+\ac{GI} and \ac{CR}
+\begin{table}
+	\centering
+	\begin{tabular}{>{\raggedright}p{2.2cm}p{1.9cm}p{1.9cm}p{1.9cm}p{1.9cm}}
+		\toprule
+		\ac{MCS},\ac{CR} and Bandwidth & th DR in & \ac{GI} \SI{800}{\nano\second} & \ac{GI} \SI{1600}{\nano\second} & \ac{GI} \SI{3200}{\nano\second}\\
+		\midrule
+		BPSK 1/2 \SI{20}{\hertz} & \SI{17.2}{\mega\bit\per\second}&
+		 \SI{15.26}{\mega\bit\per\second} &  \SI{13.03}{\mega\bit\per\second} &  \SI{13.02}{\mega\bit\per\second} \\
+		BPSK 1/2 \SI{160}{\hertz} & \SI{15.26}{\mega\bit\per\second}&
+		\SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second}\\
+		64QAM 2/3 \SI{20}{\hertz}& \SI{15.26}{\mega\bit\per\second}&
+		\SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second}\\
+		64QAM 2/3 \SI{160}{\hertz}& \SI{15.26}{\mega\bit\per\second}&
+		\SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second}\\
+		1024QAM 5/6 \SI{20}{\hertz} &\SI{15.26}{\mega\bit\per\second}&
+		\SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second}\\
+		1024QAM 5/6 \SI{160}{\hertz} &\SI{15.26}{\mega\bit\per\second}&
+		\SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second}\\
+		\bottomrule
+	\end{tabular}
+	\caption{Key figures from \cite{faustzahlen2018} of corn harvest of a \ac{FH} with a working width of \SI{6.2}{\metre} in a \SI{80}{\hectare}-field in regards to \ac{PPD}}
+	\label{tab:DataRate}
+\end{table}
+
+
 \chapter{Evaluation}
 
 
