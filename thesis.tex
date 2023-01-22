@@ -107,6 +107,14 @@
 	short=MIMO,
 	long=Multiple Input Multiple Output,
 }
+\DeclareAcronym{STBC}{
+	short=STBC,
+	long=Space-Time-Block-Code,
+}
+\DeclareAcronym{PPDU}{
+	short=PPDU,
+	long=Physical layer convergence protocol data unit,
+}
 \DeclareAcronym{MCS}{
 	short=MCS,
 	long=Modulation
@@ -333,6 +341,26 @@ Außer AEF Video Streaming:
 
 \todo{What is it? 2.4 GHz? But is it Wifi? }
 
+
+
+Aufbau:
+
+WIC Umsetzungen: 
+
+Klingler 802.11p
+Elektrische Deichsel Fendt
+Beyond Sensing ???
+
+John Deere Machine Sync
+Raven Machine Sync
+Cellular networks
+
+cellular network coverage AEF paper 
+
+Wifi 6 Outdoorcommunication
+
+
+
 In order to implement these described \ac{WIC} use cases, the \ac{WIC} project group has been searching for a technology that can realize the required data rates, latencies and high transmission range. The plans for doing so are written down by members of the \ac{WIC} project group in \cite{schlingmann_challenges_2017}.
 
 The authors consider the fundamental use of cellular networks as very problematic because, according to \cite{noauthor_ict_2016}, only \SI{30}{\percent} of the land surface has network coverage. For this reason, there is a major concern that the required data cannot be exchanged because there is no network connectivity in many fields. Nevertheless, the authors want to leave the future \ac{WIC} system open to cellular standards.
@@ -344,6 +372,7 @@ In collaboration with \textcite{klingler_agriculture_2018}, the authors investig
 As of July 2, 2021, the frequency spectrum of IEEE 802.11p in the United States of America, ranging from \SIrange{5,850}{5,925}{\giga\hertz}, has been split. The upper \SI{30}{\mega\hertz} are reserved for Intelligent transportation systems now. The lower \SI{45}{\mega\hertz} have been released for unlicensed operations \cite{noauthor_use_2021}.
 
 Since the use of IEEE 802.11p has now been newly regulated by the FCC, the \ac{WIC} project group is looking for an alternative technology that enables \ac{WIC}.
+
 \section{Wireless Lans according to IEEE 802.11}
 \todo{Paper Christoph Sommer, Doktorarbeit, Diplomarbeit, Mario Franke, Tobias Hardes}
 According to \textcite{kauffels_wireless_2002} the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to Ethernet - or Token-Ring - networks.
@@ -363,11 +392,13 @@ Thereby, the BSS coverage areas can physically overlap so that continuous connec
 He also mentions, that the standard defines the following three mobility types for station in an \ac{ESS}, where a station can do no-transition and thereby stay within a \ac{BSS}, \ac{BSS}-transitioning and move from one \ac{BSS} to another \ac{BSS} within the same \ac{ESS} and \ac{ESS}-transition, where the Station moves from a \ac{ESS} to another one but no stable connection can be guaranteed.
 
 \textcite{sauter_wireless_2022} adds, that usually Ethernet is used to link \ac{AP}s in within an \ac{ESS}. But according to the author this can be replaced by a wireless connection, which is called wireless bridge.
+\todo{ESS not needed?}
+
 \TODO{Sauter 2022 Ad-Hoc Infos}
 The further development of IEEE 802.11 is accompanied by a constant change of the physical layer. \textcite{sauter_wireless_2022} mentions, that all new enhancements of the physical layer of IEEE 802.11 are backward compatible to previous definitions of the it.
 
 According to the Author, IEEE 802.11 initially used DSSS and FHSS as modulation methods.
-Since IEEE 802.11g the modulation method \ac{OFDM} can be used in the \SI{2.4}{\giga\hertz} frequency band. \ac{OFDM} divides the transmission channel in subcarriers with different amplitudes, frequencies and phases. Each subcarrier is orthogonal to another one, as they send the information "Low", where only one other subcarrier is sending the information "High".
+Since IEEE 802.11g the modulation method \ac{OFDM} can be used in the \SI{2.4}{\giga\hertz} frequency band. the author explains \ac{OFDM} divides the transmission channel in subcarriers with different amplitudes, frequencies and phases. Each subcarrier is orthogonal to another one, as they send the information "Low", where only one other subcarrier is sending the information "High".
 For the modulation and demodulation the FFT and IFFT are used respectively.
 \textcite{kauffels_wireless_2002} states, that \ac{OFDM} can be used in the \SI{5}{\giga\hertz} frequency band since IEEE 802.11a.
 
@@ -415,6 +446,46 @@ In various network architectures the "hidden station"-problem may occur. As you 
 	\caption{Hidden Station Problem}%
 	\label{fig:hidden_station}%
 \end{figure}
+
+\subsection{Guard Interval}
+\textcite{pulimamidi_development_2007} erlären das Guard Interval als ein cyclic prefix OFDM Symbole vor Inter Symbol Interference und durch Inter Carrier Intereference. Inter Symbol Interference is caused by multipath delays , where the reflected delayed previous symbol can interfere with the current received symbol\cite{ravindranath_performance_2016}. Ebenso wird bei Inter Carrier Interference durch time-varying channel eine längere OFDM symbol duration erzeugt, dass genauso eine Interferenz with the following OFDM symbol entstehen kann \cite{van_duc_nguyen_intercarrier_2002}.
+
+Über das Guard Interval führen \textcite{pulimamidi_development_2007} weiterhin folgendes auf. 
+Da das Guard Interval die mögliche Interferenz auf das Folgesymbol verhindern soll, muss es mindestens so lang sein, sodass alle channel impulse responses mit dem entstehenden Delay im Guard Interval aufgefangen werden. 
+\todo{longer GI WIfi 6 Outdoor Communication}
+Das Guard Interval wird dann am Receiver wieder entfernt. Dadurch entsteht eine attentuation of bandwidth welche sich durch die Formel in beschreiben lässt. \todo{Parameter einführen?}
+\begin{equation}\label{eq:GI}
+	GI\_Bandwidth\_Attentuation =
+	\frac{
+		OFDM symbol duration * 100
+	}{
+		OFDM symbol duration + GI
+	}
+	,
+\end{equation}
+Seit IEEE 802.11n ist ein verkürztes \ac{GI} von  \SI{400}{\nano\second} nutzbar, welches gegenüber dem üblichen \ac{GI} von  \SI{800}{\nano\second} die  maximale Datenrate von \SI{270}{\mega\bit\per\second} auf \SI{300}{\mega\bit\per\second} steigert \cite{sauter_wireless_2022}. IEEE 802.11ax unterstützt \ac{GI}s von \SI{800}{\nano\second}, \SI{800}{\nano\second} and \SI{800}{\nano\second} um einen besseren Schutz gegen \todo{better source} multipath effects in der indoor und outdoor communication zu ermöglichen. 
+
+\subsection{Extended Range}
+
+\textcite{Deng} explains, that the HE ER SU \ac{PPDU} format is intendet to extend the range of a single station to access point transmission. Das wird nach den Autoren damit erreicht, dass die PPDU eine Wiederholung des HE-SIG-A Feldes beinhaltet.
+
+\cite{Standard} spezifiziert, dass das HE ER SU PPDU format nur verwendet werden  darf, wenn 20 Mhz transmissions mit entweder 242 RU mit HE-MCS-0 - HE-MCS-2 oder 106 RU mit HE-MCS-0 auf einem spatial Stream verwendet werden.
+
+Weiterhin wird nach \cite{Deng} über ein power-boosting der preamble, welches nach in \cite{standard} auf \SI{3}{\decibel} limitiert ist,  eine reliable transmission für weite Reichweiten gewährleistet. 
+
+
+
+\subsection{\ac{MIMO}}
+In order to furhter exploit the physical layer capabilities, the single transmitting and receiving antenna systems called Single-Input-Single-Output can be extended to \ac{MIMO} - systems.
+ \textcite{sauter} describe the idea behind \ac{MIMO} as the usage of multiple transmit antennas and multiple receiving antenna. Dabei wird Spatial Multiplexing genutzt, sodass die gesendeten Signaler von jeder Antenne unterschiedlich an Objekten reflekiert werden und somit aus unterschiedlichen Richtung an den Receiver-Antennen empfangen werden können. 
+ 
+Seit IEEE 802.11n sind bis zu vier MIMO-Streams möglich. Diese wurde bei IEEE 802.11ax nochmal auf bis zu acht MIMO-Streams erhöht. Da über jeden MIMO-Stream gleichzeitig Daten geschickt werden können, kann so die theoretische Datenrate in Abhängigkeit der nutzbaren Streams proportional steigen. 
+
+\textcite{santumon_space-time_2012} 
+Die Autoren sagen, dass die MIMO zudem genutzt werden kann, um die Qualität des empfangenen Signals zu verstärken. \todo{überleitung stbc}
+
+\subsection{\ac{STBC}}
+
 Um das hidden station problem zu umgehen kann eine Station nach \textcite{sauter_wireless_2022} 
 Point coordinator 
 ohne Wettbewerb mit optionaler Priorisierung
@@ -477,7 +548,7 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 \fi
 
 \section{Harvest and Loading Processes as a Use Cases for \ac{WIC}}
-
+The Forage havester has proven to be an important agricultural machine for harvesting and loading forage.
 \textcite{seifert_feldhacksler_1962} define a forage harvester as an agricultural loading machine for nearly all types of animal feed. By mounting different cutting and loading devices, a forage harvester can load the following types of animal feed according to the authors: Hey, Straw, Corn, Grass and Clover.
 
 \begin{figure}%
@@ -511,7 +582,7 @@ Taking a corn harvest scenario as an example, key figures can be looked up in \c
 		\num{208.5} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Key figures from \cite{faustzahlen2018} of corn harvest of a \ac{FH} with a working width of \SI{6.2}{\metre} in a \SI{80}{\hectare}-field in regards to \ac{PPD}}
+	\caption{Key figures from \cite{faustzahlen2018} of corn harvest of a \ac{FH} with a working width of \SI{6.2}{\metre} in a \SI{80}{\hectare}-field in regard to \ac{PPD}}
 	\label{tab:DataSilageHarvest}
 \end{table}
 
@@ -535,7 +606,7 @@ By using a leader and follower system based on the description of \textcite{zhan
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/AKLandwirtschaft.pdf}
-	\caption{Decrease in the agricultural labor force in Germany \cite{bmel2020}}%
+	\caption{Decrease in the agricultural labor force in Germany MIT DATEN AUS \cite{bmel2020}}%
 	\label{fig:workforce_agri}%
 \end{figure}
 
@@ -702,7 +773,7 @@ Möglicherweise Rückwärtsfahrt erkennen? }
 \end{itemize}
 
 \chapter{Simulation}
-
+SEite 77 von 93 02 simulation.pdf
 Propagation Model:
  Two Ray Ground only mathematics Rappaport
  Jakes Model
@@ -732,32 +803,28 @@ Applications are the abstraction of the user-level applications, which represent
 
 \section{Data Rate}
 
+
 \ac{GI} and \ac{CR}
-\begin{table}
+\begin{figure}%
 	\centering
-	\begin{tabular}{>{\raggedright}p{2.2cm}p{1.9cm}p{1.9cm}p{1.9cm}p{1.9cm}}
-		\toprule
-		\ac{MCS},\ac{CR} and Bandwidth & th DR in & \ac{GI} \SI{800}{\nano\second} & \ac{GI} \SI{1600}{\nano\second} & \ac{GI} \SI{3200}{\nano\second}\\
-		\midrule
-		BPSK 1/2 \SI{20}{\hertz} & \SI{17.2}{\mega\bit\per\second}&
-		 \SI{15.26}{\mega\bit\per\second} &  \SI{13.03}{\mega\bit\per\second} &  \SI{13.02}{\mega\bit\per\second} \\
-		BPSK 1/2 \SI{160}{\hertz} & \SI{15.26}{\mega\bit\per\second}&
-		\SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second}\\
-		64QAM 2/3 \SI{20}{\hertz}& \SI{15.26}{\mega\bit\per\second}&
-		\SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second}\\
-		64QAM 2/3 \SI{160}{\hertz}& \SI{15.26}{\mega\bit\per\second}&
-		\SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second}\\
-		1024QAM 5/6 \SI{20}{\hertz} &\SI{15.26}{\mega\bit\per\second}&
-		\SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second}\\
-		1024QAM 5/6 \SI{160}{\hertz} &\SI{15.26}{\mega\bit\per\second}&
-		\SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second} &  \SI{15.26}{\mega\bit\per\second}\\
-		\bottomrule
-	\end{tabular}
-	\caption{Key figures from \cite{faustzahlen2018} of corn harvest of a \ac{FH} with a working width of \SI{6.2}{\metre} in a \SI{80}{\hectare}-field in regards to \ac{PPD}}
-	\label{tab:DataRate}
-\end{table}
+	\includegraphics[width=0.95\textwidth]{figures/gi_dataRate_simulation.pdf}
+	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with \num{2} \ac{MIMO} streams and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \ac{MIMO} streams and the chosen \ac{MCS} and \ac{CR}}%
+	\label{fig:Data_rate_GI}%
+\end{figure}
+
+atteninuation of bandwidth : 800ns : \SI{94}{\percent} \SI{89}{\percent} \SI{80}{\percent}
+
+Factors apply for MCS0 but may also apply later
+
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/mimo_dataRate_simulation.pdf}
+	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \ac{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \ac{MIMO} streams and the chosen \ac{MCS} and \ac{CR}}%
+	\label{fig:Data_rate_Mimo}%
+\end{figure}
 
 
+\todo{ Bar Plots }
 \chapter{Evaluation}
 
 
