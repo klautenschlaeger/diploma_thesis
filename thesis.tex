@@ -128,6 +128,10 @@
 	short=GI,
 	long=Guard Interval,
 }
+\DeclareAcronym{DCM}{
+	short=DCM,
+	long=Dual Carrier Modulation,
+}
 \DeclareAcronym{MANET}{
 	short=MANET,
 	long=Mobile Ad Hoc Network
@@ -446,7 +450,8 @@ In various network architectures the "hidden station"-problem may occur. As you 
 	\caption{Hidden Station Problem}%
 	\label{fig:hidden_station}%
 \end{figure}
-
+\subsection{BCC}
+low-density parity check (LDPC)
 \subsection{Guard Interval}
 \textcite{pulimamidi_development_2007} erlären das Guard Interval als ein cyclic prefix OFDM Symbole vor Inter Symbol Interference und durch Inter Carrier Intereference. Inter Symbol Interference is caused by multipath delays , where the reflected delayed previous symbol can interfere with the current received symbol\cite{ravindranath_performance_2016}. Ebenso wird bei Inter Carrier Interference durch time-varying channel eine längere OFDM symbol duration erzeugt, dass genauso eine Interferenz with the following OFDM symbol entstehen kann \cite{van_duc_nguyen_intercarrier_2002}.
 
@@ -464,6 +469,13 @@ Das Guard Interval wird dann am Receiver wieder entfernt. Dadurch entsteht eine 
 	,
 \end{equation}
 Seit IEEE 802.11n ist ein verkürztes \ac{GI} von  \SI{400}{\nano\second} nutzbar, welches gegenüber dem üblichen \ac{GI} von  \SI{800}{\nano\second} die  maximale Datenrate von \SI{270}{\mega\bit\per\second} auf \SI{300}{\mega\bit\per\second} steigert \cite{sauter_wireless_2022}. IEEE 802.11ax unterstützt \ac{GI}s von \SI{800}{\nano\second}, \SI{800}{\nano\second} and \SI{800}{\nano\second} um einen besseren Schutz gegen \todo{better source} multipath effects in der indoor und outdoor communication zu ermöglichen. 
+\subsection{\ac{DCM}}
+In order to introduce additional robostness \ac{DCM} can be applied to the physical layers of IEEE 802.11ax and IEEE 802.11bd according to \textcite{jacobs}. Die Autoren beschreiben \ac{DCM} als Möglichkeit Daten doppelt über zwei coherent carriers gesendet werden. Am Empfänger werden die Datenkopien mit dem log-likelihood ratio combiniert. Das erhöht die Empfangswahrscheinlichkeit der Daten auf Kosten der Datenrate. Die gleiche Anzahl von Daten benötigt nun doppelt so lange für die Übertragung. 
+
+\todo{Frame stucture plotting maybe in tikz --> looks nicer}
+
+
+
 
 \subsection{Extended Range}
 
@@ -479,13 +491,19 @@ Weiterhin wird nach \cite{Deng} über ein power-boosting der preamble, welches n
 In order to furhter exploit the physical layer capabilities, the single transmitting and receiving antenna systems called Single-Input-Single-Output can be extended to \ac{MIMO} - systems.
  \textcite{sauter} describe the idea behind \ac{MIMO} as the usage of multiple transmit antennas and multiple receiving antenna. Dabei wird Spatial Multiplexing genutzt, sodass die gesendeten Signaler von jeder Antenne unterschiedlich an Objekten reflekiert werden und somit aus unterschiedlichen Richtung an den Receiver-Antennen empfangen werden können. 
  
-Seit IEEE 802.11n sind bis zu vier MIMO-Streams möglich. Diese wurde bei IEEE 802.11ax nochmal auf bis zu acht MIMO-Streams erhöht. Da über jeden MIMO-Stream gleichzeitig Daten geschickt werden können, kann so die theoretische Datenrate in Abhängigkeit der nutzbaren Streams proportional steigen. 
+Seit IEEE 802.11n sind bis zu vier MIMO-Streams möglich. Diese wurde bei IEEE 802.11ax nochmal auf bis zu acht MIMO-Streams erhöht. Da über jeden MIMO-Stream gleichzeitig Daten geschickt werden können, kann so die theoretische Datenrate in Abhängigkeit der nutzbaren Streams proportional steigen. Das ist nach \textcite{abbas} spatial multiplexing.
 
-\textcite{santumon_space-time_2012} 
-Die Autoren sagen, dass die MIMO zudem genutzt werden kann, um die Qualität des empfangenen Signals zu verstärken. \todo{überleitung stbc}
+Jedoch sagen die Autoren zudem, dass MIMO dazu genutzt werden kann, um die Qualität des empfangenen Signals zu verstärken.  Das geschieht in Form von spatial diversity und \ac{STBC}.
 
 \subsection{\ac{STBC}}
+Dabei werden den Autoren nach redundant copies of data transmitted via different antenna to the receiver. At the receiver the received data copies are combined and a maximum likelihood detector is applied in order to retain a high quality signal\cite{Santumon}.
 
+\textcite{Stamoulis} hat untersucht welchen Impact \ac{STBC} auf Wi-Fi hat. Dabei haben die Simulationen ergeben, dass STBC für IEEE 802.11a die Reichweite und die robustness erhöhen kann. Zusätzlich fanden die Autoren heraus, dass \ac{STBC} in nearly all cases bei gleicher Datenrate den SNR erhöht oder es sogar noch ermöglicht höhrer MCS werte zu nutzen und somit eine höhere Datenrate bei gleichem SNR erlaubt.  
+
+
+
+
+\subsection{Bandwidth}
 Um das hidden station problem zu umgehen kann eine Station nach \textcite{sauter_wireless_2022} 
 Point coordinator 
 ohne Wettbewerb mit optionaler Priorisierung
@@ -599,14 +617,14 @@ The manned \ac{FH}, as a leader, sets the path and speed and transmits the data 
 \end{figure}
 
 This Platooning Service positions the \ac{TM} optimally to the \ac{FH}, so that the forage can be loaded ideally from the \ac{FH} onto the \ac{TM}.
-
+Da wie man in fig2 sehen kann immer weniger Arbeitskräfte in der Landwirtschaft arbeiten, kann man  durch die Nutzung von Platooning Services Arbeitskräfte sparen. 
 As stated in \autoref{tab:DataSilageHarvest}, already ten drivers for the \ac{TM}s are needed in the corn harvest process with a high \ac{PPD}. 
-By using a leader and follower system based on the description of \textcite{zhang_method_2009}, each \ac{TM} can drive unmanned in the field leading to a smaller number of workers needed in the corn harvest process.
+By using a agricultural Platooning Service, each \ac{TM} can drive unmanned in the field leading to a smaller number of workers needed in the corn harvest process.
 
 \begin{figure}%
 	\centering
-	\includegraphics[width=0.95\textwidth]{figures/AKLandwirtschaft.pdf}
-	\caption{Decrease in the agricultural labor force in Germany MIT DATEN AUS \cite{bmel2020}}%
+	\includegraphics[width=0.75\textwidth]{figures/WorkForceAgriculture.pdf}
+	\caption{Decrease in the agricultural labor force in Germany based on the data from \cite{bmel2020}}%
 	\label{fig:workforce_agri}%
 \end{figure}
 
@@ -648,10 +666,15 @@ where the machines drive closely and nearly with the same speed.
 
 Furthermore it occurs that sometimes another TM can be close to the \ac{FH}. This is empty and waits to work with the FH in the platoon next. For that purpose, the empty TM drives close behind the current platoon at the same speed so as not to catch up even closer to the platoon and be ready in the close vicinity.
 
-Aus dieses Beobachtungen lässt sich der intelligente Algorithmus entwickeln, welcher die Platooning Scenarios entdeckt. 
+Based on these observations, I developed a the intelligent algorithm that detects the platooning scenarios. It uses a weighted sum of distance and speed difference between \ac{FH} and \ac{TM} to detect the platooning scenarios.
 
-It can be observed  that a fully loaded TM leaves the field via one of the N outputs to bring the crop to a farm building. Via a
-check if a TM has left the field after leaving a platoon,
+For verification purposes, I displayed the found platoons scenarios on the map and was able to confirm the functioning of the algorithm. 
+\todo{geht an sich genauer... aber auch Nötig? Methodenüberblick ist ja dann auch eine eigene DA}
+
+Additionally I implemented the following further verification method. 
+\todo{Auswertungen, Einordnen, neu plotten bearing}
+It can be observed  that a fully loaded TM leaves the field via one of the field exits to bring the crop to a farm building. Via a
+check if a TM has left the field and thereby passed the exit after leaving a platoon,
 wrongly recognized platoons can be discarded.
 
 \begin{figure}%
@@ -667,13 +690,50 @@ wrongly recognized platoons can be discarded.
 	\label{fig:speed}%
 \end{figure}
 
+After the platoons scenarios were correctly detected, I included the data points before each platoons scenario till a maximum distance of \SI{50}{\metre} between \ac{FH} and \ac{TM} was exceeded. These data points are also relevant to the requirements because at the beginning of an agricultural platooning service, the \ac{FH}, as the leader of the system, must be able to guide an empty \ac{TM} to the appropriate position for overloading.
+
+For the detected data points of the platooning services from recorded data of the corn harvest, the proportion where the \ac{FH} and \ac{TM} move in a specific distance is shown in the \autoref{fig:distance}.For the same data points, the proportion in which \ac{FH} and \ac{TM} move at a given speed is available in \autoref{fig:speed}.
+
+This shows that the \ac{TM} and the \ac{FH} usually move with a distance of less than \SI{10}{\metre}. In addition, the distance can also be higher e.g. in turning maneuvers or before the actual overloading process.
+
+One notable observation in \autoref{fig:speed} is that the \ac{FH} and \ac{TM}s in the corn harvesting platooning scenario often travel at a speed of approximately \SI{10}{\kilo\metre\per\hour}. This speed is significantly higher than the average speed of \SI{5.6}{\kilo\metre\per\hour} of a \ac{FH} in an entire corn harvesting process from \cite{faustzahlen2018}. It is necessary to classify that in the year of the recorded data was little precipitation, so the corn was not dense and high, and the last speed value is an average value of the entire corn harvest process, which can be calculated from the data in \cite{faustzahlen2018}.
+Nevertheless, the recorded data show that a platooning service in agriculture must also be designed for higher speeds. 
+
 \textcite{klingler_agriculture_2018} investigated the suitability of IEEE 802.11p for \ac{WIC}. The authors detected that shadowing effects occur in the harvest scenario. The authors explain the effect because either another tractor or the spout of the \ac{FH} was in the \ac{LOS}.  
+\begin{figure}%
+	\centering
+	\begin{tikzpicture}
+		\node[label=below right:FH](a) at (0,0) {\textbullet};
+		\node[label=above:North](d) at (0,1) {\textbullet};
+		\node[label=above:Heading](c) at (1,1.5) {\textbullet};
+		\node[label=below:TM](b) at (2,0) {\textbullet};
+		\node[label=below:FHprev](e) at (-1,-1.5) {\textbullet};
+		\node[label=above:North](f) at (-1,-0.5) {\textbullet};
+		\draw [thick] (a) -- (b);
+		\draw [thick] (a) -- (c);
+		\draw [thick] (a) -- (d);
+		\draw [thick] (a) -- (e);
+		\draw [thick] (e) -- (f);
+		\draw 
+		pic["$\beta$", draw, <-,angle eccentricity=0.8, angle radius=1.0cm]
+		{angle=b--a--d}
+		pic["$\alpha$", draw, <-,angle eccentricity=1.2, angle radius=1.0cm]
+		{angle=a--e--f}
+		pic["$Relative Bearing$", draw, <-, angle eccentricity=1.7, angle radius=1.5cm]
+		{angle=b--a--c};
+	\end{tikzpicture}
+	\caption{Relative bearing between \ac{FH} and \ac{TM} which is calculated using the previous location of \ac{FH} by the difference of $\beta$ minus $\alpha$}%
+	\label{fig:bearing_fh_tm}%
+\end{figure}
+To get an overview of where a \ac{TM} is in the overloading process relative to the \ac{FH}, I reviewed the recorded position data. The relative bearing is the angle between B and the heading of point A. Using the previous position of the \ac{FH} the relative Bearing between \ac{FH} and \ac{TM} can be calculated with the angles $\alpha$ and $\beta$ in \autoref{fig:bearing_fh_tm} according to the following equation:
+\begin{equation}\label{eq:RelativeBearing}
+	Relative\_Bearing = \beta - \alpha	,
+\end{equation}
+Assuming that the \ac{FH} does not move backwards, we can see from the relative bearing in which angle from the \ac{FH} the \ac{TM} is located. The result is displayed in \autoref{fig:bearing}.It can be observed that the TM is mostly at an angle of \SIrange{67.5}{112.5}{\degree} at a distance of \SIrange{0}{10}{\metre}. 
 
-To get an overview of where a \ac{TM} is in the overloading process relative to the \ac{FH}, I reviewed the recorded position data. The relative bearing is the angle between B and the heading of point A, as shown in \autoref{fig:bearing_plain}. I calculated the relative bearing between the heading of the \ac{FH} and the \ac{TM} at each time point in the overloading scenario.
+In addition, it is noticeable that the machine can also be directly behind the \ac{FH}. This driving behind each other is common when a new part of the field is being cut in harvesting, as can be seen in \autoref{fig:startpart}.
 
-Unter der Annahme, dass der \ac{FH} nicht rückwärts fährt, kann man aus dem relativen Bearing entnehmen in welchem Winkel von der \ac{FH} sich die \ac{TM} befindet. Das Ergebnis ist in \autoref{fig:bearing} zu sehen. Es ist zu sehen, dass sich die TM meist in einem Winkel von \SIrange{67.5}{112.5}{\degree} in einer Distanz von \SIrange{0}{10}{\metre} befindet.
-Zusätzlich fällt auf, dass sich die Maschine auch direkt hinter dem FH befinden kann. Dieses Hintereinanderfahren ist üblich, wenn ein neuer Teil des Feldes angeschnitten wird zur Ernte, wie in \autoref{fig:startpart} zu sehen ist. 
-Weiterhin fällt auf, dass sich die TM kaum links von der FH aufgehalten hat. Da immer die FH oftmals Linkskurven gefahren ist, war immer rechts von der FH abgeernet, sodass die TM da fahren konnte ohne Erntegut zu überfahren.
+Another notable fact is that the TM hardly ever stayed to the left of the \ac{FH}. Since the \ac{FH} often made left turns, the crop was usually already harvested to the right of the \ac{FH}, so that the TM could drive there without running over the crop. On rare occasions, the TM was also to the left of the \ac{FH}. Such a platooning scenario can be an exception or a driving manoeuvrer to cut of a new field.  
 
 \TODO{
 Heading Annahme Vorwärts Fahrt. Ansonsten Überprüfen und nochmal Einzelfahrt plotten und anschauen. 
@@ -681,74 +741,17 @@ Wie oft dreht sich das Heading ?
 Möglicherweise Rückwärtsfahrt erkennen? }
 
 
-
-\begin{figure}%
-	\centering
-	\begin{tikzpicture}
-		\node[label=below:A](a) at (0,0) {\textbullet};
-		\node[label=above:North](d) at (-2,4) {\textbullet};
-		\node[label=above:Heading](c) at (0,4) {\textbullet};
-		\node[label=below:B](b) at (4,0) {\textbullet};
-		\draw [thick] (a) -- (b);
-		\draw [thick] (a) -- (c);
-		\draw [thick] (a) -- (d);
-		\draw
-		pic["$Bearing$", draw, <-,angle eccentricity=1.3, angle radius=1.5cm]
-		{angle=b--a--d}
-		pic["$Relative Bearing$", draw, <-, angle eccentricity=1.3, angle radius=3.5cm]
-		{angle=b--a--c};
-	\end{tikzpicture}
-	\caption{Relative and True bearing between A and B}%
-	\label{fig:bearing_fh_tm}%
-\end{figure}
-
-\begin{figure}%
-	\centering
-	\begin{tikzpicture}
-		\node[label=below right:FH](a) at (0,0) {\textbullet};
-		\node[label=above:North](d) at (0,1) {\textbullet};
-		\node[label=above:Heading](c) at (2,3) {\textbullet};
-		\node[label=below:TM](b) at (4,0) {\textbullet};
-		\node[label=below:FHprev](e) at (-2,-3) {\textbullet};
-		\node[label=above:North](f) at (-2,-2) {\textbullet};
-		\draw [thick] (a) -- (b);
-		\draw [thick] (a) -- (c);
-		\draw [thick] (a) -- (d);
-		\draw [thick] (a) -- (e);
-		\draw [thick] (e) -- (f);
-		\draw 
-		pic["$\beta$", draw, <-,angle eccentricity=1.3, angle radius=1.0cm]
-		{angle=b--a--d}
-		pic["$\alpha$", draw, <-,angle eccentricity=1.2, angle radius=1.0cm]
-		{angle=a--e--f}
-		pic["$Relative Bearing$", draw, <-, angle eccentricity=1.3, angle radius=2.5cm]
-		{angle=b--a--c};
-	\end{tikzpicture}
-	\caption{Relative bearing between \ac{FH} and \ac{TM} which is calculated using the previous location of \ac{FH} by the difference of $\beta$ minus $\alpha$}%
-	\label{fig:bearing_plain}%
-\end{figure}
-
-
-\begin{figure}%
-	\centering
-	\includegraphics[width=0.99\textwidth]{figures/distanceHarvestScenario.pdf}
-	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
-	\label{fig:distance}%
-\end{figure}
-
-\begin{figure}%
-	\centering
-	\includegraphics[width=0.99\textwidth]{figures/speedHarvestScenario.pdf}
-	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
-	\label{fig:speed}%
-\end{figure}
-
-
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/bearingHarvestScenario.pdf}
 	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
 	\label{fig:bearing}%
+\end{figure}
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.99\textwidth]{figures/bearingHarvestScenario50.pdf}
+	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
+	\label{fig:bearing2}%
 \end{figure}
 
 \begin{figure}%
@@ -821,6 +824,14 @@ Factors apply for MCS0 but may also apply later
 	\includegraphics[width=0.95\textwidth]{figures/mimo_dataRate_simulation.pdf}
 	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \ac{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \ac{MIMO} streams and the chosen \ac{MCS} and \ac{CR}}%
 	\label{fig:Data_rate_Mimo}%
+\end{figure}
+
+
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/ER_dataRate_simulation.pdf}
+	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \ac{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \ac{MIMO} streams and the chosen \ac{MCS} and \ac{CR}}%
+	\label{fig:Data_rate_ER}%
 \end{figure}
 
 
