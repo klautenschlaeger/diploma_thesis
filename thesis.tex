@@ -458,13 +458,13 @@ low-density parity check (LDPC)
 Über das Guard Interval führen \textcite{pulimamidi_development_2007} weiterhin folgendes auf. 
 Da das Guard Interval die mögliche Interferenz auf das Folgesymbol verhindern soll, muss es mindestens so lang sein, sodass alle channel impulse responses mit dem entstehenden Delay im Guard Interval aufgefangen werden. 
 \todo{longer GI WIfi 6 Outdoor Communication}
-Das Guard Interval wird dann am Receiver wieder entfernt. Dadurch entsteht eine attentuation of bandwidth welche sich durch die Formel in beschreiben lässt. \todo{Parameter einführen?}
+Das Guard Interval wird dann am Receiver wieder entfernt. Dadurch entsteht eine attentuation of bandwidth welche sich durch die folgende Formel beschreiben lässt: BERECHNET SICH ALS: NAHTLOSER ÜBERGANG \todo{Parameter einführen?}
 \begin{equation}\label{eq:GI}
 	GI\_Bandwidth\_Attentuation =
 	\frac{
-		OFDM symbol duration * 100
+		\text{OFDM\_symbol\_duration} \times 100
 	}{
-		OFDM symbol duration + GI
+		\text{OFDM\_symbol\_duration} + GI
 	}
 	,
 \end{equation}
@@ -566,8 +566,9 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 \fi
 
 \section{Harvest and Loading Processes as a Use Cases for \ac{WIC}}
-The Forage havester has proven to be an important agricultural machine for harvesting and loading forage.
-\textcite{seifert_feldhacksler_1962} define a forage harvester as an agricultural loading machine for nearly all types of animal feed. By mounting different cutting and loading devices, a forage harvester can load the following types of animal feed according to the authors: Hey, Straw, Corn, Grass and Clover.
+The Forage harvester has proven to be an essential agricultural machine for harvest-
+ing and loading forage. \textcite{seifert_feldhacksler_1962} define a forage harvester
+as an agricultural loading machine for nearly all types of animal feed. By mounting different cutting and loading devices, a forage harvester can load the following animal feed, according to the authors: Hey, Straw, Corn, Grass and Clover.
 
 \begin{figure}%
 	\centering
@@ -576,9 +577,9 @@ The Forage havester has proven to be an important agricultural machine for harve
 	\label{fig:normal}%
 \end{figure}
 
-In the harvesting and loading process, a \ac{TM} normally drives alongside or behind the \ac{FH} so that the \ac{FH} can load the harvested goods onto the trailer of the \ac{TM} using the spout.Both machines are manned and both drivers try to keep the speed and distance so that the spout only throws the harvested goods into the trailer of the TM. An image of such a harvesting and loading process for corn can be seen in \autoref{fig:normal}.
+In the harvesting and loading process, a \ac{TM} typically drives alongside or behind the \ac{FH} so that the \ac{FH} can load the harvested goods onto the trailer of the \ac{TM} using the spout. Drivers operate both machines and try to keep the speed and distance so that the spout only throws the harvested goods into the trailer of the TM. An image of a harvesting and loading process for corn can be seen in \autoref{fig:normal}.
 
-Taking a corn harvest scenario as an example, key figures can be looked up in \cite{faustzahlen2018}, a standard reference book in agricultural literature. This book contains key figures of agricultural processes, which have been compiled by 80 experts. The key figures, which are shown in \autoref{tab:DataSilageHarvest}, are dependent on the \ac{PPD} and show the large amount of forage harvested by a \ac{FH} every hour.
+Taking a corn harvest scenario as an example, key figures can be looked up in \cite{faustzahlen2018}, a standard reference book in agricultural literature. This book contains key figures of agricultural processes, which 80 experts have compiled. The key figures, which are shown in \autoref{tab:DataSilageHarvest}, are dependent on the \ac{PPD} and show the large amount of forage harvested by  a  \ac{FH} every hour.
 \begin{table}
 	\centering
 	\begin{tabular}{>{\raggedright}p{5.5cm}p{1.6cm}p{1.6cm}p{1.6cm}}
@@ -604,11 +605,11 @@ Taking a corn harvest scenario as an example, key figures can be looked up in \c
 	\label{tab:DataSilageHarvest}
 \end{table}
 
-The harvesting and loading processes are examples for the use of an agricultural Platooning Services as described by 
+The harvesting and loading processes are examples of the use of an agricultural Platooning Services as described by 
 \textcite{zhang_method_2009}.
-This creates a leader and follower system where an unmanned agricultural machine follows a leading manned agricultural machine.
+This Platooning Service creates a leader and follower system where an uncrewed agricultural machine follows a leading operated agricultural machine.
 For the harvesting and loading process, a Platooning service could be used as follows.
-The manned \ac{FH}, as a leader, sets the path and speed and transmits the data via \ac{WIC} to the \ac{TM}. Based on the path and speed data of the \ac{FH},\ac{TM} follows unmanned with a longitudinal and lateral offset as it is displayed in \autoref{fig:offset}
+The operated \ac{FH}, as a leader, sets the path and speed and transmits the data via \ac{WIC} to the \ac{TM}. Based on the path and speed data of the \ac{FH}, \ac{TM} follows unmanned with a longitudinal and lateral offset, as \autoref{fig:offset} displays.
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.65\textwidth]{figures/offset_platoon.pdf}
@@ -616,10 +617,15 @@ The manned \ac{FH}, as a leader, sets the path and speed and transmits the data 
 	\label{fig:offset}%
 \end{figure}
 
-This Platooning Service positions the \ac{TM} optimally to the \ac{FH}, so that the forage can be loaded ideally from the \ac{FH} onto the \ac{TM}.
-Da wie man in fig2 sehen kann immer weniger Arbeitskräfte in der Landwirtschaft arbeiten, kann man  durch die Nutzung von Platooning Services Arbeitskräfte sparen. 
+This Platooning Service positions the \ac{TM} optimally to the \ac{FH} so that the forage can be loaded ideally from the \ac{FH} onto the \ac{TM}.
+
+
+\autoref{fig:workforce_agri} shows that the number of workers in the agriculture domain is declining.  
+Because fewer and fewer workers are working in agriculture, the use of platooning services for harvest and loading processes can save and free up labour for other activities.
+
 As stated in \autoref{tab:DataSilageHarvest}, already ten drivers for the \ac{TM}s are needed in the corn harvest process with a high \ac{PPD}. 
-By using a agricultural Platooning Service, each \ac{TM} can drive unmanned in the field leading to a smaller number of workers needed in the corn harvest process.
+
+Using an agricultural Platooning Service, each \ac{TM} can drive unmanned in the field leading to a smaller number of workers needed in the corn harvest process.
 
 \begin{figure}%
 	\centering
@@ -629,52 +635,54 @@ By using a agricultural Platooning Service, each \ac{TM} can drive unmanned in t
 \end{figure}
 
 
-At the same time, the harvesting and loading processes are also examples of the video streaming use case. During these processes the spout of the \ac{FH} must be controlled to set the loading position of the forage into the trailer of the \ac{TM}.
+At the same time, the harvest and loading processes are examples of the video streaming \ac{WIC} use case. During these harvest and loading processes the spout of the \ac{FH} must be controlled to set the loading position of the forage into the trailer of the \ac{TM}.
 
-According to \textcite{murcia_quadrotor_2014}, different spout guidance and control systems have been developed for this reason, which use a camera attached to the spout to determine the fill volume at each point of the trailer via machine vision and set the spout to fill the empty parts of the trailer accordingly. The author describes Autofill - systems from Claas and Intellifill - systems from CNH Industrial as examples of spout guidance systems. 
+According to \textcite{murcia_quadrotor_2014}, different spout guidance and control systems have been developed to automate the filling of the trailer. Spout guidance and control systems use a camera attached to the spout to determine the fill volume at each point of the trailer via machine vision and set the spout to fill the empty parts of the trailer accordingly. The author describes Autofill - systems from Claas and Intellifill - systems from CNH Industrial as examples of spout guidance systems. 
 
-Streaming the video of a camera at the spout from the \ac{FH} to the \ac{TM} would be a useful application of the video streaming use case in the harvesting process. If the driver of the \ac{TM} can watch a livestream of the trailer's fill level, he is always informed and knows when the trailer is full and can drive the forage back to the farm.
-
+Streaming the video of a camera at the spout from the \ac{FH} to the \ac{TM} would be a practical application of the video streaming use case in the harvesting process. If the \ac{TM} driver can watch a live stream of the trailer's fill level, he will always be
+informed and knows when the trailer is full and can drive the forage back to the
+farm.
 
 \chapter{Analyzing Corn Harvest Process Data}
 
-To gain a better insight into requirements of the\ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario as the example for I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September. For this, I placed tablets in the driver's cabs of a \ac{FH} and three \ac{TM}s, which recorded the position and the speed in a NMEA data stream of the tablet's GPS every second. 
+To gain a better insight into requirements of the \ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario as the example for I collected GPS tracks of  a  \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September. For this, I placed tablets in the driver's cabs of  a  \ac{FH} and three \ac{TM}s, which recorded the position and speed in an NMEA data stream of the tablet's GPS every second. 
 
 % wahrscheinlich raus
 The workflow for collecting the corn harvest process data was as follows. 
-I handed out the tablets to the drivers, which left the farm with the tablets in the driver's cabs to drive to the field in the morning. The tablets recorded position and speed of the \ac{FH} and the \ac{TM}s all day long. During breaks, the tablets continued to capture NMEA data stream of their GPS even if the positions and speed did not change.
+I handed out the tablets to the drivers, which left the farm with the tablets in the driver's cabs to drive to the field in the morning. The tablets recorded the position and speed of the \ac{FH} and the \ac{TM}s all day. During breaks, the tablets continued to capture the NMEA data stream of their GPS even if the positions and speed did not change.
 
 After recording the process data, I anonymized it. 
-First, I delete data points of the log files where the recorded accuracy was not yet less than \SI{2}{\metre}. When the accuracy of following data points was less than \SI{2}{\metre}, I replaced the timestamp and the date for all data points with a continuous index.
+First, I deleted data points of the log files until the recorded accuracy of the following data points was less than \SI{2}{\metre}. Then, I replaced the timestamp and the date for all data points with a continuous index.
 
-After that I anonymized the location data by adding a random offset to the GPS coordinates. As a result, the areas were moved to a random location in the world.
+After that, I anonymized the location data by adding a random offset to the GPS coordinates. As a result, this procedure moved the areas to a random location in the world.
 
-The goal of analysing the corn harvest data was to investigate the machines move in the working scenarios relative to each other. The speed and distance of the machines in tracked data of harvest platoons may result in new use case requirements for e.g. latency or communication range of Platooning and Streaming Services. The machinery movement profile can be used to identify when shadowing effects may occur in the work scenario or when machines meet in the field.
+The goal of analysing the corn harvest data was to investigate the machines moving in the working scenarios relative to each other. The speed and distance of the machines in tracked data of harvest platoons may result in new use case requirements, e.g. latency or communication range of Platooning and Streaming Services. The machinery movement profile can be used to identify when shadowing effects may occur in the work scenario or when machines meet in the field.
 
-To detect harvest platoons in the Harvest Process data, I had to develop an intelligent algorithm. It can detect them in the recorded process data.
+I had to develop an intelligent algorithm to detect harvest platoons in the Harvest Process data. It can detect them in the recorded process data.
 
-For this purpose I started to build a Dashboard with the Python framework \textit{Dash}\footnote{https://dash.plotly.com/introduction Accessed: 5.12.2022}. In the Dashboard, I initially plotted all the positions in a polyline for each machine on a map. A slider allows one to set a time interval that narrows down the data points for display in the dashboard. In addition, one could select which \ac{TM}s are displayed next to the \ac{FH}. For the chosen time interval, the distance and velocity difference between the selected \ac{TM}s and the \ac{FH} were plotted in graphs as time histories. 
+For this purpose, I built a dashboard with the Python framework \textit{Dash}\footnote{https://dash.plotly.com/introduction Accessed: 5.12.2022}. In the dashboard, I initially plotted all the positions in a polyline for each machine
+on a map. A slider allows one to set a time interval that narrows down the data
+points for display in the dashboard. In addition, one could select which \ac{TM}s are displayed next to the \ac{FH}. For the chosen time interval, the distance and velocity difference between the selected \ac{TM}s and the \ac{FH} were plotted in graphs as time histories. 
 
-In the dashboard, I was able to get an overview of the behavior of the machines before, during, after the overloading scenario.
-In the overview, it can be seen that a \ac{FH} is nearly always in the overloading process with a \ac{TM}. In doing so, the FH may occasionally stay in the same place if the cutter is clogged or there is a transition of \ac{TM}s where a full \ac{TM} moves away from the \ac{FH} and a empty \ac{TM} catches up to the \ac{FH} to take over the forage.
+In the dashboard, I could get an overview of the machine's behaviour 
+before, during, and after the overloading scenario.
+In the overview, it can be seen that a \ac{FH} is nearly always in the overloading process with a \ac{TM}. In doing so, the \ac{FH} may occasionally stay in the same place if the cutter is clogged or there is a transition of \ac{TM}s where a full \ac{TM} moves away from the \ac{FH} and  a  empty \ac{TM} catches up to the \ac{FH} to take over the forage.
 
-A \ac{TM} is in a platoon with a \ac{FH} if it is close to the \ac{FH} and they are moving at
-with nearly the same speed. During a turning maneuver on the field, the distance between
-increase the distance between the \ac{TM} and the \ac{FH} for a short time. Since in a turning maneuver both machines have different curve radii, a different speed can be observed on both machines in order to finish turing at the same time.
-As soon as the machines are at the beginning of a new lane after the turn, a new harvesting process begins.
-where the machines drive closely and nearly with the same speed. 
+A \ac{TM} is in a platoon with a  \ac{FH} if it is close to the \ac{FH} and they are moving at nearly the same speed. During a turning manoeuvre on the field, the distance between \ac{TM} and \ac{FH} increases. Since both machines have different curve radii in a turning manoeuvre, a different speed can be observed on both machines to finish turning simultaneously.
+A \ac{TM} is in a platoon with a  \ac{FH} if it is close to the \ac{FH} and they are moving at nearly the same speed. During a turning manoeuvre on the field, the distance between \ac{TM} and \ac{FH} increases. Since both machines have different curve radii in a turning manoeuvre, a different speed of the machines can be observed to finish turning simultaneously.
 
-Furthermore it occurs that sometimes another TM can be close to the \ac{FH}. This is empty and waits to work with the FH in the platoon next. For that purpose, the empty TM drives close behind the current platoon at the same speed so as not to catch up even closer to the platoon and be ready in the close vicinity.
+A new harvesting process begins as soon as the machines finish turning and are at the beginning of a new lane.
+The machines again drive closely and nearly at the same speed to harvest and overload forage.
 
-Based on these observations, I developed a the intelligent algorithm that detects the platooning scenarios. It uses a weighted sum of distance and speed difference between \ac{FH} and \ac{TM} to detect the platooning scenarios.
+Furthermore, sometimes another \ac{TM} can be close to the \ac{FH}. This \ac{TM} is empty and waits to work with the \ac{FH} in the next platoon. For that purpose, the empty \ac{TM} drives close behind the current platoon at the same speed so as not to catch up even closer to the platoon and be ready in the close vicinity.
 
-For verification purposes, I displayed the found platoons scenarios on the map and was able to confirm the functioning of the algorithm. 
-\todo{geht an sich genauer... aber auch Nötig? Methodenüberblick ist ja dann auch eine eigene DA}
+Based on these observations above, I developed an intelligent algorithm for detecting platooning scenarios. It uses a weighted sum of distance and speed difference between \ac{FH} and \ac{TM} to detect the platooning scenarios.
 
-Additionally I implemented the following further verification method. 
-\todo{Auswertungen, Einordnen, neu plotten bearing}
-It can be observed  that a fully loaded TM leaves the field via one of the field exits to bring the crop to a farm building. Via a
-check if a TM has left the field and thereby passed the exit after leaving a platoon,
+For verification purposes, I displayed the found platoons scenarios on the map and confirmed the algorithm's functioning. 
+
+Additionally, I implemented the following further verification method. 
+I observed that a fully loaded \ac{TM} leaves the field via one of the field exits to bring the crop to a farm building. Via a
+check if a \ac{TM} has left the field and thereby passed the exit after leaving a platoon,
 wrongly recognized platoons can be discarded.
 
 \begin{figure}%
@@ -686,20 +694,20 @@ wrongly recognized platoons can be discarded.
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.85\textwidth]{figures/speedHarvestSzenario.pdf}
-	\caption{Distribution of time proportions where FH and TM drove with a certain speed in a harvest platoon scenario}%
+	\caption{Distribution of time proportions where \ac{FH} and \ac{TM} drove with a certain speed in a harvest platoon scenario}%
 	\label{fig:speed}%
 \end{figure}
 
 After the platoons scenarios were correctly detected, I included the data points before each platoons scenario till a maximum distance of \SI{50}{\metre} between \ac{FH} and \ac{TM} was exceeded. These data points are also relevant to the requirements because at the beginning of an agricultural platooning service, the \ac{FH}, as the leader of the system, must be able to guide an empty \ac{TM} to the appropriate position for overloading.
 
-For the detected data points of the platooning services from recorded data of the corn harvest, the proportion where the \ac{FH} and \ac{TM} move in a specific distance is shown in the \autoref{fig:distance}.For the same data points, the proportion in which \ac{FH} and \ac{TM} move at a given speed is available in \autoref{fig:speed}.
+For the detected data points of the platooning services from recorded data of the corn harvest, the proportion where the \ac{FH} and \ac{TM} move in a specific distance is shown in \autoref{fig:distance}. For the same data points, the proportion in which \ac{FH} and \ac{TM} move at a given speed is available in \autoref{fig:speed}.
 
-This shows that the \ac{TM} and the \ac{FH} usually move with a distance of less than \SI{10}{\metre}. In addition, the distance can also be higher e.g. in turning maneuvers or before the actual overloading process.
+These analysing results show that the \ac{TM} and the \ac{FH} usually move with a distance of less than \SI{10}{\metre}. In addition, the distance can also be higher, e.g. in turning manoeuvres or before the overloading process.
 
 One notable observation in \autoref{fig:speed} is that the \ac{FH} and \ac{TM}s in the corn harvesting platooning scenario often travel at a speed of approximately \SI{10}{\kilo\metre\per\hour}. This speed is significantly higher than the average speed of \SI{5.6}{\kilo\metre\per\hour} of a \ac{FH} in an entire corn harvesting process from \cite{faustzahlen2018}. It is necessary to classify that in the year of the recorded data was little precipitation, so the corn was not dense and high, and the last speed value is an average value of the entire corn harvest process, which can be calculated from the data in \cite{faustzahlen2018}.
-Nevertheless, the recorded data show that a platooning service in agriculture must also be designed for higher speeds. 
+Nevertheless, the recorded data shows that a platooning service in agriculture must also be designed for higher speeds. 
 
-\textcite{klingler_agriculture_2018} investigated the suitability of IEEE 802.11p for \ac{WIC}. The authors detected that shadowing effects occur in the harvest scenario. The authors explain the effect because either another tractor or the spout of the \ac{FH} was in the \ac{LOS}.  
+\textcite{klingler_agriculture_2018} investigated the suitability of IEEE 802.11p for \ac{WIC}. The authors detected that shadowing effects occur in the harvest scenario. The authors explain the effect because another tractor or the spout of the \ac{FH} was in \ac{LOS}.
 \begin{figure}%
 	\centering
 	\begin{tikzpicture}
@@ -725,33 +733,19 @@ Nevertheless, the recorded data show that a platooning service in agriculture mu
 	\caption{Relative bearing between \ac{FH} and \ac{TM} which is calculated using the previous location of \ac{FH} by the difference of $\beta$ minus $\alpha$}%
 	\label{fig:bearing_fh_tm}%
 \end{figure}
-To get an overview of where a \ac{TM} is in the overloading process relative to the \ac{FH}, I reviewed the recorded position data. The relative bearing is the angle between B and the heading of point A. Using the previous position of the \ac{FH} the relative Bearing between \ac{FH} and \ac{TM} can be calculated with the angles $\alpha$ and $\beta$ in \autoref{fig:bearing_fh_tm} according to the following equation:
+I reviewed the recorded position data to get an overview of where a \ac{TM} is in the overloading process relative to the \ac{FH}. The relative bearing is the angle between B and the heading of point A. Using the previous position of the \ac{FH}, the relative bearing between \ac{FH} and \ac{TM} can be calculated with the angles $\alpha$ and $\beta$ in \autoref{fig:bearing_fh_tm} as:
 \begin{equation}\label{eq:RelativeBearing}
 	Relative\_Bearing = \beta - \alpha	,
 \end{equation}
-Assuming that the \ac{FH} does not move backwards, we can see from the relative bearing in which angle from the \ac{FH} the \ac{TM} is located. The result is displayed in \autoref{fig:bearing}.It can be observed that the TM is mostly at an angle of \SIrange{67.5}{112.5}{\degree} at a distance of \SIrange{0}{10}{\metre}. 
+Assuming that the \ac{FH} does not move backwards, we can see from the relative bearing in which angle from the \ac{FH} the \ac{TM} is located. The result is displayed in \autoref{fig:bearing}. It can be observed that the \ac{TM} is mainly close to the \ac{FH} at an angle of \SIrange{30}{150}{\degree} at a distance between \SIrange{0}{10}{\metre}. 
 
-In addition, it is noticeable that the machine can also be directly behind the \ac{FH}. This driving behind each other is common when a new part of the field is being cut in harvesting, as can be seen in \autoref{fig:startpart}.
+In addition, it is noticeable that the machine can also be directly behind the \ac{FH}. This driving behind each other is common when a new part of the field is being cut in harvesting, as can be seen in \autoref{fig:startpart}. When there is a greater distance between \ac{TM} and \ac{FH}, the \ac{TM} is usually behind the FH at a angle of \SIrange{157.5}{187.5}{\degree}. At these moments, the \ac{TM} is empty and closes up to the \ac{FH} to operate in a new platooning Service together. 
 
-Another notable fact is that the TM hardly ever stayed to the left of the \ac{FH}. Since the \ac{FH} often made left turns, the crop was usually already harvested to the right of the \ac{FH}, so that the TM could drive there without running over the crop. On rare occasions, the TM was also to the left of the \ac{FH}. Such a platooning scenario can be an exception or a driving manoeuvrer to cut of a new field.  
-
-\TODO{
-Heading Annahme Vorwärts Fahrt. Ansonsten Überprüfen und nochmal Einzelfahrt plotten und anschauen. 
-Wie oft dreht sich das Heading ?
-Möglicherweise Rückwärtsfahrt erkennen? }
-
-
-\begin{figure}%
-	\centering
-	\includegraphics[width=0.99\textwidth]{figures/bearingHarvestScenario.pdf}
-	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
-	\label{fig:bearing}%
-\end{figure}
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/bearingHarvestScenario50.pdf}
 	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
-	\label{fig:bearing2}%
+	\label{fig:bearing}%
 \end{figure}
 
 \begin{figure}%
@@ -760,6 +754,18 @@ Möglicherweise Rückwärtsfahrt erkennen? }
 	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
 	\label{fig:startpart}%
 \end{figure}
+
+Another notable fact is that the \ac{TM} hardly ever stayed to the left of the \ac{FH}. Since the \ac{FH} often made left turns, the crop was usually already harvested to the right of the \ac{FH} so that the \ac{TM} could drive there without running over the crop. On rare occasions, the \ac{TM} was also to the left of the \ac{FH}. Such a platooning scenario can be an exception or a driving manoeuvrer to start cutting a new part of the field.   
+
+The results reveal a first impression of the requirements of a harvest and loading process. Um eine generelle Aussage treffen zu können, müssen noch mehr Daten von der ganzen Welt analysiert werden. Die niedrige Niederschlagsmenge dieses Jahr hat bereits eine niedrigen Pflanzenbestand einstellt. Dadurch war eine höhere Prozessgeschwindigkeit möglich. Um eine generelle Aussage zu treffen sollten deswegen auch Daten aus verschiedenen Jahren genutzt werden, da diese verschiedene Ausgangsbedingungen für die Felder zeigen können. 
+
+
+
+\TODO{
+Heading Annahme Vorwärts Fahrt. Ansonsten Überprüfen und nochmal Einzelfahrt plotten und anschauen. 
+Wie oft dreht sich das Heading ?
+Möglicherweise Rückwärtsfahrt erkennen? Oder WIC Requirements erwähnen? }
+
 
 \chapter{Field Measurements}
 
@@ -776,7 +782,7 @@ Möglicherweise Rückwärtsfahrt erkennen? }
 \end{itemize}
 
 \chapter{Simulation}
-SEite 77 von 93 02 simulation.pdf
+Seite 77 von 93 02 simulation.pdf
 Propagation Model:
  Two Ray Ground only mathematics Rappaport
  Jakes Model
@@ -784,6 +790,19 @@ Propagation Model:
  
  
  Data Simulation
+ 
+ 
+ 
+\todo{QUESTIONS open 7 Möglichkeiten outdoor wifi
+was für Effecte}
+
+\todo{
+Robustheit: Matlab? 
+Goodput: ns3
+Range: Matlab? Somehow? overview
+other papers? 
+Enough?
+}
  
  
 \section{ns-3 Network Simulator}
@@ -802,7 +821,7 @@ ATM no pre-built libraries and packages for operating systems
 The concept of ns3 is based on the abstraction of simulated systems. For this purpose, the term node was introduced for basic computing devices. The Node class offers the possibility to install protocol stacks and applications or to add peripheral cards and mobility models to the node.
 Applications are the abstraction of the user-level applications, which represent an activity to be simulated. For this purpose, the applications use resources and functionalities provided by the system software of a node. An example for the 
 
-\todo{ns-3 erklären?}
+
 
 \section{Data Rate}
 
@@ -834,8 +853,21 @@ Factors apply for MCS0 but may also apply later
 	\label{fig:Data_rate_ER}%
 \end{figure}
 
+\todo{DataRate for DCM or STBC}
+STBC and DCM * 2 payload / half data rate
 
-\todo{ Bar Plots }
+But Latency? 
+Robustness?
+
+Fixed Wifi 6 devices: 4 Streams, 2.4, 5.0 Ghz
+Fixed Wifi bd devices: 1 Stream, 5.9 Ghz, 
+
+Leave it open for future work?
+look for different chips?
+
+Auf different paper stützen? 
+
+
 \chapter{Evaluation}
 
 
