@@ -1,3 +1,11 @@
+Given that there are many different agricultural technology companies worldwide and a mix of their machines is often used together in an agricultural company, a demand for interoperability between agricultural machines of different brands emerged. In 2008, the \ac{AEF} was founded to develop and implement electronic standards in the agriculture industry. By creating common standards and protocols, the \ac{AEF} enables interoperability between Agricultural Technologies.
+
+TThe AEF has defined a binary unit system, the ISO 11783 standard, for agricultural machinery communication, mainly tractors and implements \cite{iglesias_enabling_2014}. According to \textcite{schlingmann_aef_2019}, the ISO 11783 standard is known as the ISOBUS system.
+
+The authors mention that the AEF is currently working on other projects. Among these is also the \ac{WIC}. The associated project group \ac{WIC} develops and standardizes solutions for \ac{M2M} communication between cooperating agricultural machines.
+
+For this purpose, the authors name the following use cases:
+
 \begin{itemize}
 	\item \textbf{Real-Time Machine-to-Machine Control} is the exchange of control data under real-time conditions with defined latency policies. This use case enables leader-follower scenarios where agricultural machines follow a leading agricultural machine at a lateral and longitudinal distance. Throughout this thesis, I will refer to Real-Time Machine-to-Machine Control as Agricultural Platooning Service.
 	%\TODO{Fendt-Paper? Auch erwähnen eigentlich ja später, Beispiel aus AEF Paper?}
@@ -9,3 +17,99 @@
 	Since not all agricultural machines may be connected to the \ac{FMIS}, the \ac{WIC} project group is looking at how to use \ac{M2M} communications to bridge the missing communications infrastructure until the data reaches a machine that can connect to the \ac{FMIS}.
 	\item \textbf{Road Safety} describes a use case which is already a project between the European Telecommunication Standard Institute and the \ac{AEF}. Since agricultural vehicles are repeatedly underestimated in their size and speed by other road users when they suddenly turn off the field onto the road, the other road users need to be warned in this situation. In this way, smart technologies in cars and motorcycles can brake these vehicles in advance and prevent possible accidents.
 \end{itemize}
+
+Considering that I investigate the Suitability of modern Wifi for Wireless-Infield-Communication and Wi-Fi 6 and Wi-Fi 5 are no long range technologies, I will focus on investigating the suitability of these two Wi-Fi standards for the \ac{WIC} use cases Real-Time Machine-to-Machine Control and Streaming Services. Throughout this thesis, I will refer to real-time machine-to-machine control as Agricultural Platooning.
+\section{Related Work}
+AEF Vorgehen
+
+Lösungen
+Technologien
+
+
+Schlingmann et al. [2] of the Agricultural Industry Electron-
+ics Foundation AEF, one of the major industry associations,
+are investigating the concept of cooperative agricultural ma-
+chinery using Inter-Vehicular Communication (IVC). One of
+the often-mentioned use cases is precisely this exchange of
+cultivated areas. Arguing that only 30 % of the landscape is
+covered by wireless connections [3], the authors suggest using
+IEEE 802.11p-based technology for connecting agricultural
+machinery. Supported by the AEF, Klingler et al. [4] thus
+conducted a feasibility study for the use of IEEE 802.11p in an
+agricultural environment. They tested Received Signal Strength
+(RSS), delay, and goodput of IEEE 802.11p. The result of the
+study was a maximum distance of 1700 m since no further
+data could be exchanged after Line-of-Sight (LOS) was lost.
+Additional RSS reductions decreasing channel quality were
+due to the size and shape of the agricultural machinery, in
+particular harvesters. Zhang et al. [5] took a different approach
+and used IEEE 802.15.4 to exchange the relevant control data
+for a leader-follower system in which an unmanned tractor can
+follow another one. Still, the authors state that their system
+does not offer a wider range.
+
+AEF Papers
+
+Kein Cellular
+11p Klingler
+FCC
+802.15.4 Zhang
+LoRa
+
+
+Claas Ivan Schmolnik
+
+
+
+
+
+
+Außerhalb der AEF Platooning:
+There are also more developments in the field of wireless infield communication from the industry. In this context, \textcite{thomasson_review_2018} describe the John Deere Machine Sync and Case IH V2V systems as follows:
+
+John Deere Machine Sync enables the \ac{WIC} uses cases Process Data Exchange and Agricultural Platooning Service. \textcite{liu_automation_2022} have extended the system to use Combine Harvesters, adding that the Machine Sync system is based on \textcite{metzler_system_2006}'s patent.
+
+Case IH V2V also offers an agricultural platooning service. However, the system can only be used for harvesting and loading scenarios, according to the authors.
+
+Auf dem Markt ist aktuell auch das System Raven Autonomy™ Driver Assist Harvest Solution \footnote{https://ravenind.com/products/autonomy/driver-assist-harvest-solution Accessed: 5.2.2023} von Raven Industries. Dieses System ermöglicht dem Harvester die Kontrolle über eine \ac{TM} ab einer Distanz von \SI{70}{\metre} zu übernehmen. Der Harvester führt dann die \ac{TM} automatisch in die perfekte Position, um das geerntete Gut über den überwerfer perfekt auf die \ac{TM} zu laden. Ist der Harvest und Loading Process abgeschlossen, übernimmt der Fahrer der \ac{TM} wieder die Kontrolle. 
+
+Also currently on the market is the Raven Autonomy™ Driver Assist Harvest Solution \footnote{https://ravenind.com/products/autonomy/driver-assist-harvest-solution Accessed: 2/5/2023} system from Raven Industries. This system allows the harvester to take control of a \ac{TM} from a distance of \SI{70}{\metre}. The harvester then automatically guides the \ac{TM} into the perfect position to load the harvested crop onto the \ac{TM} via the spout. Once the harvesting and loading process is complete, the driver of the \ac{TM} retakes control.
+
+Also currently on the market is the Raven Autonomy™ Driver Assist Harvest Solution \footnote{https://ravenind.com/products/autonomy/driver-assist-harvest-solution Accessed: 2/5/2023} system from Raven Industries. This system allows the harvester to take control of a \ac{TM} from a distance of \SI{70}{\metre}. The harvester then automatically guides the \ac{TM} into the perfect position to load the harvested crop onto the \ac{TM} via the spout. Once the harvesting and loading process is complete, the driver of the \ac{TM} retakes control. 
+
+A comparable system is CartACE from AgLeader \footnote{https://www.agleader.com/harvest/cartace/ Accessed: 5.2.2023}
+
+The technology used in the mentioned systems is not known. In response to questions about how the systems can be used on farms worldwide and what prerequisites must be created for this, the manufacturers refer to the regional distribution options. 
+\todo{OcuSync Lightbridge DJI Mavic}
+
+
+
+Aufbau:
+
+WIC Umsetzungen: 
+
+Klingler 802.11p
+Elektrische Deichsel Fendt
+Beyond Sensing ???
+
+John Deere Machine Sync
+Raven Machine Sync
+Cellular networks
+
+cellular network coverage AEF paper 
+
+Wifi 6 Outdoorcommunication
+
+
+
+In order to implement these described \ac{WIC} use cases, the \ac{WIC} project group has been searching for a technology that can realize the required data rates, latencies and high transmission range. The plans for doing so are written down by members of the \ac{WIC} project group in \cite{schlingmann_challenges_2017}.
+
+The authors consider the fundamental use of cellular networks as very problematic because, according to \cite{noauthor_ict_2016}, only \SI{30}{\percent} of the land surface has network coverage. For this reason, there is a major concern that the required data cannot be exchanged because there is no network connectivity in many fields. Nevertheless, the authors want to leave the future \ac{WIC} system open to cellular standards.
+
+The current focus of the authors is on IEEE 802.11 technologies, which must first be evaluated for use in the agricultural environment.
+
+In collaboration with \textcite{klingler_agriculture_2018}, the authors investigated IEEE 802.11p technology for \ac{WIC} in agricultural scenarios. Experiments revealed that data could be exchanged over a maximum range of \SI{1700}{\metre}. But during the measurement in an agricultural work scenario from the corn harvest, there were collapses in the Received Signal Strength due to shadowing effects of the machines. The high range, data rate, and possible latencies make IEEE 802.11p a good technology for \ac{WIC} according to \textcite{schlingmann_challenges_2017}.
+
+As of July 2, 2021, the frequency spectrum of IEEE 802.11p in the United States of America, ranging from \SIrange{5,850}{5,925}{\giga\hertz}, has been split. The upper \SI{30}{\mega\hertz} are reserved for Intelligent transportation systems now. The lower \SI{45}{\mega\hertz} have been released for unlicensed operations \cite{noauthor_use_2021}.
+
+Since the use of IEEE 802.11p has now been newly regulated by the FCC, the \ac{WIC} project group is looking for an alternative technology that enables \ac{WIC}.
