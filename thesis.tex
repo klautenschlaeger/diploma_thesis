@@ -46,6 +46,14 @@
 	short=LDPC,
 	long=low-density parity-check,
 }
+\DeclareAcronym{PER}{
+	short=PER,
+	long=packet error rate,
+}
+\DeclareAcronym{BW}{
+	short=BW,
+	long=bandwidth,
+}
 \DeclareAcronym{FEC}{
 	short=FEC,
 	long=Forward Error Correction,
@@ -308,7 +316,24 @@ Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
 \end{itemize}
 
 
+Schlingmann et al. [2] of the Agricultural Industry Electron-
+ics Foundation AEF, one of the major industry associations,
+are investigating the concept of cooperative agricultural ma-
+chinery using Inter-Vehicular Communication (IVC). One of
+the often-mentioned use cases is precisely this exchange of
+cultivated areas. Arguing that only 30 % of the landscape is
+covered by wireless connections [3],
 
+
+Schlingmann et al. [2] of the Agricultural Industry Electron-
+ics Foundation AEF, one of the major industry associations,
+are investigating the concept of cooperative agricultural ma-
+chinery using Inter-Vehicular Communication (IVC). One of
+the often-mentioned use cases is precisely this exchange of
+cultivated areas. Arguing that only 30 % of the landscape is
+covered by wireless connections [3], the authors suggest using
+IEEE 802.11p-based technology for connecting agricultural
+machinery. 
 
 \chapter{Fundamentals}
 \label{sec:fundamentals}
@@ -553,7 +578,21 @@ STBC and DCM * 2 payload / half data rate
 
 
 But Latency? 
+Latency is always based on Data Rate and Robustness
+
+Data Rate and Robustness als related to oneanother
+
+
 Robustness?
+
+\input{robustness.tex}
+
+\begin{figure}%
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/DCM_PER_to_SNR.pdf}
+	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \ac{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{40}{\mega\hertz} in regards to the number of the chosen \ac{MCS} and \ac{CR} and whether \ac{DCM} is enabled}%
+	\label{fig:PER_SNR_DCM}%
+\end{figure}
 
 Fixed Wifi 6 devices: 4 Streams, 2.4, 5.0 Ghz
 Fixed Wifi bd devices: 1 Stream, 5.9 Ghz, 
@@ -562,6 +601,29 @@ Leave it open for future work?
 look for different chips?
 
 Auf different paper stützen? 
+
+
+\section{Platooning Services}
+
+Packetsize 
+\cite(fendtPlatoon) defined a data frame of \SI{32}{\byte}, which includes an identifier, timestamp, Longitude, Latitude, Heading, Speed and Direction.
+Diese Menge an Daten umfasst eine Grundmenge, welche für die Umsetzung eines Platooning Services ausreichen kann, wie die Autoren zeigen.
+\textcite{Schlingmann} spezifizieren die Datenmenge nicht weiter und weißen darauf hin, dass die benötigte Datenrate für Platooning Services gering ist.
+
+Ich habe für die Simulation von Platooning Services die Datenmenge auf \SI{1}{\kilo\byte} gesetzt. Diese Datengröße ist eine Abstrahierung des Speicherplatzes, welcher möglicherweise für zusätzliche Daten oder Implementierungen von Authentifizierung -  und Sicherheitsmechanismen benötigt wird. Im Corn Harvest scenario können zusätzliche Daten z.B. der Füllstand der Transportmachine sein. 
+
+Service Discovery
+
+Rebroadcast by Count?
+additional Traffic
+
+MANET Service discovery
+
+Visualisierung Netsimulyzer
+
+Farbcodes
+
+
 
 
 \chapter{Evaluation}

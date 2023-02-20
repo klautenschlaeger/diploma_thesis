@@ -60,6 +60,8 @@ As stated in \autoref{tab:DataSilageHarvest}, already ten drivers for the \ac{TM
 
 Using an agricultural Platooning Service, each \ac{TM} can drive unmanned in the field leading to a smaller number of workers needed in the corn harvest process.
 
+\textcite{IVAN} fügt dazu hinzu, dass Platooning Services auf Platoonebene die fahrer entlasten können, sodass diese sich auf das optimale Einstellen der Arbeitsmaschinen fokusieren können. Zusätzlich können \ac{TM}s zielgerichtet zu den \ac{FH} geführt werden, sodass die Logistikprozesse auf dem Feld verbessert werden können. ´
+
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/WorkForceAgriculture.pdf}
@@ -103,6 +105,7 @@ In the overview, it can be seen that a \ac{FH} is nearly always in the overloadi
 
 A \ac{TM} is in a platoon with a  \ac{FH} if it is close to the \ac{FH} and they are moving at nearly the same speed. During a turning manoeuvre on the field, the distance between \ac{TM} and \ac{FH} increases. Since both machines have different curve radii in a turning manoeuvre, a different speed can be observed on both machines to finish turning simultaneously.
 A \ac{TM} is in a platoon with a  \ac{FH} if it is close to the \ac{FH} and they are moving at nearly the same speed. During a turning manoeuvre on the field, the distance between \ac{TM} and \ac{FH} increases. Since both machines have different curve radii in a turning manoeuvre, a different speed of the machines can be observed to finish turning simultaneously.
+Das beschreibt auch \textcite{IVAN} und weißt daraufhin, dass diese unterschiedliche Geschwindigkeit eine neue Komplexitätsstufe hinzufügt.
 
 A new harvesting process begins as soon as the machines finish turning and are at the beginning of a new lane.
 The machines again drive closely and nearly at the same speed to harvest and overload forage.
@@ -137,8 +140,14 @@ For the detected data points of the platooning services from recorded data of th
 
 These analysing results show that the \ac{TM} and the \ac{FH} usually move with a distance of less than \SI{10}{\metre}. In addition, the distance can also be higher, e.g. in turning manoeuvres or before the overloading process.
 
+\textcite{IVAN} gibt in der Zielstellung die für die Entwicklung von Platooning Services im Corn harvest process a distance of less  than \SI{30}{\metre}.
+
+
 One notable observation in \autoref{fig:speed} is that the \ac{FH} and \ac{TM}s in the corn harvesting platooning scenario often travel at a speed of approximately \SI{10}{\kilo\metre\per\hour}. This speed is significantly higher than the average speed of \SI{5.6}{\kilo\metre\per\hour} of a \ac{FH} in an entire corn harvesting process from \cite{faustzahlen2018}. It is necessary to classify that in the year of the recorded data was little precipitation, so the corn was not dense and high, and the last speed value is an average value of the entire corn harvest process, which can be calculated from the data in \cite{faustzahlen2018}.
 Nevertheless, the recorded data shows that a platooning service in agriculture must also be designed for higher speeds. 
+
+\textcite{IVAN} gibt in der Zielstellung die für die Entwicklung von Platooning Services im Corn harvest process einen average speed of \SI{4.5}{\kilo\metre\per\hour}. Je nach \ac{PPD} kann die Geschwindigkeit nach den Autoren von \SIrange{2}{6}{\kilo\metre\per\hour} schwanken. 
+
 
 \textcite{klingler_agriculture_2018} investigated the suitability of IEEE 802.11p for \ac{WIC}. The authors detected that shadowing effects occur in the harvest scenario. The authors explain the effect because another tractor or the spout of the \ac{FH} was in \ac{LOS}.
 \begin{figure}%
