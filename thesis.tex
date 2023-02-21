@@ -13,6 +13,7 @@
 \usepackage{acro}
 \usetikzlibrary{quotes,angles}
 \usepackage{nicefrac}
+\usepackage{comment}
 
 \author{Karl Christian Lautenschläger}
 \birthday{29. Juni 1998}
@@ -362,7 +363,7 @@ machinery.
 \todo{Paper Christoph Sommer, Doktorarbeit, Diplomarbeit, Mario Franke, Tobias Hardes}
 According to \textcite{kauffels_wireless_2002} the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to Ethernet - or Token-Ring - networks.
 \textcite{sauter_wireless_2022} considers IEEE 802.11 also to be an implementation of Ethernet with the help of wirless radio technologies. The author lists the extensions to the original standard, which range from 802.11b, 802.11g, 802.11a, 802.11n, 802.11ac to the latest enhancement 802.11ax. The different IEEE 802.11 standards can operate in the  \SI{2.4}{\giga\hertz} - , \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} - frequency band. 
-\textcite{jacobs} fügt dazu noch hinzu, dass es zusätzlich noch die zwei Erweiterungen IEEE 802.11p and dessen Nachfolger IEEE 802.11bd gibt. Diese operieren in einem reservierten Frequency spectrum for \ac{V2X} nach den Autoren im  \SI{5.9}{\giga\hertz} frequency spectrum
+\textcite{jacob_system-level_2020} fügt dazu noch hinzu, dass es zusätzlich noch die zwei Erweiterungen IEEE 802.11p and dessen Nachfolger IEEE 802.11bd gibt. Diese operieren in einem reservierten Frequency spectrum for \ac{V2X} nach den Autoren im  \SI{5.9}{\giga\hertz} frequency spectrum
 \todo{HT, VHT, HE - phy}
 
 \textcite{kauffels_wireless_2002} defines the following three basic architectures for IEEE 802.11.
@@ -587,12 +588,7 @@ Robustness?
 
 \input{robustness.tex}
 
-\begin{figure}%
-	\centering
-	\includegraphics[width=0.95\textwidth]{figures/DCM_PER_to_SNR.pdf}
-	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \ac{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{40}{\mega\hertz} in regards to the number of the chosen \ac{MCS} and \ac{CR} and whether \ac{DCM} is enabled}%
-	\label{fig:PER_SNR_DCM}%
-\end{figure}
+
 
 Fixed Wifi 6 devices: 4 Streams, 2.4, 5.0 Ghz
 Fixed Wifi bd devices: 1 Stream, 5.9 Ghz, 

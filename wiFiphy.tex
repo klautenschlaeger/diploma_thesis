@@ -5,22 +5,23 @@ According to the Author, IEEE 802.11 initially used DSSS and FHSS as modulation 
 Since IEEE 802.11g the modulation method \ac{OFDM} can be used in the \SI{2.4}{\giga\hertz} frequency band. the author explains \ac{OFDM} as following. \ac{OFDM} divides the transmission channel in subcarriers with different amplitudes, frequencies and phases. Each subcarrier is orthogonal to another one, as they send the information "Low", where only one other subcarrier is sending the information "High". 
 
 The data is then sent as \ac{OFDM} symbols over the individual \ac{OFDM} subcarriers. The distance between the "highs" of the subcarriers is specified as subcarrier spacing and corresponds to the reciprocal symbol length. This has now increased from \SI{3.2}{\micro\second} for IEEE 802.11n to \SI{12.8}{\micro\second} for IEEE 802.11ax. This corresponds to a subcarrier spacing of \SI{312.5}{\kilo\hertz} and \SI{78.125}{\kilo\hertz} respectively. 
-For the IEEE 802.11p and IEEE 802.11bd standards, a symbol length of \SI{6.4}{\micro\second} applies, corresponding to a subcarrier spacing of \SI{156.25}{\kilo\hertz} \cite{jacobs}.
+
+For the IEEE 802.11p and IEEE 802.11bd standards, a symbol length of \SI{6.4}{\micro\second} applies, corresponding to a subcarrier spacing of \SI{156.25}{\kilo\hertz} \cite{jacob_system-level_2020}.
 
 For the modulation and demodulation of the transmitting bits the FFT and IFFT are used respectively. With the reduction of the subcarrier spacing, more subcarriers are created in the transmission channel, so that the FFT size must be increased. 
 
 \textcite{kauffels_wireless_2002} adds, that \ac{OFDM} can be used in the \SI{5}{\giga\hertz} frequency band since IEEE 802.11a. 
-
+\subsubsection*{Bandwidth}
 \subsubsection*{\acl{MCS}}
 
 In order to encode as many bits as possible on one \ac{OFDM} symbol, different \ac{MCS}s can be used.   
 These \ac{MCS}s for the IEEE 802.11 standards are based on \ac{PSK} or \ac{QAM}. \cite{kauffels_wireless_2002}. 
-The smallest \ac{MCS} is binary \ac{PSK} and encodes \SI{1}{\bit} per symbol. IEEE 802.11ax has the most complex \ac{MCS} of \num{256}-\ac{QAM} IEEE 802.11ac to \num{1024}-\ac{QAM} and thus now encodes \SI{10}{\bit} per symbol \cite{axChallenge}.
+The smallest \ac{MCS} is binary \ac{PSK} and encodes \SI{1}{\bit} per symbol. IEEE 802.11ax has the most complex \ac{MCS} of \num{256}-\ac{QAM} IEEE 802.11ac to \num{1024}-\ac{QAM} and thus now encodes \SI{10}{\bit} per symbol \cite{afaqui_ieee_2017}.
 In the \ac{V2X} range, so can \ac{MCS}s from binary-\ac{PSK} to \num{256}-\ac{QAM}.
 
 In order to encode as many bits as possible on one \ac{OFDM} symbol, different \ac{MCS}s can be used.   
 The \ac{MCS}s for the IEEE 802.11 standards are based on \ac{PSK} or \ac{QAM}. \cite{kauffels_wireless_2002}. 
-The smallest \ac{MCS} is Binary - \ac{PSK} and encodes \SI{1}{\bit} per symbol. IEEE 802.11ax has the most complex \ac{MCS} of \num{256} - \ac{QAM} IEEE 802.11ac to \num{1024} - \ac{QAM} and thus now encodes \SI{10}{\bit} per symbol \cite{axChallenge}.
+The smallest \ac{MCS} is Binary - \ac{PSK} and encodes \SI{1}{\bit} per symbol. IEEE 802.11ax has the most complex \ac{MCS} of \num{256} - \ac{QAM} IEEE 802.11ac to \num{1024} - \ac{QAM} and thus now encodes \SI{10}{\bit} per symbol \cite{afaqui_ieee_2017}.
 In the \ac{V2X} range, so can \ac{MCS}s from binary-\ac{PSK} to \num{256}- \ac{QAM}.
 
 An imaginary, theoretical transmission channel is usually specified as a square-wave signal in the frequency domain with the limits of both minimum and maximum amplitude and cut-off frequency. \textcite{kauffels_wireless_2002} defines the roll-off factor as a cosine-shaped flattening of the square signal between 0 and 1. In addition, the author points out that \ac{QAM} can generate high roll-off factors, so that signals interfere significantly more with adjacent channels.
@@ -29,18 +30,18 @@ In this regards the author recommends setting the parameters in an \ac{OFDM} sys
 
 \subsubsection*{\acl{FEC}}
 
-Nevertheless bit errors can occur during the transmission. In this regard, \cite{knauffel} mentions and explains \ac{FEC} as a technique to reduce bit errors during transmission. \ac{FEC} adds redundant bits to the data. The receiver uses these redundant bits to check the integrity or correct errors of the received data. The proportion of non-redundant transmission bits is defined in \ac{CR} \todo{explain cr ?? Cite??}
+Nevertheless bit errors can occur during the transmission. In this regard, \cite{kauffels_wireless_2002} mentions and explains \ac{FEC} as a technique to reduce bit errors during transmission. \ac{FEC} adds redundant bits to the data. The receiver uses these redundant bits to check the integrity or correct errors of the received data. The proportion of non-redundant transmission bits is defined in \ac{CR} \todo{explain cr ?? Cite??}
 
-To achieve this, \ac{BCC} is used mandatory since the IEEE 802.11n standard \cite{Challengeax} \cite{performanceLdpc}. \textcite{performanceLdpc} add that it is optionally possible to use \ac{LDPC}. The authors state that \ac{LDPC} can achieve a better channel capacity performance. This is also confirmed by \textcite{Challengeax}, who point out that \ac{LDPC} also generates higher computational cost. 
+To achieve this, \ac{BCC} is used mandatory since the IEEE 802.11n standard \cite{afaqui_ieee_2017} \cite{syafei_performance_2009}. \textcite{syafei_performance_2009} add that it is optionally possible to use \ac{LDPC}. The authors state that \ac{LDPC} can achieve a better channel capacity performance. This is also confirmed by \textcite{afaqui_ieee_2017}, who point out that \ac{LDPC} also generates higher computational cost. 
 
-IEEE 802.11ax stations must support \ac{LDPC} when using on the IEEE 802.11ax standard under the following conditions \cite{Challengeax} \cite{standardax}:
+IEEE 802.11ax stations must support \ac{LDPC} when using on the IEEE 802.11ax standard under the following conditions \cite{afaqui_ieee_2017} \cite{standard_ieee_2021}:
 \begin{itemize}
 	\item The used bandwidth is greater than \SI{20}{\mega\hertz}
 	\item The chosen \ac{MCS} is \num{1024}-\ac{QAM}
 	\item More then four transmission channels are used for the transmission. 
 \end{itemize}
-IEEE 802.11ax achieves \ac{CR} of \nicefrac{1}{2}, \nicefrac{2}{3}, \nicefrac{3}{4}, and \nicefrac{5}{6} \cite{standardax}.
-Similarly, IEEE 802.11p uses the \ac{BCC} technique, which has been superseded by \ac{LDPC} in its successor IEEE 802.11ax \cite{jacobs} \cite{comparisonpbd} \textcite{Comparisonpbd} argue that this step was important, as \ac{LDPC} offers better error correction possibilities for higher communication ranges greater than \SI{50}{\metre}.
+IEEE 802.11ax achieves \ac{CR} of \nicefrac{1}{2}, \nicefrac{2}{3}, \nicefrac{3}{4}, and \nicefrac{5}{6} \cite{standard_ieee_2021}.
+Similarly, IEEE 802.11p uses the \ac{BCC} technique, which has been superseded by \ac{LDPC} in its successor IEEE 802.11ax \cite{jacob_system-level_2020} \cite{krief_analysis_2020}. \textcite{krief_analysis_2020} argue that this step was important, as \ac{LDPC} offers better error correction possibilities for higher communication ranges greater than \SI{50}{\metre}.
 
 Together with the \ac{MCS}, the \ac{FEC} \ac{CR} form a physical layer specification. This is named after the standard and includes the possible expressions for \ac{MCS} values and \ac{CR} of the standard. For IEEE 802.11ax, this results in the HE-MCS index values in \autoref{tab:HEMCS}
 
@@ -64,7 +65,7 @@ Together with the \ac{MCS}, the \ac{FEC} \ac{CR} form a physical layer specifica
 		11 &  \num{1024}-\ac{QAM}& \nicefrac{5}{6}\\
 		\bottomrule
 	\end{tabular}
-	\caption{HE-MCA index table nach \cite{standardax}}
+	\caption{HE-MCA index table nach \cite{standard_ieee_2021}}
 	\label{tab:HEMCS}
 \end{table}
 
@@ -94,44 +95,52 @@ Since IEEE 802.11n, a shortened \ac{GI} of \SI{400}{\nano\second} is usable, whi
 In \cite{alleAX} wird keine Bedingung für die Nutzung von den OFDM \ac{GI} genannt. Außerdem steht in den genannten Quellen nur die \ac{OFDM} symbol length von \SI{12.8}{\micro\second} aufgeführt.
 
 \subsection*{\acl{DCM}}
-In order to introduce additional robustness \ac{DCM} can be applied to the physical layers of IEEE 802.11ax and IEEE 802.11bd according to \textcite{jacobs}. The authors describe \ac{DCM} as a way to send data twice over two coherent carriers. At the receiver, the data copies are combined with the log-likelihood ratio. This increases the probability of receiving the data. 
+In order to introduce additional robustness \ac{DCM} can be applied to the physical layers of IEEE 802.11ax and IEEE 802.11bd according to \textcite{jacob_system-level_2020}. The authors describe \ac{DCM} as a way to send data twice over two coherent carriers. At the receiver, the data copies are combined with the log-likelihood ratio. This increases the probability of receiving the data. 
 
-\cite{standardax} gibt dazu bereits a receiver minimum input sensitivity, which indicates until which RSS a packet is received with a propability of \SI{90}{\percent}. Das Receiver Minimum input sensitivity für eine \ac{BW} von \SI{20}{\mega\hertz} ist in \autoref{fig:ReceiverSensitivityDCM} dargestellt. Darin is erkennbar, dass bei Verwendung von \ac{DCM} das Receiver Minimum input sensitivity niedriger als ohne die Verwendung von \ac{DCM} sein kann. 
-Mit steigendem HE-MCS value verstärkt sich der Effekt auf Receiver Minimum input sensitivity. 
-Eine ähnliche Entwicklung der Receiver Minimum input sensitivity ist auch für höhere \ac{BW} zu beachten, nur dass da dar niedrigste Wert mit der \ac{BW} steigt.
-
+\cite{standard_ieee_2021} provides a receiver minimum input sensitivity, which indicates until which RSS a packet is received with a probability of \SI{90}{\percent}. The receiver minimum input sensitivity for a \ac{BW} of \SI{20}{\mega\hertz} is displayed in \autoref{fig:ReceiverSensitivityDCM}. It demonstrates that when using \ac{DCM}, the receiver minimum input sensitivity can be lower than without using \ac{DCM}. The effect on the receiver minimum input sensitivity increases as the HE-MCS value increases. 
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/Receiver_minimum_DCM.pdf}
-	\caption{Receiver minimum input level sensitivity for different HE-MCS values according to \cite{standardax}, where \ac{PER} is less than \SI{10}{\percent}}%
+	\caption{Receiver minimum input level sensitivity for different HE-MCS values according to \cite{standard_ieee_2021}, where \ac{PER} is less than \SI{10}{\percent}}%
 	\label{fig:ReceiverSensitivityDCM}%
 \end{figure}
 
 
- at the expense of the data rate. 
-The same amount of data now takes twice as long to transmit.  
-Die Unterstützung von \ac{DCM} ist im Standard IEEE 802.11ax nur optional und kann nur für HE-\ac{MCS}-\num{0}, HE-\ac{MCS}-\num{1}, HE-\ac{MCS}-\num{3} and HE-\ac{MCS}-\num{4} für \numrange{1}{2} spatial transmission streams verwendet werden \cite{standardax}. 
+A similar development of the receiver minimum input sensitivity can also be observed for higher \ac{BW}, except that the lowest value increases with \ac{BW}.
 
+The higher probability of achieving data is achieve at the expense of the data rate. The same amount of data now takes twice as long to transmit. 
 
-Table 27-81—HE-MCSs for 242-tone RU, NSS = 3
-Data MAximum 2  Stream only 1 and 2 spatial streams
+\cite{standard_ieee_2021} lists the theoretically possible data rates. These reveal that the maximum achievable data rate with DCM is only half of the achievable data rate without DCM. 
 
-Allowed relative constellation error versus constellation size
+Support for \ac{DCM} is only optional in the IEEE 802.11ax standard and can only be used for HE-\ac{MCS}-\num{0}, HE-\ac{MCS}-\num{1}, HE-\ac{MCS}-\num{3} and HE-\ac{MCS}-\num{4} for \numrange{1}{2} spatial transmission streams \cite{standard_ieee_2021}. 
 
-Table 27-51—Receiver minimum input level sensitivity
+\begin{comment}
+	Allowed relative constellation error versus constellation size RMS error over subcarriers and Frequency
+	
+	Table 27-51—Receiver minimum input level sensitivity
+	
+	Table 27-52—Minimum required adjacent and nonadjacent channel rejection levels
+	optional feature \cite{standard_ieee_2021}
+	
+	HE SU PPDU HE ER SU PPDU not for GI 800 ns \cite{standard_ieee_2021}
+\end{comment}
 
-Table 27-52—Minimum required adjacent and nonadjacent channel rejection levels
-optional feature \cite{standardax}
-
-HE SU PPDU HE ER SU PPDU not for GI 800 ns \cite{standardax}
 
 \subsubsection*{Extended Range}
+Since IEEE 802.11ax the Extended Range Mode exists, which defines the new HE ER SU \ac{PPDU} as physical layer amendment \cite{standard_ieee_2021} \cite{afaqui_ieee_2017}. 
+\textcite{deng_ieee_2017} explains that the HE ER SU \ac{PPDU} format is intended to extend the range of a single station to access point transmission. This is accomplished, according to the authors, by the PPDU containing a repetition of the HE-SIG-A field.
 
-\textcite{Deng} explains, that the HE ER SU \ac{PPDU} format is intendet to extend the range of a single station to access point transmission. Das wird nach den Autoren damit erreicht, dass die PPDU eine Wiederholung des HE-SIG-A Feldes beinhaltet.
+In addition, the authors explain that preamble is power-boosted, which is limited to \SI{3}{\decibel} in \cite{standard_ieee_2021} \cite{jacob_system-level_2020}, to guarantee reliable transmission for longer ranges. 
 
-\cite{Standard} spezifiziert, dass das HE ER SU PPDU format nur verwendet werden  darf, wenn 20 Mhz transmissions mit entweder 242 RU mit HE-MCS-0 - HE-MCS-2 oder 106 RU mit HE-MCS-0 auf einem spatial Stream verwendet werden.
+The IEEE 802.11ax \cite{standard_ieee_2021} standard defines that the HE ER SU \ac{PPDU} format may only be used when 20 Mhz transmissions with either 242 RU with HE-MCS-0 - HE-MCS-2 or 106 RU with HE-MCS-0 are used on a spatial stream. In addition, one can use \ac{DCM}.
 
-Weiterhin wird nach \cite{Deng} über ein power-boosting der preamble, welches nach in \cite{standard} auf \SI{3}{\decibel} limitiert ist,  eine reliable transmission für weite Reichweiten gewährleistet. 
+Optionally, the HE ER SU \ac{PPDU} may also be transmitted with a \ac{GI} of \SI{800}{\nano\second}, where an additional application of \ac{DCM} is forbidden. 
+	
+\textcite{jacob_system-level_2020} adds that this extended range mode is also available for 802.11bd.
+
+\todo{bd angenommen? Wie komme ich an den Standard?}
+
+
 
 
 
@@ -161,8 +170,7 @@ Here, \textcite{Stamoulis} has investigated the potential effect of \ac{STBC} on
 
 HE Capabilities nur so gut, wie das schlechteste Glied
 
-\cite{Standard} 607 not applicable with DCM
+\cite{standard_ieee_2021} 607 not applicable with DCM
 
 \cite{MAtthew gast 11n} \ac{STBC} is only support in one fifth of the Wi-Fi CERTIFIED n devices.
 Group addressed frames
-\subsubsection*{Bandwidth}
