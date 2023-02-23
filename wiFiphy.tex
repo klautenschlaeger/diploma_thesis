@@ -4,6 +4,7 @@ The further development of IEEE 802.11 is accompanied by a constant change of th
 According to the Author, IEEE 802.11 initially used DSSS and FHSS as modulation methods.
 Since IEEE 802.11g the modulation method \ac{OFDM} can be used in the \SI{2.4}{\giga\hertz} frequency band. the author explains \ac{OFDM} as following. \ac{OFDM} divides the transmission channel in subcarriers with different amplitudes, frequencies and phases. Each subcarrier is orthogonal to another one, as they send the information "Low", where only one other subcarrier is sending the information "High". 
 
+\subsubsection*{Symbol length}
 The data is then sent as \ac{OFDM} symbols over the individual \ac{OFDM} subcarriers. The distance between the "highs" of the subcarriers is specified as subcarrier spacing and corresponds to the reciprocal symbol length. This has now increased from \SI{3.2}{\micro\second} for IEEE 802.11n to \SI{12.8}{\micro\second} for IEEE 802.11ax. This corresponds to a subcarrier spacing of \SI{312.5}{\kilo\hertz} and \SI{78.125}{\kilo\hertz} respectively. 
 
 For the IEEE 802.11p and IEEE 802.11bd standards, a symbol length of \SI{6.4}{\micro\second} applies, corresponding to a subcarrier spacing of \SI{156.25}{\kilo\hertz} \cite{jacob_system-level_2020}.
@@ -94,17 +95,16 @@ Since IEEE 802.11n, a shortened \ac{GI} of \SI{400}{\nano\second} is usable, whi
 
 In \cite{alleAX} wird keine Bedingung für die Nutzung von den OFDM \ac{GI} genannt. Außerdem steht in den genannten Quellen nur die \ac{OFDM} symbol length von \SI{12.8}{\micro\second} aufgeführt.
 
-\subsection*{\acl{DCM}}
+\subsubsection*{\acl{DCM}}
 In order to introduce additional robustness \ac{DCM} can be applied to the physical layers of IEEE 802.11ax and IEEE 802.11bd according to \textcite{jacob_system-level_2020}. The authors describe \ac{DCM} as a way to send data twice over two coherent carriers. At the receiver, the data copies are combined with the log-likelihood ratio. This increases the probability of receiving the data. 
 
-\cite{standard_ieee_2021} provides a receiver minimum input sensitivity, which indicates until which RSS a packet is received with a probability of \SI{90}{\percent}. The receiver minimum input sensitivity for a \ac{BW} of \SI{20}{\mega\hertz} is displayed in \autoref{fig:ReceiverSensitivityDCM}. It demonstrates that when using \ac{DCM}, the receiver minimum input sensitivity can be lower than without using \ac{DCM}. The effect on the receiver minimum input sensitivity increases as the HE-MCS value increases. 
+\cite{standard_ieee_2021} provides a receiver minimum input sensitivity, which indicates until which RSS a packet is received with a probability of \SI{90}{\percent}. The receiver minimum input sensitivity for a \ac{BW} of \SI{20}{\mega\hertz} is displayed in \autoref{fig:ReceiverSensitivityDCM}. It demonstrates that when using \ac{DCM}, the receiver minimum input sensitivity can be lower than without using \ac{DCM}. The effect on the receiver minimum input sensitivity increases as the HE-MCS value increases.
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/Receiver_minimum_DCM.pdf}
 	\caption{Receiver minimum input level sensitivity for different HE-MCS values according to \cite{standard_ieee_2021}, where \ac{PER} is less than \SI{10}{\percent}}%
 	\label{fig:ReceiverSensitivityDCM}%
 \end{figure}
-
 
 A similar development of the receiver minimum input sensitivity can also be observed for higher \ac{BW}, except that the lowest value increases with \ac{BW}.
 
@@ -145,28 +145,36 @@ Optionally, the HE ER SU \ac{PPDU} may also be transmitted with a \ac{GI} of \SI
 
 
 \subsubsection*{\ac{MIMO}}
-In order to furhter exploit the physical layer capabilities, the single transmitting and receiving antenna systems called Single-Input-Single-Output can be extended to \ac{MIMO} - systems.
-\textcite{sauter} describe the idea behind \ac{MIMO} as the usage of multiple transmit antennas and multiple receiving antenna. Dabei wird Spatial Multiplexing genutzt, sodass die gesendeten Signaler von jeder Antenne unterschiedlich an Objekten reflekiert werden und somit aus unterschiedlichen Richtung an den Receiver-Antennen empfangen werden können. 
+In order to further exploit the physical layer capabilities, the single transmitting and receiving antenna systems called Single-Input-Single-Output can be extended to \ac{MIMO} - systems.
+\textcite{sauter_wireless_2022} describe the idea behind \ac{MIMO} as the usage of multiple transmit antennas and multiple receiving antenna. Spatial multiplexing is used so that the transmitted signals from each antenna are reflected differently on objects and can thus be received from different directions at the receiver antennas. 
 
-Seit IEEE 802.11n sind bis zu vier MIMO-Streams möglich. Diese wurde bei IEEE 802.11ax nochmal auf bis zu acht MIMO-Streams erhöht. Da über jeden MIMO-Stream gleichzeitig Daten geschickt werden können, kann so die theoretische Datenrate in Abhängigkeit der nutzbaren Streams proportional steigen. Das ist nach \textcite{abbas} spatial multiplexing.
+The authors explain that since IEEE 802.11n it is possible to use up to four MIMO streams. This number was increased again to up to eight MIMO streams in IEEE 802.11ax \cite{standard_ieee_2021}. Since data can be sent simultaneously via each MIMO stream, the theoretical data rate can thus increase proportionally depending on the usable streams. 
+\begin{comment}
+SU-MIMO, MU-MIMO, UL, DL
+\end{comment}
 
-Jedoch sagen die Autoren zudem, dass MIMO dazu genutzt werden kann, um die Qualität des empfangenen Signals zu verstärken.  Das geschieht in Form von spatial diversity und \ac{STBC}.
-
-MU-\ac{MIMO} no DCM possible
-
+MU-\ac{MIMO} DCM only appicable, when RU contains only data for one user.
+\cite{standard_ieee_2021} 607 not applicable with DCM
 $NUM\_STS$ = Number of Spatial Streams
 $n_{ss}$ = $NUM\_STS / (1 + STBC)$
 \subsubsection*{\ac{STBC}}
+\textcite{abbas} sagt zudem, dass MIMO dazu genutzt werden kann, um die Qualität des empfangenen Signals zu verstärken.  Das geschieht in Form von spatial diversity und \ac{STBC}.
+
 Dabei werden den Autoren nach redundant copies of data transmitted via different antenna to the receiver. At the receiver the received data copies are combined and a maximum likelihood detector is applied in order to retain a high quality signal \cite{Santumon}.
 \ac{STBC} is a technique used in Wi-Fi networks to improve the reliability and robustness of wireless communications. \ac{STBC} encodes multiple redundant copies of data at the transmit side, which are transmitted in different spatial streams to reduce the effects of fading and interference. At the receiver side, these multiple copies are combined to improve the signal quality and increase the data rate. This results in a more reliable and efficient wireless communication system, with improved data transfer speed and reduced error rates.
 \ac{STBC} in Wi-Fi networks improve the reliability and robustness of wireless communications.
 Here, \textcite{Stamoulis} has investigated the potential effect of \ac{STBC} on Wi-Fi. Their simulations showed that\ac{STBC} can increase the range and robustness for IEEE 802.11a. In addition, the authors concluded  that \ac{STBC} increases the \ac{SNR} in nearly all cases at the same throughput or even allows higher \ac{MCS} values to be used, thus allowing a higher throughput at the same \ac{SNR}. 
 
 
-\cite{sauter} Reichweite und throughput higher wegen better SNR in Range 
+\cite{sauter_wireless_2022} Reichweite und throughput higher wegen better SNR in Range 
 
 
-26.11.9 STBC and DCM
+IEEE 802.11ax stations use \ac{STBC} when applying on the IEEE 802.11ax standard under the following conditions \cite{standard_ieee_2021}:
+\begin{itemize}
+	\item DCM is not applied
+	\item The number of spatial streams is \num{2}
+	\item The \ac{GI} is not \SI{0.8}{\nano\second} and the symbol length is not \SI{12.8}{\micro\second}
+\end{itemize}
 
 HE Capabilities nur so gut, wie das schlechteste Glied
 
