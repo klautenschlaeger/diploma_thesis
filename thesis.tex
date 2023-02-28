@@ -10,7 +10,6 @@
 
 % Author name. Separate multiple authors with commas.
 
-\usepackage{acro}
 \usetikzlibrary{quotes,angles}
 \usepackage{nicefrac}
 \usepackage{comment}
@@ -521,25 +520,63 @@ Range: Matlab? Somehow? overview
 other papers? 
 Enough?
 }
+Im folgenden möchte ich den Einfluss der verschiedenen Parameter auf die Robustheit und den Goodput untersuchen. Da wie beschrieben, die vorhandene Technik nicht
+gezielt angesteuert werden kann, um die Einflüsse der Parameter zu untersuchen, wird eine Simulation durchgeführt. Weitere Vorteile, sind die flexibilität und die
+Möglichkeit verschiedene Communication Protocol und network protocols zu simulieren \cite{ComparativeStudyKumar}.
+
+\textcite{OmarHESurvey} unterscheidet dabei für die Simulation von HE wireless networks zwischen Link-Level Simulations and System-Level Simulations. Beide Methoden erklären die Autoren, wie folgt.
+
+Link-Level Simulations untersuchen den Autoren nach die performance des HE physical layer für verschiedene physical layer parameter als \ac{PER} in regards to \ac{SNR}. Als Beispiel nehmen die Autoren die Simulation von \textcite{201} für PER in regards to SNR and chosen MCS.
+
+Für System-Level Simulation benötigt es Abtractionen des physical und des MAC layers, um auf dieser Basis ein system close to real zu simulieren.
+
+Für die Simulation von Wifi gibt es bereits verschiedene Tools, wie z.B. Matlab, ns-2 und ns-3, OMNeT++ oder Qualnet.
+
+\cite{SimulationWifiMesh}
+Ns-3 wurde bereits in \cite{ComparativeStudyKumar} und \cite{SimulationWifiMesh} verwendet für die Simulation von Wi-Fi networks. \textcite{} und ist daher für die Simulation von Wifi 6 geeignet.
+Da ns-3 eine Open Source Software ist, die auch für die
+Simulation von 802.11ax geeignet ist, wird diese für die Simulation verwendet. Die Simulation wird in der Programmiersprache C++ durchgeführt.
+
+
  
- 
-\section{ns-3 Network Simulator}
+\subsubsection*{ns-3 Network Simulator}
 
 Bei der Wahl der Network Simulator Wifi 6 Implementierungen 
 
 
 \todo{Warum nicht was anderes GNS3, MININET, ... ?}
 
-According to \cite{ns3manual} ns-3 is a discrete-event network simulator project, which was founded in 2006. The ns-3 project is open source with a licence based on n GNU GPLv2 compatibility. It aims to procide an open, extensible network simulator for research and educational use. Ns-3 scripts can be written in C++ or Python.
+Im \cite{ns3manual} findet man die folgenden Informationen über ns-3.
+ns-3 is a discrete-event network simulator project, which was founded in 2006.
+The ns-3 project is open source with a licence based on n GNU GPLv2 compatibility.
+It aims to procide an open, extensible network simulator for research and educational use. Ns-3 scripts can be written in C++ or Python.
 ns-API Python uses models in C++
 build system Cmake
 
 ATM no pre-built libraries and packages for operating systems
  
-The concept of ns3 is based on the abstraction of simulated systems. For this purpose, the term node was introduced for basic computing devices. The Node class offers the possibility to install protocol stacks and applications or to add peripheral cards and mobility models to the node.
-Applications are the abstraction of the user-level applications, which represent an activity to be simulated. For this purpose, the applications use resources and functionalities provided by the system software of a node. An example for the 
+The concept of ns3 is based on the abstraction of simulated systems.
+For this purpose, the term node was introduced for basic computing devices. The Node class offers the possibility to
+install protocol stacks and applications or to add peripheral cards and mobility models to the node.
+Applications are the abstraction of the user-level applications, which represent an activity to be simulated.
+For this purpose, the applications use resources and functionalities provided by the system software of a node.
 
+Every node gets network access via the Net Device class. The Net Device class represents the physical interface of a node,
+which can be Network Interface card or peripheral card. The Net Device simulates the software driver and the hardware of the network interface.
 
+Every Net Device is connected to a channel. The channel class represents the physical medium, which is used to transmit data. The channel behaviour is based
+on the channel model, which may include interference, propagation delay and loss.
+
+Für die aktuelle Version ns-3.37 wird IEEE 802.11ax als Standard im Infrastructure und Adhoc Mode unterstützt \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html} Accessed: 24.02.2023}.
+Jedoch ist die Unterstützung für den 802.11ax standard noch nicht vollständig. So kann man bereits DCM und STBC konfigurieren, jedoch findet man die den Kommentar in Zeile 496 von der Datei he-ppdu.cc, dass diese noch nicht in der aktuellen Version 3.37 für beachtet werden \footnote{https://www.nsnam.org/docs/models/html/wifi-user.html Accessed: 24.02.2023}.
+
+Bei der Untersuchung der Implementierung von 802.11ax in ns-3, fällt auf, dass die Implementierung von 802.11ax in ns-3 auf, dass bereits eine HE ER SU \ac{PPDU} Preamble implementiert ist, welche jedoch nie genutzt wird und man den Extended Range Mode
+den nicht aktivieren kann. Die Implementierung von 802.11ax in ns-3 ist also noch nicht vollständig und es gibt noch einige offene Punkte, die in der Zukunft noch implementiert werden müssen.
+
+\textcite{Netsimulyzer} haben eine 3D Visualisierung von ns-3 entwickelt, welche die Simulationen in 3D visualisiert, um die ns-3 simulation
+scenarios greifbar zu machen. Die grafische Erweiterung der Autoren besteht aus zwei open source Programmen. Das 
+NetSimulyzer ns-3 module \footcite{https://github.com/usnistgov/NetSimulyzer-ns3-module Accessed: 24.02.2023} lässt sich in die ns-3 Simulation integieren und baut über die spezifizierten Funktionen und Configurationen
+eine JSON Datei. Diese beinhaltet alle benötigten Daten für die Visualisierung in der NetSimulyzer \footcite{\url{https://github.com/usnistgov/NetSimulyzer} Accessed: 24.02.2023}
 
 \input{dataRate}
 Robustness?
