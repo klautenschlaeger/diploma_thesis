@@ -1,30 +1,29 @@
-\section{Harvest and Loading Processes as a Use Cases for \ac{WIC}}
-The Forage harvester has proven to be an essential agricultural machine for harvest
-ing and loading forage. \textcite{seifert_feldhacksler_1962} define a forage harvester
-as an agricultural loading machine for nearly all types of animal feed. According to the authors, a  forage harvester can load the following animal feed by mounting different cutting and loading devices: Hey, Straw, Corn, Grass and Clover.
+\section{Harvest and Loading Processes as a Use Cases for \acf{WIC}}
+The Forage harvester has proven to be an essential agricultural machine for harvesting and loading forage. \textcite{seifert_feldhacksler_1962} define a forage harvester
+as an agricultural loading machine for nearly all types of animal feed. According to the authors, a forage harvester can load the following animal feed by mounting different cutting and loading devices: Hey, Straw, Corn, Grass and Clover.
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.6\textwidth]{figures/claas_harvest_side.png}
-	\caption{\ac{FH} and \ac{TM} while }%
+	\caption{\acf{FH} and \acf{TM} in a corn harvesting and loading process}%
 	\label{fig:normal}%
 \end{figure}
 
 In the harvesting and loading process, a \ac{TM} typically drives alongside or behind the \ac{FH} so that the \ac{FH} can load the harvested goods onto the trailer of the \ac{TM} using the spout. Drivers operate both machines and try to keep the speed and distance so that the spout only throws the harvested goods into the trailer of the TM. An image of a corn harvesting and loading process can be seen in \autoref{fig:normal}.
 
-Taking a corn harvest scenario as an example, I looked up key figures in \cite{faustzahlen2018}, a standard reference book in agricultural literature. This book contains key figures of agricultural processes, which 80 experts have compiled. The key figures, which are shown in \autoref{tab:DataSilageHarvest}, are dependent on the \ac{PPD} and show the large amount of forage harvested by a  \ac{FH} every hour.
+Taking a corn harvest scenario as an example, I looked up key figures in \cite{faustzahlen2018}, a standard reference book in agricultural literature. This book contains key figures of agricultural processes, which 80 experts have compiled. The key figures, which are shown in \autoref{tab:DataSilageHarvest}, are dependent on the \ac{PPD} and show the large amount of forage harvested by a \ac{FH} every hour.
 \begin{table}[H]
 	\centering
 	\begin{tabular}{>{\raggedright}p{4.9cm}p{1.8cm}p{1.8cm}p{1.8cm}}
 		\toprule
-  		\ac{PPD} &  \SI{20}{\tonne\per\hectare} & \SI{30}{\tonne\per\hectare} & \SI{50}{\tonne\per\hectare}\\
+  		\acf{PPD}&\SI{20}{\tonne\per\hectare}&\SI{30}{\tonne\per\hectare} & \SI{50}{\tonne\per\hectare}\\
 		\midrule
-		Required \ac{TM}s & \num{5}&
+		Required \acl{TM}s & \num{5}&
 		\num{7} & \num{10} \\
 		Harvested volume in \si{\cubic\metre\per\hour} &
 		\num{285.7}-\num{333.3}
 		& \num{428.6}-\num{500.0} &
 		\num{595.7}-\num{695.0}\\
-		Filled \ac{TM} loads in \si{\per\hour} &
+		Filled \acl{TM} loads in \si{\per\hour} &
 		\num{5.7} - \num{6.7}
 		& \num{8.6} - \num{10.0} &
 		\num{11.9} - \num{13.9}\\
@@ -33,7 +32,7 @@ Taking a corn harvest scenario as an example, I looked up key figures in \cite{f
 		\num{208.5} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Key figures from \cite{faustzahlen2018} of corn harvest of a \ac{FH} with a working width of \SI{6.2}{\metre} in a \SI{80}{\hectare}-field in regards to \ac{PPD}}
+	\caption{Key figures from \cite{faustzahlen2018} of corn harvest of a \acf{FH} with a working width of \SI{6.2}{\metre} in a \SI{80}{\hectare}-field in regards to \acf{PPD}}
 	\label{tab:DataSilageHarvest}
 \end{table}
 
@@ -44,7 +43,7 @@ The operated \ac{FH}, as a leader, sets the path and speed and transmits the dat
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.65\textwidth]{figures/offset_platoon.pdf}
-	\caption{Lateral and longitudinal Offset between the two agricultural machines \ac{FH} and \ac{TM} in a corn harvest scenario}%
+	\caption{Lateral and longitudinal Offset between the two agricultural machines \acf{FH} and \acf{TM} in a corn harvest scenario}%
 	\label{fig:offset}%
 \end{figure}
 
@@ -73,7 +72,7 @@ farm.
 
 \chapter{Analyzing Corn Harvest Process Data}
 
-To gain a better insight into requirements of the \ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario as the example for I collected GPS tracks of  a  \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September. For this, I placed tablets in the driver's cabs of  a  \ac{FH} and three \ac{TM}s, which recorded the position and speed in an NMEA data stream of the tablet's GPS every second. 
+To gain a better insight into requirements of the \ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario as the example for I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September. For this, I placed tablets in the driver's cabs of a \ac{FH} and three \ac{TM}s, which recorded the position and speed in an NMEA data stream of the tablet's GPS every second. 
 
 % wahrscheinlich raus
 The workflow for collecting the corn harvest process data was as follows. 
@@ -82,7 +81,7 @@ I handed out the tablets to the drivers, which left the farm with the tablets in
 After recording the process data, I anonymized it. 
 First, I deleted data points of the log files until the recorded accuracy of the following data points was less than \SI{2}{\metre}. Then, I replaced the timestamp and the date for all data points with a continuous index.
 
-To gain a better insight into requirements of the \ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario as the example for I collected GPS tracks of a  \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September. For this, I placed tablets in the driver's cabs of a  \ac{FH} and three \ac{TM}s in the morning, which recorded the position and speed in an NMEA data stream of the tablet's GPS every time second. 
+To gain a better insight into requirements of the \ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario as the example for I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September. For this, I placed tablets in the driver's cabs of a \ac{FH} and three \ac{TM}s in the morning, which recorded the position and speed in an NMEA data stream of the tablet's GPS every time second. 
 
 After I collected the tablets in the evening, I anonymised the recorded process data. 
 Starting, I deleted data points of the log files until the recorded accuracy of the following data points was less than \SI{2}{\metre}. Then, I replaced the timestamp and the date for all data points with a continuous index.
@@ -98,7 +97,7 @@ In the dashboard, I could get an overview of the machine's behaviour
 before, during, and after the overloading scenario.
 The overview shows that a \ac{FH} is nearly always in the overloading process with a \ac{TM}. In doing so, the \ac{FH} may occasionally stay in the same place if the cutter is clogged or there is a transition of \ac{TM}s where a full \ac{TM} moves away from the \ac{FH} and an empty \ac{TM} catches up to the \ac{FH} to take over the forage.
 
-A \ac{TM} is in a platoon with a  \ac{FH} if it is close to the \ac{FH} and they are moving at nearly the same speed. The distance between \ac{TM} and \ac{FH} increases during a turning manoeuvre on the field. Since both machines have different curve radii in a turning manoeuvre, a different machine's speed can be observed to finish turning simultaneously.
+A \ac{TM} is in a platoon with a \ac{FH} if it is close to the \ac{FH} and they are moving at nearly the same speed. The distance between \ac{TM} and \ac{FH} increases during a turning manoeuvre on the field. Since both machines have different curve radii in a turning manoeuvre, a different machine's speed can be observed to finish turning simultaneously.
 \textcite{smolnik_5g_2020} also describes these observations and indicates that this different speed adds a new level of complexity.
 
 A new harvesting process begins as soon as the machines finish turning and are at the beginning of a new lane.
@@ -115,14 +114,14 @@ I observed that a fully loaded \ac{TM} leaves the field via one of the field exi
 
 \begin{figure}%
 	\centering
-	\includegraphics[width=0.85\textwidth]{figures/distanceHarvestSzenario.pdf}
-	\caption{Distribution of time proportions where a given distance was between \ac{FH} and \ac{TM} in a harvest platoon scenario.}%
+	\includegraphics[width=0.85\textwidth]{figures/distanceHarvestScenario.pdf}
+	\caption{Distribution of time proportions where a given distance was between \acf{FH} and \acf{TM} in a harvest platoon scenario.}%
 	\label{fig:distance}%
 \end{figure}
 \begin{figure}%
 	\centering
-	\includegraphics[width=0.85\textwidth]{figures/speedHarvestSzenario.pdf}
-	\caption{Distribution of time proportions where \ac{FH} and \ac{TM} drove with a certain speed in a harvest platoon scenario}%
+	\includegraphics[width=0.85\textwidth]{figures/speedHarvestScenario.pdf}
+	\caption{Distribution of time proportions where \acf{FH} and \acf{TM} drove with a certain speed in a harvest platoon scenario}%
 	\label{fig:speed}%
 \end{figure}
 
@@ -151,7 +150,7 @@ The authors do not give a basis for the figures. However, the report is from the
 		\node[label=above:North](d) at (0,1) {\textbullet};
 		\node[label=above:Heading](c) at (1,1.5) {\textbullet};
 		\node[label=below:TM](b) at (2,0) {\textbullet};
-		\node[label=below:FHprev](e) at (-1,-1.5) {\textbullet};
+		\node[label=below:FH\_previous](e) at (-1,-1.5) {\textbullet};
 		\node[label=above:North](f) at (-1,-0.5) {\textbullet};
 		\draw [thick] (a) -- (b);
 		\draw [thick] (a) -- (c);
@@ -163,13 +162,13 @@ The authors do not give a basis for the figures. However, the report is from the
 		{angle=b--a--d}
 		pic["$\alpha$", draw, <-,angle eccentricity=1.2, angle radius=1.0cm]
 		{angle=a--e--f}
-		pic["$Relative Bearing$", draw, <-, angle eccentricity=1.7, angle radius=1.5cm]
+		pic["$Relative\ Bearing$", draw, <-, angle eccentricity=1.8, angle radius=1.5cm]
 		{angle=b--a--c};
 	\end{tikzpicture}
 	\caption{Relative bearing between \ac{FH} and \ac{TM} which is calculated using the previous location of \ac{FH} by using $\beta$ and $\alpha$ for \autoref{eq:RelativeBearing}}%
 	\label{fig:bearing_fh_tm}%
 \end{figure}
-I reviewed the recorded position data to get an overview of the \ac{TM}'s position relative to the \ac{FH}  in the overloading process. The relative bearing is the angle between B, and the heading of point A. Using the previous position of the \ac{FH}, the relative bearing between \ac{FH} and \ac{TM} can be calculated with the angles $\alpha$ and $\beta$ in \autoref{fig:bearing_fh_tm} as:
+I reviewed the recorded position data to get an overview of the \ac{TM}'s position relative to the \ac{FH} in the overloading process. The relative bearing is the angle between B, and the heading of point A. Using the previous position of the \ac{FH}, the relative bearing between \ac{FH} and \ac{TM} can be calculated with the angles $\alpha$ and $\beta$ in \autoref{fig:bearing_fh_tm} as:
 \begin{equation}\label{eq:RelativeBearing}
 	Relative\_Bearing = \beta - \alpha	,
 \end{equation}
@@ -178,7 +177,7 @@ Assuming that the \ac{FH} does not move backwards, the relative bearing describe
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.99\textwidth]{figures/bearingHarvestScenario50.pdf}
-	\caption{Distribution of time proportion at specific distances and relative bearings between \ac{FH} and \ac{TM}}%
+	\caption{Distribution of time proportion at specific distances and relative bearings between \acf{FH} and \acf{TM}}%
 	\label{fig:bearing}%
 \end{figure}
 
@@ -187,11 +186,11 @@ In addition, it is noticeable that the machine can also be directly behind the \
 \begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.8\textwidth]{figures/claas_harvest_behind.png}
-	\caption{\ac{FH} and \ac{TM} start cutting a new field section}%
+	\caption{\acf{FH} and \acf{TM} start cutting a new field section}%
 	\label{fig:startpart}%
 \end{figure}
 
-Another notable fact is that the \ac{TM} hardly ever stayed to the left of the \ac{FH}. Since the \ac{FH} often made left turns, the crop was usually already harvested to the right of the \ac{FH} so that the \ac{TM} could drive there without running over the crop. On rare occasions, the \ac{TM} was also to the left of the \ac{FH}. Such a platooning scenario can be an exception or a driving manoeuvrer to start cutting a new part of the field.   
+Another notable fact is that the \ac{TM} hardly ever stayed to the left of the \ac{FH}. Since the \ac{FH} often made left turns, the crop was usually already harvested to the right of the \ac{FH} so that the \ac{TM} could drive there without running over the crop. On rare occasions, the \ac{TM} was also to the left of the \ac{FH}. Such a platooning scenario can be an exception or a driving manoeuvrer to start cutting a new part of the field. 
 
 The results reveal only a first impression of the harvest and loading process requirements. More data from around the world must be analyzed to make a general statement. The low rainfall this year has already resulted in a low plant population. This field condition made a higher process speed possible. To make a general statement, I should use data from different years because they can reveal different initial field conditions.
 
