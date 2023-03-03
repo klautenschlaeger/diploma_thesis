@@ -12,8 +12,8 @@ For the IEEE 802.11p and IEEE 802.11bd standards, a symbol length of \SI{6.4}{\m
 For the modulation and demodulation of the transmitting bits the FFT and IFFT are used respectively. With the reduction of the subcarrier spacing, more subcarriers are created in the transmission channel, so that the FFT size must be increased. 
 
 \textcite{kauffels_wireless_2002} adds, that \ac{OFDM} can be used in the \SI{5}{\giga\hertz} frequency band since IEEE 802.11a. 
-\subsubsection*{Bandwidth}
-\subsubsection*{\acl{MCS}}
+\subsubsection*{\acf{BW}}
+\subsubsection*{\acf{MCS}}
 
 In order to encode as many bits as possible on one \ac{OFDM} symbol, different \ac{MCS}s can be used.   
 These \ac{MCS}s for the IEEE 802.11 standards are based on \ac{PSK} or \ac{QAM}. \cite{kauffels_wireless_2002}. 
@@ -29,7 +29,7 @@ An imaginary, theoretical transmission channel is usually specified as a square-
 
 In this regards the author recommends setting the parameters in an \ac{OFDM} system in such a way that first the coding rate and then the complexity of the \ac{MCS} is reduced in difficult transmission environments. The more bits a \ac{MCS} encodes on a symbol, the more error-prone the correct decoding of the symbol.
 
-\subsubsection*{\acl{FEC}}
+\subsubsection*{\acf{FEC}}
 
 Nevertheless bit errors can occur during the transmission. In this regard, \cite{kauffels_wireless_2002} mentions and explains \ac{FEC} as a technique to reduce bit errors during transmission. \ac{FEC} adds redundant bits to the data. The receiver uses these redundant bits to check the integrity or correct errors of the received data. The proportion of non-redundant transmission bits is defined in \ac{CR} \todo{explain cr ?? Cite??}
 
@@ -75,7 +75,7 @@ Together with the \ac{MCS}, the \ac{FEC} \ac{CR} form a physical layer specifica
 \todo{Wellenausbreitung, Überlagerungseffekte, Reflexsion, Reflexsion nicht bei Metall}
 \todo{Knauffel OFDM PHY}
 
-\subsubsection*{\acl{GI}}
+\subsubsection*{\acf{GI}}
 \textcite{pulimamidi_development_2007} explain the Guard Interval as a cyclic prefix of OFDM symbols before Inter Symbol Interference and through Inter Carrier Intereference. Inter Symbol Interference is caused by multipath delays , where the reflected delayed previous symbol can interfere with the current received symbol\cite{ravindranath_performance_2016}. Similarly, Inter Carrier Interference is caused by time-varying channel a longer OFDM symbol duration, that just as an interference with the following OFDM symbol can arise \cite{van_duc_nguyen_intercarrier_2002}.
 
 About the Guard Interval \textcite{pulimamidi_development_2007} further list the following. 
@@ -95,7 +95,7 @@ Since IEEE 802.11n, a shortened \ac{GI} of \SI{400}{\nano\second} is usable, whi
 
 In \cite{alleAX} wird keine Bedingung für die Nutzung von den OFDM \ac{GI} genannt. Außerdem steht in den genannten Quellen nur die \ac{OFDM} symbol length von \SI{12.8}{\micro\second} aufgeführt.
 
-\subsubsection*{\acl{DCM}}
+\subsubsection*{\acf{DCM}}
 In order to introduce additional robustness \ac{DCM} can be applied to the physical layers of IEEE 802.11ax and IEEE 802.11bd according to \textcite{jacob_system-level_2020}. The authors describe \ac{DCM} as a way to send data twice over two coherent carriers. At the receiver, the data copies are combined with the log-likelihood ratio. This increases the probability of receiving the data. 
 
 \cite{standard_ieee_2021} provides a receiver minimum input sensitivity, which indicates until which RSS a packet is received with a probability of \SI{90}{\percent}. The receiver minimum input sensitivity for a \ac{BW} of \SI{20}{\mega\hertz} is displayed in \autoref{fig:ReceiverSensitivityDCM}. It demonstrates that when using \ac{DCM}, the receiver minimum input sensitivity can be lower than without using \ac{DCM}. The effect on the receiver minimum input sensitivity increases as the HE-MCS value increases.
@@ -144,7 +144,7 @@ Optionally, the HE ER SU \ac{PPDU} may also be transmitted with a \ac{GI} of \SI
 
 
 
-\subsubsection*{\ac{MIMO}}
+\subsubsection*{\acf{MIMO}}
 In order to further exploit the physical layer capabilities, the single transmitting and receiving antenna systems called Single-Input-Single-Output can be extended to \ac{MIMO} - systems.
 \textcite{sauter_wireless_2022} describe the idea behind \ac{MIMO} as the usage of multiple transmit antennas and multiple receiving antenna. Spatial multiplexing is used so that the transmitted signals from each antenna are reflected differently on objects and can thus be received from different directions at the receiver antennas. 
 
@@ -157,7 +157,7 @@ MU-\ac{MIMO} DCM only appicable, when RU contains only data for one user.
 \cite{standard_ieee_2021} 607 not applicable with DCM
 $NUM\_STS$ = Number of Spatial Streams
 $n_{ss}$ = $NUM\_STS / (1 + STBC)$
-\subsubsection*{\ac{STBC}}
+\subsubsection*{\acf{STBC}}
 \textcite{abbas} sagt zudem, dass MIMO dazu genutzt werden kann, um die Qualität des empfangenen Signals zu verstärken.
 Das geschieht in Form von spatial diversity und \ac{STBC}.
 

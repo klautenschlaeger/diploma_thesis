@@ -221,6 +221,10 @@
 	short=RSS,
 	long=Received Signal Strength,
 }
+\DeclareAcronym{LoS}{
+	short=LoS,
+	long=Line-Of-Sight,
+}
 \DeclareAcronym{SNR}{
 	short=SNR,
 	long=Signal Noise Ratio,
@@ -314,26 +318,42 @@ Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
 \item strategy: the way you will address the problem
 \item recommended length: 1-2 pages.
 \end{itemize}
+For the increasing automation and digitalization of agriculture, wireless infield communication of agricultural machinery is needed.
+A communication network enables the automation of work processes in agriculture through the exchange of data.
 
+Given that there are many different agricultural technology companies worldwide and  mix of their machines is often used
+together in an agricultural company, a demand for interoperability between agricultural machines of different brands emerged.
+In 2008, the \ac{AEF} was founded to develop and standardize this interoperability
+\footnote{https://www.aef-online.org/about-us/about-the-aef.html Accessed: 24.07.2022}.
 
-Schlingmann et al. [2] of the Agricultural Industry Electron-
-ics Foundation AEF, one of the major industry associations,
-are investigating the concept of cooperative agricultural ma-
-chinery using Inter-Vehicular Communication (IVC). One of
-the often-mentioned use cases is precisely this exchange of
-cultivated areas. Arguing that only 30 % of the landscape is
-covered by wireless connections [3],
+The AEF has defined a binary unit system, the ISO 11783 standard, for agricultural machinery communication, mainly tractors and
+implements \cite{Iglesias2014GUIsISOBUS}. According to \textcite{schlingmann2019AEFusecases}, the ISO 11783 standard is known as
+the ISOBUS system.
 
+The authors mention that the AEF is currently working on other issues. Among them is also the \ac{WIC}.
+In the associated project group \ac{WIC}, solutions for \ac{M2M} communication between cooperating, agricultural machines are
+to be developed and standardized.
 
-Schlingmann et al. [2] of the Agricultural Industry Electron-
-ics Foundation AEF, one of the major industry associations,
-are investigating the concept of cooperative agricultural ma-
-chinery using Inter-Vehicular Communication (IVC). One of
-the often-mentioned use cases is precisely this exchange of
-cultivated areas. Arguing that only 30 % of the landscape is
-covered by wireless connections [3], the authors suggest using
-IEEE 802.11p-based technology for connecting agricultural
-machinery. 
+In order to implement \ac{WIC}, the \ac{WIC} project group has been searching for a technology
+that can realize the required data rates, latencies and high transmission range. The plans for doing so are written down by members of the \ac{WIC} project group in \cite{Schlingmann2017AEF11p}.
+
+The authors consider the fundamental use of cellular networks as very problematic because, according to \cite{itu2016facts}, only \SI{30}{\percent} of the land surface has network coverage. For this reason, there is a major concern that the required data cannot be exchanged because there is no network connectivity in many fields. Nevertheless, the authors want to leave the future \ac{WIC} system open to cellular standards.
+
+The current focus of the authors is on IEEE 802.11 technologies, which must first be evaluated for use in the agricultural environment.
+
+In my final thesis I want to investigate the \ac{WIC} use cases for which IEEE 802.11ax or IEEE 802.11ac can be used.
+
+In order to implement these described WIC use cases, the WIC project group has
+been searching for a technology that can realize the required data rates, latencies
+and high transmission range. The plans for doing so are written down by members
+of the WIC project group in [26].
+The authors consider the fundamental use of cellular networks as very problem-
+atic because, according to [27], only \SI{30}{\percent} of the land surface has network coverage.
+For this reason, there is a major concern that the required data cannot be exchanged
+because there is no network connectivity in many fields. Nevertheless, the authors
+want to leave the future WIC system open to cellular standards.
+The current focus of the authors is on IEEE 802.11 technologies, which must
+first be evaluated for use in the agricultural environment.
 
 \chapter{Fundamentals}
 \label{sec:fundamentals}
@@ -356,7 +376,7 @@ machinery.
 
 \input{wic.tex}
 
-
+\input{cornHarvest}
 
 \section{Wireless Lans according to IEEE 802.11}
 \todo{Paper Christoph Sommer, Doktorarbeit, Diplomarbeit, Mario Franke, Tobias Hardes}
@@ -477,6 +497,10 @@ Beschränkungen und Regelungen Frequenzwahl, Sendeleistung
 
 Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 \fi
+
+\section{Related Work}
+\input{relatedWorkWIC}
+
 
 \input{cornHarvestData.tex}
 
@@ -604,6 +628,7 @@ Diese Menge an Daten umfasst eine Grundmenge, welche für die Umsetzung eines Pl
 \textcite{Schlingmann} spezifizieren die Datenmenge nicht weiter und weißen darauf hin, dass die benötigte Datenrate für Platooning Services gering ist.
 
 Ich habe für die Simulation von Platooning Services die Datenmenge auf \SI{1}{\kilo\byte} gesetzt. Diese Datengröße ist eine Abstrahierung des Speicherplatzes, welcher möglicherweise für zusätzliche Daten oder Implementierungen von Authentifizierung -  und Sicherheitsmechanismen benötigt wird. Im Corn Harvest scenario können zusätzliche Daten z.B. der Füllstand der Transportmachine sein. 
+
 
 Service Discovery
 
