@@ -1,0 +1,62 @@
+Since my undergraduate thesis \footnote{https://github.com/klautenschlaeger/mvsc Accessed: 5.2.2023} about ”Wirelessly Networked Coordination of Automatic Section Control for Agricultural Machines”
+, I have been working on the topic of wireless infield communication (WIC). I conducted both field experiments and
+simulations to investigate the performance of LoRa as a technology to exchange process data in
+meshed Automatic Section Control, a prototypical application of connected vehicles in the agricultural domain.
+A summary of my results is published in a paper\cite{Beyond}.
+In my undergraduate thesis and paper, I described the current state of research in the field of WIC.
+
+The first research paper on WIC that I found was from \textcite{ALI GPS}. The authors
+devleoped a system based on General Packet Radio Service (GPRS) to exchange position data between \ac{TM}s and combine
+harvesters to guide empty \ac{TM}s to a combine harvester.
+
+\textcite{smolnik_5g_2020} describes the research project "5G Netmobil" in which the authors investigated, how existing technologies like
+IEEE 802.11 or 3GPP LTE can be integrated into 5G technologies to enable Agricultural Platooning Services. It was planned to evaluate the use of \ac{UDP} and Basic Transport Protocol (BTP) to exchange guidance data via
+via the underlying technologies 3GPP LTE and 5G V2X and IEEE 802.11p. The authors report, that the project results demonstrated that achieved
+latencies were five times lower than the defined maximum latency of \SI{50}{\milli\second} for Agricultural Platooning Services. \todo{Why not 5G?}
+
+Further research on \ac{WIC} is not based cellular networks. \cite{FendtPlatoon} used IEEE 802.15.4 to implement a
+prototype of a Agricultural Platooning Service, where a relevant control data is exchanged between a leading tractor
+to guide a following tractor.
+
+\textcite{smolnik_5g_2020} states, that the developed system of \textcite{FendtPlatoon} is part
+of the project Elektronische Deichsel für landwirtschaftliche Arbeitsmaschinen (EDA) \todo[color=yellow]{Abkürzung so? wird nur einmal verwendet}
+it was further improved within the scope of project "Elektronische Deichsel für landwirtschaftliche Arbeitsmaschinen mit Umfeldsensorik und zusätzlichen Geoinformationen (EDAUG)".
+
+
+\textcite{klingler_agriculture_2018} investigated how IEEE 802.11p can be used for \ac{WIC}. Experiments revealed
+that data could be exchanged over a maximum range of 1700 m, where \ac{LoS} was lost. But during the
+measurement in an agricultural work scenario from the corn harvest, there were collapses in the \ac{RSS}
+due to shadowing effects of the machines. The authors point out that the size and shape of the forage harvester
+can cause intensified shadowing effects.
+
+As of July 2, 2021, the frequency spectrum of IEEE 802.11p in the United States of America, ranging from
+\SIrange{5,850}{5,925}{\giga\hertz}, has been split. The upper \SI{30}{\mega\hertz} are reserved for
+Intelligent transportation systems now. The lower \SI{45}{\mega\hertz} have been released for unlicensed
+operations \cite{FCC202111p}.
+
+Since the use of IEEE 802.11p has now been newly
+regulated by the FCC, the \ac{WIC} project group is looking for an alternative technology that enables \ac{WIC}.
+
+\todo[color=yellow]{IVAN MARION 802.11 not public available :-(}
+
+
+
+
+There are also more developments in the field of \ac{WIC} from the industry. In this context, \textcite{thomasson_review_2018} describe the John Deere Machine Sync and Case IH V2V systems as follows:
+
+John Deere Machine Sync enables the \ac{WIC} uses cases Process Data Exchange and Agricultural Platooning Service. \textcite{liu_automation_2022} have extended the system to use Combine Harvesters, adding that the Machine Sync system is based on \textcite{metzler_system_2006}'s patent.
+\textcite{smolnik_5g_2020} adds thats John Deere Machine Sync is only available for a subgroup of John Deere machine types and can't be used with machines of other brands.
+
+Case IH V2V also offers an agricultural platooning service. However, the system can only be used for harvesting and loading scenarios, according to the authors.
+
+Also currently on the market is the Raven Autonomy™ Driver Assist Harvest Solution \footnote{https://ravenind.com/products/autonomy/driver-assist-harvest-solution Accessed: 2/5/2023} system from Raven Industries. This system allows the harvester to take control of a \ac{TM} from a distance of \SI{70}{\metre}. The harvester then automatically guides the \ac{TM} into the perfect position to load the harvested crop onto the \ac{TM} via the spout. Once the harvesting and loading process is complete, the driver of the \ac{TM} retakes control.
+
+A comparable system is CartACE from AgLeader \footnote{https://www.agleader.com/harvest/cartace/ Accessed: 5.2.2023}
+
+The technology used in the mentioned systems is not known. In response to questions about how the systems can be used on farms worldwide and what prerequisites must be created for this, the manufacturers refer to the regional distribution options.
+\todo{OcuSync Lightbridge DJI Mavic}
+
+\todo[color=yellow]{Wifi 6 Outdoorcommunication, modern Wifi-& agriculture domain maybe cows etc.}
+
+
+
