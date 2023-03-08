@@ -9,7 +9,7 @@ The WLAN Toolbox supports a wide range of IEEE 802.11 standards.
 Since Release R2019b \footnote{https://de.mathworks.com/help/wlan/release-notes.html}, the WLAN Toolbox supports the Signal Recovery, Packet Extension and Physical Layer abstractions to simulation IEEE 802.11ax networks.
 
 My robustness analysis is based on the WLAN Toolbox example wlan/HESUExample \footnote{https://de.mathworks.com/help/wlan/ug/802-11ax-packet-error-rate-simulation-for-single-user-format.html} to simulate the \ac{PER} of point-to-point IEEE 802.11ax networks for
-a specified \ac{SNR} values. \todo[color=yellow]{example?}
+a specified \ac{SNR} values.
 
 First, I set the IEEE 802.11ax physical layer parameters using the wlanHEConfig object, where I define the following default parameters:
 \begin{itemize}
@@ -104,7 +104,7 @@ information using the Maximum likelyhood criterion. The results of the author sh
 \ac{DCM} than sending the information via two Quadrature \ac{PSK} or 16-\ac{QAM} modulated symbols without \ac{DCM}.
 
 
-\todo[color=yellow]{name PER 0.5 Some paper use 0.1 PER and mention the SNR improvement 4 db improvement}
+\todo[color=yellow]{name PER 0.5 Some paper use  0.1 is very good Sommerf0.1 PER and mention the SNR improvement 4 db improvement}
 \subsubsection*{\acf{ER}}
 For a HE-MCS \num{0} and \num{1} the \ac{ER} range mode can be applied additional to \ac{DCM}, when one spatial stream is used \cite{noauthor_ieee_2021}.
 In order to analyse the impact of the \ac{ER} mode, I set the physical layer parameters to a \ac{GI} of
