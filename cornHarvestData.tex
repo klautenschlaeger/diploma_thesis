@@ -1,6 +1,9 @@
 \chapter{Analyzing Corn Harvest Process Data}
 
-To gain a better insight into requirements of the \ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario as the example for I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September. For this, I placed tablets in the driver's cabs of a \ac{FH} and three \ac{TM}s, which recorded the position and speed in an NMEA data stream of the tablet's GPS every second. 
+To gain a better insight into requirements of the \ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario as the example for
+I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September.
+For this, I placed tablets in the driver's cabs of a \ac{FH} and three \ac{TM}s, which recorded the position and
+speed of the tablet's GPS in NMEA 0183 format every second.
 
 % wahrscheinlich raus
 The workflow for collecting the corn harvest process data was as follows. 
@@ -8,11 +11,6 @@ I handed out the tablets to the drivers, which left the farm with the tablets in
 
 After recording the process data, I anonymized it. 
 First, I deleted data points of the log files until the recorded accuracy of the following data points was less than \SI{2}{\metre}. Then, I replaced the timestamp and the date for all data points with a continuous index.
-
-To gain a better insight into requirements of the \ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario as the example for I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September. For this, I placed tablets in the driver's cabs of a \ac{FH} and three \ac{TM}s in the morning, which recorded the position and speed in an NMEA data stream of the tablet's GPS every time second. 
-
-After I collected the tablets in the evening, I anonymised the recorded process data. 
-Starting, I deleted data points of the log files until the recorded accuracy of the following data points was less than \SI{2}{\metre}. Then, I replaced the timestamp and the date for all data points with a continuous index.
 
 After that, I anonymised the location data by adding a random offset to the GPS coordinates. As a result, this procedure moved the areas to a random location in the world with a continuous index as a timestamp, where the exact date is unknown.
 
@@ -31,9 +29,9 @@ A \ac{TM} is in a platoon with a \ac{FH} if it is close to the \ac{FH} and they 
 A new harvesting process begins as soon as the machines finish turning and are at the beginning of a new lane.
 Again, the machines drive closely and nearly at the same speed to harvest and overload forage.
 
-Furthermore, another \ac{TM} can sometimes be close to the \ac{FH}. This \ac{TM} is empty and waits to work with the \ac{FH} in the next platoon. For that purpose, the empty \ac{TM} drives close behind the current platoon at the same speed to not catch up even closer to the platoon and be ready in the vicinity.
+Furthermore, another \ac{TM} can sometimes be close to the \ac{FH}. For example an empty TM, that waits to work with the \ac{FH} in the next platoon, drives close behind the current platoon at the same speed to be ready in the vicinity.
 
-Based on the above observations, I developed an intelligent algorithm for detecting platooning scenarios in the recorded harvest process data. It uses a weighted sum of distance and speed difference between \ac{FH} and \ac{TM} to detect the platooning scenarios.
+Based on the above observations, I developed an algorithm for detecting platooning scenarios in the recorded harvest process data. It uses a weighted sum of distance and speed difference between \ac{FH} and \ac{TM} to detect the platooning scenarios.
 
 For verification purposes, I displayed the found platoons scenarios on the map and confirmed the algorithm's functioning. 
 
@@ -67,7 +65,7 @@ Nevertheless, the recorded data shows that a platooning service in agriculture m
 In \autoref{fig:speed} is a local maximum at a speed of \SI{0}{\kilo\metre\per\hour}. In a harvest platoon scenario, \ac{FH} and \ac{TM} can stand still briefly when the cutting device is jammed.
 The driver's specific actuation usually clears the forage jam of the cutting device so that the platoon can continue its work.
 
-\textcite{smolnik_5g_2020} defines an average speed of \SI{4.5}{\kilo\metre\per\hour} for the development of platooning services in the corn harvesting process. Depending on the \ac{PPD}, the speed can vary from \SIrange{2}{6}{\kilo\metre\per\hour} according to the authors.
+\textcite{smolnik_5g_2020} defines an average speed of \SI{4.5}{\kilo\metre\per\hour} for the development of platooning services in the corn harvesting process. Depending on the \ac{PD}, the speed can vary from \SIrange{2}{6}{\kilo\metre\per\hour} according to the authors.
 The authors do not give a basis for the figures. However, the report is from the agricultural machinery manufacturer Claas, which is a major producer of \ac{FH} worldwide and thus should have expertise in the topic.
 
 \textcite{klingler_agriculture_2018} investigated the suitability of IEEE 802.11p for \ac{WIC}. The authors detected that shadowing effects occur in the harvest scenario. The authors explain the effect because another tractor or the spout of the \ac{FH} was in \ac{LOS}.
@@ -96,7 +94,7 @@ The authors do not give a basis for the figures. However, the report is from the
 	\caption{Relative bearing between \ac{FH} and \ac{TM} which is calculated using the previous location of \ac{FH} by using $\beta$ and $\alpha$ for \autoref{eq:RelativeBearing}}%
 	\label{fig:bearing_fh_tm}%
 \end{figure}
-I reviewed the recorded position data to get an overview of the \ac{TM}'s position relative to the \ac{FH} in the overloading process. The relative bearing is the angle between B, and the heading of point A. Using the previous position of the \ac{FH}, the relative bearing between \ac{FH} and \ac{TM} can be calculated with the angles $\alpha$ and $\beta$ in \autoref{fig:bearing_fh_tm} as:
+I reviewed the recorded position data to get an overview of the \ac{TM}'s position relative to the \ac{FH} in the overloading process. The relative bearing is the angle between the position of the \ac{TM}, and the heading of the position of the \ac{FH}. Using the previous position of the \ac{FH}, the relative bearing between \ac{FH} and \ac{TM} can be calculated with the angles $\alpha$ and $\beta$ in \autoref{fig:bearing_fh_tm} as:
 \begin{equation}\label{eq:RelativeBearing}
 	Relative\_Bearing = \beta - \alpha	,
 \end{equation}
