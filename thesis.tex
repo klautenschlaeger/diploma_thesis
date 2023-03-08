@@ -42,6 +42,10 @@
 	short=BCC,
 	long=binary convolutional coding,
 }
+\DeclareAcronym{ER}{
+	short=ER,
+	long=Extended Range,
+}
 \DeclareAcronym{LDPC}{
 	short=LDPC,
 	long=low-density parity-check,
@@ -105,9 +109,9 @@
 	short=AP,
 	long=Access Point,
 }
-\DeclareAcronym{PPD}{
-	short=PPD,
-	long=Plant Population Density,
+\DeclareAcronym{PD}{
+	short=PD,
+	long=Plant Density,
 }
 \DeclareAcronym{WIC}{
 	short=WIC,
@@ -191,6 +195,11 @@
 \DeclareAcronym{ax}{
 	short=802.11ax,
 	long= IEEE 802.11ax,
+}
+
+\DeclareAcronym{UDP}{
+	short=UDP,
+	long= User Datagram Protocol,
 }
 
 \DeclareAcronym{OFDMA}{
@@ -327,7 +336,7 @@ In 2008, the \ac{AEF} was founded to develop and standardize this interoperabili
 \footnote{https://www.aef-online.org/about-us/about-the-aef.html Accessed: 24.07.2022}.
 
 The AEF has defined a binary unit system, the ISO 11783 standard, for agricultural machinery communication, mainly tractors and
-implements \cite{Iglesias2014GUIsISOBUS}. According to \textcite{schlingmann2019AEFusecases}, the ISO 11783 standard is known as
+implements \cite{iglesias_enabling_2014}. According to \textcite{schlingmann_aef_2019}, the ISO 11783 standard is known as
 the ISOBUS system.
 
 The authors mention that the AEF is currently working on other issues. Among them is also the \ac{WIC}.
@@ -335,7 +344,7 @@ In the associated project group \ac{WIC}, solutions for \ac{M2M} communication b
 to be developed and standardized.
 
 In order to implement \ac{WIC}, the \ac{WIC} project group has been searching for a technology
-that can realize the required data rates, latencies and high transmission range. The plans for doing so are written down by members of the \ac{WIC} project group in \cite{Schlingmann2017AEF11p}.
+that can realize the required data rates, latencies and high transmission range. The plans for doing so are written down by members of the \ac{WIC} project group in \cite{schlingmann_challenges_2017}.
 
 The authors consider the fundamental use of cellular networks as very problematic because, according to \cite{itu2016facts}, only \SI{30}{\percent} of the land surface has network coverage. For this reason, there is a major concern that the required data cannot be exchanged because there is no network connectivity in many fields. Nevertheless, the authors want to leave the future \ac{WIC} system open to cellular standards.
 
@@ -489,7 +498,7 @@ Authentifizierung
 \input{80211ax_ac.tex}
 
 \iffalse
-\section{Modell für drahtlose Übertragungssysteme}
+^\section{Modell für drahtlose Übertragungssysteme}
 
 Abb 2.3.1  Modell einen Übertragungssystems
 
@@ -509,6 +518,12 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 Netcat not working no interval but connection setup easy. maybe something else
 
 iperf run unlimited? 
+
+
+
+\input{fieldexperiment.tex}
+
+
 
 
 \todo[color=yellow]{Describe Mistakes? }
@@ -572,7 +587,7 @@ Bei der Wahl der Network Simulator Wifi 6 Implementierungen
 
 \todo{Warum nicht was anderes GNS3, MININET, ... ?}
 
-Im \cite{ns3manual} findet man die folgenden Informationen über ns-3.
+In the doc folder of  \cite{noauthor_files_nodate} findet man die folgenden Informationen über ns-3.
 ns-3 is a discrete-event network simulator project, which was founded in 2006.
 The ns-3 project is open source with a licence based on n GNU GPLv2 compatibility.
 It aims to procide an open, extensible network simulator for research and educational use. Ns-3 scripts can be written in C++ or Python.
@@ -599,10 +614,10 @@ Jedoch ist die Unterstützung für den 802.11ax standard noch nicht vollständig
 Bei der Untersuchung der Implementierung von 802.11ax in ns-3, fällt auf, dass die Implementierung von 802.11ax in ns-3 auf, dass bereits eine HE ER SU \ac{PPDU} Preamble implementiert ist, welche jedoch nie genutzt wird und man den Extended Range Mode
 den nicht aktivieren kann. Die Implementierung von 802.11ax in ns-3 ist also noch nicht vollständig und es gibt noch einige offene Punkte, die in der Zukunft noch implementiert werden müssen.
 
-\textcite{Netsimulyzer} haben eine 3D Visualisierung von ns-3 entwickelt, welche die Simulationen in 3D visualisiert, um die ns-3 simulation
+\textcite{black_netsimulyzer_2021} haben eine 3D Visualisierung von ns-3 entwickelt, welche die Simulationen in 3D visualisiert, um die ns-3 simulation
 scenarios greifbar zu machen. Die grafische Erweiterung der Autoren besteht aus zwei open source Programmen. Das 
-NetSimulyzer ns-3 module \footcite{https://github.com/usnistgov/NetSimulyzer-ns3-module Accessed: 24.02.2023} lässt sich in die ns-3 Simulation integieren und baut über die spezifizierten Funktionen und Configurationen
-eine JSON Datei. Diese beinhaltet alle benötigten Daten für die Visualisierung in der NetSimulyzer \footcite{\url{https://github.com/usnistgov/NetSimulyzer} Accessed: 24.02.2023}
+NetSimulyzer ns-3 module \footnote{https://github.com/usnistgov/NetSimulyzer-ns3-module Accessed: 24.02.2023} lässt sich in die ns-3 Simulation integieren und baut über die spezifizierten Funktionen und Configurationen
+eine JSON Datei. Diese beinhaltet alle benötigten Daten für die Visualisierung in der NetSimulyzer \footnote{\url{https://github.com/usnistgov/NetSimulyzer} Accessed: 24.02.2023}
 
 \input{dataRate}
 Robustness?
@@ -623,9 +638,9 @@ Auf different paper stützen?
 \section{Platooning Services}
 
 Packetsize 
-\cite(fendtPlatoon) defined a data frame of \SI{32}{\byte}, which includes an identifier, timestamp, Longitude, Latitude, Heading, Speed and Direction.
+\textcite{zhang_method_2009} defined a data frame of \SI{32}{\byte}, which includes an identifier, timestamp, Longitude, Latitude, Heading, Speed and Direction.
 Diese Menge an Daten umfasst eine Grundmenge, welche für die Umsetzung eines Platooning Services ausreichen kann, wie die Autoren zeigen.
-\textcite{Schlingmann} spezifizieren die Datenmenge nicht weiter und weißen darauf hin, dass die benötigte Datenrate für Platooning Services gering ist.
+\textcite{schlingmann_aef_2019} spezifizieren die Datenmenge nicht weiter und weißen darauf hin, dass die benötigte Datenrate für Platooning Services gering ist.
 
 Ich habe für die Simulation von Platooning Services die Datenmenge auf \SI{1}{\kilo\byte} gesetzt. Diese Datengröße ist eine Abstrahierung des Speicherplatzes, welcher möglicherweise für zusätzliche Daten oder Implementierungen von Authentifizierung -  und Sicherheitsmechanismen benötigt wird. Im Corn Harvest scenario können zusätzliche Daten z.B. der Füllstand der Transportmachine sein. 
 
