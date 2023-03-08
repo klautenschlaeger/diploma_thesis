@@ -6,7 +6,7 @@ Every node is eqipped with a Wi-Fi NetDevice with the following parameters: \ac{
 A Constant Rate Wifi Manager is used to set a constant data rate according to the fixed HE-\ac{MCS} for data, non-uniform and control data transmissions. The used frequency band is \SI{2.4}{\giga\hertz} or \SI{5}{\giga\hertz} as
 higher frequencies are less resistant to shadowing and fading and a higher data rate is not needed for the \ac{WIC} use cases.
 The Wi-Fi Netdevices operate in the frequency channels specified in \autoref{tab:frequencyChannels}, which can be used for
-outdoor Wi-Fi communication in Germany \cite{GermanLaw}.
+outdoor Wi-Fi communication in Germany \cite{freq_plan}.
 
 \begin{table}
 	\centering
@@ -25,8 +25,8 @@ outdoor Wi-Fi communication in Germany \cite{GermanLaw}.
 		& \num{114} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Frequency Channels numbers for \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} for the different \ac{BW}s of the IEEE 802.11 standard \cite{noauthor_ieee_2021-1}, which can be used for
-	outdoor communication \cite{GermanLaw}}
+	\caption{Frequency Channels numbers for \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} for the different \acf{BW}s of the IEEE 802.11 standard \cite{noauthor_ieee_2021-1}, which can be used for
+	outdoor communication \cite{freq_plan}}
 	\label{tab:frequencyChannels}
 \end{table}
 
@@ -65,7 +65,7 @@ these additional transmissions the goodput is lower than the theoretical data ra
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/gi_dataRate_simulation.pdf}
-	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with \num{2} \ac{MIMO} streams and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \ac{MIMO} streams and the chosen \ac{MCS} and \ac{CR}}%
+	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with \num{2} \acf{MIMO} streams and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen HE-\acf{MCS} value}%
 	\label{fig:Data_rate_GI}%
 \end{figure}
 
@@ -79,20 +79,20 @@ A similar effect can be observed whit higher HE-\ac{MCS} values.
 \todo[color=yellow]{Prasad, Patil, GI, Umgang mit Falschaussagen?}
 \begin{table}[H]
 	\centering
-	\begin{tabular}{>{\centering}p{3cm}p{4cm}p{4cm}}
+	\begin{tabular}{>{\centering}p{3cm}p{3cm}p{3cm}}
 		\toprule
 		\ac{GI} & Mean achieved goodput & \ac{BW} attentuation\\
 		\midrule
-		\SI{800}{\nano\second} & \SI{8}{\giga\bit\per\second}&
+		\SI{800}{\nano\second} & \SI{31.15}{\giga\bit\per\second}&
 		\SI{94}{\percent} \\
 		\SI{1600}{\nano\second} &
-		\SI{8}{\giga\bit\per\second}&
+		\SI{29.47}{\giga\bit\per\second}&
 		\SI{89}{\percent} \\
-		\SI{3200}{\nano\second} & \SI{8}{\giga\bit\per\second}&
+		\SI{3200}{\nano\second} & \SI{26.52}{\giga\bit\per\second}&
 		\SI{80}{\percent} \\
 		\bottomrule
 	\end{tabular}
-	\caption{\ac{BW} attenuation and mean goodput for HE-\ac{MCS}0 in regards to \ac{GI} length}
+	\caption{\acf{BW} attenuation and mean goodput for HE-\ac{MCS}0 in regards to \acf{GI} length}
 	\label{tab:GIbandwidthAttenuation}
 \end{table}
 
@@ -101,7 +101,7 @@ A similar effect can be observed whit higher HE-\ac{MCS} values.
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/mimo_dataRate_simulation.pdf}
-	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \ac{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \ac{MIMO} streams and the chosen \ac{MCS} and \ac{CR}}%
+	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \acf{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen HE-\ac{MCS} value}%
 	\label{fig:Data_rate_Mimo}%
 \end{figure}
 
@@ -133,7 +133,7 @@ This results in a longer transmission time, which reflects in the lower achieved
 \begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/ER_dataRate_simulation.pdf}
-	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \ac{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{20}{\mega\hertz} in regards to the number of \ac{MIMO} streams and the chosen \ac{MCS} and \ac{CR}}%
+	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \acf{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{20}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen HE-\ac{MCS} value}%
 	\label{fig:Data_rate_ER}%
 \end{figure}
 The effect increases with smaller packet sizes, because the longer transmission time of preamble is more significant for smaller packets.
@@ -149,8 +149,22 @@ copy of the original payload for the HE-\ac{MCS} values 0, 1, 3 and 4, where \ac
 Using \ac{DCM}, the receiver would apply maximum likelihood decoding to decode the original payload with a higher probability.
 
 The results of the simulation are shown in \autoref{fig:Data_rate_DCM}, where the lost achieved goodput is plotted against
-the theoretical data rate for the different HE-\ac{MCS} values. The theoretical data rate while using \ac{DCM} is Using \ac{DCM} increases the ratio of achievable goodput to
-theoretical data rate, because due to CSMA CA and the
+the theoretical data rate for the different HE-\ac{MCS} values. The theoretical data rate while using \ac{DCM} is half of the
+theoretical data rate without \ac{DCM}, which complies with the IEEE 802.11ax standard \cite{noauthor_ieee_2021}.
+\begin{figure}[H]%
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/DCM_dataRate_simulation.pdf}
+	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{40}{\mega\hertz} and 2 spatial streams  in regards to the number of the chosen HE-\acf{MCS} value and whether \acf{DCM} is enabled}%
+	\label{fig:Data_rate_DCM}%
+\end{figure}
+
+The achieved goodput is always lower than the theoretical data rate, because data transmission time is lost to the header overhead and media access time.
+WiFi access is based on CSMA CA, which means that the stations have to wait for a random time before they can transmit on a free channel.
+Additionally, the channel can be occupied by ACK or adhoc beacon frames, which also have to be transmitted.
+
+Using \ac{DCM} increases the ratio of achievable goodput to theoretical data rate, because only one header and one ACK frame is transmitted per
+\SI{2000}{\byte} payload and the node has to go to the medium access procudure only once per \SI{2000}{\byte} payload.
+
 
 \begin{comment}
 	sommer
@@ -165,16 +179,23 @@ theoretical data rate, because due to CSMA CA and the
 \end{comment}
 
 
-\begin{figure}%
-	\centering
-	\includegraphics[width=0.95\textwidth]{figures/DCM_dataRate_simulation.pdf}
-	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{40}{\mega\hertz} and 2 spatial streams  in regards to the number of the chosen HE-\ac{MCS} value and whether \ac{DCM} is enabled}%
-	\label{fig:Data_rate_DCM}%
-\end{figure}
+
 
 \subsubsection*{\acf{STBC}}
+Another physical layer parameter, which reduces the theoretical data rate for more robustness is the \ac{STBC}.
+As mentioned, ns-3 version 3.37 does not support the \ac{STBC} for the IEEE 802.11ax standard. Therefore, I reduced the number of
+\ac{MIMO} streams from two to one, when the \ac{STBC} is enabled. \ac{STBC} would transmit a redundant copy of the data on the second antenna, which would be combined
+using the space-time block code (STBC) to increase the robustness and reliability of the transmission.
+The results of the simulation are shown in \autoref{fig:Data_rate_STBC}, where the lost achieved goodput is plotted against
+the theoretical data rate for the different HE-\ac{MCS} values. The theoretical data rate while using \ac{STBC} is half of the
+\begin{figure}[H]%
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/STBC_dataRate_simulation}
+	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{40}{\mega\hertz} and 2 spatial streams  in regards to the number of the chosen HE-\acf{MCS} value and whether \acf{STBC} is enabled}%
+	\label{fig:Data_rate_STBC}%
+\end{figure}
 
-\todo[color=yellow]{Error bars goodput lost}
+\todo[]{Error bars goodput lost}
 
 
 Through the new IEEE 802.11ax standard \cite{noauthor_ieee_2021}, the Wi-Fi standard has been extended to support more \ac{MIMO} streams or higher \ac{MCS} values and use \ac{LDPC} compulsory for the
