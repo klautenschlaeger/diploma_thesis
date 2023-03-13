@@ -8,42 +8,79 @@ subsequently reduce the \ac{RSS} and how physical layer parameters like \ac{MCS}
 
 For the experiment, I will use a \ac{CH} instead of a \ac{FH} as it has a similar shape and size as a \ac{FH} and is available.
 The \ac{TM} will be a Tractor pulling a trailer of the type HW80.
-Both machines will be equipped with a \ac{GPS} receiver and Wi-Fi devices which record the \ac{RSS} and the \ac{PER} of the
+Both machines will be equipped with a \ac{GPS} receiver and Wi-Fi devices which record the position, \ac{RSS} and the \ac{PER} of the
 exchanged packets.
-The \ac{CH} will be positioned on a field.
+The \ac{CH} will be positioned in an agricultural field.
 The tractor will start \SI{50}{\metre} behind the \ac{CH}, advance to the \ac{CH} and pass the \ac{CH} slowly with a
-speed of \SIrange{1}{10}{\kilo\metre\per\hour} as shown in \autoref{fig:fieldDrive}.
+speed of \SIrange{1}{5}{\kilo\metre\per\hour} (\SIrange{0.28}{1.39}{\metre\per\second}) as shown in \autoref{fig:fieldDrive}.
 \begin{figure}[]%
 	\centering
 	\includegraphics[width=0.4\textwidth]{figures/FieldExperimentDrive}
+	\label{fig:fieldDrive}
 	\caption{Path around the static \acf{CH}, which the \acf{TM} will drive during the experiment to mimic various overloading positions}%
 \end{figure}
-Thereby, the tractor will mimic various the overloading positions, where shadowing effects can occur. After the tractor has passed the \ac{CH},
-it will drive back to its starting position and the experiment will be repeated with different overloading distances between the \ac{CH} and the tractor.
+While driving along the specified path, the tractor will mimic various overloading positions, where shadowing effects can occur. After the tractor has passed the \ac{CH},
+it will drive back to its starting position, and the experiment will be repeated with different overloading distances between the \ac{CH} and the tractor.
 
-During the experiments the \ac{GPS} receivers at the agricultural machines will record the position and speed of the machines every \SI{1}{\second}.
+During the experiments, \ac{GPS} receivers at the agricultural machines will record the position and speed of the machines every \SI{1}{\second}.
 
-The Wi-Fi setup consists of a Milesight Industrial Router UR75 which is mounted on the roof of the tractor at a height \SI{4}{\metre} above the ground.
-\textcite{brinkhoff_characterization_2017} and \textcite{paul_characterizing_2011}  already found out, that placing the antenna higher above ground improves
-the robustness and communication range of Wi-Fi networks in an outdoor environment. As the regulation in StVZO §32 Abs. 2  limits the height of
-every agricultural vehicle or combination of vehicles to less than \SI{4.0}{\metre}, the maximum antenna is \SI{4}{\metre} above the ground.
+The Wi-Fi setup consists of a Milesight Industrial Router UR75 \cite{milesight datasheet}, which implements the standards IEEE 802.11 b/g/n in the \SI{2.4}{\giga\hertz} band and IEEE 802.11 a/n/ac in the \SI{5}{\giga\hertz} band and
+IEEE 802.11 a/n/ac in the \SI{5}{\giga\hertz} band. The router is equipped with two omnidirectional antennas for  \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} usage.
+\textcite{brinkhoff_characterization_2017} and \textcite{paul_characterizing_2011}  already found out that placing the antenna higher above ground improves
+the robustness and communication range of Wi-Fi networks in an outdoor environment. As the regulation in the German Law StVZO §32 Abs. 2  limits the height of
+every agricultural vehicle or combination of vehicles to less than \SI{4.0}{\metre}, the maximum antenna height is \SI{4}{\metre} above the ground. Therefore, I will mount the router on the tractor's roof at a height \SI{4}{\metre} above the ground.
 
-Additionally, two UP Squared Board are equipped with a Intel AX210 Wi-Fi module each, which is connected two antennas each. The
-antennas support omnidirectional transmissions in the \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and have a gain of \SI{5}{\decibel}.
-The boards are mounted on the roof of the \ac{CH} at a height \SI{4}{\metre} above the ground.
+I set up two Wi-Fi devices on the \ac{CH}, which are two UP Squared Board \cite{up_squared_board datasheet} with an Intel AX210 Wi-Fi module \cite{intel_ax210}.
+Every Intel AX210 Wi-Fi module supports the IEEE 802.11ax standard for \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and is equipped with two antennas,
+which support omnidirectional transmissions in the \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and have a gain of \SI{5}{\decibel}.
+The boards are mounted on the roof of the \ac{CH} next to one another at a height \SI{4}{\metre} above the ground too.
 
-The router on the tractor sets up a Wi-Fi \ac{AP} in the \SI{5.6}{\giga\hertz} band, which can be used for outdoor Wi-Fi transmissions \cite{freq_plan}.One of the boards on the \ac{CH} connects to the \ac{AP} of the router as a Wi-Fi \ac{STA} and hosts an iperf3 \footnote{https://iperf.fr/ Accessed: 8.3.2023} server.
+The router on the tractor sets up a Wi-Fi \ac{AP}. One of the boards on the \ac{CH} connects to the \ac{AP} of the router as a Wi-Fi \ac{STA} and hosts an iperf3 \footnote{https://iperf.fr/ Accessed: 8.3.2023} server.
 A notebook is connected via LAN to the router and runs an iperf3 client, which connects to the iperf3 server on the \ac{CH}.
-The iperf3 client sends \SI{1000}{\byte} UDP packets every second to the iperf3 server on the \ac{CH}. The server records the received packets and
-send an acknowledgement back to the client. The recorded received packets are used to calculate the \ac{PER} of the transmitted packets.
+The iperf3 client sends \SI{100}{\byte} UDP packets every \SI{100}{\milli\second} to the iperf3 server on the \ac{CH}. The server records the received packets.
 
-The other board on the \ac{CH} uses the Wi-Fi card in the monitor mode and records every transmission in the \SI{5.6}{\giga\hertz} band using tcpdump \footnote{https://www.tcpdump.org/ Accessed: 8.3.2023}.
-Tcpdump records every transmitted frame in pcap format, which can be analyzed using Wireshark\footnote{https://www.wireshark.org/ Accessed: 8.3.2023}.
-The transmissions are displayed in \autoref{fig:fieldWifi}.
-\begin{figure}[]%
+Many different Wi-Fi transmissions arise through the iperf3 UDP packets, the Wi-Fi manager of the Milesight Industrial Router, and the Intel AX210 Wi-Fi card.
+These transmissions can be RTS/CTS, ACK, Data, Beacon or Probe request frame, displayed in \autoref{fig:fieldWifi}. Through
+testing, I found out that the Wi-Fi manager of the Wi-Fi devices can apply VHT \ac{MCS} \numrange{0}{9} and \ac{STBC} as physical layer configurations.
+
+\begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.8\textwidth]{figures/FieldExperimentwifi}
-	\caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen HE-\ac{MCS} values and whether \ac{DCM} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
+	\caption{Wi-Fi transmissions between the Wi-Fi AP on the \acf{TM} and the Wi-Fi \ac{STA} on the \acf{CH}, which
+	are recorded by a third Wi-Fi device in monitor mode on the \ac{CH}}
 	\label{fig:fieldWifi}%
 \end{figure}
-Among other information, the recorded pcap files contain the \ac{RSS} of every antenna and the \ac{PER} of the transmitted packets.
+
+The other UP Squared Board on the \ac{CH} uses the Wi-Fi card in the monitor mode and records every transmission in the \SI{5.6}{\giga\hertz} band using tcpdump \footnote{https://www.tcpdump.org/ Accessed: 8.3.2023}.
+Since the UP Squared board is placed next to the other board on the roof of the \ac{CH}, it can record the same signals the other board receives in the UDP transmission.
+The tcpdump records are in pcap - format, which can be analyzed using Wireshark\footnote{https://www.wireshark.org/ Accessed: 8.3.2023}.
+Using Wireshark, I can identify possible retransmissions to calculate a \ac{PER}.
+At the same time, the data contains the \ac{RSS} of each antenna and the physical layer parameters for every
+transmission, allowing each transmission's robustness to be calculated as a function of the \ac{RSS} and the physical
+layer configuration.
+
+In order to get insights on the robustness of different physical layer \ac{BW}s and used frequencies, the frequency channels in \autoref{tab:fieldChannels} are configured in the
+Every specified channel is used separately.
+To be able to calculate the means and standard deviations of the result for every configuration, the experiment is repeated \num{5} times for each channel,
+which means that the tractor drives \num{5} times the same path, which is displayed in \autoref{fig:fieldDrive}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{>{\centering}p{2cm}p{4cm}p{4cm}}
+		\toprule
+		\ac{BW} & Channel number \SI{2.4}{\giga\hertz} & Channel number \SI{2.4}{\giga\hertz}\\
+		\midrule
+		\SI{20}{\mega\hertz} & \num{1}&
+		\num{100} \\
+		\SI{40}{\mega\hertz} &
+		\num{3}
+		& \num{102} \\
+		\SI{80}{\mega\hertz} &
+		- & \num{106} \\
+		\bottomrule
+	\end{tabular}
+	\caption{Frequency Channels numbers for \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} for the different \acf{BW}s of the IEEE 802.11 standard \cite{noauthor_ieee_2021-1}, which can be used for
+	outdoor communication \cite{freq_plan_24G}, \cite{freq_plan_5G} and are configured in the Milesight Industrial Router UR75 for
+	the field experiments.}
+	\label{tab:fieldChannels}
+\end{table}
