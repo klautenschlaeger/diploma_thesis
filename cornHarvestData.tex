@@ -1,30 +1,32 @@
 \chapter{Analyzing Corn Harvest Process Data}
 
-To gain a better insight into requirements of the \ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario as the example for
-I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September.
-For this, I placed tablets in the driver's cabs of a \ac{FH} and three \ac{TM}s, which recorded the position and
-speed of the tablet's GPS in NMEA 0183 format every second.
+To gain a better insight into requirements of the \ac{WIC} use cases Platooning and Streaming Services, I analysed process data of a corn harvest scenario.
 
-% wahrscheinlich raus
+The goal of analysing the corn harvest data was to investigate the machines moving in the working scenarios relative to each other. The machines' speed and distance in tracked harvest platoons data may result in new use case requirements, e.g. latency or communication range of Platooning and Streaming Services. The machinery movement profile can be used to identify when shadowing effects may occur in the work scenario or when machines meet in the field.
+
+To get GPS data of the corn harvest,
+I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany on two days in September.
 The workflow for collecting the corn harvest process data was as follows. 
-I handed out the tablets to the drivers, which left the farm with the tablets in the driver's cabs to drive to the field in the morning. The tablets recorded the position and speed of the \ac{FH} and the \ac{TM}s all day. During breaks, the tablets continued to capture the NMEA data stream of their GPS even if the positions and speed did not change.
+I handed out the tablets to the drivers, which left the farm with the tablets in the driver's cabs to drive to
+the field in the morning. The tablets recorded the position and speed of the \ac{FH} and the \ac{TM}s every second the whole day.
+During breaks, the tablets continued to capture the NMEA data stream of their GPS even if the positions and speed did not change.
 
 After recording the process data, I anonymized it. 
 First, I deleted data points of the log files until the recorded accuracy of the following data points was less than \SI{2}{\metre}. Then, I replaced the timestamp and the date for all data points with a continuous index.
 
-After that, I anonymised the location data by adding a random offset to the GPS coordinates. As a result, this procedure moved the areas to a random location in the world with a continuous index as a timestamp, where the exact date is unknown.
+Then I anonymised the location data by adding a random offset to the GPS coordinates. As a result, this procedure moved the areas to a random location in the world with a continuous index as a timestamp, where the exact date is unknown.
 
-The goal of analysing the corn harvest data was to investigate the machines moving in the working scenarios relative to each other. The machines' speed and distance in tracked harvest platoons data may result in new use case requirements, e.g. latency or communication range of Platooning and Streaming Services. The machinery movement profile can be used to identify when shadowing effects may occur in the work scenario or when machines meet in the field.
-
-For this purpose, I built a dashboard with the Python framework \textit{Dash}\footnote{https://dash.plotly.com/introduction Accessed: 5.12.2022}. I initially plotted all the positions in a polyline for each machine
+To get a first glance of the recorded data, I built a dashboard with the Python framework \textit{Dash}\footnote{https://dash.plotly.com/introduction Accessed: 5.12.2022}. I initially plotted all the positions in a polyline for each machine
 on a map in the dashboard. An added slider allows one to set a time interval that narrows down the data points for display in the dashboard. In addition, one could select which \ac{TM}s are displayed next to the \ac{FH}. For the chosen time interval, the distance and velocity difference between the selected \ac{TM}s and the \ac{FH} were plotted in graphs as time histories.
-
+\todo[color=yellow]{UI for selecting the TM to display? Black and White?}
 In the dashboard, I could get an overview of the machine's behaviour 
 before, during, and after the overloading scenario.
 The overview shows that a \ac{FH} is nearly always in the overloading process with a \ac{TM}. In doing so, the \ac{FH} may occasionally stay in the same place if the cutter is clogged or there is a transition of \ac{TM}s where a full \ac{TM} moves away from the \ac{FH} and an empty \ac{TM} catches up to the \ac{FH} to take over the forage.
 
-A \ac{TM} is in a platoon with a \ac{FH} if it is close to the \ac{FH} and they are moving at nearly the same speed. The distance between \ac{TM} and \ac{FH} increases during a turning manoeuvre on the field. Since both machines have different curve radii in a turning manoeuvre, a different machine's speed can be observed to finish turning simultaneously.
-\textcite{smolnik_5g_2020} also describes these observations and indicates that this different speed adds a new level of complexity.
+A \ac{TM} is in a platoon with a \ac{FH} if the distance to the \ac{FH} is less \SI{10}{\metre} and they are moving at nearly the same speed with a maxmimum
+velocity difference of \SI{5}{\km\per\hour} (\SI{1.39}{\metre\per\second}).
+The distance between \ac{TM} and \ac{FH} increases during a turning manoeuvre on the field. Since both machines have different curve radii in a turning manoeuvre, a different machine's speed can be observed to finish turning simultaneously.
+\textcite{smolnik_5g_2020} also describes these observations and indicates that this speed difference adds a new level of complexity.
 
 A new harvesting process begins as soon as the machines finish turning and are at the beginning of a new lane.
 Again, the machines drive closely and nearly at the same speed to harvest and overload forage.
@@ -33,11 +35,36 @@ Furthermore, another \ac{TM} can sometimes be close to the \ac{FH}. For example 
 
 Based on the above observations, I developed an algorithm for detecting platooning scenarios in the recorded harvest process data. It uses a weighted sum of distance and speed difference between \ac{FH} and \ac{TM} to detect the platooning scenarios.
 
-For verification purposes, I displayed the found platoons scenarios on the map and confirmed the algorithm's functioning. 
+I determined the weights by Trial-and-Error method, where I set the weights and displayed the found platoons scenarios on the map.
+Then I adjusted the weights until the found platoons scenarios were correct. For verification purposes, I displayed the found platoons scenarios on the map
+and confirmed, that the found platoon were correct and the weights were set correctly.
+Additionally, I implemented the following further verification method whether the found platoons scenarios were correct.
+I observed that a fully loaded \ac{TM} leaves the field via one of the field exits to bring the crop to a farm building.
+Via a check, if a \ac{TM} has left the field and thereby passed the exit after leaving a platoon, wrongly recognized platoons can be detected.
+The final weights are \nicefrac{3}{5} and \nicefrac{2}{5} for the distance and speed difference, respectively.
 
-Additionally, I implemented the following further verification method. 
-I observed that a fully loaded \ac{TM} leaves the field via one of the field exits to bring the crop to a farm building. Via a check, if a \ac{TM} has left the field and thereby passed the exit after leaving a platoon, wrongly recognized platoons can be discarded.
 
+\todo[color=yellow]{Add stacked plot, map problem again}
+\begin{comment}
+
+\begin{figure}[H]
+ 	\centering
+	\begin{subfigure}[t]{0.5\textwidth}
+ 	\centering
+	\includegraphics[width=\figsize\columnwidth]{figures/ScreenshotToResultsPNG}
+	\caption{Caption under subfigure.}
+	\label{fig:figsublabel_01}
+	\end{subfigure}%
+	\begin{subfigure}[t]{0.5\textwidth}
+		\centering
+ 		\includegraphics[width=\figsize\columnwidth]{figures/resultCornData}
+ 		\caption{Caption under subfigure.}
+ 		\label{fig:figsublabel_02}
+ 	\end{subfigure}
+ 	\caption[Template: figure with subfigures]{Caption under figure.}
+ 	\label{fig:figlabel_02}
+\end{figure}
+\end{comment}
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.85\textwidth]{figures/distanceHarvestScenario.pdf}
