@@ -17,7 +17,7 @@ the MATLAB WLAN Toolbox, which is standards-compliant and credible.
 I also decided to use Matlab because besides \cite{s_performance_2022}, \cite{cao_efficient_2022} and \cite{jin_efficient_2021} have also considered
 the MATLAB WLAN Toolbox to be suitable for IEEE 802.11ax simulations.
 
-The MATLAB WLAN Toolbox \footnote{https://de.mathworks.com/products/wlan.html?s_tid=AO_PR_info Accessed: 13.03.2023} is a add-on to simulate, analyse, and test of wireless LAN communications systems.
+The MATLAB WLAN Toolbox \footnote{\url{https://de.mathworks.com/products/wlan.html?s_tid=AO_PR_info} Accessed: 13.03.2023} is a add-on to simulate, analyse, and test of wireless LAN communications systems.
 The WLAN Toolbox supports a wide range of IEEE 802.11 standards.
 Since Release R2019b \footnote{https://de.mathworks.com/help/wlan/release-notes.html}, the WLAN Toolbox supports the Signal Recovery, Packet Extension and Physical Layer abstractions to simulation IEEE 802.11ax networks.
 
@@ -39,13 +39,13 @@ First, I set the IEEE 802.11ax physical layer parameters using the wlanHEConfig 
 \todo[color=yellow]{use table?}
 Next, I chose a channel model to simulate the channel. The WLAN Toolbox supports a wide range of channel models, such as wlanTGaxChannel, wlanTGnChannel, wlanTGacChannel, and wlanTGnChannel.
 The wlanTGaxChannel model supports six different channel models for IEEE 802.11ax networks, named TGax-A, TGax-B, TGax-C, TGax-D, TGax-E, and TGax-F,
-where the TGax-F channel model is suitable for pseudo-outdoor scenarios \cite{TGAXCHANNELSDOC}.
+where the TGax-F channel model is suitable for pseudo-outdoor scenarios \cite{TGAXCHANNEL}.
 The TGax channel models were used for Matlab Wlan Toolbox simulations by \cite{s_performance_2022}, \cite{cao_efficient_2022} and \cite{jin_efficient_2021}.
 
-\cite{TGAXCHANNELSDOC} and \cite{omar_survey_2016} list, that IEEE 802.11ax task group has also implemented the channel models UMa and UMi for
+\cite{TGAXCHANNEL} and \cite{omar_survey_2016} list, that IEEE 802.11ax task group has also implemented the channel models UMa and UMi for
 outdoor urban scenarios. However, the WLAN Toolbox does not support these channel models and they are intended for urban scenarios, which
 
-As I want to simulate outdoor scenarios, I chose the TGax-F channel model, which is suitable for pseudo-outdoor scenarios \cite{TGAXCHANNELSDOC}. 
+As I want to simulate outdoor scenarios, I chose the TGax-F channel model, which is suitable for pseudo-outdoor scenarios \cite{TGAXCHANNEL}.
 The wlanTGaxChannel model supports configuring the \ac{BW}, the number of transmit and receive antennas, which I set equal to the configuration of the wlanHEConfig object.
 \cite{freq_plan_24G} and \cite{freq_plan_5G} allow outdoor transmission in the frequency range of \SI{5.725}{\giga\hertz} to \SI{5.825}{\giga\hertz}. Therefore, I set the carrier frequency to \SI{5.6}{\giga\hertz}.
 The TGax-F channel sampling rate is set to \SI{20}{\mega\hertz}, which is the nominal sampling rate for the configured \ac{BW} of \SI{20}{\mega\hertz}.
@@ -166,7 +166,7 @@ with higher HE-\ac{MCS} values.
 	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \ac{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{40}{\mega\hertz} in regards to the number of the chosen \ac{MCS} and \ac{CR} and whether \ac{DCM} is enabled}%
 	\label{fig:PER_SNR_GI}%
 \end{figure}
-\textcite{patil} conducted similar simulations for IEEE 802.11n. They agree, that a longer \ac{GI} can increase the robustness against longer delay spreads as they are in the TGn-E and TGn-F channel models,
+\textcite{patil_ieee_2020} conducted similar simulations for IEEE 802.11n. They agree, that a longer \ac{GI} can increase the robustness against longer delay spreads as they are in the TGn-E and TGn-F channel models,
 which are predecessors of the Tgax-F channel model \cite{TGAXCHANNEL}.
 \begin{comment}
 	cite others seane old?? Evelt Van Duc Nguyen, 2016
@@ -255,6 +255,6 @@ The impact of \ac{STBC} on the \ac{PER} grows from \SI{2}{\decibel} for HE-MCS\n
 on a HiperLAN/2 channel with \num{2} antennas. They used HiperLAN/2, because it has a similar physical layer as IEEE 802.11a.
 The authors found out, that applying \ac{STBC} results in a lower bit error rate for a given \ac{SNR} value. The authors conclude, that \ac{STBC} can be used to
 \textcite{santumon_space-time_2012} and \textcite{tarokh_space-time_1999} conducted simulations, where they analysed the effect of \ac{STBC} on the bit error rate for
-wireless communication systems. In general, the authors found out, that \ac{STBC} can be used to increase the \ac{BER} for a given \ac{SNR} value for different
-\ac{MCS} values. Additionally, the authors remark, that the impact of \ac{STBC} on the \ac{BER} grows with the number of antennas.
+wireless communication systems. In general, the authors found out, that \ac{STBC} can be used to increase the bit error rate for a given \ac{SNR} value for different
+\ac{MCS} values. Additionally, the authors remark, that the impact of \ac{STBC} on the bit error rate grows with the number of antennas.
 However, the number of antennas is limited to \num{2} for IEEE 802.11ax \cite{noauthor_ieee_2021}.
