@@ -4,6 +4,12 @@ The field measurements showed.
 Therefore, the following section focuses on the influence of the different physical layer parameters on the robustness of the IEEE 802.11ax standard
 Wi-Fi transmissions.
 
+A known simulation tool for wireless communication networks is GNU Radio \footnote{https://www.gnuradio.org/ Accessed: 14.03.2023}.
+GNU Radio is an open-source software development toolkit, which has additional blocks for IEEE 802.11 network simulation,
+called gr-ieee802-11 \footnote{https://github.com/bastibl/gr-ieee802-11 Accessed: 14.03.2023}. However, the gr-ieee802-11 only
+supports the IEEE 802.11a, IEEE 802.11b, IEEE 802.11g and IEEE 802.11p. This means, that the gr-ieee802-11 does not support
+the \ac{ER} mode, \ac{DCM} or \ac{STBC}. Therefore, I decided that the GNU Radio is not suitable for my simulation.
+
 \textcite{s_performance_2022} cites ns-3 \footnote{https://www.nsnam.org/docs/models/html/wifi-design.html Accessed: 13.03.2023},
 that ns-3 does not implement
 any frequency-selective fading effects, such as multipath propagation and shadowing. Therefore, the authors decided to use
@@ -103,7 +109,7 @@ The generated waveform is then passed through the configured wlanTGaxChannel to 
 I added additive white gaussian noise to the transmitted waveform based on the specified \ac{SNR} value.
 
 The received waveform is then passed through the Matlab WLAN Toolbox wlanPacketDetect function  to decode the received waveform.
-\todo[color=yellow]{ Genauigkeit beim beschreiben? Was genau macht die Funktion? refernzieren der Funktion? Cite OMAR, Stepwise explanation?}
+\todo[color=yellow]{Genauigkeit beim beschreiben? Was genau macht die Funktion? refernzieren der Funktion? Cite OMAR, Stepwise explanation?}
 \subsubsection*{\acf{MCS} and \acf{CR}}
 In a first simulation run, I analysed the influence of a chosen set of HE-MCS values on the \ac{PER} in regards to the \ac{SNR}.
 The results in \autoref{fig:PER_SNR_MCS} show that the \ac{PER} decreases with higher \ac{SNR} for all HE-MCS values. The
@@ -192,15 +198,18 @@ of the 16-\ac{QAM} symbols via orthogonal subcarriers. At the receiver the autho
 information using the Maximum likelyhood criterion. The results of the author show that a better bite error rate can be achieved while applying
 \ac{DCM} than sending the information via two Quadrature \ac{PSK} or 16-\ac{QAM} modulated symbols without \ac{DCM}.
 
-
-\todo[color=yellow]{name PER 0.5 Some paper use  0.1 is very good Sommerf0.1 PER and mention the SNR improvement 4 db improvement}
 \subsubsection*{\acf{ER}}
 For a HE-MCS \num{0} and \num{1} the \ac{ER} range mode can be applied additional to \ac{DCM}, when one spatial stream is used \cite{noauthor_ieee_2021}.
 In order to analyse the impact of the \ac{ER} mode, I set the physical layer parameters to a \ac{GI} of
 \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and one spatial streams. For He-MCS \num{0}, \num{1} and \num{3} I run simulations, where I enabled the
 \ac{ER} mode and compared the \ac{PER} to the \ac{PER} of the same HE-MCS values without \ac{ER} mode.
-The results in \autoref{fig:PER_SNR_ER} indicate , that the \ac{PER} is influenced by the \ac{ER} mode. The \ac{PER} decreases with at lower \ac{SNR} for all HE-MCS values
-when \ac{ER} is enabled. {'mcs0_1_er.csv': [7.0, 6.0, 3.0], 'mcs1_2_er.csv': [11.0, 10.0, 6.0], 'mcs2_3_er.csv': [16.0, 14.0]}
+
+The results in \autoref{fig:PER_SNR_ER} indicate , that the \ac{PER} is influenced by the \ac{ER} mode.
+The difference in \ac{SNR} with \ac{ER} mode to without \ac{ER} mode, where a \ac{PER}
+of \SI{10}{\percent} is achieved, is \SIrange{1}{2}{\decibel}.
+\begin{comment}
+	{'mcs0_1_er.csv': [7.0, 6.0, 3.0], 'mcs1_2_er.csv': [11.0, 10.0, 6.0], 'mcs2_3_er.csv': [16.0, 14.0]}
+\end{comment}
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/ER_PER_to_SNR.pdf}
@@ -208,9 +217,11 @@ when \ac{ER} is enabled. {'mcs0_1_er.csv': [7.0, 6.0, 3.0], 'mcs1_2_er.csv': [11
 	is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}
 	\label{fig:PER_SNR_ER}%
 \end{figure}
-Additionally, I simulated the impact of applying the \ac{ER} mode and \ac{DCM} for the allow HE-MCS values \num{0} and \num{1}.
-Applying \ac{DCM} additionally makes the transmission more robust and decreases the \ac{PER} at even lower \ac{SNR} as
-it is displayed in \autoref{fig:PER_SNR_ER_DCM}.
+
+Additionally, I simulated the impact of applying the \ac{ER} mode and \ac{DCM} for the allowed HE-MCS values \num{0} and \num{1}.
+Applying \ac{DCM} additionally makes the transmission more robust. As it is displayed in \autoref{fig:PER_SNR_ER_DCM},
+a \ac{PER} of less than \SI{10}{\percent} can be achieved at a \SIrange{4}{5}{\decibel} lower \ac{SNR} when using \ac{DCM} and \ac{ER} mode together instead
+of using \ac{ER} mode alone.
 
 \textcite{jacob_system-level_2020} conducted a simulation, where they analysed the effect of \ac{DCM} and \ac{ER} on the \ac{PER} for
 IEEE 802.11bd in vehicular environments to the transmission range. The authors found out, that the using \ac{DCM} and \ac{ER} can
@@ -224,20 +235,26 @@ A similar simulation was conducted by \textcite{triwinarko_phy_2021}. The resear
 
 \subsubsection*{\acf{STBC}}
 As aforementioned, additional robustness can be achieved by applying \ac{STBC}. In order to analyse the impact of \ac{STBC} on the \ac{PER} in regards to the \ac{SNR},
-I run the simulation for the HE-MCS values \numrange{0}{11} with and without \ac{STBC}. The results in \autoref{fig:PER_SNR_STBC} indicate, that the \ac{PER} is influenced
-by the \ac{STBC} mode. The \ac{PER} decreases with at lower \ac{SNR} for all HE-MCS values when \ac{STBC} is enabled.
+I run the simulation for the HE-MCS values \numrange{0}{11} with and without \ac{STBC}.
 
+The results in \autoref{fig:PER_SNR_STBC} indicate, that the \ac{PER} is influenced
+by the \ac{STBC} mode. A \ac{PER} of less than \SI{10}{\percent} is possible at a \SIrange{2}{10}{\decibel} lower \ac{SNR} when using \ac{STBC} additionally.
+The impact of \ac{STBC} on the \ac{PER} grows from \SI{2}{\decibel} for HE-MCS\num{0} to \SI{10}{\decibel} for HE-MCS\num{11}.
 \begin{comment}
 	{'mcs0_stbc.csv': [7.0, 5.0], 'mcs2_stbc.csv': [16.0, 8.0], 'mcs9_stbc.csv': [36.0, 26.0],
 		'mcs7_stbc.csv': [30.0, 20.0], 'mcs5_stbc.csv': [26.0, 18.0], 'mcs1_stbc.csv': [11.0, 6.0], 'mcs11_stbc.csv': [41.0, 31.0]}
 \end{comment}
+
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/STBC_PER_to_SNR.pdf}
 	\caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen HE-\ac{MCS} values and whether \ac{STBC} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
 	\label{fig:PER_SNR_STBC}%
 \end{figure}
-
-\textcite{santumon_space-time_2012} conducted a simulation, where they analysed the effect of \ac{STBC} on the bit error rate for
-\textcite{stamoulis_impact_2003} BER SNR STBC 
-\textcite{tarokh_space-time_1999} BER SNR STBC for general wireless, more antennas the better
+\textcite{stamoulis_impact_2003} analysed the impact of \ac{STBC} on the bit error rate for IEEE 802.11a in regards to the \ac{SNR}. Their simulation was based
+on a HiperLAN/2 channel with \num{2} antennas. They used HiperLAN/2, because it has a similar physical layer as IEEE 802.11a.
+The authors found out, that applying \ac{STBC} results in a lower bit error rate for a given \ac{SNR} value. The authors conclude, that \ac{STBC} can be used to
+\textcite{santumon_space-time_2012} and \textcite{tarokh_space-time_1999} conducted simulations, where they analysed the effect of \ac{STBC} on the bit error rate for
+wireless communication systems. In general, the authors found out, that \ac{STBC} can be used to increase the \ac{BER} for a given \ac{SNR} value for different
+\ac{MCS} values. Additionally, the authors remark, that the impact of \ac{STBC} on the \ac{BER} grows with the number of antennas.
+However, the number of antennas is limited to \num{2} for IEEE 802.11ax \cite{noauthor_ieee_2021}.
