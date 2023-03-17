@@ -15,12 +15,12 @@ For the modulation and demodulation of the transmitting bits the FFT and IFFT ar
 \subsubsection*{\acf{BW}}
 \subsubsection*{\acf{MCS}}
 
-In order to encode as many bits as possible on one \ac{OFDM} symbol, different \ac{MCS}s can be used.   
+In order to encode as many bits as possible on one \ac{OFDM} symbol, different \ac{MCS}s can be used.
 These \ac{MCS}s for the IEEE 802.11 standards are based on \ac{PSK} or \ac{QAM}. \cite{kauffels_wireless_2002}. 
 The smallest \ac{MCS} is binary \ac{PSK} and encodes \SI{1}{\bit} per symbol. IEEE 802.11ax has the most complex \ac{MCS} of \num{256}-\ac{QAM} IEEE 802.11ac to \num{1024}-\ac{QAM} and thus now encodes \SI{10}{\bit} per symbol \cite{afaqui_ieee_2017}.
 In the \ac{V2X} range, so can \ac{MCS}s from binary-\ac{PSK} to \num{256}-\ac{QAM}.
 
-In order to encode as many bits as possible on one \ac{OFDM} symbol, different \ac{MCS}s can be used.   
+In order to encode as many bits as possible on one \ac{OFDM} symbol, different \ac{MCS}s can be used.
 The \ac{MCS}s for the IEEE 802.11 standards are based on \ac{PSK} or \ac{QAM}. \cite{kauffels_wireless_2002}. 
 The smallest \ac{MCS} is Binary - \ac{PSK} and encodes \SI{1}{\bit} per symbol. IEEE 802.11ax has the most complex \ac{MCS} of \num{256} - \ac{QAM} IEEE 802.11ac to \num{1024} - \ac{QAM} and thus now encodes \SI{10}{\bit} per symbol \cite{afaqui_ieee_2017}.
 In the \ac{V2X} range, so can \ac{MCS}s from binary-\ac{PSK} to \num{256}- \ac{QAM}.
@@ -53,17 +53,17 @@ Together with the \ac{MCS}, the \ac{FEC} \ac{CR} form a physical layer specifica
 		HE-MCS index & \acf{MCS} & \acf{CR} \\
 		\midrule
 		\num{0} & Binary \ac{PSK}& \nicefrac{1}{2}\\
-		1 &  Quadrature \ac{PSK}& \nicefrac{1}{2}\\
-		2 &  Quadrature \ac{PSK}& \nicefrac{3}{4}\\
-		3 &  \num{16}-\ac{QAM}& \nicefrac{1}{2}\\
-		4 &  \num{16}-\ac{QAM}& \nicefrac{3}{4}\\
-		5 &  \num{64}-\ac{QAM}& \nicefrac{2}{3}\\
-		6 &  \num{64}-\ac{QAM}& \nicefrac{3}{4}\\
-		7 &  \num{64}-\ac{QAM}& \nicefrac{5}{6}\\
-		8 &  \num{256}-\ac{QAM}& \nicefrac{3}{4}\\
-		9 &  \num{256}-\ac{QAM}& \nicefrac{5}{6}\\
-		10 &  \num{1024}-\ac{QAM}& \nicefrac{3}{4}\\
-		11 &  \num{1024}-\ac{QAM}& \nicefrac{5}{6}\\
+		1 & Quadrature \ac{PSK}& \nicefrac{1}{2}\\
+		2 & Quadrature \ac{PSK}& \nicefrac{3}{4}\\
+		3 & \num{16}-\ac{QAM}& \nicefrac{1}{2}\\
+		4 & \num{16}-\ac{QAM}& \nicefrac{3}{4}\\
+		5 & \num{64}-\ac{QAM}& \nicefrac{2}{3}\\
+		6 & \num{64}-\ac{QAM}& \nicefrac{3}{4}\\
+		7 & \num{64}-\ac{QAM}& \nicefrac{5}{6}\\
+		8 & \num{256}-\ac{QAM}& \nicefrac{3}{4}\\
+		9 & \num{256}-\ac{QAM}& \nicefrac{5}{6}\\
+		10 & \num{1024}-\ac{QAM}& \nicefrac{3}{4}\\
+		11 & \num{1024}-\ac{QAM}& \nicefrac{5}{6}\\
 		\bottomrule
 	\end{tabular}
 	\caption{HE-\ac{MCS} index table nach \cite{noauthor_ieee_2021}}
@@ -91,7 +91,7 @@ The guard interval is then removed again at the receiver. This results in an att
 	}
 	.
 \end{equation}
-Since IEEE 802.11n, a shortened \ac{GI} of \SI{400}{\nano\second} is usable, which increases the maximum data rate from \SI{270}{\mega\bit\per\second} to \SI{300}{\mega\bit\per\second} compared to the usual \ac{GI} of \SI{800}{\nano\second} \cite{sauter_wireless_2022}.  IEEE 802.11ax supports \ac{GI}s of \SI{800}{\nano\second}, \SI{800}{\nano\second} and \SI{800}{\nano\second} to enable better protection against \todo{better source} multipath effects in indoor and outdoor communications. 
+Since IEEE 802.11n, a shortened \ac{GI} of \SI{400}{\nano\second} is usable, which increases the maximum data rate from \SI{270}{\mega\bit\per\second} to \SI{300}{\mega\bit\per\second} compared to the usual \ac{GI} of \SI{800}{\nano\second} \cite{sauter_wireless_2022}. IEEE 802.11ax supports \ac{GI}s of \SI{800}{\nano\second}, \SI{800}{\nano\second} and \SI{800}{\nano\second} to enable better protection against \todo{better source} multipath effects in indoor and outdoor communications.
 
 In \cite{alleAX} wird keine Bedingung für die Nutzung von den OFDM \ac{GI} genannt. Außerdem steht in den genannten Quellen nur die \ac{OFDM} symbol length von \SI{12.8}{\micro\second} aufgeführt.
 
@@ -164,9 +164,9 @@ Das geschieht durch \ac{STBC}. Dabei werden den Autoren nach redundant copies of
 reduce the effects of fading and interference. At the receiver side, these multiple copies are combined to improve the
 signal quality and decrease the \ac{PER}.
 
-Thes results  in \ac{STBC} improving the reliability and robustness of wireless communications.
+Thes results in \ac{STBC} improving the reliability and robustness of wireless communications.
 Here, \textcite{stamoulis_impact_2003} has investigated the potential effect of \ac{STBC} on Wi-Fi. Their simulations showed that\ac{STBC} can increase the range and robustness for IEEE 802.11a.
-In addition, the authors concluded  that \ac{STBC} increases the \ac{SNR} in nearly all cases at the same throughput or even allows higher \ac{MCS} values to be used,
+In addition, the authors concluded that \ac{STBC} increases the \ac{SNR} in nearly all cases at the same throughput or even allows higher \ac{MCS} values to be used,
 thus allowing a higher throughput at the same \ac{SNR}.
 
 \textcite{ghosh_error_2014} analyzed the error rate performance for increasing number of used antenna and found out, that a lower bit error rate can be achieved

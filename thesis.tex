@@ -332,50 +332,7 @@ Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
 \chapter{Introduction}
 %\chapter{Einleitung}
 \label{sec:introduction}
-
-\begin{itemize}
-\item general motivation for your work, context and goals.
-\item context: make sure to link where your work fits in
-\item problem: gap in knowledge, too expensive, too slow, a deficiency, superseded technology
-\item strategy: the way you will address the problem
-\item recommended length: 1-2 pages.
-\end{itemize}
-For the increasing automation and digitalization of agriculture, wireless infield communication of agricultural machinery is needed.
-A communication network enables the automation of work processes in agriculture through the exchange of data.
-
-Given that there are many different agricultural technology companies worldwide and  mix of their machines is often used
-together in an agricultural company, a demand for interoperability between agricultural machines of different brands emerged.
-In 2008, the \ac{AEF} was founded to develop and standardize this interoperability
-\footnote{https://www.aef-online.org/about-us/about-the-aef.html Accessed: 24.07.2022}.
-
-The AEF has defined a binary unit system, the ISO 11783 standard, for agricultural machinery communication, mainly tractors and
-implements \cite{iglesias_enabling_2014}. According to \textcite{schlingmann_aef_2019}, the ISO 11783 standard is known as
-the ISOBUS system.
-
-The authors mention that the AEF is currently working on other issues. Among them is also the \ac{WIC}.
-In the associated project group \ac{WIC}, solutions for \ac{M2M} communication between cooperating, agricultural machines are
-to be developed and standardized.
-
-In order to implement \ac{WIC}, the \ac{WIC} project group has been searching for a technology
-that can realize the required data rates, latencies and high transmission range. The plans for doing so are written down by members of the \ac{WIC} project group in \cite{schlingmann_challenges_2017}.
-
-The authors consider the fundamental use of cellular networks as very problematic because, according to \cite{itu2016facts}, only \SI{30}{\percent} of the land surface has network coverage. For this reason, there is a major concern that the required data cannot be exchanged because there is no network connectivity in many fields. Nevertheless, the authors want to leave the future \ac{WIC} system open to cellular standards.
-
-The current focus of the authors is on IEEE 802.11 technologies, which must first be evaluated for use in the agricultural environment.
-
-In my final thesis I want to investigate the \ac{WIC} use cases for which IEEE 802.11ax or IEEE 802.11ac can be used.
-
-In order to implement these described WIC use cases, the WIC project group has
-been searching for a technology that can realize the required data rates, latencies
-and high transmission range. The plans for doing so are written down by members
-of the WIC project group in [26].
-The authors consider the fundamental use of cellular networks as very problem-
-atic because, according to [27], only \SI{30}{\percent} of the land surface has network coverage.
-For this reason, there is a major concern that the required data cannot be exchanged
-because there is no network connectivity in many fields. Nevertheless, the authors
-want to leave the future WIC system open to cellular standards.
-The current focus of the authors is on IEEE 802.11 technologies, which must
-first be evaluated for use in the agricultural environment.
+\input{introduction.tex}
 
 \chapter{Fundamentals}
 \label{sec:fundamentals}
@@ -390,10 +347,6 @@ first be evaluated for use in the agricultural environment.
 \item recommended length: approximately one third of the thesis.
 \end{itemize}
 
-\TODO{
-	-1/3 ist kurz, weil der Bezug und die Relation zur Landwirtschaft groß ist... Aber wen interessiert das? 
--1/3  related Work erwähnt man dann Unterstützung von Professor Klingler wie und wo? erwähnt man sich selber ?  
-`}
 \section{\acl{WIC}}
 
 \input{wic.tex}
@@ -674,7 +627,7 @@ Visualisierung Netsimulyzer
 Farbcodes
 
 
-
+\cite{aust_outdoor_2015} Link Metrics
 
 \chapter{Evaluation}
 
