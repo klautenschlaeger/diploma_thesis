@@ -2,10 +2,16 @@
 The further development of IEEE 802.11 is accompanied by a constant change of the physical layer. \textcite{sauter_wireless_2022} mentions, that all new enhancements of the physical layer of IEEE 802.11 are backward compatible to previous definitions of the it.
 
 According to the Author, IEEE 802.11 initially used DSSS and FHSS as modulation methods.
-Since IEEE 802.11g the modulation method \ac{OFDM} can be used in the \SI{2.4}{\giga\hertz} frequency band. the author explains \ac{OFDM} as following. \ac{OFDM} divides the transmission channel in subcarriers with different amplitudes, frequencies and phases. Each subcarrier is orthogonal to another one, as they send the information "Low", where only one other subcarrier is sending the information "High". 
+Since IEEE 802.11g the modulation method \ac{OFDM} can be used in the \SI{2.4}{\giga\hertz} frequency band.
+The author explains \ac{OFDM} as following. \ac{OFDM} divides the transmission channel in subcarriers with different
+amplitudes, frequencies and phases. Each subcarrier is orthogonal to another one, as they send the information ``Low",
+where only one other subcarrier is sending the information ``High".
 
 \subsubsection*{Symbol length}
-The data is then sent as \ac{OFDM} symbols over the individual \ac{OFDM} subcarriers. The distance between the "highs" of the subcarriers is specified as subcarrier spacing and corresponds to the reciprocal symbol length. This has now increased from \SI{3.2}{\micro\second} for IEEE 802.11n to \SI{12.8}{\micro\second} for IEEE 802.11ax. This corresponds to a subcarrier spacing of \SI{312.5}{\kilo\hertz} and \SI{78.125}{\kilo\hertz} respectively. 
+The data is then sent as \ac{OFDM} symbols over the individual \ac{OFDM} subcarriers.
+The distance between the ``Highs" of the subcarriers is specified as subcarrier spacing and corresponds to the reciprocal
+symbol length. This has now increased from \SI{3.2}{\micro\second} for IEEE 802.11n  to a maximum of \SI{12.8}{\micro\second} for IEEE 802.11ax \cite{sauter_wireless_2022}.
+This corresponds to a subcarrier spacing of \SI{312.5}{\kilo\hertz} and \SI{78.125}{\kilo\hertz} respectively \cite{sauter_wireless_2022}.
 
 For the IEEE 802.11p and IEEE 802.11bd standards, a symbol length of \SI{6.4}{\micro\second} applies, corresponding to a subcarrier spacing of \SI{156.25}{\kilo\hertz} \cite{jacob_system-level_2020}.
 
@@ -31,9 +37,15 @@ In this regards the author recommends setting the parameters in an \ac{OFDM} sys
 
 \subsubsection*{\acf{FEC}}
 
-Nevertheless bit errors can occur during the transmission. In this regard, \cite{kauffels_wireless_2002} mentions and explains \ac{FEC} as a technique to reduce bit errors during transmission. \ac{FEC} adds redundant bits to the data. The receiver uses these redundant bits to check the integrity or correct errors of the received data. The proportion of non-redundant transmission bits is defined in \ac{CR} \todo{explain cr ?? Cite??}
+Nevertheless bit errors can occur during the transmission. In this regard, \cite{kauffels_wireless_2002}
+mentions and explains \ac{FEC} as a technique to reduce bit errors during transmission. \ac{FEC} adds redundant bits
+to the data. The receiver uses these redundant bits to check the integrity or correct errors of the received data.
+The proportion of non-redundant transmission bits is defined in the \ac{CR}.
 
-To achieve this, \ac{BCC} is used mandatory since the IEEE 802.11n standard \cite{afaqui_ieee_2017} \cite{syafei_performance_2009}. \textcite{syafei_performance_2009} add that it is optionally possible to use \ac{LDPC}. The authors state that \ac{LDPC} can achieve a better channel capacity performance. This is also confirmed by \textcite{afaqui_ieee_2017}, who point out that \ac{LDPC} also generates higher computational cost. 
+To achieve this, \ac{BCC} is used mandatory since the IEEE 802.11n standard \cite{afaqui_ieee_2017}
+\cite{syafei_performance_2009}. \textcite{syafei_performance_2009} add that it is optionally possible to
+use \ac{LDPC}. The authors state that \ac{LDPC} can achieve a better channel capacity performance.
+This is also confirmed by \textcite{afaqui_ieee_2017}, who point out that \ac{LDPC} also generates higher computational cost.
 
 IEEE 802.11ax stations must support \ac{LDPC} when using on the IEEE 802.11ax standard under the following conditions \cite{afaqui_ieee_2017} \cite{noauthor_ieee_2021}:
 \begin{itemize}
@@ -71,17 +83,15 @@ Together with the \ac{MCS}, the \ac{FEC} \ac{CR} form a physical layer specifica
 \end{table}
 
 
-\todo{Symbol length, GI, subcarrier spacing reciprocal}
 \todo{Wellenausbreitung, Überlagerungseffekte, Reflexsion, Reflexsion nicht bei Metall}
-\todo{Knauffel OFDM PHY}
 
 \subsubsection*{\acf{GI}}
 \textcite{pulimamidi_development_2007} explain the Guard Interval as a cyclic prefix of OFDM symbols before Inter Symbol Interference and through Inter Carrier Intereference. Inter Symbol Interference is caused by multipath delays , where the reflected delayed previous symbol can interfere with the current received symbol\cite{ravindranath_performance_2016}. Similarly, Inter Carrier Interference is caused by time-varying channel a longer OFDM symbol duration, that just as an interference with the following OFDM symbol can arise \cite{van_duc_nguyen_intercarrier_2002}.
 
 About the Guard Interval \textcite{pulimamidi_development_2007} further list the following. 
 Since the guard interval is to prevent the possible interference on the following symbol, it must be at least long enough so that all channel impulse responses with the resulting delay are caught in the guard interval. 
-\todo{longer GI WIfi 6 Outdoor Communication}
-The guard interval is then removed again at the receiver. This results in an attentuation of bandwidth which can be described by the following formula:
+The guard interval is then removed again at the receiver. This results in an attentuation of bandwidth which can be described
+by the following formula:
 \begin{equation}\label{eq:GI}
 	\text{GI\_Bandwidth\_Attentuation} =
 	\frac{
@@ -91,9 +101,11 @@ The guard interval is then removed again at the receiver. This results in an att
 	}
 	.
 \end{equation}
-Since IEEE 802.11n, a shortened \ac{GI} of \SI{400}{\nano\second} is usable, which increases the maximum data rate from \SI{270}{\mega\bit\per\second} to \SI{300}{\mega\bit\per\second} compared to the usual \ac{GI} of \SI{800}{\nano\second} \cite{sauter_wireless_2022}. IEEE 802.11ax supports \ac{GI}s of \SI{800}{\nano\second}, \SI{800}{\nano\second} and \SI{800}{\nano\second} to enable better protection against \todo{better source} multipath effects in indoor and outdoor communications.
+Since IEEE 802.11n, a shortened \ac{GI} of \SI{400}{\nano\second} is usable, which increases the maximum data rate from \SI{270}{\mega\bit\per\second} to \SI{300}{\mega\bit\per\second} compared to the usual \ac{GI} of \SI{800}{\nano\second} \cite{sauter_wireless_2022}.
+IEEE 802.11ax supports \ac{GI}s of \SI{800}{\nano\second}, \SI{1600}{\nano\second} and \SI{3200}{\nano\second} to
+enable better protection against \todo{better source} multipath effects in indoor and outdoor communications \cite{deng_ieee_2017}.
 
-In \cite{alleAX} wird keine Bedingung für die Nutzung von den OFDM \ac{GI} genannt. Außerdem steht in den genannten Quellen nur die \ac{OFDM} symbol length von \SI{12.8}{\micro\second} aufgeführt.
+No condition for the use of the different \ac{GI} is mentioned in \cite{deng_ieee_2017}, \cite{mozaffariahrar_survey_2022}, \cite{Rochim} or \cite{afaqui_ieee_2017}. Moreover, the sources mentioned only specify a \ac{OFDM} symbol length of \SI{12.8}{\micro\second}.
 
 \subsubsection*{\acf{DCM}}
 In order to introduce additional robustness \ac{DCM} can be applied to the physical layer since IEEE 802.11ax \cite{jacob_system-level_2020}, \cite{triwinarko_phy_2021}, \cite{noauthor_ieee_2021}. \textcite{jacob_system-level_2020} describe \ac{DCM} as a way to send data twice over two coherent carriers. At the receiver, the data copies are combined with the log-likelihood ratio. This increases the probability of receiving the data.

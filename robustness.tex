@@ -274,21 +274,21 @@ the \SI{2.4}{\giga\hertz} band achieve a similar \ac{PER} in regards to the \ac{
 as in the \SI{5}{\giga\hertz} band.
 
 But how does the effect of the frequency bands on the \ac{PER} in regards to the \ac{SNR} differ?
-Taking the Friis transmission model \cite{shaw_radiometry_2013} into account, the RSSI for omnidirectional antennas can be calculated in regard to the distance $d$,
+Taking the Friis transmission model \cite{shaw_radiometry_2013} into account, the \ac{RSS} for omnidirectional antennas can be calculated in regard to the distance $d$,
 receiving antenna gain $G_{R}$, transmitting antenna gain $G_{T}$ and transmission power $P_{T}$  as follows:
 \begin{equation}
-	RSSI = P_{T} * G_{T} * G_{R} * \frac{\lambda^2}{(4 * \pi * d)^2}.
+	RSS = P_{T} * G_{T} * G_{R} * \frac{\lambda^2}{(4 * \pi * d)^2}.
 \end{equation}
 When $\lambda$ is replaced and  $P_{T}$,  $G_{T}$,  and $G_{R}$ are set to \num{1} the following equation can be derived:
 \begin{equation}
-	RSSI = \frac{c^2}{(f* 4 * \pi * d)^2},
+	RSS = \frac{c^2}{(f* 4 * \pi * d)^2},
 \end{equation}
 where $c$ is the speed of light and $f$ is the frequency of the transmission.
 Converting the equation to $d$ it results in the following equation:
 \begin{equation}
 	d = \frac{c}{(4 * \pi * f * \sqrt {RSSI})}.
 \end{equation}
-The equation shows, that a lower frequency results in a higher \ac{RSSI} for a given distance.
+The equation shows, that a lower frequency results in a higher \ac{RSS} for a given distance.
 This means, that the \SI{2.4}{\giga\hertz} band can achieve a higher \ac{SNR} for a given distance and noise floor
 compared to the \SI{5}{\giga\hertz} band.
 The simulation results can now be used to derive the following conclusion,
