@@ -49,7 +49,7 @@ the simulation is equal to the theoretical data rate specified in the IEEE 802.1
 
 Additionally, I used the MonitorSnifferRxCallback and the MonitorSnifferTxCallback of the ns-3 WifiPhy class to check the ongoing transmissions.
 Both Callback functions can be added to WifiPhy objects of WiFi NetDevice and are called every time a packet is received or transmitted at the Wi-Fi Netdevice respectively.
-The function parameters are Information about the packet, channel frequency and station ID and an instance of the WifiTxVector class. According to \cite{ClassReference}, the WifiTxVector instance describes all parameters of the transmission in
+The function parameters are Information about the packet, channel frequency and station ID and an instance of the WifiTxVector class. According to \cite{ClassReference}, \todo[color=blue]{how to cite?} the WifiTxVector instance describes all parameters of the transmission in
 acordance to the TXVECTOR field of the IEEE 802.11 standard \cite{noauthor_ieee_2021}. Additionally, the function parameters of the MonitorSnifferRxCallback contain the signal strength and
 the noise power of the received packet.
 

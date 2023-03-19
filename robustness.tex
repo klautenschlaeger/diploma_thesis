@@ -6,7 +6,7 @@ Wi-Fi transmissions.
 
 A known simulation tool for wireless communication networks is GNU Radio \footnote{https://www.gnuradio.org/ Accessed: 14.03.2023}.
 GNU Radio is an open-source software development toolkit, which has additional blocks for IEEE 802.11 network simulation,
-called gr-ieee802-11 \footnote{https://github.com/bastibl/gr-ieee802-11 Accessed: 14.03.2023}. However, the gr-ieee802-11 only
+called gr-ieee802-11 \footnote{https://github.com/bastibl/gr-ieee802-11 Accessed: 14.03.2023}\todo[color=blue]{Accessed necessary? }. However, the gr-ieee802-11 only
 supports the IEEE 802.11a, IEEE 802.11b, IEEE 802.11g and IEEE 802.11p. This means, that the gr-ieee802-11 does not support
 the \ac{ER} mode, \ac{DCM} or \ac{STBC}. Therefore, I decided that the GNU Radio is not suitable for my simulation.
 
@@ -36,9 +36,9 @@ First, I set the IEEE 802.11ax physical layer parameters using the wlanHEConfig 
 	\item HE-\ac{MCS} of 0
 	\item \ac{ER} mode disabled
 \end{itemize}
-\todo[color=yellow]{use table?}
+\todo[color=blue]{use table? Other format?}
 Next, I chose a channel model to simulate the channel. The WLAN Toolbox supports a wide range of channel models, such as wlanTGaxChannel, wlanTGnChannel, wlanTGacChannel, and wlanTGnChannel.
-The wlanTGaxChannel model supports six different channel models for IEEE 802.11ax networks, named TGax-A, TGax-B, TGax-C, TGax-D, TGax-E, and TGax-F,
+The wlanTGaxChannel model supports \num{6} different channel models for IEEE 802.11ax networks, named TGax-A, TGax-B, TGax-C, TGax-D, TGax-E, and TGax-F,
 where the TGax-F channel model is suitable for pseudo-outdoor scenarios \cite{TGAXCHANNEL}.
 The TGax channel models were used for Matlab Wlan Toolbox simulations by \cite{s_performance_2022}, \cite{cao_efficient_2022} and \cite{jin_efficient_2021}.
 
@@ -56,7 +56,7 @@ The simulations is based on the procedure \autoref{alg:ProcedurePER}. To get a \
 from \SIrange{0}{45}{\decibel}, the procedure \autoref{alg:ProcedurePER} is executed \num{5} times for \num{500} packets each.
 All packet errors are counted and the \ac{PER} is calculated by dividing the number of packet errors by \num{500} packets.
 A mean \ac{PER} and the confidence interval with a confidence level of
-\SI{95}{\percent} is calculated of the \ac{PER} values of the \num{5} \todo[color=yellow]{numbers bis 12 ausschreiben?} iterations.
+\SI{95}{\percent} is calculated of the \ac{PER} values of the \num{5} iterations.
 \begin{algorithm}
 \begin{algorithmic}[1]
 \REQUIRE Global variable $numPacketErrors$
@@ -108,12 +108,16 @@ specified \ac{SNR} value and active \ac{OFDM} subcarriers.
 The generated waveform is then passed through the configured wlanTGaxChannel to simulate the channel. The output of the channel model is the received waveform, where
 I added additive white gaussian noise to the transmitted waveform based on the specified \ac{SNR} value.
 
-The received waveform is then passed through the Matlab WLAN Toolbox wlanPacketDetect function  to decode the received waveform.
-\todo[color=yellow]{Genauigkeit beim beschreiben? Was genau macht die Funktion? refernzieren der Funktion? Cite OMAR, Stepwise explanation?}
+In the next step, the received waveform is passed through the packet detection algorithm, which is based on the
+WLAN Toolbox example wlan/HESUExample \footnote{https://de.mathworks.com/help/wlan/ug/802-11ax-packet-error-rate-simulation-for-single-user-format.html} and
+shown in an abstracted form in \autoref{alg:PacketDetection}. The procedure calls various functions to decode the preamble, header and payload of
+the received waveform. A packet error is detected, when, no packet can be detected, the packet delay is greater than \num{50} samples or the recovered packet data
+is not equal to the transmitted packet data.
+
 \subsubsection*{\acf{MCS} and \acf{CR}}
 In a first simulation run, I analysed the influence of a chosen set of HE-MCS values on the \ac{PER} in regards to the \ac{SNR}.
 The results in \autoref{fig:PER_SNR_MCS} show that the \ac{PER} decreases with higher \ac{SNR} for all HE-MCS values. The
-\ac{PER} decreases at lower \ac{SNR} values for lower HE-MCS values. Increasing the HE-MCS value by two increases the \ac{SNR}, where a \ac{PER} of less than
+\ac{PER} decreases at lower \ac{SNR} values for lower HE-MCS values. Increasing the HE-MCS value by \num{2} increases the \ac{SNR}, where a \ac{PER} of less than
 \SI{10}{\percent} is achieved, by \SIrange{5}{6}{\decibel}.
 \begin{figure}[H]%
 	\centering
@@ -124,8 +128,11 @@ The results in \autoref{fig:PER_SNR_MCS} show that the \ac{PER} decreases with h
 \end{figure}
 \textcite{paul_characterizing_2011} conducted outdoor experiments to analyse the error rate and \ac{SNR} of different IEEE 802.11n \ac{MCS} for the
 communication distances of \SI{300}{\meter}, \SI{800}{\meter} and \SI{1800}{\meter}. Their results show that \ac{SNR} decreases, when the transmissions range is longer.
-Additionally, they experienced a higher error rate for higher
-\todo[color=yellow]{find more? Rate manager basis?}
+Additionally, they experienced a higher error rate for higher.
+
+The effect, that the \ac{PER} decreases, when the a lower \ac{MCS} or \ac{CR} is used, is the basis for the design of wifi rate managers.
+A rate manager is a software component responsible to select physical layer parameters, such as \ac{MCS} or \ac{CR}, based on the current network conditions to
+achieve the best possible throughput. Known rate managers of the linux kernel are the minstrel or the minstrel HT rate manager.
 
 \subsubsection*{\acf{FEC}}
 Another parameter that influences the \ac{PER} is the choice of the forward error correction (FEC) procedure. In order to
@@ -259,4 +266,34 @@ wireless communication systems. In general, the authors found out, that \ac{STBC
 \ac{MCS} values. Additionally, the authors remark, that the impact of \ac{STBC} on the bit error rate grows with the number of antennas.
 However, the number of antennas is limited to \num{2} for IEEE 802.11ax \cite{noauthor_ieee_2021}.
 
-\todo[color=yellow]{What about 2.4 GHz? Same effect Friis -> travels slower but farther...}
+The robustness analysis results indicate, which \ac{PER} decreases can be achieved by applying the different phsyical layer parameters.
+The intensity of the impact varies depending on the environment and the actual communication channel.
+
+I conducted the same simulations for the frequency band of \SI{2.4}{\giga\hertz}. Using the same physical layer parameters in
+the \SI{2.4}{\giga\hertz} band achieve a similar \ac{PER} in regards to the \ac{SNR} and chosen physical layer parameters
+as in the \SI{5}{\giga\hertz} band.
+
+But how does the effect of the frequency bands on the \ac{PER} in regards to the \ac{SNR} differ?
+Taking the Friis transmission model \cite{shaw_radiometry_2013} into account, the RSSI for omnidirectional antennas can be calculated in regard to the distance $d$,
+receiving antenna gain $G_{R}$, transmitting antenna gain $G_{T}$ and transmission power $P_{T}$  as follows:
+\begin{equation}
+	RSSI = P_{T} * G_{T} * G_{R} * \frac{\lambda^2}{(4 * \pi * d)^2}.
+\end{equation}
+When $\lambda$ is replaced and  $P_{T}$,  $G_{T}$,  and $G_{R}$ are set to \num{1} the following equation can be derived:
+\begin{equation}
+	RSSI = \frac{c^2}{(f* 4 * \pi * d)^2},
+\end{equation}
+where $c$ is the speed of light and $f$ is the frequency of the transmission.
+Converting the equation to $d$ it results in the following equation:
+\begin{equation}
+	d = \frac{c}{(4 * \pi * f * \sqrt {RSSI})}.
+\end{equation}
+The equation shows, that a lower frequency results in a higher \ac{RSSI} for a given distance.
+This means, that the \SI{2.4}{\giga\hertz} band can achieve a higher \ac{SNR} for a given distance and noise floor
+compared to the \SI{5}{\giga\hertz} band.
+The simulation results can now be used to derive the following conclusion,
+that a lower \ac{PER} for the \SI{2.4}{\giga\hertz} band can be accomplished
+for a given set of physical layer parameters, distance and noise floor.
+
+
+\todo{What should be chosen?}
