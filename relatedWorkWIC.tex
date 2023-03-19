@@ -71,16 +71,29 @@ a cotton and rice field. The authors report, that they easily a achieved communi
 They mention, that different wheater conditions have little impact on the communication reliability. A big influence on the communication range is
 the height above ground or the crop vegetation, where the authors recommend to use at least a height of \SI{0.2}{\metre}.
 
-Outdoor performance of Wi-Fi technologies in different use cases and scenarios have been investigated by various researchers.
+Wi-Fi technologies are also used in various outdoor scenarios.
+The outdoor performance of Wi-Fi technologies in different use cases and scenarios have been investigated by various researchers.
 \textcite{aust_outdoor_2015} surveyed past research on outdoor performance of IEEE 802.11 technologies. The authors summarize results of
-urban, desert or water surface scenarios with different environmental conditions and antenna configurations.
+urban, rural, desert or water surface scenarios with different environmental conditions and antenna configurations. I focus on the
+findings for wi-Fi with omnidirectional antennas in rural areas.
 
-\todo[color=yellow]{mention, how I filtered the content?}
+In their general findings, they cite \cite{sheth_packet_2007} and \cite{aguayo_link-level_2004}, which name the inter-symbol
+interference due to multipath effects as main reason for packet losses in wi-fi outdoor communication. The authors conclude,
+that using directional antennas instead of omnidirectional antennas can lead to fewer multipath effect. Furthermore, the authors add
+that external wi-fi interference is only expected in urban areas and are not very likely in rural areas.
 
-In their general findings, they cite \cite{Sheth} and eher Aguayo et al roofnet not the other
-Agauyo Multipath
-\cite{Sheth} Multipath effects Inter symbol interference
-longer range less delay spread of 4.75 us tol 0.01 uas
+Due to the experiment results of \cite{chebrolu_long-distance_2006}, the authors state that the weather conditions only have a
+small impact of \SIrange{1}{2}{\decibel} on the outdoor communication. These findings are also confirmed by \cite{brinkhoff_characterization_2017}
+in their experiments on a rice and cotton field.
+
+\textcite{paul_characterizing_2011} analyzed the open outdoor performance for different physical layer and MAC layer configurations of
+IEEE 802.11n. The authors conducted experiments with different omnidirectional antenna constellations and spacings ranging from
+\SIrange{0}{25.4}{\centi\metre}. They found out, that no positive impact on the communication can be achieved by
+changing antenna constellations or spacings.
+
+For the MAC layer with its CSMA/CA mechanism, the \textcite{aust_outdoor_2015} state, that the increased propagation delay in outdoor scenarios
+can cause a higher number of packet collisions. They refer to to findings of \cite{paul_characterizing_2011} and recommend
+using Block Acknowledgement and Frame Aggregation. These mechanisms introduce a MAC frame overhead, which cost less transmission time than
+retransmission of a whole frame or a single acknowledgment frame.
 
 
-Weather conditions 1-2 \cite{Chebrolu} \cite{brinkhoff_characterization_2017}
