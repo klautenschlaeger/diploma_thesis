@@ -1,4 +1,5 @@
-Since my undergraduate thesis \footnote{https://github.com/klautenschlaeger/mvsc Accessed: 5.2.2023} about "Wirelessly Networked Coordination of Automatic Section Control for Agricultural Machines"
+Since my undergraduate thesis \footnote{https://github.com/klautenschlaeger/mvsc Accessed: 5.2.2023} about \textit{
+Wirelessly Networked Coordination of Automatic Section Control for Agricultural Machines}
 , I have been working on the topic of wireless infield communication (WIC). I conducted both field experiments and
 simulations to investigate the performance of LoRa as a technology to exchange process data in
 meshed Automatic Section Control, a prototypical application of connected vehicles in the agricultural domain.
@@ -9,7 +10,7 @@ The first research paper on WIC that I found was from \textcite{ali_multi-agent_
 developed a system based on General Packet Radio Service (GPRS) to exchange position data between \ac{TM}s and combine
 harvesters to guide empty \ac{TM}s to a combine harvester.
 
-\textcite{smolnik_5g_2020} describes the research project "5G Netmobil" in which the authors investigated how existing technologies like
+\textcite{smolnik_5g_2020} describes the research project \textit{5G Netmobil} in which the authors investigated how existing technologies like
 IEEE 802.11 or 3GPP LTE can be integrated into 5G technologies to enable Agricultural Platooning Services. The research plan was to evaluate the use of \ac{UDP} and Basic Transport Protocol (BTP) to exchange guidance data via
 the underlying technologies 3GPP LTE and 5G V2X and IEEE 802.11p. The authors implemented a system using 802.11p,
 as according to their technical analysis, this technology already fulfils the requirements for data rate, latency
@@ -50,26 +51,24 @@ Also currently on the market is the Raven Autonomy™ Driver Assist Harvest Solu
 
 A comparable system is CartACE from AgLeader \footnote{https://www.agleader.com/harvest/cartace/ Accessed: 5.2.2023}
 
+
 The technology used in the mentioned systems is not known. In response to questions about how the systems can be used on farms worldwide and what prerequisites must be created for this, the manufacturers refer to the regional distribution options.
-
-
-\todo{Paul outdoor performance, table selbst done}
 
 Wireless communication technologies are also used to implement wireless sensor networks in the agricultural domain.
 
-According to \textcite{ahmed_internet_2018}, wireless sensor networks in the agricultural domain can be used to monitor soil and water conditions, plant diseases and farm automation solution
+According to \textcite{ahmed_internet_2018}, wireless sensor networks in the agricultural domain can be used to monitor soil and water conditions, plant diseases, and farm automation solution
 or track animals or assets. The authors mention similar requirements for wireless sensor network applications compared to \ac{WIC} applications.
-For example, asset tracking applications require a low latency and must support asset mobility.
-The results of the authors indicate, that fog computing can lessen the latency and the required bandwidth compared to cloud computing.
-When a higher data rate is required, the authors recommend to wi-fi technologies like IEEE 802.11n or IEEE 802.11ac.
+For example, asset-tracking applications require low latency and must support asset mobility.
+The authors' results indicate that fog computing can lessen the latency and the required bandwidth compared to cloud computing.
+When a higher data rate is required, the authors recommend wi-fi technologies like IEEE 802.11n or IEEE 802.11ac.
 
 As wireless sensor networks for agricultural applications, they must be able to operate in the same agricultural environment as \ac{WIC} applications.
-\textcite{brinkhoff_characterization_2017} describe as requirements, that they expect a limited cellular network coverage and complex outdoor
-environments with large water areas, different crop vegetations and other obstacles or various weather conditions. The
-reseachers developed a wirless sensor network based on IEEE 802.11b, where they exchanged data between an \ac{AP} and multiple stations on
-a cotton and rice field. The authors report, that they easily a achieved communication of \SI{1000}{\metre} in a \ac{LoS} scenario.
-They mention, that different wheater conditions have little impact on the communication reliability. A big influence on the communication range is
-the height above ground or the crop vegetation, where the authors recommend to use at least a height of \SI{0.2}{\metre}.
+\textcite{brinkhoff_characterization_2017} describe that they expect a limited cellular network coverage and complex outdoor
+environments with large water areas, different crop vegetation, and other obstacles or various weather conditions. The
+researchers developed a wireless sensor network based on IEEE 802.11b, where they exchanged data between an \ac{AP} and multiple stations on
+a cotton and rice field. The authors report that they easily achieved a communication of \SI{1000}{\metre} in a \ac{LoS} scenario.
+They mention that different wheater conditions have little impact on communication reliability. A significant influence on the communication range is the height above ground or the crop vegetation, where the authors recommend using at least a height of \SI{0.2}{\metre}.
+
 
 Wi-Fi technologies are also used in various outdoor scenarios.
 The outdoor performance of Wi-Fi technologies in different use cases and scenarios have been investigated by various researchers.
