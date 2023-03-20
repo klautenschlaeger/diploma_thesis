@@ -1,0 +1,71 @@
+After I analyzed the impact on data rate and robustness of physical layer parameter, I will simulate a platooning
+scenario in ns-3 to find the influence of the found physical layer configuration on the network performance.
+
+Network performance metrics  Latency, update received etc.
+
+
+
+
+\textcite{zhang_method_2009} defined a data frame of \SI{32}{\byte}, which includes an identifier, timestamp, Longitude, Latitude, Heading, Speed and Direction.
+Diese Menge an Daten umfasst eine Grundmenge, welche für die Umsetzung eines Platooning Services ausreichen kann, wie die Autoren zeigen.
+\textcite{schlingmann_aef_2019} spezifizieren die Datenmenge nicht weiter und weißen darauf hin, dass die benötigte Datenrate für Platooning Services gering ist.
+
+Ich habe für die Simulation von Platooning Services die Datenmenge auf \SI{1}{\kilo\byte} gesetzt. Diese Datengröße ist eine Abstrahierung des Speicherplatzes, welcher möglicherweise für zusätzliche Daten oder Implementierungen von Authentifizierung -  und Sicherheitsmechanismen benötigt wird. Im Corn Harvest scenario können zusätzliche Daten z.B. der Füllstand der Transportmachine sein. 
+
+
+Service Discovery
+
+Rebroadcast by Count?
+additional Traffic
+
+MANET Service discovery
+
+Visualisierung Netsimulyzer
+
+Farbcodes
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{>{\centering}p{2cm}p{4cm}p{4cm}}
+		\toprule
+		Harvest State & \ac{PD} & \ac{FH} speed\\
+		\midrule
+		H0 & \SI{30}{\tons\per\hectare}
+        & \SI{10}{\kilo\metre\per\hour} \\
+		H1 & \SI{40}{\tons\per\hectare}
+        & \SI{8}{\kilo\metre\per\hour} \\
+		H2 & \SI{50}{\tons\per\hectare}
+        & \SI{6}{\kilo\metre\per\hour} \\
+		\bottomrule
+	\end{tabular}
+	\caption{Frequency Channels numbers for \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} for the different \acf{BW}s of the IEEE 802.11 standard \cite{noauthor_ieee_2021-1}, which can be used for
+	outdoor communication \cite{freq_plan_24G}, \cite{freq_plan_5G} and are configured in the Milesight Industrial Router UR75 for
+	the field experiments.}
+	\label{tab:markov_chain}
+\end{table}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[->, >=stealth', auto, semithick, node distance=3cm]
+	\tikzstyle{every state}=[fill=white,draw=black,thick,text=black,scale=1]
+    \node[state, circle, draw]    (A)               {H0};
+	\node[state, circle, draw]    (B)[right of=A]   {H1};
+	\node[state, circle, draw]    (C)[right of=B]   {H2};
+	\path
+	(A) edge[loop left]			node{0.7}	(A)
+        edge[bend left,above]	node{0.3}	(B)
+	(B) edge[bend left,below]	node{0.2}	(A)
+        edge[bend left,above]   node{0.2}	(C)
+        edge[loop]		        node{0.6}	(B)
+	(C) edge[bend left,below]	node{0.3}	(B)
+        edge[loop right]		node{0.7}	(C);
+	%\node[above=0.5cm] (A){Patch G};
+	%\draw[red] ($(D)+(-1.5,0)$) ellipse (2cm and 3.5cm)node[yshift=3cm]{Patch H};
+	\end{tikzpicture}
+\caption{Markov Chain for the states \acs{PD} 0, 1 and 2, which represent the current \acf{PD} and harvest speed from \autoref{tab:markov_chain}.}
+\label{fig:your_label_here}
+\end{figure}
+
+
+
+\cite{aust_outdoor_2015} Link Metrics

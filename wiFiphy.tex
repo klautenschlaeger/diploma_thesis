@@ -19,6 +19,9 @@ For the modulation and demodulation of the transmitting bits the FFT and IFFT ar
 
 \textcite{kauffels_wireless_2002} adds, that \ac{OFDM} can be used in the \SI{5}{\giga\hertz} frequency band since IEEE 802.11a. 
 \subsubsection*{\acf{BW}}
+Bandwidth is the frequency range of a signal. The bandwidth of a signal is defined as the difference between the highest and lowest frequency of the signal. \textcite{kauffels_wireless_2002} mentions that the bandwidth of a signal is usually specified in \ac{Hz} or \ac{kHz}. The bandwidth of a signal is also called the bandwidth of a signal. \textcite{kauffels_wireless_2002} mentions that the bandwidth of a signal is usually specified in \ac{Hz} or \ac{kHz}. The bandwidth of a signal is also called the bandwidth of a signal. \textcite{kauffels_wireless_2002} mentions that the bandwidth of a signal is usually specified in \ac{Hz} or \ac{kHz}. The bandwidth of a signal is also called the bandwidth of a signal. \textcite{kauffels_wireless_2002} mentions that the bandwidth of a signal is usually specified in \ac{Hz} or \ac{kHz}. The bandwidth of a signal is also called the bandwidth of a signal. \textcite{kauffels_wireless_2002} mentions that the bandwidth of a signal is usually specified in \ac{Hz} or \ac{kHz}. The bandwidth of a signal is also called the bandwidth of a signal. \textcite{kauffels_wireless_2002} mentions that the bandwidth of a signal is usually specified in \ac{Hz} or \ac{kHz}. The bandwidth of a signal is also called the bandwidth of a signal. \textcite{kauffels_wireless_2002} mentions that the bandwidth of a signal is usually specified in \ac{Hz} or \ac{kHz}. The bandwidth of a signal is also called the bandwidth of a signal. \textcite{kauffels_wireless_2002} mentions that the bandwidth of a signal is usually specified in \ac{Hz} or \ac{kHz}. The bandwidth of a signal is also called the bandwidth of a signal. \textcite{kauffels_wireless_2002} mentions that the bandwidth of a signal is usually specified in \ac{Hz} or \ac{kHz}. The bandwidth of a signal
+is also called the bandwidth of a signal. \textcite{kauffels_wireless_2002} mentions that the bandwidth of a signal is usually specified in \ac{Hz}
+
 \subsubsection*{\acf{MCS}}
 
 In order to encode as many bits as possible on one \ac{OFDM} symbol, different \ac{MCS}s can be used.
@@ -157,17 +160,17 @@ Optionally, the HE ER SU \ac{PPDU} may also be transmitted with a \ac{GI} of \SI
 
 \subsubsection*{\acf{MIMO}}
 In order to further exploit the physical layer capabilities, the single transmitting and receiving antenna systems called Single-Input-Single-Output can be extended to \ac{MIMO} - systems.
-\textcite{sauter_wireless_2022} describe the idea behind \ac{MIMO} as the usage of multiple transmit antennas and multiple receiving antenna. Spatial multiplexing is used so that the transmitted signals from each antenna are reflected differently on objects and can thus be received from different directions at the receiver antennas. 
+\textcite{sauter_wireless_2022} describe the idea behind \ac{MIMO} as the usage of multiple transmit antennas and multiple receiving antenna. Spatial multiplexing is used so that the transmitted signals
+from each antenna are reflected differently on objects and can thus be received from different directions at the receiver antennas.
 
-The authors explain that since IEEE 802.11n it is possible to use up to four MIMO streams. This number was increased again to up to eight MIMO streams in IEEE 802.11ax \cite{noauthor_ieee_2021}. Since data can be sent simultaneously via each MIMO stream, the theoretical data rate can thus increase proportionally depending on the usable streams.
-\begin{comment}
-SU-MIMO, MU-MIMO, UL, DL
-\end{comment}
+The authors explain that since IEEE 802.11n it is possible to use up to four MIMO streams. This number was increased again to
+up to eight MIMO streams in IEEE 802.11ax \cite{noauthor_ieee_2021}. Since data can be sent simultaneously via each MIMO stream,
+the theoretical data rate can thus increase proportionally depending on the usable streams. The mechanism is called \ac{SU}-\ac{MIMO} \cite{noauthor_ieee_2021}.
 
-MU-\ac{MIMO} DCM only appicable, when RU contains only data for one user.
-\cite{noauthor_ieee_2021} 607 not applicable with DCM
-$NUM\_STS$ = Number of Spatial Streams
-$n_{ss}$ = $NUM\_STS / (1 + STBC)$
+\textcite{sauter_wireless_2022} mentions, that since IEEE 802.11ac it is possible to use Downlink \ac{MU}-\ac{MIMO}, which allows an \ac{AP} to transmit data to multiple \ac{STA} via different available \ac{MIMO} stream simultaneously.
+According to the authors, \ac{MU}-\ac{MIMO} can increase the network throughput.
+IEEE 802.11ax introduced \ac{MU}-\ac{MIMO} in the Uplink direction \cite{noauthor_ieee_2021}, where multiple \ac{STA} can transmit data simultaneously to the \ac{AP} via different available \ac{MIMO} streams.
+MU-\ac{MIMO} DCM only applicable, when RU contains only data for one user \cite{noauthor_ieee_2021}.
 \subsubsection*{\acf{STBC}}
 \textcite{abbas_efficient_2016} sagt zudem, dass \ac{MIMO} spatial streams dazu genutzt werden kann, um die Qualität des empfangenen Signals zu verstärken.
 Das geschieht durch \ac{STBC}. Dabei werden den Autoren nach redundant copies of data transmitted via different antenna to the receiver. At the receiver the received data copies are combined and a maximum likelihood detector is applied in order to retain a high quality signal \cite{santumon_space-time_2012}.

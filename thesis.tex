@@ -14,6 +14,7 @@
 \usepackage{nicefrac}
 \usepackage{graphicx}
 \usepackage{comment}
+\usetikzlibrary{shapes, arrows, positioning}
 
 \author{Karl Christian Lautenschläger}
 \birthday{29. Juni 1998}
@@ -58,6 +59,14 @@
 \DeclareAcronym{ER}{
 	short=ER,
 	long=Extended Range,
+}
+\DeclareAcronym{MU}{
+	short=MU,
+	long=Multi-User,
+}
+\DeclareAcronym{SU}{
+	short=SU,
+	long=Single-User,
 }
 \DeclareAcronym{LDPC}{
 	short=LDPC,
@@ -619,28 +628,7 @@ Auf different paper stützen?
 
 \section{Platooning Services}
 
-Packetsize 
-\textcite{zhang_method_2009} defined a data frame of \SI{32}{\byte}, which includes an identifier, timestamp, Longitude, Latitude, Heading, Speed and Direction.
-Diese Menge an Daten umfasst eine Grundmenge, welche für die Umsetzung eines Platooning Services ausreichen kann, wie die Autoren zeigen.
-\textcite{schlingmann_aef_2019} spezifizieren die Datenmenge nicht weiter und weißen darauf hin, dass die benötigte Datenrate für Platooning Services gering ist.
-
-Ich habe für die Simulation von Platooning Services die Datenmenge auf \SI{1}{\kilo\byte} gesetzt. Diese Datengröße ist eine Abstrahierung des Speicherplatzes, welcher möglicherweise für zusätzliche Daten oder Implementierungen von Authentifizierung -  und Sicherheitsmechanismen benötigt wird. Im Corn Harvest scenario können zusätzliche Daten z.B. der Füllstand der Transportmachine sein. 
-
-
-Service Discovery
-
-Rebroadcast by Count?
-additional Traffic
-
-MANET Service discovery
-
-Visualisierung Netsimulyzer
-
-Farbcodes
-
-
-\cite{aust_outdoor_2015} Link Metrics
-
+\input{platooning.tex}
 \chapter{Evaluation}
 
 
