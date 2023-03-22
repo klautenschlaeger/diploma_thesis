@@ -375,7 +375,6 @@ Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
 \input{cornHarvest}
 
 \section{Wireless Lans according to IEEE 802.11}
-\todo{Paper Christoph Sommer, Doktorarbeit, Diplomarbeit, Mario Franke, Tobias Hardes}
 According to \textcite{kauffels_wireless_2002} the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to Ethernet - or Token-Ring - networks.
 \textcite{sauter_wireless_2022} considers IEEE 802.11 also to be an implementation of Ethernet with the help of wirless radio technologies. The author lists the extensions to the original standard, which range from 802.11b, 802.11g, 802.11a, 802.11n, 802.11ac to the latest enhancement 802.11ax. The different IEEE 802.11 standards can operate in the  \SI{2.4}{\giga\hertz} - , \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} - frequency band.
 IEEE 802.11n is also known as \ac{HT} Wi-Fi, IEEE 802.11ac as \ac{VHT} Wi-Fi \cite{noauthor_ieee_2021-1} and IEEE 802.11ax as \ac{HE} Wi-Fi \cite{noauthor_ieee_2021}. The standards are known by these names. In addition, they are also called Wi-Fi 4, Wi-Fi 5 and Wi-Fi 6 respectively.
@@ -394,105 +393,28 @@ Thereby, the BSS coverage areas can physically overlap so that continuous connec
 He also mentions, that the standard defines the following three mobility types for station in an \ac{ESS}, where a station can do no-transition and thereby stay within a \ac{BSS}, \ac{BSS}-transitioning and move from one \ac{BSS} to another \ac{BSS} within the same \ac{ESS} and \ac{ESS}-transition, where the Station moves from a \ac{ESS} to another one but no stable connection can be guaranteed.
 
 \textcite{sauter_wireless_2022} adds, that usually Ethernet is used to link \ac{AP}s in within an \ac{ESS}. But according to the author this can be replaced by a wireless connection, which is called wireless bridge.
-\todo{ESS not needed?}
+
+To enable communication between Wifi devices, the IEEE 802.11 standard defines the following layers of the OSI model. The first layer is the physical layer.
+
 
 \TODO{Sauter 2022 Ad-Hoc Infos}
 \input{wiFiphy.tex}
 
+\input{wifiMac}
 
 
-\subsection*{Wi-Fi Data Link Layer}
-
-The next layer in the OSI model is the Data Link Layer.
-The Data Link Layer consists of Medium Access - and Logic Link Control functionalities.
-
-
-According to \textcite{kauffels_wireless_2002}, the medium access control functionalities cover network entry - ,network authentication - and media access methods.
-The author explains, that every \ac{AP} send beacon frames periodically to synchronise its stations in the \ac{BSS} and that the beacon frame contains the \ac{SSID}, which identifies the \ac{BSS} or \ac{ESS} of the station. \textcite{sauter_wireless_2022} adds that a beacon frame contains a \SI{16}{\bit} - long capability information element. Each bit here signals that the \ac{AP} provides a particular function or has a specific feature. 
-
-\textcite{kauffels_wireless_2002} explains the procedure for network entry of a station. A station can use the passive or the active scanning mode. In passive scanning mode, the station listens for a beacon frame in the various transmission channels. Alternatively, in active scanning mode, a station can also send out a probe frame. This can contain an already known \ac{SSID} to test the presence of the \ac{AP}. To get an \ac{AP} in range, the probe-frame can also contain a broadcast SSID that causes all nearby \ac{AP}s to respond. The response of an \ac{AP} to the probe frame is the probe-response frame, which contains the same information as a beacon frame. With the information from the beacon frame, a station can start the authentication process.
- 
-For this process, \textcite{kauffels_wireless_2002} names the two methods Open System Authentication and Shared Key Authentication. \textcite{sauter_wireless_2022} explains that Open System Authentication is based on a device making an authentication request to the \ac{AP}. If the \ac{AP} answers with a positive status in the Authentication Frame, the station is included in the \ac{BSS}. The actual encryption and authentication is then performed by the \ac{WPA} functions. The author points out that Shared Key Authentication is no longer used today. 
-
- the IEEE 802.11 standard describes the two media access methods \ac{DCF} and \ac{PCF}.
-
-\textcite{sauter_wireless_2022} explains that \ac{DCF} is based on the media access method \ac{CSMACA}. In \ac{CSMACA} a device that is willing to transmit senses in the air transmission medium for a transmitting activity. If no other device is transmitting, the device can transmit. In the case of transmit activity, the terminal must wait at least until the transmission and \ac{DIFS} are over.
-Since data transmission via the air transmission medium is very vulnerable to errors, the standard IEEE 802.11 requires that each received packet must be confirmed with an \ac{ACK} frame.
-The \ac{DIFS} ensures that an \ac{ACK} frame can be sent before another station uses the same channel to send a data frame. 
-To avoid multiple devices transmitting at the same time after \ac{DIFS}, each ready-to-transmit device determines a random backoff time. The device with the shortest backoff time transmits next and all other ready-to-transmit devices restart the media access procedure. In case two devices start sending next because they both randomly chose the shortest backoff time, the transmitted signal will interfere and the packets will not be answered with an \ac{ACK} frame.
-In case of such a faulty transmission, the backoff time of the ready-to-transmit devices can increase exponentially afterwards.
-
-To share the knowledge of a transmission time and the subsequently interframe space, a packet contains a \ac{NAV} that specifies the time the air transmission medium is used.
-
-In various network architectures the "hidden station"-problem may occur. As you can see in \autoref{fig:hidden_station}, Station A is not able to sense a transmission of station B and vise versa. In case of simultaneous transmission of both stations, interference around the \ac{AP} may occur. 
-\begin{figure}%
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/hidden_station.pdf}
-	\caption{Hidden Station Problem}%
-	\label{fig:hidden_station}%
-\end{figure}
-
-
-Um das hidden station problem zu umgehen kann eine Station nach \textcite{sauter_wireless_2022} 
-Point coordinator 
-ohne Wettbewerb mit optionaler Priorisierung
-
-PIFS interval kürzer, 
-beacon frame
-CF Parameter set-element
-\todo{nicht genauer eingehen, weil nicht relevant für die Arbeit? Darf ich das schreiben?}
-
-CSMA /CA
-Point Coordination Function
-
-\textcite{sauter_wireless_2022}
-DCF oberbegriff für CSMA /CA
- 
- 
-Short Interframe Space SIFS ACK Frame 
- 
-Hidden Station Problem 
-CTS and RTS
- 
-IEEE 802.11e DCF erweiterung für Video Streaming
-
-CSMA CA Backoff zeit
-Network allocation Vector NAV Zeitspanne Datensendungsdauer
-
-MAC Header
-
-Netzeintritt:
-passives und Aktives Scanning
-Service Set Identifier
-Timing Synchronisationsfunktion TSF Timer-Wert
-
-\textcite{sauter_wireless_2022}
-every package management or usage data send ackknowledgement
-
-Hidden Station Szenario
-Reservieren
-RTS CTS
-meist nicht konfiguriert / ausgeschalten, bei großen Paketen sinnvoll
-
-
-
-Authentifizierung
-- Open System -Authentification
-- Shared key Authentification
-(nach neu nicht mehr verwendet
 
 
 \input{80211ax_ac.tex}
 
-\iffalse
-^\section{Modell für drahtlose Übertragungssysteme}
-
+\begin{comment}
+	\section{Modell für drahtlose Übertragungssysteme}
 Abb 2.3.1  Modell einen Übertragungssystems
-
 Beschränkungen und Regelungen Frequenzwahl, Sendeleistung
-
 Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 \fi
+
+\end{comment}
 
 \section{Related Work}
 \input{relatedWorkWIC}
