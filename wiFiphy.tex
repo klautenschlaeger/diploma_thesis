@@ -18,8 +18,33 @@ For the IEEE 802.11p and IEEE 802.11bd standards, a symbol length of \SI{6.4}{\m
 For the modulation and demodulation of the transmitting bits the FFT and IFFT are used respectively. With the reduction of the subcarrier spacing, more subcarriers are created in the transmission channel, so that the FFT size must be increased. 
 
 \textcite{kauffels_wireless_2002} adds, that \ac{OFDM} can be used in the \SI{5}{\giga\hertz} frequency band since IEEE 802.11a. 
-\subsubsection*{\acf{BW}}
-Bandwidth is the frequency range of a signal. The bandwidth of a signal is defined as the difference between the highest and lowest frequency of the signal. \textcite{kauffels_wireless_2002} mentions that the bandwidth of a signal is usually specified in  or . The bandwidth of a signal is also 
+\subsubsection*{\acf{BW}} \todo[color=blue]{same as Channel width bandwith?}
+Üm mehrere Übertragungskanäle zu schaffen, wurden die Frequenzbereiche in Kanäle aufgeteilt.
+Damit ergeben sich in Europa 13 Kanäle im Frequenzbereich von \SIrange{2.412}{2.482}{\giga\hertz} und 18 Kanäle im Frequenzbereich von \SIrange{5.180}I{5.350}{\giga\hertz} und \SIrange{5.180}I{5.350}{\giga\hertz} \cite{sauter_wireless_2022}.
+To enable higher data rates, transmission channels can be combined. This is called cahnnel \ac{BW} and is specified in \ac{MHz}.
+The possible \ac{BW}s for the IEEE 802.11 standards are shown in Table \ref{tab:BW}. \todo[color=blue]{How to cite table? how to make it nicer?}
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{>{\raggedright}p{1.8cm}p{2.7cm}p{2.7cm}p{2.7cm}}
+		\toprule
+		Standard & Channel \ac{BW}s\newline in \SI{2.4}{\giga\hertz}\newline Frequenzy range & Channels in  \SI{5}{\giga\hertz} & Channels in \SI{5.9}{\giga\hertz}\\
+		\midrule
+		IEEE 802.11n & \SI{20}{\mega\hertz},\SI{40}{\mega\hertz}  & \SI{20}{\mega\hertz},\SI{40}{\mega\hertz} & - \\
+		IEEE 802.11ac & -  & \SI{20}{\mega\hertz},\SI{40}{\mega\hertz}, \SI{80}{\mega\hertz},\SI{160}{\mega\hertz} & - \\
+		IEEE 802.11ax &\SI{20}{\mega\hertz},\SI{40}{\mega\hertz}  & \SI{20}{\mega\hertz},\SI{40}{\mega\hertz}, \SI{80}{\mega\hertz},\SI{160}{\mega\hertz} & - \\
+		IEEE 802.11p & - & - & \SI{10}{\mega\hertz} \\
+		IEEE 802.11bd & - & - & \SI{10}{\mega\hertz},\SI{20}{\mega\hertz} \\
+		\bottomrule
+	\end{tabular}
+	\caption{\cite{jacob_system-level_2020}, \cite{sauter_wireless_2022}, \cite{noauthor_ieee_2021}}
+	\label{tab:BW}
+\end{table}
+
+IEEE 802.11ac and IEEE 802.11ax enable also the use of a discontinuous \ac{BW}, which combines two \SI{80}{\mega\hertz}
+channel to a \SI{160}{\mega\hertz} \ac{BW} channel \cite{noauthor_ieee_2021}, \cite{noauthor_ieee_2021-1}.
+
+While wider channels increase the theoretical data rate, \textcite{Avallone} mentions, that narrower channels can
+increase the power spectral density of the signal and thus increase the transmission range.
 
 \subsubsection*{\acf{MCS}}
 
@@ -169,26 +194,31 @@ the theoretical data rate can thus increase proportionally depending on the usab
 \textcite{sauter_wireless_2022} mentions, that since IEEE 802.11ac it is possible to use Downlink \ac{MU}-\ac{MIMO}, which allows an \ac{AP} to transmit data to multiple \ac{STA} via different available \ac{MIMO} stream simultaneously.
 According to the authors, \ac{MU}-\ac{MIMO} can increase the network throughput.
 IEEE 802.11ax introduced \ac{MU}-\ac{MIMO} in the Uplink direction \cite{noauthor_ieee_2021}, where multiple \ac{STA} can transmit data simultaneously to the \ac{AP} via different available \ac{MIMO} streams.
-MU-\ac{MIMO} DCM only applicable, when RU contains only data for one user \cite{noauthor_ieee_2021}.
+MU-\ac{MIMO} DCM  is also applicable in IEEE 802.11ax \cite{noauthor_ieee_2021}.
 \cite{omar_survey_2016} for MIMO def
 
 \subsubsection*{\acf{STBC}}
-\textcite{abbas_efficient_2016} sagt zudem, dass \ac{MIMO} spatial streams dazu genutzt werden kann, um die Qualität des empfangenen Signals zu verstärken.
-Das geschieht durch \ac{STBC}. Dabei werden den Autoren nach redundant copies of data transmitted via different antenna to the receiver. At the receiver the received data copies are combined and a maximum likelihood detector is applied in order to retain a high quality signal \cite{santumon_space-time_2012}.
-\ac{STBC} is a technique used in Wi-Fi networks to improve the reliability and robustness of wireless communications.
+\textcite{abbas_efficient_2016} further explains that \ac{MIMO} spatial streams can be utilized to enhance the quality of the received signal.
+The Technology is called \ac{STBC}.
+\textcite{santumon_space-time_2012} explains as follows. \ac{STBC} is a technique used in Wi-Fi networks to improve the reliability and robustness of wireless communications.
 \ac{STBC} encodes multiple redundant copies of data at the transmit side, which are transmitted in different spatial streams to
-reduce the effects of fading and interference. At the receiver side, these multiple copies are combined to improve the
-signal quality and decrease the \ac{PER}.
+reduce fading and interference effects. At the receiver side, these multiple copies are combined using a maximum likelihood detector
+to retain a high-quality signal and decrease the \ac{PER}.
 
-Thes results in \ac{STBC} improving the reliability and robustness of wireless communications.
-Here, \textcite{stamoulis_impact_2003} has investigated the potential effect of \ac{STBC} on Wi-Fi. Their simulations showed that\ac{STBC} can increase the range and robustness for IEEE 802.11a.
-In addition, the authors concluded that \ac{STBC} increases the \ac{SNR} in nearly all cases at the same throughput or even allows higher \ac{MCS} values to be used,
-thus allowing a higher throughput at the same \ac{SNR}.
 
-\textcite{ghosh_error_2014} analyzed the error rate performance for increasing number of used antenna and found out, that a lower bit error rate can be achieved
+Here, \textcite{stamoulis_impact_2003} has investigated the potential effect of \ac{STBC} on Wi-Fi.
+Their simulations showed that\ac{STBC} increase the range and robustness for IEEE 802.11a.
+In addition, the authors concluded that \ac{STBC} increases the \ac{SNR} in nearly all cases at the same throughput or
+even allows higher \ac{MCS} values to be used,
+thus allowing a higher throughput at the same \ac{SNR}. This results in \ac{STBC} improving the reliability and robustness of wireless communications.
+
+\textcite{ghosh_error_2014} analyzed the error rate performance for an increased number of used antennae and found
+that a lower bit error rate can be achieved
 when increasing the number of transmit antennas with \ac{STBC}.
 
-\textcite{gast_80211n_nodate} and \textcite{sauter_wireless_2022} mention, that \ac{STBC} can extend the signal range due to the increased robustness.
+\textcite{gast_80211n_nodate} and \textcite{sauter_wireless_2022} mention, that \ac{STBC} can extend the signal range
+due to the increased robustness.
+
 
 IEEE 802.11ax stations can optionally use \ac{STBC} the following conditions \cite{noauthor_ieee_2021}:
 \begin{itemize}
@@ -197,11 +227,14 @@ IEEE 802.11ax stations can optionally use \ac{STBC} the following conditions \ci
 	\item The \ac{GI} is not \SI{0.8}{\nano\second} and the symbol length is not \SI{12.8}{\micro\second}
 \end{itemize}
 
+\cite{gast_80211n_nodate} states that \ac{STBC} is only supported in one-fifth of the Wi-Fi certified devices.
 
 
 
-\cite{gast_80211n_nodate} states, that \ac{STBC} is only supported in one fifth of the Wi-Fi CERTIFIED devices.
+\begin{comment}
+In addition to the physical layer parameters already discussed, other technologies can be applied. IEEE 802.11ax
+Beamforming
+OFDMA
 Group addressed frames
-
-
 HE Capabilities nur so gut, wie das schlechteste Glied
+\end{comment}
