@@ -12,7 +12,6 @@
 
 \usetikzlibrary{quotes,angles}
 \usepackage{nicefrac}
-\usepackage{graphicx}
 \usepackage{comment}
 \usetikzlibrary{shapes, arrows, positioning}
 
@@ -353,7 +352,7 @@ Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
 \chapter{Introduction}
 %\chapter{Einleitung}
 \label{sec:introduction}
-\input{introduction.tex}
+\input{introduction}
 
 \chapter{Fundamentals}
 \label{sec:fundamentals}
@@ -370,13 +369,14 @@ Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
 
 \section{\acl{WIC}}
 
-\input{wic.tex}
+\input{wic}
 
 \input{cornHarvest}
 
 \section{Wireless Lans according to IEEE 802.11}
 According to \textcite{kauffels_wireless_2002} the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to Ethernet - or Token-Ring - networks.
-\textcite{sauter_wireless_2022} considers IEEE 802.11 also to be an implementation of Ethernet with the help of wirless radio technologies. The author lists the extensions to the original standard, which range from 802.11b, 802.11g, 802.11a, 802.11n, 802.11ac to the latest enhancement 802.11ax. The different IEEE 802.11 standards can operate in the  \SI{2.4}{\giga\hertz} - , \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} - frequency band.
+\textcite{sauter_wireless_2022} considers IEEE 802.11 also to be an implementation of Ethernet with the help of wirless radio technologies.
+The author lists the extensions to the original standard, which range from 802.11b, 802.11g, 802.11a, 802.11n, 802.11ac to the latest enhancement 802.11ax. The different IEEE 802.11 standards can operate in the  \SI{2.4}{\giga\hertz} - , \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} - frequency band.
 IEEE 802.11n is also known as \ac{HT} Wi-Fi, IEEE 802.11ac as \ac{VHT} Wi-Fi \cite{noauthor_ieee_2021-1} and IEEE 802.11ax as \ac{HE} Wi-Fi \cite{noauthor_ieee_2021}. The standards are known by these names. In addition, they are also called Wi-Fi 4, Wi-Fi 5 and Wi-Fi 6 respectively.
 \textcite{jacob_system-level_2020} fügt dazu noch hinzu, dass es zusätzlich noch die zwei Erweiterungen IEEE 802.11p and dessen Nachfolger IEEE 802.11bd gibt. Diese operieren in einem reservierten Frequency spectrum for \ac{V2X} nach den Autoren im  \SI{5.9}{\giga\hertz} frequency spectrum
 
@@ -398,14 +398,14 @@ To enable communication between Wifi devices, the IEEE 802.11 standard defines t
 
 
 \TODO{Sauter 2022 Ad-Hoc Infos}
-\input{wiFiphy.tex}
+\input{wiFiphy}
 
 \input{wifiMac}
 
 
 
 
-\input{80211ax_ac.tex}
+\input{80211ax_ac}
 
 \begin{comment}
 	\section{Modell für drahtlose Übertragungssysteme}
@@ -420,7 +420,7 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 \input{relatedWorkWIC}
 
 
-\input{cornHarvestData.tex}
+\input{cornHarvestData}
 
 \chapter{Field Measurements}
 
@@ -439,8 +439,8 @@ iperf run unlimited?
 
 \todo[color=yellow]{Describe Mistakes? }
 
+\begin{comment}
 \chapter{Developed architecture / System design / Implementation / ...}
-
 
 \begin{itemize}
 \item describe everything you yourself did (as opposed to the fundamentals chapter, which explains what you built on)
@@ -449,6 +449,8 @@ iperf run unlimited?
 \item go ahead in presenting your developments in more detail
 \item recommended length: approximately one third of the thesis.
 \end{itemize}
+\end{comment}
+
 
 \chapter{Simulation}
 Seite 77 von 93 02 simulation.pdf
@@ -533,7 +535,7 @@ eine JSON Datei. Diese beinhaltet alle benötigten Daten für die Visualisierung
 \input{dataRate}
 Robustness?
 
-\input{robustness.tex}
+\input{robustness}
 
 
 \begin{comment}
@@ -550,7 +552,7 @@ Auf different paper stützen?
 
 \section{Platooning Services}
 
-\input{platooning.tex}
+\input{platooning}
 \chapter{Evaluation}
 
 
