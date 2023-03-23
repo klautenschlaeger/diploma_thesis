@@ -30,13 +30,13 @@ IEEE 802.11 a/n/ac in the \SI{5}{\giga\hertz} band. The router is equipped with 
 the robustness and communication range of Wi-Fi networks in an outdoor environment. As the regulation in the German Law StVZO §32 Abs. 2  limits the height of
 every agricultural vehicle or combination of vehicles to less than \SI{4.0}{\metre}, the maximum antenna height is \SI{4}{\metre} above the ground. Therefore, I will mount the router on the tractor's roof at a height \SI{4}{\metre} above the ground.
 
-\todo[color=blue]{Datasheet, Accessed discussion}
+\todo[color=blue]{Datasheet}
 I set up two Wi-Fi devices on the \ac{CH}, which are two UP Squared Board \cite{up_squared_board datasheet} with an Intel AX210 Wi-Fi module \cite{intel_ax210}.
 Every Intel AX210 Wi-Fi module supports the IEEE 802.11ax standard for \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and is equipped with two antennas,
 which support omnidirectional transmissions in the \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and have a gain of \SI{5}{\decibel}.
 The boards are mounted on the roof of the \ac{CH} next to one another at a height \SI{4}{\metre} above the ground too.
 
-The router on the tractor sets up a Wi-Fi \ac{AP}. One of the boards on the \ac{CH} connects to the \ac{AP} of the router as a Wi-Fi \ac{STA} and hosts an iperf3 \footnote{https://iperf.fr/ Accessed: 8.3.2023} server.
+The router on the tractor sets up a Wi-Fi \ac{AP}. One of the boards on the \ac{CH} connects to the \ac{AP} of the router as a Wi-Fi \ac{STA} and hosts an iperf3 \footnote{https://iperf.fr/} server.
 A notebook is connected via LAN to the router and runs an iperf3 client, which connects to the iperf3 server on the \ac{CH}.
 The iperf3 client sends \SI{100}{\byte} UDP packets every \SI{100}{\milli\second} to the iperf3 server on the \ac{CH}. The server records the received packets.
 
@@ -52,9 +52,9 @@ testing, I found out that the Wi-Fi manager of the Wi-Fi devices can apply VHT \
 	\label{fig:fieldWifi}%
 \end{figure}
 
-The other UP Squared Board on the \ac{CH} uses the Wi-Fi card in the monitor mode and records every transmission in the \SI{5.6}{\giga\hertz} band using tcpdump \footnote{https://www.tcpdump.org/ Accessed: 8.3.2023}.
+The other UP Squared Board on the \ac{CH} uses the Wi-Fi card in the monitor mode and records every transmission in the \SI{5.6}{\giga\hertz} band using tcpdump \footnote{https://www.tcpdump.org/}.
 Since the UP Squared board is placed next to the other board on the roof of the \ac{CH}, it can record the same signals the other board receives in the UDP transmission.
-The tcpdump records are in pcap - format, which can be analyzed using Wireshark\footnote{https://www.wireshark.org/ Accessed: 8.3.2023}.
+The tcpdump records are in pcap - format, which can be analyzed using Wireshark\footnote{https://www.wireshark.org/}.
 Using Wireshark, I can identify possible retransmissions to calculate a \ac{PER}.
 At the same time, the data contains the \ac{RSS} of each antenna and the physical layer parameters for every
 transmission, allowing each transmission's robustness to be calculated as a function of the \ac{RSS} and the physical

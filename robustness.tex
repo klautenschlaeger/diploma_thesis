@@ -5,20 +5,20 @@ The field measurements showed.
 Therefore, the following section focuses on the influence of the different physical layer parameters on the robustness of the IEEE 802.11ax standard
 Wi-Fi transmissions.
 
-A known simulation tool for wireless communication networks is GNU Radio \footnote{https://www.gnuradio.org/ Accessed: 14.03.2023}.
+A known simulation tool for wireless communication networks is GNU Radio \footnote{https://www.gnuradio.org/}.
 GNU Radio is an open-source software development toolkit, which has additional blocks for IEEE 802.11 network simulation,
-called gr-ieee802-11 \footnote{https://github.com/bastibl/gr-ieee802-11 Accessed: 14.03.2023}\todo[color=blue]{Accessed necessary? }. However, the gr-ieee802-11 only
+called gr-ieee802-11 \footnote{https://github.com/bastibl/gr-ieee802-11}. However, the gr-ieee802-11 only
 supports the IEEE 802.11a, IEEE 802.11b, IEEE 802.11g and IEEE 802.11p. This means, that the gr-ieee802-11 does not support
 the \ac{ER} mode, \ac{DCM} or \ac{STBC}. Therefore, I decided that the GNU Radio is not suitable for my simulation.
 
-\textcite{s_performance_2022} cites ns-3 \footnote{https://www.nsnam.org/docs/models/html/wifi-design.html Accessed: 13.03.2023},
+\textcite{s_performance_2022} cites ns-3 \footnote{https://www.nsnam.org/docs/models/html/wifi-design.html},
 that ns-3 does not implement
 any frequency-selective fading effects, such as multipath propagation and shadowing. Therefore, the authors decided to use
 the MATLAB WLAN Toolbox, which is standards-compliant and credible.
 I also decided to use Matlab because besides \cite{s_performance_2022}, \cite{cao_efficient_2022} and \cite{jin_efficient_2021} have also considered
 the MATLAB WLAN Toolbox to be suitable for IEEE 802.11ax simulations.
 
-The MATLAB WLAN Toolbox \footnote{\url{https://de.mathworks.com/products/wlan.html?s_tid=AO_PR_info} Accessed: 13.03.2023} is a add-on to simulate, analyse, and test of wireless LAN communications systems.
+The MATLAB WLAN Toolbox \footnote{\url{https://de.mathworks.com/products/wlan.html?s_tid=AO_PR_info}} is a add-on to simulate, analyse, and test of wireless LAN communications systems.
 The WLAN Toolbox supports a wide range of IEEE 802.11 standards.
 Since Release R2019b \footnote{https://de.mathworks.com/help/wlan/release-notes.html}, the WLAN Toolbox supports the Signal Recovery, Packet Extension and Physical Layer abstractions to simulation IEEE 802.11ax networks.
 
@@ -50,7 +50,7 @@ As I want to simulate outdoor scenarios, I chose the TGax-F channel model, which
 The wlanTGaxChannel model supports configuring the \ac{BW}, the number of transmit and receive antennas, which I set equal to the configuration of the wlanHEConfig object.
 \cite{freq_plan_24G} and \cite{freq_plan_5G} allow outdoor transmission in the frequency range of \SI{5.725}{\giga\hertz} to \SI{5.825}{\giga\hertz}. Therefore, I set the carrier frequency to \SI{5.6}{\giga\hertz}.
 The TGax-F channel sampling rate is set to \SI{20}{\mega\hertz}, which is the nominal sampling rate for the configured \ac{BW} of \SI{20}{\mega\hertz}.
-Additional parameters are left at their default values as they are not relevant for outdoor scenarios. According to the MATLAB WLAN Toolbox documentation \footnote{https://de.mathworks.com/help/wlan/ref/wlantgaxchannel-system-object.html Accessed: 13.03.2023},
+Additional parameters are left at their default values as they are not relevant for outdoor scenarios. According to the MATLAB WLAN Toolbox documentation \footnote{https://de.mathworks.com/help/wlan/ref/wlantgaxchannel-system-object.html},
 the TGax-F channel model has a maximum delay of \SI{1050}{\nano\second} and root mean square delay spread of \SI{150}{\nano\second}.
 
 The simulations is based on the procedure \autoref{alg:ProcedurePER}. To get a \ac{PER} for every \ac{SNR} value ranging

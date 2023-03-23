@@ -521,16 +521,16 @@ which can be Network Interface card or peripheral card. The Net Device simulates
 Every Net Device is connected to a channel. The channel class represents the physical medium, which is used to transmit data. The channel behaviour is based
 on the channel model, which may include interference, propagation delay and loss.
 
-Für die aktuelle Version ns-3.37 wird IEEE 802.11ax als Standard im Infrastructure und Adhoc Mode unterstützt \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html} Accessed: 24.02.2023}.
-Jedoch ist die Unterstützung für den 802.11ax standard noch nicht vollständig. So kann man bereits DCM und STBC konfigurieren, jedoch findet man die den Kommentar in Zeile 496 von der Datei he-ppdu.cc, dass diese noch nicht in der aktuellen Version 3.37 für beachtet werden \footnote{https://www.nsnam.org/docs/models/html/wifi-user.html Accessed: 24.02.2023}.
+Für die aktuelle Version ns-3.37 wird IEEE 802.11ax als Standard im Infrastructure und Adhoc Mode unterstützt \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html}}.
+Jedoch ist die Unterstützung für den 802.11ax standard noch nicht vollständig. So kann man bereits DCM und STBC konfigurieren, jedoch findet man die den Kommentar in Zeile 496 von der Datei he-ppdu.cc, dass diese noch nicht in der aktuellen Version 3.37 für beachtet werden \footnote{https://www.nsnam.org/docs/models/html/wifi-user.html}.
 
 Bei der Untersuchung der Implementierung von 802.11ax in ns-3, fällt auf, dass die Implementierung von 802.11ax in ns-3 auf, dass bereits eine HE ER SU \ac{PPDU} Preamble implementiert ist, welche jedoch nie genutzt wird und man den Extended Range Mode
 den nicht aktivieren kann. Die Implementierung von 802.11ax in ns-3 ist also noch nicht vollständig und es gibt noch einige offene Punkte, die in der Zukunft noch implementiert werden müssen.
 
 \textcite{black_netsimulyzer_2021} haben eine 3D Visualisierung von ns-3 entwickelt, welche die Simulationen in 3D visualisiert, um die ns-3 simulation
 scenarios greifbar zu machen. Die grafische Erweiterung der Autoren besteht aus zwei open source Programmen. Das 
-NetSimulyzer ns-3 module \footnote{https://github.com/usnistgov/NetSimulyzer-ns3-module Accessed: 24.02.2023} lässt sich in die ns-3 Simulation integieren und baut über die spezifizierten Funktionen und Configurationen
-eine JSON Datei. Diese beinhaltet alle benötigten Daten für die Visualisierung in der NetSimulyzer \footnote{\url{https://github.com/usnistgov/NetSimulyzer} Accessed: 24.02.2023}
+NetSimulyzer ns-3 module \footnote{https://github.com/usnistgov/NetSimulyzer-ns3-module} lässt sich in die ns-3 Simulation integieren und baut über die spezifizierten Funktionen und Configurationen
+eine JSON Datei. Diese beinhaltet alle benötigten Daten für die Visualisierung in der NetSimulyzer \footnote{\url{https://github.com/usnistgov/NetSimulyzer}}
 
 \input{dataRate}
 Robustness?
