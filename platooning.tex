@@ -19,7 +19,7 @@ Thereby, every \ac{FH} starts in the lower left corner of the field and harvests
 which is displayed in \autoref{fig:PlatooningRoute}. As soon as a \ac{FH} reaches a field border, it makes a U-turn and continues
 in the opposite direction.
 Every \ac{FH} harvests the corn until it reaches the end of the field in the lower right corner.
-The inital position of the \ac{TMs} is a row below the \ac{FH}s, which is displayed in \autoref{fig:PlatooningInit}.
+The inital position of the \ac{TM}s is a row below the \ac{FH}s, which is displayed in \autoref{fig:PlatooningInit}.
 \begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.7\textwidth]{figures/drawings-Route}
@@ -43,8 +43,7 @@ the \ac{FH} and the \ac{TM}. \todo{Robustness?DataRate? Fieldexperiments}
 
 \begin{table}[H]
 	\centering
-	\begin{tabular}{p{5cm}p{4cm}}
-		\toprule
+	\begin{tabular}{p{6cm}p{4cm}}
 		General Parameters & \\
 		\midrule
 		Wi-Fi Standard & IEEE 802.11ax\\
@@ -54,47 +53,96 @@ the \ac{FH} and the \ac{TM}. \todo{Robustness?DataRate? Fieldexperiments}
 		max. Transmission Power & \SI{25}{\dBm}\\
 		Antenna Gain & \SI{5}{\dB}\\
 		Maximum retries & \num{3}\\
-		\midrule
+		 & \\
 		Uniform Transmission Parameters & \\
 		\midrule
 		\ac{MCS} & \num{5}\\
 		Number \ac{MIMO} Streams & \num{2}\\
-		\midrule
+		 & \\
 		Non-Uniform Transmission Parameters & \\
 		\midrule
 		Broadcast \ac{MCS} & \num{0}\\
 		\ac{ER} mode enabled & True\\
 		\ac{DCM} enabled & True\\
-		\bottomrule
 	\end{tabular}
 	\caption{Simulation parameters for Wi-Fi Devices}
 	\label{tab:SimulationParametersWiFi}
 \end{table}
-\todo[color=blue]{new line or vertical lines?}
 
 Every machine node runs a ns-3 Application, which is responsible for the Agricultural Platooning Service. The application
 is identified by a unique identifier runs an UDP socket to exchange data with other Agricultural Platooning Service applications.
 Every UDP socket can be addressed by a IP address and a port number. The IP address is the IP address of the machine node.
 
 In the beginning, every \ac{FH} broadcasts a search request to find a empty \ac{TM} to load the corn onto.
-As shown in \autoref{fig:PlatooningInit}, multiple \ac{TM}s receive the search request and answer with their current fill level of the \ac{TM}'s
-trailer. The \ac{FH} chooses the \ac{TM} with the lowest fill level and sends a connection request to the \ac{TM}. As soon as the 
+As shown in \autoref{fig:PlatooningInit}, multiple \ac{TM}s receive the search request and answer with
+their current fill level of the \ac{TM}'s trailer.
+The \ac{FH} chooses the \ac{TM} with the lowest fill level and sends a connection request to the \ac{TM}. As soon as the
 \ac{TM} receives the connection request, it answers with a connection response. When the \ac{FH} receives the connection response, a
 Agricultural Platooning Service is started.
+\begin{figure}[H]%
+	\centering
+	\includegraphics[width=0.7\textwidth]{figures/platoonINIT}
+	\caption{Start position of the \acf{FH}s and \acf{TM}s, where a \ac{FH} broadcasts a search request to find
+	a \ac{TM} to load the corn onto}
+	\label{fig:PlatooningInit}%
+\end{figure}
 
-Next, the \ac{FH} starts to harvest the corn. The FH harvest process is defined by the harvest states in \autoref{tab:HarvestStates},
-where every harvest state represents a different \ac{PD} and \ac{FH} speed. When the \ac{PD} is low, the \ac{FH} can harvest faster
-and vice versa.
+\begin{algorithm}
+\begin{algorithmic}[1]
+\REQUIRE Defined $search\_TM\_interval$, $search\_TM\_packet\_length$
+\STATE Create packet $search\_TM$ of length $search\_TM\_packet\_length$ bytes
+\STATE Broadcast $search\_TM$ to all \acs{TM}s
+\IF {no \acs{TM} ansers}
+    \STATE Repeat Broadcasting $search\_TM$ every $search\_TM\_interval$ seconds
+\ELSE
+	\STATE Send connection request
+	\IF {No \acs{TM} response}
+		\STATE Repeat Broadcasting $search\_TM$ every $search\_TM\_interval$ seconds
+	\ELSE
+		\STATE Connection established
+		\STATE Start Agricultural Platooning Service
+	\ENDIF
+\ENDIF
+\end{algorithmic}
+\caption{Procedure of the \acf{FH} to search for a \acf{TM} to load the corn onto}
+\label{alg:SearchTM}
+\end{algorithm}
 
-Starting in the harvest state H1, the \ac{FH} determines the next harvest state every \SI{50}{\milli\second} by the Markov chain in
-\autoref{fig:MarkovChain}. This Markov chain ensures that the harvest state can't transverse from H0 to H2 directly, which would represent
-a low \ac{PD} immediately followed by a high \ac{PD}. As I have not enough harvest process data, which contain the \ac{PD} and the \ac{FH} speed,
+Next, the \ac{FH} starts to harvest the corn. All steps of the harvest process and Agricultural Platooning Service are summarized in
+\autoref{alg:UpdateTM}.
+
+\begin{algorithm}
+\begin{algorithmic}[1]
+\REQUIRE Defined $platoon\_data\_interval$, $platoon\_data\_packet\_length$
+\STATE Calculate harvested volume
+\STATE Advance \ac{FH} position
+\STATE Add harvested volume to \ac{TM} fill level
+\IF {\ac{TM} fill level is full}
+    \STATE Disconnect from current \ac{TM}
+	\STATE Start Agricultural Platooning Service with waiting \ac{TM}
+\ELSE
+	\STATE Create packet $TM\_data$ of length $platoon\_data\_packet\_length$ bytes, which contains the \ac{TM} fill level and the new guidance position
+	\STATE Send $TM\_data$ to \ac{TM}
+	\IF {\ac{TM} fill level is half full}
+		\STATE Start \autoref{alg:SearchTM} to search for new \ac{TM}
+	\ENDIF
+\ENDIF
+\end{algorithmic}
+\caption{Procedure of the \acf{FH} to send the \acf{TM} fill level and the \ac{TM} guidance position every
+\textit{platoon\_data\_interval}}.
+\label{alg:UpdateTM}
+\end{algorithm}
+
+The FH harvest process is defined by the harvest states in \autoref{tab:HarvestStates},
+where every harvest state represents a different \ac{PD} and \ac{FH} speed.
+When the \ac{PD} is low, the \ac{FH} can harvest faster and vice versa.
+
+Starting in the harvest state H1, the \ac{FH} determines the next harvest state every \SI{50}{\milli\second}
+by the Markov chain in \autoref{fig:MarkovChain}.
+This Markov chain ensures that the harvest state can't transverse from H0 to H2 directly, which would represent
+a low \ac{PD} immediately followed by a high \ac{PD}.
+As I have not enough harvest process data, which contain the \ac{PD} and the \ac{FH} speed,
 I chose the transition probabilities randomly\todo[color=blue]{by common sense?}.
-
-After determining the next harvest state, the \ac{FH} sets the \ac{PD} and the \ac{FH} speed according to the defined values in
-\autoref{tab:HarvestStates}. The position of the \ac{FH} is advanced by the \ac{FH} speed multiplied with \SI{50}{\milli\second} along the
-harvest path in \autoref{fig:PlatooningRoute}. The harvested volume during this time step of \SI{50}{\milli\second} is calculated:cd ..
-
 
 \begin{table}[H]
 	\centering
@@ -110,7 +158,7 @@ harvest path in \autoref{fig:PlatooningRoute}. The harvested volume during this 
         & \SI{6}{\kilo\metre\per\hour} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Corn harvest states, which define a range of \acf{PD}s and \ac{FH} speeds, where the data is based on the
+	\caption{Corn harvest states, which define a range of \acf{PD}s and \acf{FH} speeds, where the data is based on the
 	key figures \cite{faustzahlen2018}}
 	\label{tab:markov_chain}
 \end{table}
@@ -131,9 +179,59 @@ harvest path in \autoref{fig:PlatooningRoute}. The harvested volume during this 
 	(C) edge[bend left,below]	node{0.3}	(B)
         edge[loop right]		node{0.7}	(C);
 	\end{tikzpicture}
-\caption{Markov Chain for the states \acs{PD} 0, 1 and 2, which represent the current \acf{PD} and harvest speed from \autoref{tab:markov_chain}.}
+\caption{Markov Chain for the states \acf{PD} 0, 1 and 2, which represent the current \ac{PD} and
+harvest speed from \autoref{tab:markov_chain}.}
 \label{fig:MarkovChain}
 \end{figure}
+
+After determining the next harvest state, the \ac{FH} sets the \ac{PD} and the \ac{FH} speed according to the defined values in
+\autoref{tab:HarvestStates}.
+The position of the \ac{FH} is advanced by the \ac{FH} speed multiplied with \SI{50}{\milli\second} along the
+harvest path in \autoref{fig:PlatooningRoute}.
+The harvested volume during this time step of \SI{50}{\milli\second} is calculated with the following
+equations:
+\begin{equation}
+	\label{eq:AreaCalculation}
+	\text{Harvested Area} =
+	\frac{
+		\text{Harvest width} \times \text{Harvest speed} \times \text{Time step}
+	}{
+		10000
+	},
+\end{equation}
+\begin{equation}
+	\label{eq:VolumneCalculation}
+	\text{Harvested Volumne} =
+	\text{Harvested Area} \times \text{\ac{PD}} \times \text{Corn volume per tonne}.
+\end{equation}
+
+The harvested area is represented in \si{\hectare}\todo[color=blue]{ha? Conversion? Introduce Abbreviations?} and
+the harvested volume is represented in \si{\cubic\metre}.
+The needed parameters for the calculation are from \cite{faustzahlen2018} and are listed in \autoref{tab:SimulationParameters}.
+The calculated harvested volume is added to the \ac{TM}'s fill level, which is tracked by the \ac{FH}'s application.
+Keeping track of the fill level represents the knowledge of the \ac{FH} about the \ac{TM}'s fill level, which the \ac{FH} would
+normally get through the Sprout guidance system.
+
+Next, the \ac{FH} determines whether the \ac{TM} is full or not.
+If the \ac{TM} is full, the \ac{FH} stops harvesting and sends a disconnect request to the \ac{TM}.
+The \ac{TM} answers with a disconnect response and leaves the field to unload the corn.
+
+If the \ac{TM} is not full, the \ac{FH} sends the new \ac{TM} fill level and the new guidance position to the \ac{TM}.
+The \ac{TM} updates the fill level and drives to the new position to load the corn, as it is shown in \autoref{fig:PlatooningHF}.
+The guidance position is always left of the \ac{FH}, because this part of the field was already harvested.
+The distance between the \ac{FH} and the \ac{TM} is \SI{5}{\metre} as the \ac{FH} and the \ac{TM} moved mostly with a distance of around \SI{5}{\metre} in
+the recorded process data in \autoref{chap:cornHarvestData}.
+
+If the \ac{TM} fill level is half full, the \ac{FH} starts the \autoref{alg:SearchTM}
+to search for a new \ac{TM} to load the corn onto. This is visualized in \autoref{fig:PlatooningHF}.
+As soon as the \ac{FH} finds a new \ac{TM}, the \ac{FH} connects to the new \ac{TM} and starts sending
+the \ac{TM} guidance positions, which place the \ac{TM} \SI{20}{\metre} behind the \ac{FH}.
+The \ac{FH} continues harvesting until the \ac{TM} is full.
+Meanwhile, the new \ac{TM} is waiting behind the \ac{FH} and can take over the loading position next to the \ac{FH} as
+soon as the \ac{TM}, where the \ac{FH} is currently loading onto, is full.
+
+
+
 
 
 
@@ -143,10 +241,11 @@ harvest path in \autoref{fig:PlatooningRoute}. The harvested volume during this 
 		\toprule
 		Parameters & \\
 		\midrule
-		Broadcast Interval & \SI{1}{\second}\\
-		Broadcast Data & \SI{500}{\byte}\\
+		\textit{search\_TM\_interval} & \SI{1}{\second}\\
+		\textit{search\_TM\_packet\_length} & \SI{500}{\byte}\\
 		Position Service Update Interval & \SI{50}{\milli\second}\\
 		Platoon Service Data & \SI{1000}{\byte}\\
+		Platoon Overloading Distance & \SI{6}{\meter}\\
 		Field Size & \SI{2000}{\meter} x \SI{1000}{\meter}\\
 		\bottomrule
 	\end{tabular}
@@ -154,34 +253,6 @@ harvest path in \autoref{fig:PlatooningRoute}. The harvested volume during this 
 	\label{tab:SimulationParameters}
 \end{table}
 
-
-\begin{algorithm}
-\begin{algorithmic}[1]
-\STATE Create packet data $SearchTM$ of length $SearchPacketLength$ bytes
-\STATE Broadcast $SearchTM$ to all \acs{TM}s
-\IF {no \acs{TM} ansers}
-    \STATE Repeat Broadcasting $SearchTM$ every $SearchPacketInterval$ seconds
-\ELSE
-	\STATE Send connection request
-	\IF {No \acs{TM} response}
-		\STATE Repeat Broadcasting $SearchTM$ every $SearchPacketInterval$ seconds
-	\ELSE
-		\STATE Connection established
-		\STATE Start Agricultural Platooning Service
-	\ENDIF
-\ENDIF
-\end{algorithmic}
-\caption{Procedure to detect packet errors}
-\label{alg:SearchTM}
-\end{algorithm}
-
-\begin{figure}[H]%
-	\centering
-	\includegraphics[width=0.7\textwidth]{figures/drawings-INIT}
-	\caption{Simulated PER in regards to SNR for chosen HE-MCS values for IEEE 802.11ax physical layer parameters
-			of a GI of 3200 ns, a bandwidth of 20 MHz and 2 spatial streams.}
-	\label{fig:PlatooningInit}%
-\end{figure}
 
 \begin{figure}
 \centering
@@ -201,7 +272,8 @@ harvest path in \autoref{fig:PlatooningRoute}. The harvested volume during this 
 	%\node[above=0.5cm] (A){Patch G};
 	%\draw[red] ($(D)+(-1.5,0)$) ellipse (2cm and 3.5cm)node[yshift=3cm]{Patch H};
 	\end{tikzpicture}
-\caption{Markov Chain for the states \acs{PD} 0, 1 and 2, which represent the current \acf{PD} and harvest speed from \autoref{tab:markov_chain}.}
+\caption{Markov Chain for the states \acf{PD} 0, 1 and 2, which represent the current \ac{PD} and harvest speed
+from \autoref{tab:markov_chain}.}
 \label{fig:ConnectionStates}
 \end{figure}
 
@@ -226,17 +298,18 @@ Farbcodes
 
 \begin{figure}[H]%
 	\centering
-	\includegraphics[width=0.7\textwidth]{figures/drawings-HALF_Full}
-	\caption{Simulated PER in regards to SNR for chosen HE-MCS values for IEEE 802.11ax physical layer parameters
-			of a GI of 3200 ns, a bandwidth of 20 MHz and 2 spatial streams.}
+	\includegraphics[width=0.7\textwidth]{figures/platoonHALF}
+	\caption{\acf{TM} position left of the \acf{FH} for overloading, where the \ac{TM} is half full and the
+		\ac{FH} starts the \autoref{alg:SearchTM} to search for a next empty \ac{TM},
+		which can later take over the loading position.}
 	\label{fig:PlatooningHF}%
 \end{figure}
 
 \begin{figure}[H]%
 	\centering
-	\includegraphics[width=0.7\textwidth]{figures/drawings-FULL}
-	\caption{Simulated PER in regards to SNR for chosen HE-MCS values for IEEE 802.11ax physical layer parameters
-			of a GI of 3200 ns, a bandwidth of 20 MHz and 2 spatial streams.}
+	\includegraphics[width=0.5\textwidth]{figures/platoonFULL}
+	\caption{Change of \acf{TM}s in the Application Agricultural Platooning Service, where $TM\_1$
+	is full and leaves the field while the empty $TM\_2$ takes over the overloading position.}
 	\label{fig:PlatooningFull}%
 \end{figure}
 
