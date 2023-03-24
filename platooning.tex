@@ -4,10 +4,10 @@ The network performance metric consists of the transmission latency, which descr
 on application layer, and the update rate of the platooning service, which defines how long ago a new position update
 was received by the \ac{TM} in the Platooning Service.
 
-Ns-3 is suitable for this simulation, because it supports simulation on the application layer level. Via the extension Netsimulyzer
-a graphical user interface to visualize the simulation results is available.
+Ns-3 is suitable for this simulation, because it supports simulation on the application layer level.
+Via the extension Netsimulyzer a graphical user interface to visualize the simulation results is available.
 
-Any packets in ns-3 can be tagged with a packet Tag \footnote{https://www.nsnam.org/docs/release/3.36/doxygen/classns3_1_1_tag.html},
+Any packets in ns-3 can be tagged with a packet Tag \footnote{\url{https://www.nsnam.org/docs/release/3.36/doxygen/classns3_1_1_tag.html}},
 which are designed to add additional information to the packet. Every added packet Tag belongs to the packet and does not change
 the packet size or characteristics. Throughout the simulation, I used packets tags to add information, which were needed to be
 transferred.
@@ -34,12 +34,22 @@ between the machines. The Wi-Fi data rate is managed by a Constant Rate Wifi Man
 transmission mode and a data mode for uniform transmissions.
 The transmission modes are configured according
 to the parameters in \autoref{tab:SimulationParametersWiFi}.
+
 The parameters are chosen from the results of the physical layer analysis of
-\autoref{sec:DataRate} and \autoref{sec:Robustness}. Non-uniform transmissions are used to broadcast the Agricultural Platooning
-Service advertisements. The non-uniform transmission parameters enable the longest possible
-transmission range, which results in the lowest data rate. Since no high data rate is required to advertise the Service, the parameters were
-chosen to maximize the transmission range. Uniform transmission parameters are used to exchange Agricultural Platooning Service data between
+\autoref{sec:DataRate} and \autoref{sec:Robustness}.
+Non-uniform transmissions are used to broadcast the Agricultural Platooning
+Service advertisements.
+The non-uniform transmission parameters enable the longest possible
+transmission range, which results in the lowest data rate.
+Since no high data rate is required to advertise the Service, the parameters were
+chosen to maximize the transmission range.
+Uniform transmission parameters are used to exchange Agricultural Platooning Service data between
 the \ac{FH} and the \ac{TM}. \todo{Robustness?DataRate? Fieldexperiments}
+
+The simulation is based on the ns-3 ConstantSpeedPropagationDelayModel, which use the speed of light as a signal
+propagation speed.
+Additionally, I configured  the ns-3 FriisPropagationLossModel, which is a free space propagation loss model.
+\todo[color=yellow]{explain?}
 
 \begin{table}[H]
 	\centering
@@ -50,7 +60,7 @@ the \ac{FH} and the \ac{TM}. \todo{Robustness?DataRate? Fieldexperiments}
 		\ac{GI} & \SI{3200}{\nano\second}\\
 		Frequency Spectrum & \SI{5.6}{\giga\hertz}\\
 		\ac{BW} & \SI{20}{\mega\hertz}\\
-		max. Transmission Power & \SI{25}{\dBm}\\
+		max. Transmission Power & \SI{25}{\decibel}\\
 		Antenna Gain & \SI{5}{\dB}\\
 		Maximum retries & \num{3}\\
 		 & \\
