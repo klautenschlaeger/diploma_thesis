@@ -4,7 +4,7 @@ To gain a better insight into requirements of the \ac{WIC} use cases Platooning 
 
 The goal of analysing the corn harvest data was to investigate the machines moving in the working scenarios relative to each other.
 The machines' speed and distance in tracked harvest platoons data may result in new use case requirements,
-e.g. latency or communication range of Platooning and Streaming Services.
+e.g.\ latency or communication range of Platooning and Streaming Services.
 The machinery movement profile can be used to identify when shadowing effects may occur in the work scenario or
 when machines meet in the field.
 
@@ -12,7 +12,8 @@ To get GPS data of the corn harvest,
 I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany for two days in September.
 The workflow for collecting the corn harvest process data was as follows.
 I handed out the tablets to the drivers, which left the farm with the tablets in the driver's cabs to drive to
-the field in the morning. The tablets recorded the position and speed of the \ac{FH} and the \ac{TM}s every second of the day.
+the field in the morning.
+The tablets recorded the position and speed of the \ac{FH} and the \ac{TM}s every second of the day.
 During breaks, the tablets continued to capture the NMEA data stream of their GPS even if the positions and speed did not change.
 
 After recording the process data, I anonymised it.
@@ -67,7 +68,8 @@ The weights are \nicefrac{3}{5} and \nicefrac{2}{5} for the distance and speed d
 the closer \ac{TM} is more likely in a harvest and overloading scenario with the \ac{FH}.
 It uses a weighted sum of distance and speed difference between \ac{FH} and \ac{TM} to detect the platooning scenarios.
 I determined the weights using the Trial-and-Error method, setting the weights and displaying
-the found platoons scenarios on the map. Then I adjusted the weights until the detected platoons scenarios were correct.
+the found platoons scenarios on the map.
+Then I adjusted the weights until the detected platoons scenarios were correct.
 
 For verification purposes, I displayed the found platoons scenarios on the map
 and confirmed that the found platoon was correct and the weights were set correctly.
@@ -101,13 +103,13 @@ platoons can be detected.
 \end{figure}
 \begin{figure}%
    \centering
-   \includegraphics[width=0.85\textwidth]{figures/distanceHarvestScenario.pdf}
+   \includegraphics[width=0.85\textwidth]{figures/distanceHarvestScenario}
    \caption{Distribution of time proportions where a given distance was between \acf{FH} and \acf{TM} in a harvest platoon scenario.}%
    \label{fig:distance}%
 \end{figure}
 \begin{figure}%
    \centering
-   \includegraphics[width=0.85\textwidth]{figures/speedHarvestScenario.pdf}
+   \includegraphics[width=0.85\textwidth]{figures/speedHarvestScenario}
    \caption{Distribution of time proportions where \acf{FH} and \acf{TM} drove with a certain speed in a harvest platoon scenario}%
    \label{fig:speed}%
 \end{figure}
@@ -187,7 +189,8 @@ I reviewed the recorded position data to get an overview of the \ac{TM}'s positi
    Relative\_Bearing = \beta - \alpha ,
 \end{equation}
 Assuming that the \ac{FH} does not move backwards, the relative bearing describes the relative angle from the
-\ac{FH} to \ac{TM}. The result is displayed in \autoref{fig:bearing}.
+\ac{FH} to \ac{TM}.
+The result is displayed in \autoref{fig:bearing}.
 It can be observed that the \ac{TM} is mainly close to the \ac{FH} at an angle of \SIrange{30}{150}{\degree} at
 a distance between \SIrange{0}{10}{\metre}.
 
@@ -216,7 +219,7 @@ Another notable fact is that the \ac{TM} hardly ever stayed to the left of the \
 Since the \ac{FH} often made left turns, the crop was usually already harvested to the right of the \ac{FH} so
 that the \ac{TM} could drive there without running over the crop.
 On rare occasions, the \ac{TM} was also to the left of the \ac{FH}.
-Such a platooning scenario can be an exception or a driving manoeuvrer to start cutting a new part of the field.
+Such a platooning scenario can be an exception or a driving manoeuvre to start cutting a new part of the field.
 
 The results reveal only a first impression of the requirements of the harvest and loading process.
 More data from around the world must be analysed to make a general statement.

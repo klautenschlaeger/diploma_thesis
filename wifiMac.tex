@@ -4,15 +4,15 @@ The next layer in the OSI model is the Data Link Layer.
 The Data Link Layer consists of Medium Access - and Logic Link Control functionalities.
 
 
-According to \textcite{kauffels_wireless_2002}, the medium access control functionalities cover network entry - ,network authentication - and media access methods.
-The author explains, that every \ac{AP} send beacon frames periodically to synchronise its stations in the \ac{BSS} and that the beacon frame contains the \ac{SSID}, which identifies the \ac{BSS} or \ac{ESS} of the station. \textcite{sauter_wireless_2022} adds that a beacon frame contains a \SI{16}{\bit} - long capability information element. Each bit here signals that the \ac{AP} provides a particular function or has a specific feature.
+According to \textcite{kauffels_wireless_2002}, the medium access control functionalities cover network entry, authentication, and media access methods.
+The author explains that every \ac{AP} send beacon frames periodically to synchronise its stations in the \ac{BSS} and that the beacon frame contains the \ac{SSID}, which identifies the \ac{BSS} or \ac{ESS} of the station. \textcite{sauter_wireless_2022} adds that a beacon frame contains a \SI{16}{\bit} - long capability information element. Each bit here signals that the \ac{AP} provides a particular function or has a specific feature.
 
-\textcite{kauffels_wireless_2002} explains the procedure for network entry of a station.
+\textcite{kauffels_wireless_2002} explains a station's network entry procedure.
 A station can use the passive or the active scanning mode.
-In passive scanning mode, the station listens for a beacon frame in the various transmission channels.
-Alternatively, in active scanning mode, a station can also send out a probe frame.
+The station listens for a beacon frame in the various transmission channels in passive scanning mode.
+Alternatively, a station can also send out a probe frame in active scanning mode.
 This can contain an already known \ac{SSID} to test the presence of the \ac{AP}.
-To get an \ac{AP} in range, the probe-frame can also contain a broadcast SSID that causes all nearby \ac{AP}s to respond.
+To get an \ac{AP} in range, the probe frame can also contain a broadcast SSID that causes all nearby \ac{AP}s to respond.
 The response of an \ac{AP} to the probe frame is the probe-response frame, which contains the same information as a beacon frame.
 With the information from the beacon frame, a station can start the authentication process.
 
@@ -26,118 +26,92 @@ The author points out that Shared Key Authentication is no longer used today.
 \textcite{sommer_vehicular_2014} adds that this authentication process differs for the Ad-Hoc mode, where every station can
 authenticate new stations.
 
-After the authentication process, the station receives a time-synchronization function with a timestamp, the physical layer
+After the authentication process, the station receives a time-synchronisation function with a timestamp, the physical layer
 parameter configuration and the \ac{SSID} of the \ac{BSS} or \ac{ESS}.
 The \ac{STA} can start the media access method now.
 
 The IEEE 802.11 standard describes the two media access methods \ac{DCF} and \ac{PCF}.
 
 \textcite{sauter_wireless_2022} explains that \ac{DCF} is based on the media access method \ac{CSMACA}.
-In \ac{CSMACA} a device that is willing to transmit senses in the air transmission medium for a transmitting activity.
+In \ac{CSMACA}, a device willing to transmit senses in the air transmission medium for a transmitting activity.
 If no other device is transmitting, the device can transmit.
-In the case of transmit activity, the terminal must wait at least until the transmission and the \ac{IFS} are over.
+In transmitting activity, the terminal must wait at least until the transmission and the \ac{IFS} are over.
 Various access priorities are implemented by different \ac{IFS} lengths \cite{sommer_vehicular_2014}.
 Since data transmission via the air transmission medium is very vulnerable to errors,
 the standard IEEE 802.11 requires that each received unicast packet must be confirmed with an \ac{ACK} frame \cite{sommer_vehicular_2014}.
 The \ac{DCF} \ac{IFS} ensures that an \ac{ACK} frame can be sent before another station uses the same channel to send a data frame.
 To avoid multiple devices transmitting at the same time after \ac{DIFS}, each ready-to-transmit device determines
-a random backoff time from the a time interval, called the contention window.
-The device with the shortest backoff time transmits next and all other ready-to-transmit devices restart the media access procedure.
-In case two devices start sending next because they both randomly chose the shortest backoff time,
-the transmitted signal will interfere and the packets will not be answered with an \ac{ACK} frame.
-\textcite{sommer_vehicular_2014} adds that in case of such a faulty transmission, the contention window increases exponentially, until the maximum value of retries is reached and
+a random backoff time from a time interval called the contention window.
+The device with the shortest backoff time transmits next, and all other ready-to-transmit devices restart the media access procedure.
+If two devices start sending next because they randomly chose the shortest backoff time,
+the transmitted signal will interfere, and the packets will not be answered with an \ac{ACK} frame.
+\textcite{sommer_vehicular_2014} adds that in case of such a faulty transmission, the contention window increases exponentially until the maximum value of retries is reached and
 the contention window size is reset to the starting value.
 
 To share the knowledge of a transmission time and the subsequently \ac{IFS}, a packet contains a \ac{NAV} that
 specifies the time the air transmission medium is used.
-As the \ac{NAV} information can be reset by other transmissions from a different, overlapping network, collisions can occur.
+Collisions can occur as the \ac{NAV} information can be reset by other transmissions from a different, overlapping network.
 To avoid this, IEEE 802.11ax maintains two \ac{NAV}s, one for intra-\ac{BSS} and one for inter-\ac{BSS} transmissions \cite{noauthor_ieee_2021}
 
 The extension IEEE 802.11e introduced a amendment of \ac{CSMACA} called \ac{EDCA} \cite{sommer_vehicular_2014} \cite{wu_ieee_2006}.
 According to \textcite{sommer_vehicular_2014}, \ac{EDCA} provides a Quality-of-Service transmission procedure, which classifies \num{4} access categories.
-Each access categories has a different minimum and maximum contention window sizes and different \ac{IFS} lengths, named
+Each access category has a different minimum and maximum contention window sizes and different \ac{IFS} lengths, named
 arbitration \ac{IFS}.
-\textcite{wu_ieee_2006} explains, that each access category keeps its own backoff counter and frame queue.
-Every access category is handled as an independent virtual station, which tries to access the medium.
+\textcite{wu_ieee_2006} explains that each access category keeps its own backoff counter and frame queue.
+Every access category is handled as an independent virtual station which tries to access the medium.
 When a collision of
-two transmissions of different access categories occurs and both contention windows are set to zero at the same time,
-the \ac{EDCA} mechanism ensures that the access category with the higher priority wins.
+two transmissions of different access categories occur, and both contention windows are set to zero simultaneously, the \ac{EDCA} mechanism ensures that the access category with the higher priority wins.
 
-The four different access categories are listed in \autoref{tab:access_categories}.
+The four access categories are listed in \autoref{tab:access_categories}.
 
 \begin{table}[!ht]
-	\centering
-	\begin{tabular}{>{\raggedright}p{2.5cm}p{3.2cm}}
-		\toprule
-		Access Category & Priority (1 = Highest)\\
-		\midrule
-		Voice & 1 \\
-		Video & 2 \\
-		Best Effort & 3 \\
-		Background & 4 \\
-		\bottomrule
-	\end{tabular}
-	\caption{Access Categories and their priorities for IEEE 802.11e \ac{EDCA} \cite{wu_ieee_2006}}
-	\label{tab:access_categories}
+   \centering
+   \begin{tabular}{>{\raggedright}p{2.5cm}p{3.2cm}}
+      \toprule
+      Access Category & Priority (1 = Highest)\\
+      \midrule
+      Voice & 1 \\
+      Video & 2 \\
+      Best Effort & 3 \\
+      Background & 4 \\
+      \bottomrule
+   \end{tabular}
+   \caption{Access Categories and their priorities for IEEE 802.11e \ac{EDCA} \cite{wu_ieee_2006}}
+   \label{tab:access_categories}
 \end{table}
 
-
-
-In various network architectures the "hidden station"-problem may occur.
-As you can see in \autoref{fig:hidden_station}, Station A is not able to sense a transmission of station B and vise versa.
+In various network architectures, the "hidden station"-problem may occur.
+As you can see in \autoref{fig:hidden_station}, Station A cannot sense a transmission of station B and vice versa.
 In case of simultaneous transmission of both stations, interferences around the \ac{AP} may occur.
 \begin{figure}%
-	\centering
-	\includegraphics[width=0.75\textwidth]{figures/hidden_station.pdf}
-	\caption{Hidden Station Problem, where interferences at the \acf{AP} can occur, when \acf{STA} A and B send simultaneously}%
-	\label{fig:hidden_station}%
+   \centering
+   \includegraphics[width=0.75\textwidth]{figures/hidden_station.pdf}
+   \caption{Hidden Station Problem, where interferences at the \acf{AP} can occur, when \acf{STA} A and B send simultaneously}%
+   \label{fig:hidden_station}%
 \end{figure}
 
 
 To prevent the hidden station problem, \textcite{sauter_wireless_2022} explains that a \ac{STA} can access the medium
 via the point coordination function.
 The \ac{STA} sends a \ac{RTS} frame to the \ac{AP} and waits for a \ac{CTS} frame.
-After receiving the \ac{CTS} frame, the \ac{STA} has reserved the medium for a certain time and can send its data frame.
+After receiving the \ac{CTS} frame, the \ac{STA} has reserved the medium for a specific time and can send its data frame.
 The successful transmission of the data frame is confirmed with an \ac{ACK} frame.
+To avoid another \ac{STA} accessing the medium during the \ac{RTS} and \ac{CTS} frames, the \ac{PCF} \ac{IFS} is
+shorter than the \ac{DCF} \ac{IFS}.
+This allows the \ac{AP} to send the \ac{CTS} frame before another \ac{STA} can access the medium.
 
-\textcite{sauter_wireless_2022} states that the point coordination function is usually not configured, because it intro
-a station can access the media via the point coordination function.  ohne Wettbewerb mit optionaler Priorisierung
 
-PIFS interval kürzer,
-beacon frame
-CF Parameter set-element
+
+\textcite{sauter_wireless_2022} states that the point coordination function is usually not configured because it introduces additional
+overhead of the \ac{RTS} and \ac{CTS} frames, which is only worth it when the data frame is large.
+
+
+\begin{comment}
+	CF Parameter set-element
 \todo{nicht genauer eingehen, weil nicht relevant für die Arbeit? Darf ich das schreiben?}
-
-CSMA /CA
-Point Coordination Function
-
-\textcite{sauter_wireless_2022}
-DCF oberbegriff für CSMA /CA
-
-
 Short Interframe Space SIFS ACK Frame
-
-Hidden Station Problem
-CTS and RTS
-
-IEEE 802.11e DCF erweiterung für Video Streaming
-
-
 
 MAC Header
 
+\end{comment}
 
-\textcite{sauter_wireless_2022}
-every package management or usage data send ackknowledgement
-
-Hidden Station Szenario
-Reservieren
-RTS CTS
-meist nicht konfiguriert / ausgeschalten, bei großen Paketen sinnvoll
-
-
-
-Authentifizierung
-- Open System -Authentification
-- Shared key Authentification
-(nach neu nicht mehr verwendet
