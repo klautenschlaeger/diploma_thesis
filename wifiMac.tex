@@ -85,18 +85,23 @@ The four different access categories are listed in \autoref{tab:access_categorie
 
 In various network architectures the "hidden station"-problem may occur.
 As you can see in \autoref{fig:hidden_station}, Station A is not able to sense a transmission of station B and vise versa.
-In case of simultaneous transmission of both stations, interference around the \ac{AP} may occur.
+In case of simultaneous transmission of both stations, interferences around the \ac{AP} may occur.
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/hidden_station.pdf}
-	\caption{Hidden Station Problem}%
+	\caption{Hidden Station Problem, where interferences at the \acf{AP} can occur, when \acf{STA} A and B send simultaneously}%
 	\label{fig:hidden_station}%
 \end{figure}
 
 
-Um das hidden station problem zu umgehen kann eine Station nach \textcite{sauter_wireless_2022}
-Point coordinator
-ohne Wettbewerb mit optionaler Priorisierung
+To prevent the hidden station problem, \textcite{sauter_wireless_2022} explains that a \ac{STA} can access the medium
+via the point coordination function.
+The \ac{STA} sends a \ac{RTS} frame to the \ac{AP} and waits for a \ac{CTS} frame.
+After receiving the \ac{CTS} frame, the \ac{STA} has reserved the medium for a certain time and can send its data frame.
+The successful transmission of the data frame is confirmed with an \ac{ACK} frame.
+
+\textcite{sauter_wireless_2022} states that the point coordination function is usually not configured, because it intro
+a station can access the media via the point coordination function.  ohne Wettbewerb mit optionaler Priorisierung
 
 PIFS interval kürzer,
 beacon frame
@@ -121,9 +126,6 @@ IEEE 802.11e DCF erweiterung für Video Streaming
 
 MAC Header
 
-Netzeintritt:
-
-Timing Synchronisationsfunktion TSF Timer-Wert
 
 \textcite{sauter_wireless_2022}
 every package management or usage data send ackknowledgement

@@ -27,10 +27,13 @@ The inital position of the \ac{TM}s is a row below the \ac{FH}s, which is displa
 	\label{fig:PlatooningRoute}%
 \end{figure}
 
-Every machine is represented by a ns-3 Node. Each Node has a mobility model, which describes the movement of the machine.
+Every machine is represented by a ns-3 Node.
+Each Node has a mobility model, which describes the movement of the machine.
 In order to exchange data between the machines, every machine is equipped with ns-3 WifiNetDevice, which is a IEEE 802.11ax
-Wi-Fi device. Every Wi-Fi Device runs in Ad-Hoc mode to enable direct communication
-between the machines. The Wi-Fi data rate is managed by a Constant Rate Wifi Manager, which has a Non-Uniform
+Wi-Fi device.
+Every Wi-Fi Device runs in Ad-Hoc mode to enable direct communication
+between the machines.
+The Wi-Fi data rate is managed by a Constant Rate Wifi Manager, which has a Non-Uniform
 transmission mode and a data mode for uniform transmissions.
 The transmission modes are configured according
 to the parameters in \autoref{tab:SimulationParametersWiFi}.
@@ -79,16 +82,17 @@ Additionally, I configured  the ns-3 FriisPropagationLossModel, which is a free 
 	\label{tab:SimulationParametersWiFi}
 \end{table}
 
-Every machine node runs a ns-3 Application, which is responsible for the Agricultural Platooning Service. The application
-is identified by a unique identifier runs an UDP socket to exchange data with other Agricultural Platooning Service applications.
-Every UDP socket can be addressed by a IP address and a port number. The IP address is the IP address of the machine node.
+Every machine node runs a ns-3 Application, which is responsible for the Agricultural Platooning Service.
+The application is identified by a unique identifier runs an UDP socket to exchange data with other Agricultural Platooning Service applications.
+Every UDP socket can be addressed by a IP address and a port number.
+The IP address is the IP address of the machine node.
 
 In the beginning, every \ac{FH} broadcasts a search request to find a empty \ac{TM} to load the corn onto.
 As shown in \autoref{fig:PlatooningInit}, multiple \ac{TM}s receive the search request and answer with
 their current fill level of the \ac{TM}'s trailer.
-The \ac{FH} chooses the \ac{TM} with the lowest fill level and sends a connection request to the \ac{TM}. As soon as the
-\ac{TM} receives the connection request, it answers with a connection response. When the \ac{FH} receives the connection response, a
-Agricultural Platooning Service is started.
+The \ac{FH} chooses the \ac{TM} with the lowest fill level and sends a connection request to the \ac{TM}.
+As soon as the \ac{TM} receives the connection request, it answers with a connection response.
+When the \ac{FH} receives the connection response, a Agricultural Platooning Service is started.
 \begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.7\textwidth]{figures/platoonINIT}
