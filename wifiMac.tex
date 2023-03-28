@@ -62,7 +62,9 @@ Every access category is handled as an independent virtual station which tries t
 When a collision of
 two transmissions of different access categories occur, and both contention windows are set to zero simultaneously, the \ac{EDCA} mechanism ensures that the access category with the higher priority wins.
 
-The four access categories are listed in \autoref{tab:access_categories}.
+The four access categories are listed in \autoref{tab:access_categories}. 
+
+\ac{EDCA} is integrated into the modern IEEE 802.11 standard data link layer of IEEE 802.11ac\cite{noauthor_ieee_2021-1} and IEEE 802.11ax \cite{noauthor_ieee_2021}.
 
 \begin{table}[!ht]
    \centering
@@ -100,10 +102,40 @@ To avoid another \ac{STA} accessing the medium during the \ac{RTS} and \ac{CTS} 
 shorter than the \ac{DCF} \ac{IFS}.
 This allows the \ac{AP} to send the \ac{CTS} frame before another \ac{STA} can access the medium.
 
-
-
 \textcite{sauter_wireless_2022} states that the point coordination function is usually not configured because it introduces additional
 overhead of the \ac{RTS} and \ac{CTS} frames, which is only worth it when the data frame is large.
+
+Larger frames can also be split into smaller frames to reduce the probability of collisions.
+This procedure is called fragmentation, which divides the data in up to \num{16} frames
+when a certain data length threshold is exceeded \cite{noauthor_ieee_2021}.
+The fragmentated frames are transmitted by the three different \ac{ACK} policies, which are described in \cite{sauter_wireless_2022}.
+
+\textcite{sauter_wireless_2022} adds IEEE 802.11e introduced a acknowledgment policy called Block \ac{ACK},
+
+
+\begin{figure}%
+    \centering
+    \subfloat[normal ACK]{\label{fig:ACK}\includegraphics[width=0.7\textwidth]{figures/normalACKs}}%
+    \\
+    \subfloat[fragmentation]{\label{fig:Fragmentation}\includegraphics[width=0.7\textwidth]{figures/fragmentation}}%
+    \\
+    \subfloat[fragmentation and Block ACK]{\label{fig:BLOCKACK}\includegraphics[width=0.7\textwidth]{figures/BlockACK}}
+    \caption{Data transmission between a sender and receiver in regards to the time with normal \acf{ACK} \autoref{fig:ACK},
+    fragmentation \autoref{fig:Fragmentation} and additional Block \ac{ACK} \autoref{fig:BLOCKACK}}%
+    \label{fig:ACKS}%
+\end{figure}
+
+Similar to
+DL MU transmission, 802.11ax enables UL MU transmissions.
+These can also use
+Orthogonal Frequency-Division Multiple Access (OFDMA) in addition to the already
+known MIMO of 802.11ac.
+OFDMA groups the orthogonal frequency subcarriers
+into Resource Unit (RU)s, which can be selected by the transmitter for optimal
+transmission to the receiver.
+This increases the Signal-to-Interference-plus-Noise
+Ratio (SINR).
+
 
 
 \begin{comment}
