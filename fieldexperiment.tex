@@ -15,34 +15,38 @@ The tractor will start \SI{50}{\metre} behind the \ac{CH}, advance to the \ac{CH
 speed of \SIrange{1}{5}{\kilo\metre\per\hour} (\SIrange{0.28}{1.39}{\metre\per\second}) as shown in \autoref{fig:fieldDrive}.
 \begin{figure}[]%
 	\centering
-	\includegraphics[width=0.4\textwidth]{figures/FieldExperimentDrive}
-	\label{fig:fieldDrive}
+	\includegraphics[width=0.2\textwidth]{figures/FieldExperimentDrive}
 	\caption{Path around the static \acf{CH}, which the \acf{TM} will drive during the experiment to mimic various overloading positions}%
+	\label{fig:fieldDrive}
 \end{figure}
 While driving along the specified path, the tractor will mimic various overloading positions, where shadowing effects can occur. After the tractor has passed the \ac{CH},
 it will drive back to its starting position, and the experiment will be repeated with different overloading distances between the \ac{CH} and the tractor.
 
 During the experiments, \ac{GPS} receivers at the agricultural machines will record the position and speed of the machines every \SI{1}{\second}.
 
-The Wi-Fi setup consists of a Milesight Industrial Router UR75 \cite{milesight datasheet}, which implements the standards IEEE 802.11 b/g/n in the \SI{2.4}{\giga\hertz} band and IEEE 802.11 a/n/ac in the \SI{5}{\giga\hertz} band and
-IEEE 802.11 a/n/ac in the \SI{5}{\giga\hertz} band. The router is equipped with two omnidirectional antennas for  \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} usage.
+The Wi-Fi setup consists of a Milesight Industrial Router UR75 \footnote{\url{https://iot-shop.de/en/shop/mil-ur75-500gl-g-p-w-milesight-ur75-500gl-g-p-w-industrial-cellular-5g-router-with-gps-wifi-and-poe-5677}}, which implements the standards IEEE 802.11 b/g/n in the \SI{2.4}{\giga\hertz} band and IEEE 802.11 a/n/ac in the \SI{5}{\giga\hertz} band and
+IEEE 802.11 a/n/ac in the \SI{5}{\giga\hertz} band.
+The router is equipped with two omnidirectional antennas for  \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} usage.
 \textcite{brinkhoff_characterization_2017} and \textcite{paul_characterizing_2011}  already found out that placing the antenna higher above ground improves
-the robustness and communication range of Wi-Fi networks in an outdoor environment. As the regulation in the German Law StVZO §32 Abs. 2  limits the height of
+the robustness and communication range of Wi-Fi networks in an outdoor environment.
+As the regulation in the German Law StVZO §32 Abs. 2 limits the height of
 every agricultural vehicle or combination of vehicles to less than \SI{4.0}{\metre}, the maximum antenna height is \SI{4}{\metre} above the ground. Therefore, I will mount the router on the tractor's roof at a height \SI{4}{\metre} above the ground.
 
-\todo[color=blue]{Datasheet}
-I set up two Wi-Fi devices on the \ac{CH}, which are two UP Squared Board \cite{up_squared_board datasheet} with an Intel AX210 Wi-Fi module \cite{intel_ax210}.
+I set up two Wi-Fi devices on the \ac{CH}, which are two UP Squared Board \footnote{\url{https://eu.mouser.com/datasheet/2/826/UP_Square_DatasheetV0_4-3084829.pdf}} with an Intel AX210 Wi-Fi module \footnote{\url{https://docs.alfa.com.tw/datasheets/alfa-network_ait-ax210-ex_latest.pdf}}.
+
 Every Intel AX210 Wi-Fi module supports the IEEE 802.11ax standard for \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and is equipped with two antennas,
 which support omnidirectional transmissions in the \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and have a gain of \SI{5}{\decibel}.
 The boards are mounted on the roof of the \ac{CH} next to one another at a height \SI{4}{\metre} above the ground too.
 
-The router on the tractor sets up a Wi-Fi \ac{AP}. One of the boards on the \ac{CH} connects to the \ac{AP} of the router as a Wi-Fi \ac{STA} and hosts an iperf3 \footnote{https://iperf.fr/} server.
+The router on the tractor sets up a Wi-Fi \ac{AP}.
+One of the boards on the \ac{CH} connects to the \ac{AP} of the router as a Wi-Fi \ac{STA} and hosts an iperf3 \footnote{\url{https://iperf.fr/}} server.
 A notebook is connected via LAN to the router and runs an iperf3 client, which connects to the iperf3 server on the \ac{CH}.
-The iperf3 client sends \SI{100}{\byte} UDP packets every \SI{100}{\milli\second} to the iperf3 server on the \ac{CH}. The server records the received packets.
+The iperf3 client sends \SI{100}{\byte} UDP packets every \SI{100}{\milli\second} to the iperf3 server on the \ac{CH}.
+The server records the received packets.
 
 Many different Wi-Fi transmissions arise through the iperf3 UDP packets, the Wi-Fi manager of the Milesight Industrial Router, and the Intel AX210 Wi-Fi card.
-These transmissions can be RTS/CTS, ACK, Data, Beacon or Probe request frame, displayed in \autoref{fig:fieldWifi}. Through
-testing, I found out that the Wi-Fi manager of the Wi-Fi devices can apply VHT \ac{MCS} \numrange{0}{9} and \ac{STBC} as physical layer configurations.
+These transmissions can be RTS/CTS, ACK, Data, Beacon or Probe request frame, displayed in \autoref{fig:fieldWifi}.
+Through testing, I found out that the Wi-Fi manager of the Wi-Fi devices can apply VHT \ac{MCS} \numrange{0}{9} and \ac{STBC} as physical layer configurations.
 
 \begin{figure}[H]%
 	\centering
@@ -52,9 +56,9 @@ testing, I found out that the Wi-Fi manager of the Wi-Fi devices can apply VHT \
 	\label{fig:fieldWifi}%
 \end{figure}
 
-The other UP Squared Board on the \ac{CH} uses the Wi-Fi card in the monitor mode and records every transmission in the \SI{5.6}{\giga\hertz} band using tcpdump \footnote{https://www.tcpdump.org/}.
+The other UP Squared Board on the \ac{CH} uses the Wi-Fi card in the monitor mode and records every transmission in the \SI{5.6}{\giga\hertz} band using tcpdump \footnote{\url{https://www.tcpdump.org/}}.
 Since the UP Squared board is placed next to the other board on the roof of the \ac{CH}, it can record the same signals the other board receives in the UDP transmission.
-The tcpdump records are in pcap - format, which can be analyzed using Wireshark\footnote{https://www.wireshark.org/}.
+The tcpdump records are in pcap - format, which can be analyzed using Wireshark\footnote{\url{https://www.wireshark.org/}}.
 Using Wireshark, I can identify possible retransmissions to calculate a \ac{PER}.
 At the same time, the data contains the \ac{RSS} of each antenna and the physical layer parameters for every
 transmission, allowing each transmission's robustness to be calculated as a function of the \ac{RSS} and the physical
@@ -85,3 +89,43 @@ which means that the tractor drives \num{5} times the same path, which is displa
 	the field experiments.}
 	\label{tab:fieldChannels}
 \end{table}
+
+\subsubsection*{Trail Run}
+
+\begin{figure}[H]%
+	\centering
+	\includegraphics[width=0.98\textwidth]{figures/wireless5}
+	\caption{All QoS data transmissions between the Wi-Fi \acf{AP} on the \acf{TM} and the Wi-Fi \ac{STA} on the \acf{CH} in a trail run}
+	\label{fig:trailrunAll}%
+\end{figure}
+
+\begin{figure}[H]%
+	\centering
+	\includegraphics[width=0.98\textwidth]{figures/wireless5_lan}
+	\caption{All QoS data transmissions between the Wi-Fi \acf{AP} on the \acf{TM} and the Wi-Fi \ac{STA} on the \acf{CH} in a trail run,
+	which were initiated by the iperf3 client on the \acf{TM}}
+	\label{fig:trailrunIperf}%
+\end{figure}
+
+\begin{figure}[H]%
+	\centering
+	\includegraphics[width=0.98\textwidth]{figures/wireless5_ap}
+	\caption{QoS data transmissions between the Wi-Fi \acf{AP} on the \acf{TM} and the Wi-Fi \ac{STA} on the \acf{CH} in a trail run,
+	which were initiated by \ac{AP}}
+	\label{fig:trailrunAP}%
+\end{figure}
+
+\begin{figure}[H]%
+	\centering
+	\includegraphics[width=0.98\textwidth]{figures/wireless5_lan}
+	\caption{All QoS data transmissions between the Wi-Fi \acf{AP} on the \acf{TM} and the Wi-Fi \ac{STA} on the \acf{CH} in a trail run,
+	which were initiated by the Wi-Fi \ac{STA} on the \ac{CH}}
+	\label{fig:trailrunNode}%
+\end{figure}
+
+\begin{figure}[H]%
+	\centering
+	\includegraphics[width=0.8\textwidth]{figures/All_retries}
+	\caption{Percentage of retransmissions for every transmission in the trail run}
+	\label{fig:retriesCount}%
+\end{figure}
