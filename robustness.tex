@@ -25,26 +25,39 @@ Since Release R2019b \footnote{https://de.mathworks.com/help/wlan/release-notes.
 My robustness analysis is based on the WLAN Toolbox example wlan/HESUExample \footnote{https://de.mathworks.com/help/wlan/ug/802-11ax-packet-error-rate-simulation-for-single-user-format.html} to simulate the \ac{PER} of point-to-point IEEE 802.11ax networks for
 a specified \ac{SNR} values.
 
-First, I set the IEEE 802.11ax physical layer parameters using the wlanHEConfig object, where I define the following default parameters:
-\begin{itemize}
-	\item \ac{GI} of \SI{3200}{\nano\second}
-	\item \ac{BW} of \SI{20}{\mega\hertz}
-	\item 2 spatial streams
-	\item 2 transmit antennas
-	\item \ac{DCM} disabled
-	\item \ac{STBC} disabled
-	\item \ac{LDPC} enabled
-	\item HE-\ac{MCS} of 0
-	\item \ac{ER} mode disabled
-\end{itemize}
-\todo[color=blue]{use table? Other format?}
-Next, I chose a channel model to simulate the channel. The WLAN Toolbox supports a wide range of channel models, such as wlanTGaxChannel, wlanTGnChannel, wlanTGacChannel, and wlanTGnChannel.
+First, I set the IEEE 802.11ax physical layer parameters using the wlanHEConfig object,
+where I define the default settings in \autoref{tab:robustnessDefaultSettings}.
+
+\begin{table}
+	\centering
+	\begin{tabular}{>{\raggedright}p{4.5cm}p{4.5cm}}
+		\toprule
+		Parameter & Chosen Default Settings \\
+		\midrule
+		\ac{GI} & \SI{3200}{\nano\second} \\
+		\ac{BW} & \SI{20}{\mega\hertz} \\
+		Number Spatial Streams & \num{2}\\
+		Number Transmit Antenna & \num{2} \\
+		\ac{DCM} & disabled \\
+		\ac{STBC} & disabled \\
+		\ac{HE}-\ac{MCS} & \num{0} \\
+		\ac{ER} & disabled \\
+		\ac{LDPC} & enabled \\
+		\bottomrule
+	\end{tabular}
+	\caption{Default physical layer settings for the IEEE 802.11ax robustness simulations}
+	\label{tab:robustnessDefaultSettings}
+\end{table}
+
+Next, I chose a channel model to simulate the channel.
+The WLAN Toolbox supports a wide range of channel models, such as wlanTGaxChannel, wlanTGnChannel, wlanTGacChannel, and wlanTGnChannel.
 The wlanTGaxChannel model supports \num{6} different channel models for IEEE 802.11ax networks, named TGax-A, TGax-B, TGax-C, TGax-D, TGax-E, and TGax-F,
 where the TGax-F channel model is suitable for pseudo-outdoor scenarios \cite{TGAXCHANNEL}.
 The TGax channel models were used for Matlab Wlan Toolbox simulations by \cite{s_performance_2022}, \cite{cao_efficient_2022} and \cite{jin_efficient_2021}.
 
 \cite{TGAXCHANNEL} and \cite{omar_survey_2016} list, that IEEE 802.11ax task group has also implemented the channel models UMa and UMi for
-outdoor urban scenarios. However, the WLAN Toolbox does not support these channel models and they are intended for urban scenarios, which
+outdoor urban scenarios.
+However, the WLAN Toolbox does not support these channel models and they are intended for urban scenarios, which
 
 As I want to simulate outdoor scenarios, I chose the TGax-F channel model, which is suitable for pseudo-outdoor scenarios \cite{TGAXCHANNEL}.
 The wlanTGaxChannel model supports configuring the \ac{BW}, the number of transmit and receive antennas, which I set equal to the configuration of the wlanHEConfig object.
@@ -171,11 +184,12 @@ with higher HE-\ac{MCS} values.
 \begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/GI_PER_to_SNR.pdf}
-	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \ac{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{40}{\mega\hertz} in regards to the number of the chosen \ac{MCS} and \ac{CR} and whether \ac{DCM} is enabled}%
+	\caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen HE-\ac{MCS} values and whether a \ac{GI} of \SI{800}{\nano\second} or \SI{3200}{\nano\second} is enabled for IEEE 802.11ax physical layer parameters of a bandwidth of \SI{20}{\mega\hertz} and 2 spatial streams}%
 	\label{fig:PER_SNR_GI}%
 \end{figure}
-\textcite{patil_ieee_2020} conducted similar simulations for IEEE 802.11n. They agree, that a longer \ac{GI} can increase the robustness against longer delay spreads as they are in the TGn-E and TGn-F channel models,
-which are predecessors of the Tgax-F channel model \cite{TGAXCHANNEL}.
+\textcite{patil_ieee_2020} conducted similar simulations for IEEE 802.11n.
+They agree, that a longer \ac{GI} can increase the robustness against longer delay spreads as they are in the TGn-E and TGn-F channel models,
+which are predecessors of the TGax-F channel model \cite{TGAXCHANNEL}.
 \begin{comment}
 	cite others seane old?? Evelt Van Duc Nguyen, 2016
 
@@ -188,7 +202,9 @@ Next, I simulated the \ac{PER} in regards to the \ac{SNR}  and whether \ac{DCM} 
 HE-MCS \num{0},\num{1},\num{3} and \num{4} aus dem IEEE 802.11ax Standard verwendet.
 
 The results indicate, that using \ac{DCM} can achieve the same \ac{PER} at lower \ac{SNR} values compared to not using \ac{DCM}. A \ac{PER} of less than \SI{10}{\percent} can be achieved at
-a \SI{2}{\decibel} lower \ac{SNR} when using \ac{DCM}. The effect increases to \SI{4}{\decibel} for higher HE-\ac{MCS}\num{4}. The results are plotted in \autoref{fig:PER_SNR_DCM}.
+a \SI{2}{\decibel} lower \ac{SNR} when using \ac{DCM}.
+The effect increases to \SI{4}{\decibel} for higher HE-\ac{MCS}\num{4}.
+The results are plotted in \autoref{fig:PER_SNR_DCM}.
 \begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/DCM_PER_to_SNR.pdf}
@@ -205,6 +221,8 @@ transmitted in one 16-\ac{QAM} symbol, which encodes \SI{4}{\bit}. The authors t
 of the 16-\ac{QAM} symbols via orthogonal subcarriers. At the receiver the authors combine the copies and retrieve the transmitted
 information using the Maximum likelyhood criterion. The results of the author show that a better bite error rate can be achieved while applying
 \ac{DCM} than sending the information via two Quadrature \ac{PSK} or 16-\ac{QAM} modulated symbols without \ac{DCM}.
+\cite{khorov_ieee_2015} DCM 2db gain
+
 
 \subsubsection*{\acf{ER}}
 For a HE-MCS \num{0} and \num{1} the \ac{ER} range mode can be applied additional to \ac{DCM}, when one spatial stream is used \cite{noauthor_ieee_2021}.
