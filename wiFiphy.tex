@@ -130,7 +130,7 @@ For IEEE 802.11ax, this results in the HE-MCS values in \autoref{tab:HEMCS}.
 \end{table}
 
 \begin{comment}
-	\todo{Wellenausbreitung, Überlagerungseffekte, Reflexsion, Reflexsion nicht bei Metall}
+	{Wellenausbreitung, Überlagerungseffekte, Reflexsion, Reflexsion nicht bei Metall}
 
 \end{comment}
 
@@ -247,17 +247,24 @@ In order to further exploit the physical layer capabilities, the single transmit
 \textcite{sauter_wireless_2022} describe the idea behind \ac{MIMO} as the usage of multiple transmit antennas and multiple receiving antennas. Spatial multiplexing is used so that the transmitted signals
 from each antenna are reflected differently on objects and can thus be received from different directions at the receiver antennas.
 
-The authors explain that since IEEE 802.11n, it is possible to use up to four MIMO streams.
-This number was increased again to up to eight MIMO streams in IEEE 802.11ax \cite{noauthor_ieee_2021}.
+The authors explain that since IEEE 802.11n, it is possible to use up to \num{4} MIMO streams.
+This number was increased again to up to \num{8} MIMO streams in IEEE 802.11ax \cite{noauthor_ieee_2021}.
 Since data can be sent simultaneously via each MIMO stream,
 the theoretical data rate can thus increase proportionally depending on the usable streams.
 The mechanism is called \ac{SU}-\ac{MIMO} \cite{noauthor_ieee_2021}.
 
-\textcite{sauter_wireless_2022} mentions, that since IEEE 802.11ac it is possible to use Downlink \ac{MU}-\ac{MIMO}, which allows an \ac{AP} to transmit data to multiple \ac{STA} via different available \ac{MIMO} stream simultaneously.
+\textcite{sauter_wireless_2022} mentions, that since IEEE 802.11ac it is possible to use Downlink \ac{MU}-\ac{MIMO},
+which allows an \ac{AP} to transmit data to multiple \ac{STA} via different available \ac{MIMO} stream simultaneously.
 According to the authors, \ac{MU}-\ac{MIMO} can increase the network throughput.
 IEEE 802.11ax introduced \ac{MU}-\ac{MIMO} in the Uplink direction \cite{noauthor_ieee_2021}, where multiple \ac{STA} can transmit data simultaneously to the \ac{AP} via different available \ac{MIMO} streams.
-MU-\ac{MIMO} DCM also applies in IEEE 802.11ax \cite{noauthor_ieee_2021}.
-\cite{omar_survey_2016} \todo{omar mimo}
+MU-\ac{MIMO} DCM can also be applied in IEEE 802.11ax \cite{noauthor_ieee_2021}.
+
+Another \ac{MIMO} technique is \ac{OFDMA}, which can be utilized since IEEE 802.11ax \cite{noauthor_ieee_2021, avallone_will_2021, omar_survey_2016}.
+\textcite{avallone_will_2021} explains, \ac{OFDMA} enables an \ac{AP} to transmit data to multiple \ac{STA} simultaneously by dividing the available bandwidth into \ac{RU} and assigning each \ac{RU} to a \ac{STA}.
+The authors add, that \ac{OFDMA} can be used in both the uplink and downlink direction.
+The \ac{AP} can choose the best suited \ac{RU} for each \ac{STA} and thus increase the Signal-to-Interference-plus-Noise Ratio \cite{khorov_tutorial_2019}
+\textcite{behara_performance_2022} adds, that \ac{OFDMA} is designed to improve the per-user throughput in high-density networks, e.q.
+stadiums, airports or public transportation systems.
 
 \subsubsection*{\acf{STBC}}
 \textcite{abbas_efficient_2016} further explains that \ac{MIMO} spatial streams can be utilized to enhance the

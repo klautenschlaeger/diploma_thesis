@@ -108,10 +108,31 @@ overhead of the \ac{RTS} and \ac{CTS} frames, which is only worth it when the da
 Larger frames can also be split into smaller frames to reduce the probability of collisions.
 This procedure is called fragmentation, which divides the data in up to \num{16} frames
 when a certain data length threshold is exceeded \cite{noauthor_ieee_2021}.
-The fragmentated frames are transmitted by the three different \ac{ACK} policies, which are described in \cite{sauter_wireless_2022}.
+The fragmented frames are transmitted by the three following different \ac{ACK} policies in \autoref{fig:ACKS}, which are described by \textcite{sauter_wireless_2022}.
 
-\textcite{sauter_wireless_2022} adds IEEE 802.11e introduced a acknowledgment policy called Block \ac{ACK},
+Using the normal \ac{ACK} policy, the sender applies the \ac{DCF} mechanism before sending each frame.
+Additionally, the sender waits
+for an \ac{ACK} frame from the receiver after each transmission.
 
+Instead of operating in the \ac{DCF} mode, the sender
+can also send the next frame after waiting the \ac{SIFS} time, when the \ac{ACK} frame has been received.
+This is displayed in \autoref{fig:Fragmentation} and saves the overhead of acquiring the medium again.
+
+Additional transmission time can be saved by using the Block \ac{ACK} policy, which is shown in \autoref{fig:BLOCKACK}.
+The sender sends the first frame and waits for the \ac{ACK} frame.
+After transmitting all fragments, the sender sends the Block \ac{ACK} request.
+The receiver sends the Block \ac{ACK} frame, which contains the information of all received frames.
+Any missing frames are retransmitted.
+The Block \ac{ACK} frame can be sent delayed, when some processing time is required.
+
+Every Block \ac{ACK} session is started with an add Block Acknowledgment (ADDBA) request frame, which is sent by the sender and
+contains the session parameters. The receiver sends an \ac{ACK} and answers with an add Block Acknowledgment (ADDBA) response frame.
+After the sender acknowledges the response frame, the Block \ac{ACK} session is established.
+The Block \ac{ACK} session is ended with a delete Block Acknowledgment (DELBA) frame, which is sent by the sender and
+is acknowledged by the receiver.
+
+The Block \ac{ACK} policy can be used in IEEE 802.11n \cite{noauthor_ieee_2021-1}, IEEE 802.11ac \cite{noauthor_ieee_2021-1} and IEEE 802.11ax \cite{noauthor_ieee_2021}.
+In the IEEE 802.11p standard, the Block \ac{ACK} policy can be added as an optional feature \cite{noauthor_ieee_2021-1}.
 
 \begin{figure}%
     \centering
@@ -125,25 +146,26 @@ The fragmentated frames are transmitted by the three different \ac{ACK} policies
     \label{fig:ACKS}%
 \end{figure}
 
-Similar to
-DL MU transmission, 802.11ax enables UL MU transmissions.
-These can also use
-Orthogonal Frequency-Division Multiple Access (OFDMA) in addition to the already
-known MIMO of 802.11ac.
-OFDMA groups the orthogonal frequency subcarriers
-into Resource Unit (RU)s, which can be selected by the transmitter for optimal
-transmission to the receiver.
-This increases the Signal-to-Interference-plus-Noise
-Ratio (SINR).
-
 
 
 \begin{comment}
 	CF Parameter set-element
-\todo{nicht genauer eingehen, weil nicht relevant für die Arbeit? Darf ich das schreiben?}
-Short Interframe Space SIFS ACK Frame
+
 
 MAC Header
 
 \end{comment}
 
+\cite{khorov_tutorial_2019}
+Power Management Modes
+Enhanced Time TWT Enhanced Microsleep
+
+Spatial Reuse
+Adaptive Power and Sensitivity Thresholds, BSS COlor
+
+Quiet Period
+
+Midamble Preamble
+
+
+more levels of fragmentation
