@@ -452,8 +452,10 @@ iperf run unlimited?
 
 
 
+\begin{comment}
+Describe Mistakes?
 
-\todo[color=yellow]{Describe Mistakes? }
+\end{comment}
 
 \begin{comment}
 \chapter{Developed architecture / System design / Implementation / ...}
@@ -469,85 +471,84 @@ iperf run unlimited?
 
 
 \chapter{Simulation}
-Seite 77 von 93 02 simulation.pdf
-Propagation Model:
- Two Ray Ground only mathematics Rappaport
- Jakes Model
- Three Log Distance
- 
- 
- Data Simulation
- 
- 
- 
-\todo{QUESTIONS open 7 Möglichkeiten outdoor wifi
-was für Effecte}
 
-\todo{
+
 Robustheit: Matlab? 
 Goodput: ns3
 Range: Matlab? Somehow? overview
 other papers? 
 Enough?
-}
-Im folgenden möchte ich den Einfluss der verschiedenen Parameter auf die Robustheit und den Goodput untersuchen. Da wie beschrieben, die vorhandene Technik nicht
-gezielt angesteuert werden kann, um die Einflüsse der Parameter zu untersuchen, wird eine Simulation durchgeführt. Weitere Vorteile, sind die flexibilität und die
-Möglichkeit verschiedene Communication Protocol und network protocols zu simulieren \cite{ComparativeStudyKumar}.
 
-\textcite{OmarHESurvey} unterscheidet dabei für die Simulation von HE wireless networks zwischen Link-Level Simulations and System-Level Simulations. Beide Methoden erklären die Autoren, wie folgt.
+In the next chapter, I would like to examine the influence of the different parameters on the goodput, robustness and latency.
+Since, as described, the existing technology cannot be specifically controlled
+in order to investigate the influence of the parameters, a simulation is carried out.
+Further advantages are the flexibility and the possibility to simulate different communication protocols and network protocols \cite{kumar_simulators_2012}.
 
-Link-Level Simulations untersuchen den Autoren nach die performance des HE physical layer für verschiedene physical layer parameter als \ac{PER} in regards to \ac{SNR}. Als Beispiel nehmen die Autoren die Simulation von \textcite{201} für PER in regards to SNR and chosen MCS.
 
-Für System-Level Simulation benötigt es Abtractionen des physical und des MAC layers, um auf dieser Basis ein system close to real zu simulieren.
+\textcite{omar_survey_2016} adds, that simulation is the main evaluation method for IEEE 802.11 networks which the IEEE 802.11ax task group considers.
 
-Für die Simulation von Wifi gibt es bereits verschiedene Tools, wie z.B. Matlab, ns-2 und ns-3, OMNeT++ oder Qualnet.
+The authors distinguish between link-level simulations and system-level simulations for the simulation of HE wireless networks.
+The authors explain both methods as follows.
 
-\cite{SimulationWifiMesh}
-Ns-3 wurde bereits in \cite{ComparativeStudyKumar} und \cite{SimulationWifiMesh} verwendet für die Simulation von Wi-Fi networks. \textcite{} und ist daher für die Simulation von Wifi 6 geeignet.
-Da ns-3 eine Open Source Software ist, die auch für die
-Simulation von 802.11ax geeignet ist, wird diese für die Simulation verwendet. Die Simulation wird in der Programmiersprache C++ durchgeführt.
+Link-level simulations, according to the authors,
+investigate the performance of the HE physical layer for different physical layer parameters as \ac{PER} in terms of \ac{SNR}.
+As an example, the authors cite different multiple researcher, which simulated \ac{PER} in regard to \ac{SNR} and chosen \ac{MCS}.
+Link-level simulations are usually visualized in so-called waterfall plots, which represent the \ac{PER} in regard to \ac{SNR} for
+different physical layer parameters.
 
+For system-level simulation, it requires abstractions of the physical and MAC layers to simulate a system close to
+real on this basis.
+
+For the simulation of Wifi, there are already various tools available, such as Matlab, ns-2 and ns-3, OMNeT++, Qualnet \cite{keller_simulation_2021} or OPNet \cite{kumar_simulators_2012}.
+
+\textcite{kumar_simulators_2012} compares different available simulators for the simulation of wireless networks and concludes that, in general, ns-2, ns-3 and OMNeT++ are the most popular simulators for academic research of wireless networks.
+\textcite{keller_simulation_2021} adds, that ns-3 keeps an more accurate Implementation of the IEEE 802.11 standard than OMNeT++.
+So far, I only know, that OMNeT++ supports some IEEE 802.11ac modes via the library INET Release 4.0.0 \footnote{\url{https://inet.omnetpp.org/2018-06-28-INET-4.0.0-released.html}}.
+Therefore, OMNeT++ seems unsuitable for Wifi 6 simulations.
 
  
 \subsubsection*{ns-3 Network Simulator}
 
-Bei der Wahl der Network Simulator Wifi 6 Implementierungen 
-
-
-\todo{Warum nicht was anderes GNS3, MININET, ... ?}
-
-In the doc folder of  \cite{noauthor_files_nodate} findet man die folgenden Informationen über ns-3.
-ns-3 is a discrete-event network simulator project, which was founded in 2006.
+Ns-3 is well documented in the ns-3 manual in the \textit{./doc} - folder of  \cite{nsnam_ns-3_nodate}, where I found the following information about the simulator.
+Ns-3 is a discrete-event network simulator project, which was founded in 2006.
 The ns-3 project is open source with a licence based on n GNU GPLv2 compatibility.
-It aims to procide an open, extensible network simulator for research and educational use. Ns-3 scripts can be written in C++ or Python.
-ns-API Python uses models in C++
-build system Cmake
-
-ATM no pre-built libraries and packages for operating systems
+It aims to provide an open, extensible network simulator for research and educational use.
+Ns-3 scripts can be written in C++ or Python.
  
 The concept of ns3 is based on the abstraction of simulated systems.
-For this purpose, the term node was introduced for basic computing devices. The Node class offers the possibility to
-install protocol stacks and applications or to add peripheral cards and mobility models to the node.
+For this purpose, the term node was introduced for basic computing devices.
+The Node class offers the possibility to install protocol stacks and applications or to add peripheral cards and mobility models to the node.
 Applications are the abstraction of the user-level applications, which represent an activity to be simulated.
 For this purpose, the applications use resources and functionalities provided by the system software of a node.
 
-Every node gets network access via the Net Device class. The Net Device class represents the physical interface of a node,
-which can be Network Interface card or peripheral card. The Net Device simulates the software driver and the hardware of the network interface.
+Every node gets network access via the Net Device class.
+The Net Device class represents the physical interface of a node,
+which can be Network Interface card or peripheral card.
+The Net Device simulates the software driver and the hardware of the network interface.
 
-Every Net Device is connected to a channel. The channel class represents the physical medium, which is used to transmit data. The channel behaviour is based
+Every Net Device is connected to a channel.
+The channel class represents the physical medium, which is used to transmit data.
+The channel behaviour is based
 on the channel model, which may include interference, propagation delay and loss.
 
-Für die aktuelle Version ns-3.37 wird IEEE 802.11ax als Standard im Infrastructure und Adhoc Mode unterstützt \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html}}.
-Jedoch ist die Unterstützung für den 802.11ax standard noch nicht vollständig. So kann man bereits DCM und STBC konfigurieren, jedoch findet man die den Kommentar in Zeile 496 von der Datei he-ppdu.cc, dass diese noch nicht in der aktuellen Version 3.37 für beachtet werden \footnote{https://www.nsnam.org/docs/models/html/wifi-user.html}.
+The current version ns-3.37 supports IEEE 802.11ax as a standard in infrastructure and ad-hoc mode \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html}}.
+However, support for the 802.11ax standard is not yet complete.
+It is already possible to configure \ac{DCM} and \ac{STBC},
+but there is a comment in line 496 of the file \textit{he-ppdu.cc} that these are not yet taken into account in the current ns-3 version 3.37 \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-user.html}}.
 
-Bei der Untersuchung der Implementierung von 802.11ax in ns-3, fällt auf, dass die Implementierung von 802.11ax in ns-3 auf, dass bereits eine HE ER SU \ac{PPDU} Preamble implementiert ist, welche jedoch nie genutzt wird und man den Extended Range Mode
-den nicht aktivieren kann. Die Implementierung von 802.11ax in ns-3 ist also noch nicht vollständig und es gibt noch einige offene Punkte, die in der Zukunft noch implementiert werden müssen.
+When examining the implementation of 802.11ax in ns-3, one notices that the implementation of 802.11ax in ns-3 already implements a HE ER SU \ac{PPDU} preamble, but this is never used and one cannot activate the extended range mode.
+cannot be activated.
+The implementation of 802.11ax in ns-3 is therefore not yet complete and there are still some open points that need to be implemented in the future.
 
-\textcite{black_netsimulyzer_2021} haben eine 3D Visualisierung von ns-3 entwickelt, welche die Simulationen in 3D visualisiert, um die ns-3 simulation
-scenarios greifbar zu machen. Die grafische Erweiterung der Autoren besteht aus zwei open source Programmen. Das 
-NetSimulyzer ns-3 module \footnote{https://github.com/usnistgov/NetSimulyzer-ns3-module} lässt sich in die ns-3 Simulation integieren und baut über die spezifizierten Funktionen und Configurationen
-eine JSON Datei. Diese beinhaltet alle benötigten Daten für die Visualisierung in der NetSimulyzer \footnote{\url{https://github.com/usnistgov/NetSimulyzer}}
+\textcite{black_netsimulyzer_2021} have developed a 3D visualisation of ns-3, which visualises the simulations in 3D to make the ns-3 simulation
+scenarios tangible.
+The authors' graphical extension consists of two open source programmes.
+The NetSimulyzer ns-3 module \footnote{https://github.com/usnistgov/NetSimulyzer-ns3-module} can be integrated into the ns-3 simulation and builds a JSON file using the specified functions and configurations.
+This file contains all the data required for visualisation in the application NetSimulyzer \footnote{\url{https://github.com/usnistgov/NetSimulyzer}}.
 
+
+Nevertheless, ns-3 is chosen as a simulation tool for the simulation of 802.11ax by \cite{dolinska_new_2019}, \cite{rochim_performance_2020} and
+\cite{behara_performance_2022}.
 \input{dataRate}
 Robustness?
 
