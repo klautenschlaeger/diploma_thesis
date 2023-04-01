@@ -7,9 +7,27 @@ to exchange UDP packets in Adhoc Mode.
 The setup consists of two nodes placed in static positions with a distance of \SI{20}{\metre}.
 I chose the short communication range setup with no simulated interference to enable wi-Fi transmission without any packets lost.
 
-Every node is eqipped with a Wi-Fi NetDevice with the following parameters: \ac{GI} of \SI{3200}{\nano\second}, a bandwidth of \SI{20}{\mega\hertz} and 2 spatial streams.
+Every node is equipped with a IEEE 802.11ax Wi-Fi NetDevice which is configured with the default parameters in
+\autoref{tab:SimulationDataRate}.
+\begin{table}[H]
+	\centering
+	\begin{tabular}{p{6cm}p{4cm}}
+		General Parameters & \\
+		\midrule
+		Wi-Fi Standard & IEEE 802.11ax\\
+		\ac{GI} & \SI{3200}{\nano\second}\\
+		Frequency Spectrum & \SI{5.6}{\giga\hertz}\\
+		\ac{BW} & \SI{20}{\mega\hertz}\\
+		max. Transmission Power & \SI{25}{\decibel}\\
+		Antenna Gain & \SI{5}{\dB}\\
+		Spatial Streams & 2\\
+		\bottomrule
+	\end{tabular}
+	\caption{Default simulation parameters for Wi-Fi Devices in the goodput simulations}
+	\label{tab:SimulationDataRate}
+\end{table}
 
-A Constant Rate Wifi Manager is used to set a constant data rate according to the fixed HE-\ac{MCS} for data, non-uniform and control data transmissions.
+A Constant Rate Wi-Fi Manager is used to set a constant data rate according to the fixed HE-\ac{MCS} for data, non-uniform and control data transmissions.
 The used frequency band is \SI{2.4}{\giga\hertz} or \SI{5}{\giga\hertz} as higher frequencies are less resistant to shadowing and fading and a higher data rate is not needed for the \ac{WIC} use cases.
 The Wi-Fi Netdevices operate in the frequency channels specified in \autoref{tab:fieldChannels}, which can be used for
 outdoor Wi-Fi communication in Germany \cite{freq_plan_24G}, \cite{freq_plan_5G}.
@@ -38,7 +56,7 @@ First, I verified,that the theoretical data rate for the IEEE 802.11 ax physical
 the simulation is equal to the theoretical data rate specified in the IEEE 802.11ax standard \cite{noauthor_ieee_2021}.
 
 Additionally, I used the MonitorSnifferRxCallback and the MonitorSnifferTxCallback of the ns-3 WifiPhy class to check the ongoing transmissions.
-Both Callback functions can be added to WifiPhy objects of WiFi NetDevice and are called every time a packet is received or transmitted at the Wi-Fi Netdevice respectively.
+Both Callback functions can be added to WifiPhy objects of Wi-FiNetDevice and are called every time a packet is received or transmitted at the Wi-Fi Netdevice respectively.
 The function parameters are Information about the packet, channel frequency and station ID and an instance of the WifiTxVector class. The WifiTxVector instance in the current ns-3 version 3.37 describes all parameters of the transmission inacordance to the TXVECTOR field of the IEEE 802.11 standard \cite{noauthor_ieee_2021}. Additionally, the function parameters of the MonitorSnifferRxCallback contain the signal strength and
 the noise power of the received packet.
 
@@ -55,7 +73,7 @@ these additional transmissions the goodput is lower than the theoretical data ra
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/gi_dataRate_simulation.pdf}
-	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with \num{2} \acf{MIMO} streams and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen HE-\acf{MCS} value}%
+	\caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode with \num{2} \acf{MIMO} streams and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen HE-\acf{MCS} value}%
 	\label{fig:Data_rate_GI}%
 \end{figure}
 
@@ -89,19 +107,10 @@ for the \SI{400}{\nano\second} and \SI{800}{\nano\second} \ac{GI} lengths in IEE
 Both papers, state that shorter \ac{GI} lengths lead to higher goodput values under the condition, that there is a short delay spread and a low
 channel loss due to interference.
 
-\subsubsection*{\acf{MIMO}}
+\subsubsection*{\acf{ER} Mode}
 
-\begin{figure}%
-	\centering
-	\includegraphics[width=0.95\textwidth]{figures/mimo_dataRate_simulation.pdf}
-	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \acf{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen HE-\ac{MCS} value}%
-	\label{fig:Data_rate_Mimo}%
-\end{figure}
-
-\subsubsection*{Extended Range Mode}
-
-In the next simulation I analyzed the effect of the Extended Range Mode on the goodput of the IEEE 802.11ax physical layer.
-As mentioned in ns-3 Version 3.37, the Extended Range Mode is implemented as an \ac{HE} Capability with the new extended WifiPreamble.
+In the next simulation I analyzed the effect of the \ac{ER} Mode on the goodput of the IEEE 802.11ax physical layer.
+As mentioned in ns-3 Version 3.37, the \ac{ER} Mode is implemented as an \ac{HE} Capability with the new extended WifiPreamble.
 But the new Preamble in the \ac{HE} \ac{ER} SU \ac{PPDU} format is not used in ns-3 version3.37.
 
 As I was using the ConstantRateWifiManager, all parameter  for the data transmission are set in the function
@@ -109,7 +118,7 @@ ConstantRateWifiManager::DoGetDataTxVector().
 The function creates a WifiTxVector instance with the parameters of the
 transmission.
 There I overwrote the preamble type to the already implemented ns3 WifiPreamble::WIFI\_PREAMBLE\_HE\_ER\_SU, when
-the Extended Range Mode is enabled and conditions for the Extended Range Mode in the IEEE 802.11ax standard \cite{noauthor_ieee_2021} are fulfilled.
+the \ac{ER} Mode is enabled and conditions for the \ac{ER} Mode in the IEEE 802.11ax standard \cite{noauthor_ieee_2021} are fulfilled.
 Ns-3 version 3.37 implements ns3::GlobalValue, which allow users to set global values for the simulation, which can be accessed
 in every class without changing Constructor or function parameters.
 This leaves the original functionality of the ns3 code intact.
@@ -118,24 +127,22 @@ I used the ns3::GlobalValue to create an instance named HE\_ER\_Mode, which is s
 to overwrite the preamble type.
 
 Via the MonitorSnifferRxCallback and the MonitorSnifferTxCallback I was able to verify, that the ns3 WifiPreamble::WIFI\_PREAMBLE\_HE\_ER\_SU was used
-for data transmission, when the following conditions were met: a) the Extended Range Mode is enabled, b) the number of spatial streams is \num{1}, c) the HE-\ac{MCS} value is less than \num{3} and
+for data transmission, when the following conditions were met: a) the \ac{ER} Mode is enabled, b) the number of spatial streams is \num{1}, c) the HE-\ac{MCS} value is less than \num{3} and
 d) the \ac{BW} is \SI{20}{\mega\hertz}.
 
 The results of the simulation are shown in \autoref{fig:Data_rate_ER}, where the lost achieved goodput is plotted against the theoretical data rate for the different HE-\ac{MCS} values.
+The lost goodput is calculated by subtracting the achieved goodput when using the normal \ac{HE} \ac{ER} mode from the achieved goodput when using the \ac{HE} SU mode.
 The only difference between \ac{HE} SU and \ac{HE} \ac{ER} SU transmissions is the preamble, which repeats the HE-SIG-A field in the \ac{HE} \ac{ER} SU \ac{PPDU} format.
-This results in a longer transmission time, which reflects in the lower achieved goodput for the Extended Range Mode.
-\todo{describe lost goodput calculation}
+This results in a longer transmission time, which reflects in the lower achieved goodput for the \ac{ER} Mode.
 \begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/ER_dataRate_simulation.pdf}
-	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with a \acf{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{20}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen HE-\ac{MCS} value}%
+	\caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode with a \acf{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{20}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen HE-\ac{MCS} value}%
 	\label{fig:Data_rate_ER}%
 \end{figure}
 The effect increases with smaller packet sizes, because the longer transmission time of preamble is more significant for smaller packets.
 For higher HE-\ac{MCS} values more achievable goodput is lost, because longer transmission time for the preamble could have
 been used more \ac{OFDM} symbol transmissions, where more data is coded onto a symbol.
-
-\todo[color=yellow]{nothing to cite?}
 
 \subsubsection*{\acf{DCM}}
 Using the \ac{DCM} in the IEEE 802.11ax physical layer has also an effect on the achievable goodput.
@@ -145,12 +152,13 @@ copy of the original payload for the HE-\ac{MCS} values 0, 1, 3 and 4, where \ac
 Using \ac{DCM}, the receiver would apply maximum likelihood decoding to decode the original payload with a higher probability.
 
 The results of the simulation are shown in \autoref{fig:Data_rate_DCM}, where the lost achieved goodput is plotted against
-the theoretical data rate for the different HE-\ac{MCS} values. The theoretical data rate while using \ac{DCM} is half of the
+the theoretical data rate for the different HE-\ac{MCS} values.
+The theoretical data rate while using \ac{DCM} is half of the
 theoretical data rate without \ac{DCM}, which complies with the IEEE 802.11ax standard \cite{noauthor_ieee_2021}.
 \begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/DCM_dataRate_simulation.pdf}
-	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{40}{\mega\hertz} and 2 spatial streams  in regards to the number of the chosen HE-\acf{MCS} value and whether \acf{DCM} is enabled}%
+	\caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{20}{\mega\hertz} and 2 spatial streams  in regards to the number of the chosen HE-\acf{MCS} value and whether \acf{DCM} is enabled}%
 	\label{fig:Data_rate_DCM}%
 \end{figure}
 
@@ -184,13 +192,24 @@ which complies with the IEEE 802.11ax standard \cite{noauthor_ieee_2021}.
 \begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/STBC_dataRate_simulation}
-	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{40}{\mega\hertz} and 2 spatial streams  in regards to the number of the chosen HE-\acf{MCS} value and whether \acf{STBC} is enabled}%
+	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{20}{\mega\hertz} and 2 spatial streams  in regards to the number of the chosen HE-\acf{MCS} value and whether \acf{STBC} is enabled}%
 	\label{fig:Data_rate_STBC}%
 \end{figure}
 
-\todo[]{Error bars goodput lost}
-
-
-Through the new IEEE 802.11ax standard \cite{noauthor_ieee_2021}, the Wi-Fi standard has been extended to support more \ac{MIMO} streams or higher \ac{MCS} values and use \ac{LDPC} compulsory for the
-aforementioned configurations. The effect of more \ac{MIMO} streams is already known from \cite{Lot of stuff}.
+Other physical layer parameters, which are supported by the IEEE 802.11ax standard are \ac{LDPC} and utilizing more \ac{MIMO} streams.
+The effect, that using more \ac{MIMO} streams for a transmission increases the achievable goodput
+is already known \cite{sauter_wireless_2022, noauthor_ieee_2021, noauthor_ieee_2021-1}.
 \ac{LDPC} no new effect for data rate, but more robustness which results in a lower \ac{PER}.
+
+\todo[color=yellow]{2.4 GHZ?}
+
+
+\begin{figure}[H]%
+	\centering
+	\includegraphics[width=0.95\textwidth]{figures/STBC_dataRate_simulation24}
+	\caption{Achieved Goodput and theoretical Datarate of two WiFi 6 stations in Ad-Hoc Mode with for IEEE 802.11ax
+		physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{20}{\mega\hertz} and 2 spatial streams,
+		\ac{STBC} enabled and in regards to the number of the chosen HE-\acf{MCS} value and whether the
+		\SI{2.4}{\giga\hertz} or \SI{5}{\giga\hertz} frequency spectrum is used}%
+	\label{fig:Data_rate_STBC24}%
+\end{figure}
