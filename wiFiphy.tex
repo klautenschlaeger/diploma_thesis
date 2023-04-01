@@ -215,13 +215,13 @@ to allow using \ac{DCM} in the physical layer of IEEE 802.11bd.
 	Table 27-52—Minimum required adjacent and nonadjacent channel rejection levels
 	optional feature \cite{noauthor_ieee_2021}
 	
-	\ac{HE} SU \ac{PPDU} \ac{HE} ER SU \ac{PPDU} not for GI 800 ns \cite{noauthor_ieee_2021}
+	\ac{HE} SU \ac{PPDU} \ac{HE} \ac{ER} SU \ac{PPDU} not for GI 800 ns \cite{noauthor_ieee_2021}
 \end{comment}
 
-\subsubsection*{Extended Range}
-Since IEEE 802.11ax, the Extended Range Mode exists, which defines the new \ac{HE} ER SU \ac{PPDU} as physical layer amendment
+\subsubsection*{\acf{ER}}
+Since IEEE 802.11ax, the \ac{ER} Mode exists, which defines the new \ac{HE} \ac{ER} SU \ac{PPDU} as physical lay\ac{ER} amendment
 \cite{noauthor_ieee_2021,afaqui_ieee_2017} .
-\textcite{deng_ieee_2017} explains that the \ac{HE} ER SU \ac{PPDU} format is intended to extend the range of
+\textcite{deng_ieee_2017} explains that the \ac{HE} \ac{ER} SU \ac{PPDU} format is intended to extend the range of
 a single station to access point transmission.
 According to the authors, this is accomplished by the \ac{PPDU} containing a repetition of the HE-SIG-A field.
 
@@ -230,17 +230,17 @@ to guarantee reliable transmission for longer ranges.
 The power-boost is limited to additional \SI{3}{\decibel}
 in  \cite{noauthor_ieee_2021,jacob_system-level_2020}
 
-The IEEE 802.11ax \cite{noauthor_ieee_2021} standard defines that the \ac{HE} ER SU \ac{PPDU} format may only be used
+The IEEE 802.11ax \cite{noauthor_ieee_2021} standard defines that the \ac{HE} \ac{ER} SU \ac{PPDU} format may only be used
 when 20 Mhz transmissions with either 242-Resource Unit with HE-MCS-0 - HE-MCS-2 or 106-Resource Unit with HE-MCS-0 are used on a spatial stream.
 In addition, one can use \ac{DCM}.
 \textcite{sauter_wireless_2022} defines the Resource Unit as fragments of a wi-Fi channel. The number before the Resource Unit
 indicates the number of subcarriers, which are part of the Resource Unit.
 
-Optionally, the \ac{HE} ER SU \ac{PPDU} may also be transmitted with a \ac{GI} of \SI{800}{\nano\second},
+Optionally, the \ac{HE} \ac{ER} SU \ac{PPDU} may also be transmitted with a \ac{GI} of \SI{800}{\nano\second},
 where an additional application of \ac{DCM} is forbidden.
 
 \textcite{jacob_system-level_2020} and \textcite{triwinarko_phy_2021} add, that it is planned to use
-the extended range mode also in the IEEE 802.11bd standard.
+the \ac{ER}  mode also in the IEEE 802.11bd standard.
 
 \subsubsection*{\acf{MIMO}}
 In order to further exploit the physical layer capabilities, the single transmitting and receiving antenna systems called Single-Input-Single-Output can be extended to \ac{MIMO} - systems.

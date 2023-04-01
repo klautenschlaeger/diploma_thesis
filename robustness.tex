@@ -5,13 +5,14 @@ The field measurements showed.
 Therefore, the following section focuses on the influence of the different physical layer parameters on the robustness of the IEEE 802.11ax standard
 Wi-Fi transmissions.
 
-A known simulation tool for wireless communication networks is GNU Radio \footnote{https://www.gnuradio.org/}.
+A known simulation tool for wireless communication networks is GNU Radio \footnote{\url{https://www.gnuradio.org/}}.
 GNU Radio is an open-source software development toolkit, which has additional blocks for IEEE 802.11 network simulation,
-called gr-ieee802-11 \footnote{https://github.com/bastibl/gr-ieee802-11}. However, the gr-ieee802-11 only
-supports the IEEE 802.11a, IEEE 802.11b, IEEE 802.11g and IEEE 802.11p. This means, that the gr-ieee802-11 does not support
-the \ac{ER} mode, \ac{DCM} or \ac{STBC}. Therefore, I decided that the GNU Radio is not suitable for my simulation.
+called gr-ieee802-11 \footnote{\url{https://github.com/bastibl/gr-ieee802-11}}.
+However, the gr-ieee802-11 only supports the IEEE 802.11a, IEEE 802.11b, IEEE 802.11g and IEEE 802.11p.
+This means, that the gr-ieee802-11 does not support the \ac{ER} mode, \ac{DCM} or \ac{STBC}.
+Therefore, I decided that the GNU Radio is not suitable for my simulation.
 
-\textcite{s_performance_2022} cites ns-3 \footnote{https://www.nsnam.org/docs/models/html/wifi-design.html},
+\textcite{s_performance_2022} cites ns-3 \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html}},
 that ns-3 does not implement
 any frequency-selective fading effects, such as multipath propagation and shadowing. Therefore, the authors decided to use
 the MATLAB WLAN Toolbox, which is standards-compliant and credible.
@@ -20,9 +21,9 @@ the MATLAB WLAN Toolbox to be suitable for IEEE 802.11ax simulations.
 
 The MATLAB WLAN Toolbox \footnote{\url{https://de.mathworks.com/products/wlan.html?s_tid=AO_PR_info}} is a add-on to simulate, analyse, and test of wireless LAN communications systems.
 The WLAN Toolbox supports a wide range of IEEE 802.11 standards.
-Since Release R2019b \footnote{https://de.mathworks.com/help/wlan/release-notes.html}, the WLAN Toolbox supports the Signal Recovery, Packet Extension and Physical Layer abstractions to simulation IEEE 802.11ax networks.
+Since Release R2019b \footnote{\url{https://de.mathworks.com/help/wlan/release-notes.html}}, the WLAN Toolbox supports the Signal Recovery, Packet Extension and Physical Layer abstractions to simulation IEEE 802.11ax networks.
 
-My robustness analysis is based on the WLAN Toolbox example wlan/HESUExample \footnote{https://de.mathworks.com/help/wlan/ug/802-11ax-packet-error-rate-simulation-for-single-user-format.html} to simulate the \ac{PER} of point-to-point IEEE 802.11ax networks for
+My robustness analysis is based on the WLAN Toolbox example wlan/HESUExample \footnote{\url{https://de.mathworks.com/help/wlan/ug/802-11ax-packet-error-rate-simulation-for-single-user-format.html}} to simulate the \ac{PER} of point-to-point IEEE 802.11ax networks for
 a specified \ac{SNR} values.
 
 First, I set the IEEE 802.11ax physical layer parameters using the wlanHEConfig object,
@@ -61,13 +62,15 @@ However, the WLAN Toolbox does not support these channel models and they are int
 
 As I want to simulate outdoor scenarios, I chose the TGax-F channel model, which is suitable for pseudo-outdoor scenarios \cite{TGAXCHANNEL}.
 The wlanTGaxChannel model supports configuring the \ac{BW}, the number of transmit and receive antennas, which I set equal to the configuration of the wlanHEConfig object.
-\cite{freq_plan_24G} and \cite{freq_plan_5G} allow outdoor transmission in the frequency range of \SI{5.725}{\giga\hertz} to \SI{5.825}{\giga\hertz}. Therefore, I set the carrier frequency to \SI{5.6}{\giga\hertz}.
+\cite{freq_plan_24G} and \cite{freq_plan_5G} allow outdoor transmission in the frequency range of \SI{5.725}{\giga\hertz} to \SI{5.825}{\giga\hertz}.
+Therefore, I set the carrier frequency to \SI{5.6}{\giga\hertz}.
 The TGax-F channel sampling rate is set to \SI{20}{\mega\hertz}, which is the nominal sampling rate for the configured \ac{BW} of \SI{20}{\mega\hertz}.
-Additional parameters are left at their default values as they are not relevant for outdoor scenarios. According to the MATLAB WLAN Toolbox documentation \footnote{https://de.mathworks.com/help/wlan/ref/wlantgaxchannel-system-object.html},
+Additional parameters are left at their default values as they are not relevant for outdoor scenarios.
+According to the MATLAB WLAN Toolbox documentation \footnote{\url{https://de.mathworks.com/help/wlan/ref/wlantgaxchannel-system-object.html}},
 the TGax-F channel model has a maximum delay of \SI{1050}{\nano\second} and root mean square delay spread of \SI{150}{\nano\second}.
 
-The simulations is based on the procedure \autoref{alg:ProcedurePER}. To get a \ac{PER} for every \ac{SNR} value ranging
-from \SIrange{0}{45}{\decibel}, the procedure \autoref{alg:ProcedurePER} is executed \num{5} times for \num{500} packets each.
+The simulations is based on the procedure \autoref{alg:ProcedurePER}.
+To get a \ac{PER} for every \ac{SNR} value ranging \SIrange{0}{45}{\decibel}, the procedure \autoref{alg:ProcedurePER} is executed \num{5} times for \num{500} packets each.
 All packet errors are counted and the \ac{PER} is calculated by dividing the number of packet errors by \num{500} packets.
 A mean \ac{PER} and the confidence interval with a confidence level of
 \SI{95}{\percent} is calculated of the \ac{PER} values of the \num{5} iterations.
@@ -100,7 +103,8 @@ The procedure \autoref{alg:ProcedurePER} starts with the creation of a random pa
 The packet is used to create a Wlan waveform based on the physical layer parameters specified in the wlanHEConfig object using the wlanWaveformGenerator function.
 
 The waveform is extended by
-\num{50} trailing zeros to ensure, that packet delays can be detected by finding trailing samples unequal to null. When the possible maximum detectable channel delay can be calulated by
+\num{50} trailing zeros to ensure, that packet delays can be detected by finding trailing samples unequal to null.
+When the possible maximum detectable channel delay can be calulated by
 \begin{equation}\label{eq:DELAY_CHANNEL}
 	\text{detectable channel delay} =
 	\frac{
@@ -110,22 +114,27 @@ The waveform is extended by
 	}
 	,
 \end{equation}
-then \num{50} trailing zeros match a maximum channel delay of \SI{2.5}{\micro\second}. As the maximum channel delay of the TGax-F channel model is \SI{1.05}{\micro\second},
-\num{50} trailing zeros are sufficient to detect the maximum channel delay. I verified \autoref{eq:DELAY_CHANNEL} by comparing
-the length of the maximum detected packet delay with the maximum channel delay of the TGax-F channel model. The results showed,
-that maximum detected packet delay is \num{11} samples, which can be transfered using \autoref{eq:DELAY_CHANNEL} to rounded maximum TGax-F channel delay of \SI{1.1}{\micro\second}.
+then \num{50} trailing zeros match a maximum channel delay of \SI{2.5}{\micro\second}.
+As the maximum channel delay of the TGax-F channel model is \SI{1.05}{\micro\second},
+\num{50} trailing zeros are sufficient to detect the maximum channel delay.
+I verified \autoref{eq:DELAY_CHANNEL} by comparing
+the length of the maximum detected packet delay with the maximum channel delay of the TGax-F channel model.
+The results showed, that maximum detected packet delay is \num{11} samples,
+which can be transferred using \autoref{eq:DELAY_CHANNEL} to rounded maximum TGax-F channel delay of \SI{1.1}{\micro\second}.
 
-After creating the waveform an appending the trailing zeros, the waveform is passed through the TgaxF channel model to simulate the channel.
+After creating the waveform an appending the trailing zeros, the waveform is passed through the TGaxF channel model to simulate the channel.
 The output of the channel model is the received waveform, where I added noise to the transmitted waveform based on the
 specified \ac{SNR} value and active \ac{OFDM} subcarriers.
 
-The generated waveform is then passed through the configured wlanTGaxChannel to simulate the channel. The output of the channel model is the received waveform, where
-I added additive white gaussian noise to the transmitted waveform based on the specified \ac{SNR} value.
+The generated waveform is then passed through the configured wlanTGaxChannel to simulate the channel.
+The output of the channel model is the received waveform, where I added additive white gaussian noise to the transmitted waveform based on the specified \ac{SNR} value.
 
 In the next step, the received waveform is passed through the packet detection algorithm, which is based on the
-WLAN Toolbox example wlan/HESUExample \footnote{https://de.mathworks.com/help/wlan/ug/802-11ax-packet-error-rate-simulation-for-single-user-format.html} and
-shown in an abstracted form in \autoref{alg:PacketDetection}. The procedure calls various functions to decode the preamble, header and payload of
-the received waveform. A packet error is detected, when, no packet can be detected, the packet delay is greater than \num{50} samples or the recovered packet data
+WLAN Toolbox example wlan/HESUExample \footnote{\url{https://de.mathworks.com/help/wlan/ug/802-11ax-packet-error-rate-simulation-for-single-user-format.html}} and
+shown in an abstracted form in \autoref{alg:PacketDetection}.
+The procedure calls various functions to decode the preamble, header and payload of
+the received waveform.
+A packet error is detected, when, no packet can be detected, the packet delay is greater than \num{50} samples or the recovered packet data
 is not equal to the transmitted packet data.
 
 \subsubsection*{\acf{MCS} and \acf{CR}}
@@ -144,7 +153,7 @@ The results in \autoref{fig:PER_SNR_MCS} show that the \ac{PER} decreases with h
 communication distances of \SI{300}{\meter}, \SI{800}{\meter} and \SI{1800}{\meter}. Their results show that \ac{SNR} decreases, when the transmissions range is longer.
 Additionally, they experienced a higher error rate for higher.
 
-The effect, that the \ac{PER} decreases, when the a lower \ac{MCS} or \ac{CR} is used, is the basis for the design of wifi rate managers.
+The effect, that the \ac{PER} decreases, when the a lower \ac{MCS} or \ac{CR} is used, is the basis for the design of Wi-Fi rate managers.
 A rate manager is a software component responsible to select physical layer parameters, such as \ac{MCS} or \ac{CR}, based on the current network conditions to
 achieve the best possible throughput. Known rate managers of the linux kernel are the minstrel or the minstrel HT rate manager.
 
@@ -212,16 +221,18 @@ The results are plotted in \autoref{fig:PER_SNR_DCM}.
 	\label{fig:PER_SNR_DCM}%
 \end{figure}
 
+\textcite{khorov_ieee_2015} also mention similar figures, that \ac{DCM} increases the \ac{PER} performance by more than \SI{2}{\decibel}.
 
-\Textcite{ryu_ber_2010} and \textcite{park_ber_2006} conducted a similar simulation, where they analyse the bit error rate in
-regards to the normalized \ac{SNR} and whether \ac{DCM} was enabled for rayleigh fading channels. Both authers wraped two
-Quadrature \ac{PSK} modulated symbols into one 16-\ac{QAM} symbol. As Quadrature \ac{PSK} modulates \SI{2}{\bit} per symbol, the infomation
-of two Quadrature \ac{PSK} modulated symbols can be
-transmitted in one 16-\ac{QAM} symbol, which encodes \SI{4}{\bit}. The authors transmit the 16-\ac{QAM} symbols and a redundant copy
+\textcite{ryu_ber_2010} and \textcite{park_ber_2006} conducted a similar simulation, where they analyse the bit error rate in
+regards to the normalized \ac{SNR} and whether \ac{DCM} was enabled for rayleigh fading channels.
+Both authers wraped two Quadrature \ac{PSK} modulated symbols into one 16-\ac{QAM} symbol.
+As Quadrature \ac{PSK} modulates \SI{2}{\bit} per symbol, the infomation of two Quadrature \ac{PSK} modulated symbols can be
+transmitted in one 16-\ac{QAM} symbol, which encodes \SI{4}{\bit}.
+The authors transmit the 16-\ac{QAM} symbols and a redundant copy
 of the 16-\ac{QAM} symbols via orthogonal subcarriers. At the receiver the authors combine the copies and retrieve the transmitted
 information using the Maximum likelyhood criterion. The results of the author show that a better bite error rate can be achieved while applying
 \ac{DCM} than sending the information via two Quadrature \ac{PSK} or 16-\ac{QAM} modulated symbols without \ac{DCM}.
-\cite{khorov_ieee_2015} DCM 2db gain
+
 
 
 \subsubsection*{\acf{ER}}
