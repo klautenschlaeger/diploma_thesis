@@ -155,7 +155,8 @@ All steps of the harvest process and Agricultural Platooning Service are summari
 \end{algorithm}
 
 The FH harvest process is defined by the harvest states in \autoref{tab:HarvestStates},
-where every harvest state represents a different \ac{PD} and \ac{FH} speed.
+where every harvest state represents a different \ac{PD} and \ac{FH} speed, which are derived from the key figures of a
+\ac{FH} harvesting corn with a working width of \SI{6.2}{\meter} on a \SI{80}{\hectare} field in \autoref{tab:KeyFigures}.
 When the \ac{PD} is low, the \ac{FH} can harvest faster and vice versa.
 
 Starting in the harvest state H1, the \ac{FH} determines the next harvest state every \SI{50}{\milli\second}
@@ -171,12 +172,12 @@ I chose the transition probabilities to the best of my knowledge.\todo[color=yel
 		\toprule
 		Harvest State & \ac{PD} & \ac{FH} speed\\
 		\midrule
-		H0 & \SI{30}{\tonne\per\hectare}
-        & \SI{10}{\kilo\metre\per\hour} \\
-		H1 & \SI{40}{\tonne\per\hectare}
-        & \SI{8}{\kilo\metre\per\hour} \\
+		H0 & \SI{20}{\tonne\per\hectare}
+        & \SI{8.06}{\kilo\metre\per\hour} (\SI{2.24}{\metre\per\second}) \\
+		H1 & \SI{30}{\tonne\per\hectare}
+        & \SI{8.06}{\kilo\metre\per\hour} (\SI{2.24}{\metre\per\second}) \\
 		H2 & \SI{50}{\tonne\per\hectare}
-        & \SI{6}{\kilo\metre\per\hour} \\
+        & \SI{6.65}{\kilo\metre\per\hour} (\SI{1.845}{\metre\per\second}) \\
 		\bottomrule
 	\end{tabular}
 	\caption{Corn harvest states, which define a range of \acf{PD}s and \acf{FH} speeds, where the data is based on the
@@ -272,7 +273,8 @@ Every simulation configuration runs \num{5} times, where every \ac{FH} harvests 
 		\textit{platoon\_data\_interval} & \SI{50}{\milli\second}\\
 		\textit{platoon\_data\_packet\_length} & \SI{1}{\kilo\byte}\\
 		Platoon Overloading Distance & \SI{5}{\meter}\\
-		Field Size & \SI{2000}{\meter} x \SI{1000}{\meter}\\
+		\ac{FH} Working Width & \SI{6.2}{\meter}\\
+		\ac{TM} Volume & \SI{50}{\cubic\meter}\\
 		\bottomrule
 	\end{tabular}
 	\caption{Simulation parameters for the Application Agricultural Platooning Service}
