@@ -471,14 +471,15 @@ Describe Mistakes?
 
 
 \chapter{Simulation}
-
-
-In the next chapter, I would like to examine the influence of the different physical layer parameters on the goodput, robustness and latency.
-Since, as described, the existing technology cannot be controlled explicitly, the influence of parameters is analysed by a simulation study.
+As every used Wi-Fi device in the field experiment runs a Wi-Fi rate manager, which is responsible for the rate adaptation, the influence of
+a particular physical layer parameter on the goodput, robustness and latency can not be examined in the field experiment.
+The Milesight Router was only capable to IEEE 802.11ac physical layer parameters, which don't include the new physical layer parameters of IEEE 802.11ax:
+\ac{ER} mode, longer \ac{GI}s, HE-\ac{MCS} \numrange{9}{11} or \ac{DCM}.
+Therefore, I simulated the influence of the different physical layer parameters on the goodput, robustness and latency.
 Simulations benefit from the flexibility and possibility of simulating different communication and network protocols \cite{kumar_simulators_2012}.
 
 
-\textcite{omar_survey_2016} adds that simulation is the main evaluation method for IEEE 802.11ax networks, which the IEEE 802.11ax task group considers.
+\textcite{omar_survey_2016} adds that simulation is also the main evaluation method for IEEE 802.11ax networks, which the IEEE 802.11ax task group considers.
 
 The authors distinguish between link-level and system-level simulations for simulating \ac{HE} wireless networks.
 The authors explain both methods as follows.

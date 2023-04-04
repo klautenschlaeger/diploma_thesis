@@ -56,7 +56,12 @@ I chose the parameters to balance a high robustness and high data rate.
 
 The simulation is based on the ns-3 ConstantSpeedPropagationDelayModel and the  ns-3 FriisPropagationLossModel,
 which represents signal propagation in free space.
-\todo[color=yellow]{explain?}
+\todo[]{explain?}
+The ns-3 TableBasedErrorRateModel is used to model the error rate of the physical layer. 
+According to the ns-3 Wi-Fi design guide \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html#default-table-based-error-model-validation}},
+the TableBasedErrorRateModel derives the \ac{PER} from results form the Matlab WLAN Toolbox in regards to the physical layer parameters and \ac{SNR}.
+The design guide recommends the TableBasedErrorRateModel for the IEEE 802.11ax standard.
+
 
 \begin{table}[H]
 	\centering
@@ -257,7 +262,12 @@ There, it waits for an incoming "search\_TM" request from a \ac{FH} to connect t
 The corn harvest process is finished when the last \ac{FH} has finished harvesting and moved to the end of the field as
 shown in \autoref{fig:PlatooningRoute}.
 
-Each corn harvest scenario is visualized to ensure the correctness of the simulation.
+Each corn harvest scenario is visualized to ensure the correctness of the simulation. The visualizations are created with the
+ns-3 extension Netsimulyzer.
+The corn field is marked as an black rectangle.
+At the lower left corner there is a cuboid which marks the location of the silo.
+Every node was displayed as the Netsimulyzer model of an landdrone, where all \ac{FH}s are black and the
+\ac{TM}s are either red, green, yellow or blue
 
 Every simulation configuration runs \num{5} times, where every \ac{FH} harvests \SI{1}{\hectare} of corn, which equals to roughly
 \num{2.5} \ac{TM} loads.
