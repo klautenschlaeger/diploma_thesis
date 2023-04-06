@@ -1,9 +1,6 @@
 \section{Robustness}
 \label{sec:Robustness}
-The field measurements showed.
-\cite{smolnik_5g_2020} \SI{3}{\metre} corn plants
-Therefore, the following section focuses on the influence of the different physical layer parameters on the robustness of the IEEE 802.11ax standard
-Wi-Fi transmissions.
+The following section analyzes the impact of the different physical layer parameters of the IEEE 802.11ax standard on the transmission robustness.
 
 A known simulation tool for wireless communication networks is GNU Radio \footnote{\url{https://www.gnuradio.org/}}.
 GNU Radio is an open-source software development toolkit, which has additional blocks for IEEE 802.11 network simulation,
@@ -14,12 +11,13 @@ Therefore, I decided that the GNU Radio is not suitable for my simulation.
 
 \textcite{s_performance_2022} cites ns-3 \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html}},
 that ns-3 does not implement
-any frequency-selective fading effects, such as multipath propagation and shadowing. Therefore, the authors decided to use
-the MATLAB WLAN Toolbox, which is standards-compliant and credible.
-I also decided to use Matlab because besides \cite{s_performance_2022}, \cite{cao_efficient_2022} and \cite{jin_efficient_2021} have also considered
+any frequency-selective fading effects, such as multipath propagation and shadowing.
+Therefore, the authors decided to use the MATLAB WLAN Toolbox, which is standards-compliant and credible.
+I also decided to use Matlab because besides \cite{s_performance_2022}, \cite{cao_efficient_2022} and
+\cite{jin_efficient_2021} have also considered
 the MATLAB WLAN Toolbox to be suitable for IEEE 802.11ax simulations.
 
-The MATLAB WLAN Toolbox \footnote{\url{https://de.mathworks.com/products/wlan.html?s_tid=AO_PR_info}} is a add-on to simulate, analyse, and test of wireless LAN communications systems.
+The MATLAB WLAN Toolbox \footnote{\url{https://de.mathworks.com/products/wlan.html?s_tid=AO_PR_info}} is a add-on to simulate, analyze, and test of wireless LAN communications systems.
 The WLAN Toolbox supports a wide range of IEEE 802.11 standards.
 Since Release R2019b \footnote{\url{https://de.mathworks.com/help/wlan/release-notes.html}}, the WLAN Toolbox supports the Signal Recovery, Packet Extension and Physical Layer abstractions to simulation IEEE 802.11ax networks.
 
@@ -131,7 +129,7 @@ The output of the channel model is the received waveform, where I added additive
 
 In the next step, the received waveform is passed through the packet detection algorithm, which is based on the
 WLAN Toolbox example wlan/HESUExample \footnote{\url{https://de.mathworks.com/help/wlan/ug/802-11ax-packet-error-rate-simulation-for-single-user-format.html}} and
-shown in an abstracted form in \autoref{alg:PacketDetection}.
+shown in an abstracted form in \autoref{alg:PacketPER}.
 The procedure calls various functions to decode the preamble, header and payload of
 the received waveform.
 A packet error is detected, when, no packet can be detected, the packet delay is greater than \num{50} samples or the recovered packet data
@@ -256,7 +254,7 @@ of \SI{10}{\percent} is achieved, is \SIrange{1}{2}{\decibel}.
 \end{figure}
 
 Additionally, I simulated the impact of applying the \ac{ER} mode and \ac{DCM} for the allowed HE-MCS values \num{0} and \num{1}.
-Applying \ac{DCM} additionally makes the transmission more robust. As it is displayed in \autoref{fig:PER_SNR_ER_DCM},
+Applying \ac{DCM} additionally makes the transmission more robust. As it is displayed in \autoref{fig:PER_SNR_ER},
 a \ac{PER} of less than \SI{10}{\percent} can be achieved at a \SIrange{4}{5}{\decibel} lower \ac{SNR} when using \ac{DCM} and \ac{ER} mode together instead
 of using \ac{ER} mode alone.
 

@@ -328,37 +328,10 @@
 
 \TODO{This template is for use with \texttt{pdflatex} and \texttt{biber}. It has been tested with TeX~Live 2020 (as of 25 Oct 2020).}
 
-\chapter*{Abstract}
-\addcontentsline{toc}{chapter}{Abstract}
-\begin{otherlanguage*}{american}
-
-about 1/2 page:
-\begin{enumerate}
-    \item Motivation (Why do we care?)
-    \item Problem statement (What problem are we trying to solve?)
-    \item Approach (How did we go about it)
-    \item Results (What's the answer?)
-    \item Conclusion (What are the implications of the answer?)
-\end{enumerate}
-
-The abstract is a miniature version of the thesis.
-It should be treated as an entirely separate document.
-Do not assume that a reader who has access to an abstract will also have access to the thesis.
-Do not assume that a reader who reads the thesis has read the abstract.
-
-\end{otherlanguage*}
+\input{abstract}
 
 
-\chapter*{Kurzfassung}
-\addcontentsline{toc}{chapter}{Kurzfassung}
-\begin{otherlanguage*}{ngerman}
 
-Gleicher Text (sinngemäß, nicht wörtlich) in Deutsch
-
-\end{otherlanguage*}
-\acresetall
-
-\cleardoublepage
 \tableofcontents
 \TODO{The table of contents should fit on one page. When in doubt, adjust the \texttt{tocdepth} counter.}
 
@@ -470,7 +443,7 @@ Describe Mistakes?
 \end{comment}
 
 
-\chapter{Simulation}
+\chapter{Link - Level - Simulation}
 As every used Wi-Fi device in the field experiment runs a Wi-Fi rate manager, which is responsible for the rate adaptation, the influence of
 a particular physical layer parameter on the goodput, robustness and latency can not be examined in the field experiment.
 The Milesight Router was only capable to IEEE 802.11ac physical layer parameters, which don't include the new physical layer parameters of IEEE 802.11ax:
@@ -543,14 +516,41 @@ This file contains all the data required for visualisation in the application Ne
 
 Nevertheless, ns-3 is chosen as a simulation tool for the simulation of 802.11ax by \cite{dolinska_new_2019}, \cite{rochim_performance_2020} and
 \cite{behara_performance_2022}.
-\input{dataRate}
 
+\input{dataRate}
 
 \input{robustness}
 
+\section{Link - Level - Simulation Evaluation}
 
-\begin{comment}
-	Fixed Wifi 6 devices: 4 Streams, 2.4, 5.0 Ghz
+The past two sections gave an overview of impact of the different parameters on the achievable goodput and robustness of the IEEE 802.11ax standard.
+Both simulations were based on nearly ideal conditions, where the channel was not affected by any interference from other devices.
+
+The results show the complex interplay of the different parameters in regards of the achievable goodput and robustness.
+Every mentioned parameter can be set to have the highest possible data rate, which may lead to a low robustness and vice versa.
+When the communication link is less robust, more retransmissions are required, which may to a lower goodput.
+When configured data rate is too low, the goodput is also reduced.
+
+As every application has different requirements on
+latency, range, robustness and goodput, the parameters can be configured accordingly.
+
+In general, modern Wi-Fi offer a variety of different parameters, to achieve the best possible performance for the specific application.
+The new IEEE 802.11ax \ac{ER} mode combined with \ac{DCM} offers the highest robustness at low \ac{SNR}s according to my simulations, which can
+be used for long range applications.
+
+To deal with inter-symbol interferences due to multipath effects, which were considered as the main reason for a high \ac{PER} in wi-fi outdoor networks by
+\cite{sheth_packet_2007} and \cite{aguayo_link-level_2004}, IEEE 802.11ax offers longer \ac{GI}s of up to \SI{3200}{\nano\second}.
+My simulations show that \ac{GI} of \SI{3200}{\nano\second} is more robust against multipath effects than \ac{GI} of \SI{800}{\nano\second}, but
+reduces the theoretical achievable data rate.
+
+Since IEEE 802.11n, the robustness of the communication link can be increased by applying \ac{STBC}.
+But same as the IEEE 802.11ax \ac{DCM} mode, the
+increased robustness comes at the cost of a reduced theoretical data rate.
+
+The following chapter analyses the impact of the different physical layer parameters on the latency of the Application Layer.
+
+\begin{comment} 
+Fixed Wifi 6 devices: 4 Streams, 2.4, 5.0 Ghz
 Fixed Wifi bd devices: 1 Stream, 5.9 Ghz,
 
 Leave it open for future work?
@@ -560,11 +560,12 @@ Auf different paper stützen?
 
 
 \end{comment}
+\chapter{Application - Level - Simulation}
 
-\section{Platooning Services}
 
 \input{platooning}
-\chapter{Evaluation}
+\begin{comment}
+	\chapter{Evaluation}
 
 
 \begin{itemize}
@@ -574,6 +575,8 @@ Auf different paper stützen?
 \item each result/graph must not only be described, but also discussed (What's the reason for this peak? Why have you observed this effect? What does this tell about your architecture/system/implementation?)
 \item recommended length: approximately one third of the thesis.
 \end{itemize}
+\end{comment}
+
 
 
 \input{conclusion}

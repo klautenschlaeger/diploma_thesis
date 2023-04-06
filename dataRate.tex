@@ -77,7 +77,8 @@ these additional transmissions the goodput is lower than the theoretical data ra
 	\label{fig:Data_rate_GI}%
 \end{figure}
 
-As the \ac{GI} length increases the achieved goodput deceases. This effect can be characterized by the aforementioned formula.
+As the \ac{GI} length increases the achieved goodput deceases.
+This effect can be characterized by the aforementioned formula.
 The bandwidth attenuation for the possible \ac{GI} lengths is displayed in \autoref{tab:GIbandwidthAttenuation}.
 The effect of the bandwidth attenuation for the different \ac{GI} lengths can be observed in the mean achieved goodput in
 \autoref{tab:GIbandwidthAttenuation}, where the decrease of the mean goodput reflects the bandwidth attenuation of the decreasing \ac{GI} length.
@@ -144,6 +145,8 @@ The effect increases with smaller packet sizes, because the longer transmission 
 For higher HE-\ac{MCS} values more achievable goodput is lost, because longer transmission time for the preamble could have
 been used more \ac{OFDM} symbol transmissions, where more data is coded onto a symbol.
 
+
+
 \subsubsection*{\acf{DCM}}
 Using the \ac{DCM} in the IEEE 802.11ax physical layer has also an effect on the achievable goodput.
 As aforementioned, the \ac{DCM} is not supported by ns-3 version 3.37.
@@ -180,6 +183,7 @@ Using \ac{DCM} increases the ratio of achievable goodput to theoretical data rat
 
 
 \subsubsection*{\acf{STBC}}
+\label{sec:STBCDataRate}
 Another physical layer parameter, which reduces the theoretical data rate for more robustness is the \ac{STBC}.
 As mentioned, ns-3 version 3.37 does not support the \ac{STBC} for the IEEE 802.11ax standard.
 Therefore, I reduced the number of
@@ -201,10 +205,14 @@ The effect, that using more \ac{MIMO} streams for a transmission increases the a
 is already known \cite{sauter_wireless_2022, noauthor_ieee_2021, noauthor_ieee_2021-1}.
 \ac{LDPC} no new effect for data rate, but more robustness which results in a lower \ac{PER}.
 
-\todo[color=yellow]{2.4 GHZ?}
+Using a different frequency spectrum, the achievable goodput can be limited due to the lower maximum \ac{BW} of \SI{40}{\mega\hertz} in the \SI{2.4}{\giga\hertz} frequency spectrum.
+To analyse achievable goodput in the \SI{2.4}{\giga\hertz} frequency spectrum, I reran the simulations with the same configuration for \autoref{sec:STBCDataRate}, but with in the \SI{2.4}{\giga\hertz} frequency spectrum.
+The results indicate, that the achievable goodput is between \SIrange{0.1}{2.7}{\mega\bit\per\second} slower than in the \SI{5}{\giga\hertz} frequency spectrum.
 
-propagation delay is the same. Maybe some simulation behavior? network congestion? interference -> packet loss?
-
+Due to a signal extension of \SI{6}{\micro\second} in the \SI{2.4}{\giga\hertz} frequency spectrum, the transmission time is longer, which results in a lower achievable goodput.
+\cite{noauthor_ieee_2021} states, that the signal extension in the \SI{2.4}{\giga\hertz} frequency spectrum enables
+backwards compatibility with the older \ac{802.11} standards, which operate need time to write their network allocation vector register.
+\begin{comment}
 \begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/STBC_dataRate_simulation24}
@@ -214,3 +222,14 @@ propagation delay is the same. Maybe some simulation behavior? network congestio
 		\SI{2.4}{\giga\hertz} or \SI{5}{\giga\hertz} frequency spectrum is used}%
 	\label{fig:Data_rate_STBC24}%
 \end{figure}
+\end{comment}
+
+
+The simulation results represent an ideal scenario, where only two nodes exchange data.
+In a real-world scenario in the agricultural domain, the number of nodes as well as the distance between the nodes may be higher.
+The signal propagation will be influenced by the complex agricultural environment,
+which can consist of large water areas, various obstacles and vegetations or weather conditions \cite{brinkhoff_characterization_2017}.
+In case of the corn harvest scenario, \textcite{smolnik_5g_2020} points out, that corn plants can be up to \SI{3}{\metre} high
+and thus influence the signal propagation.
+These factors in the real-world scenario can lead to higher \ac{PER} and thus reduce the achievable goodput.
+
