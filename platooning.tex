@@ -172,7 +172,7 @@ All steps of the harvest process and Agricultural Platooning Service are summari
 \label{alg:UpdateTM}
 \end{algorithm}
 
-The FH harvest process is defined by the harvest states in \autoref{tab:HarvestStates},
+The FH harvest process is defined by the harvest states in \autoref{tab:harvestStatesDef},
 where every harvest state represents a different \ac{PD} and \ac{FH} speed, which are derived from the key figures of a
 \ac{FH} harvesting corn with a working width of \SI{6.2}{\meter} on a \SI{80}{\hectare} field in \autoref{tab:KeyFigures}.
 When the \ac{PD} is low, the \ac{FH} can harvest faster and vice versa.
@@ -202,7 +202,7 @@ the transition probabilities.
 	\end{tabular}
 	\caption{Corn harvest states, which define a range of \acf{PD}s and \acf{FH} speeds, where the data is based on the
 	key figures \cite{faustzahlen2018}}
-	\label{tab:markov_chain}
+	\label{tab:harvestStatesDef}
 \end{table}
 
 \begin{figure}[H]
@@ -227,7 +227,7 @@ harvest speed from \autoref{tab:markov_chain}.}
 \end{figure}
 
 After determining the next harvest state, the \ac{FH} sets the \ac{PD} and the \ac{FH} speed according to the defined values in
-\autoref{tab:HarvestStates}.
+\autoref{tab:harvestStatesDef}.
 The position of the \ac{FH} is advanced by the \ac{FH} speed multiplied with \SI{50}{\milli\second} along the
 harvest path in \autoref{fig:PlatooningRoute}.
 The harvested volume during this $platoon\_data\_interval$ is calculated with the following
@@ -255,13 +255,7 @@ Next, the \ac{FH} determines whether the \ac{TM} is full.
 If the \ac{TM} is full, the \ac{FH} stops harvesting and sends a disconnect request to the \ac{TM}.
 The \ac{TM} answers with a disconnect response and leaves the field to unload the corn, as shown in \autoref{fig:PlatooningFull}.
 
-\begin{figure}[]%
-	\centering
-	\includegraphics[width=0.5\textwidth]{figures/platoonFULL}
-	\caption{Change of \acf{TM}s in the Application Agricultural Platooning Service, where $TM\_1$
-	is full and leaves the field while the empty $TM\_2$ takes over the overloading position.}
-	\label{fig:PlatooningFull}%
-\end{figure}
+
 
 If the \ac{TM} is not full, the \ac{FH} sends the $TM\_data$ to the \ac{TM},
 which contains the new \ac{TM} fill level and the new guidance position.
@@ -272,7 +266,7 @@ the recorded process data in \autoref{chap:cornHarvestData}.
 
 \begin{figure}[]%
 	\centering
-	\includegraphics[width=0.7\textwidth]{figures/platoonHALF}
+	\includegraphics[width=0.6\textwidth]{figures/platoonHALF}
 	\caption{\acf{TM} position left of the \acf{FH} for overloading, where the \ac{TM} is half full and the
 		\ac{FH} starts the \autoref{alg:SearchTM} to search for a next empty \ac{TM},
 		which can later take over the loading position.}
@@ -286,6 +280,14 @@ the \ac{TM} guidance positions, which place the \ac{TM} \SI{12}{\metre} behind t
 The \ac{FH} continues harvesting until the \ac{TM} is fully loaded.
 Meanwhile, the new \ac{TM} is waiting behind the \ac{FH} and can take over the loading position next to the \ac{FH} as
 soon as the \ac{TM}, where the \ac{FH} is currently loading onto, is full.
+
+\begin{figure}[]%
+	\centering
+	\includegraphics[width=0.35\textwidth]{figures/platoonFULL}
+	\caption{Change of \acf{TM}s in the Application Agricultural Platooning Service, where $TM\_1$
+	is full and leaves the field while the empty $TM\_2$ takes over the overloading position.}
+	\label{fig:PlatooningFull}%
+\end{figure}
 
 A fully loaded \ac{TM} leaves the field to unload the corn and returns to the position where it disconnected from the \ac{FH}.
 There, it waits for an incoming $search\_TM$ request from a \ac{FH} to connect to a \ac{FH} again.
@@ -364,7 +366,8 @@ I chose a $platoon\_data\_interval$ of \SI{50}{\milli\second} for the Agricultur
 as \textcite{smolnik_5g_2020} mention, that their requirements analysis indicated that new guidance data should at least arrive every \SI{50}{\milli\second}.
 
 \section{Application-Level-Simulation Evaluation}
-I chose the following 3 simulation configurations for the uniform transmission of guidance data: \ac{HE}-\ac{MCS} 3, 5 and 7.
+I chose the following simulation configurations for the uniform transmission of guidance data: \ac{HE}-\ac{MCS} 3, 5 and 7 and
+\ac{STBC} either enabled or disabled.
 Every simulation configuration runs \num{5} times, where every \ac{FH} harvests \SI{1}{\hectare} of corn, which equals to roughly
 \num{2.5} \ac{TM} loads.
 Every simulation run has a different random seed.
@@ -372,28 +375,77 @@ After the simulation run successfully and the simulation process is verified in 
 a mean value and confidence interval with a confidence level of
 \SI{95}{\percent} is calculated per simulation configuration.
 
-The results for defined metrics latency and data update rate are shown in \autoref{fig:mean_latency} and
-\autoref{fig:mean_lastUpdate} respectively.
+The results for defined metrics latency and data update rate are shown in \autoref{fig:mean_50}.
 
 
 \begin{figure}[]%
 	\centering
-	\includegraphics[width=0.8\textwidth]{figures/mean_scatter_2latency}
-	\caption{Mean latency of the Application Agricultural Platooning Service in regards to the number of \ac{FH}s and \ac{TM}s and
-	the chosen \ac{HE}-\ac{MCS} value.}
-	\label{fig:mean_latency}%
+	\includegraphics[width=0.95\textwidth]{figures/latency_lastUpdate50ms}
+	\caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service in regards to the number of \ac{FH}s and \ac{TM}s and
+	the chosen \ac{HE}-\ac{MCS} value for a $platoon\_data\_interval$ of \SI{50}{\milli\second}.}
+	\label{fig:mean_50}%
 \end{figure}
+
+The desired $platoon\_data\_interval$ of \SI{50}{\milli\second} can be achieved with every
+configuration.
+
+The confidence interval for the mean update rate is always below \SI{2}{\micro\second}.
+The mean latency is always below \SI{0.4}{\milli\second}.
+Using higher \ac{HE}-\ac{MCS} values reduces the mean latency of
+the Agricultural Platooning Service data exchange.
+
+Applying \ac{STBC} additionally increases the mean latency compared to
+non- \ac{STBC} configurations.
+This is due to the fact that the \ac{STBC} configuration uses the redundant copy of data to
+improve the reliability of the transmission by applying maximum likelihood decoding.
+This decreases the data rate and increases
+the mean latency.
+Nevertheless, the desired $platoon\_data\_interval$ of \SI{50}{\milli\second} can be achieved when using \ac{STBC} for
+every specified \ac{HE}-\ac{MCS} value and thereby increase the reliability of the transmission.
+
+The recorded process data from the corn harvest scenario showed, that the \ac{FH} can also harvest at higher speeds around
+\SI{10}{\kilo\meter\per\hour} than the key figures in \cite{faustzahlen2018} report.
+To test the applicability of the Agricultural Platooning Service for higher speeds, I ran a additional simulation where I changed the
+harvest states according to \autoref{tab:harvestStatesChanged}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{>{\centering}p{2cm}p{4cm}p{4cm}}
+		\toprule
+		Harvest State & \ac{PD} & \ac{FH} speed\\
+		\midrule
+		H0 & \SI{20}{\tonne\per\hectare}
+        & \SI{14}{\kilo\metre\per\hour} (\SI{3.89}{\metre\per\second}) \\
+		H1 & \SI{30}{\tonne\per\hectare}
+        & \SI{12}{\kilo\metre\per\hour} (\SI{3.33}{\metre\per\second}) \\
+		H2 & \SI{50}{\tonne\per\hectare}
+        & \SI{10}{\kilo\metre\per\hour} (\SI{2.78}{\metre\per\second}) \\
+		\bottomrule
+	\end{tabular}
+	\caption{Corn harvest states, which define a range of \acf{PD}s from \cite{faustzahlen2018} and \acf{FH} speeds, which I set higher than the key figures in \cite{faustzahlen2018} specify to
+	increase the requirements on the Agricultural Platooning Service.}
+	\label{tab:harvestStatesChanged}
+\end{table}
+
+As I increased the \ac{FH} speed, which leads each harvest platoon, the whole platoon harvests the field faster.
+Therefore, all \ac{TM}s move faster.
+To provide faster \ac{TM}s more often with guidance data,
+I decreased the $platoon\_data\_interval$ to \SI{25}{\milli\second} to ensure,
+that a \ac{TM} always stays in the harvest platoon position even at higher speeds.
+
 \begin{figure}[]%
 	\centering
-	\includegraphics[width=0.8\textwidth]{figures/mean_scatter_2lastUpdate}
-	\caption{Mean last guidance update of the Application Agricultural Platooning Service in regards to the number of \ac{FH}s and \ac{TM}s and
-	the chosen \ac{HE}-\ac{MCS} value.}
-	\label{fig:mean_lastUpdate}%
+	\includegraphics[width=0.95\textwidth]{figures/latency_lastUpdate25ms}
+	\caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service in regards to the number of \ac{FH}s and \ac{TM}s and
+	the chosen \ac{HE}-\ac{MCS} value for a $platoon\_data\_interval$ of \SI{25}{\milli\second}.}
+	\label{fig:mean_25}%
 \end{figure}
 
+The simulation runs with the same physical layer configurations as in \autoref{fig:mean_50}.
+The results displayed in \autoref{fig:mean_25} reveal, that the mean guidance data update interval is always around \SI{25}{\milli\second},
+which is the desired $platoon\_data\_interval$. The mean latency is nearly the same as in \autoref{fig:mean_50}.
 
-The desired guidance data update rate  of \SI{50}{\milli\second} can be achieved with every
-configuration. \autoref{fig:mean_lastUpdate} indicates, that the mean update rate increases with the number of \ac{FH}s and \ac{TM}s and
+\autoref{fig:mean_50} indicates, that the mean update rate increases with the number of \ac{FH}s and \ac{TM}s and
 lower \ac{HE}-\ac{MCS} values.
 This is in line with expectations as more machines communicating in the field together with a lower data rate, increase the network utilisation, potential collisions and backoff times.
 
