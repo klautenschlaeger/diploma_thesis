@@ -354,15 +354,19 @@ as the authors show.
 \textcite{schlingmann_aef_2019} do not specify the amount of data further and point out that the required data rate
 for platooning services is low.
 
+The use case requirements for vehicle platooning services in \cite{TR-22.886} specify data sizes of \SIrange{300}{1200}{\kilo\byte},
+depending on the vehicle density.
+
 I have set the data size \textit{platoon\_data\_packet\_length} to \SI{1}{\kilo\byte} for the simulation of platooning services.
 This data size is an abstraction of the storage space that may be needed for additional data or implementations
 of authentication and security mechanisms.
 In the Corn Harvest scenario, additional data could be, for example, the fill level of the transport machine,
-information about the environment, obstacles or other machines on the field
+information about the environment, obstacles or other machines on the field.
 
 \textcite{zhang_method_2009} already showed, that a interval of \SI{100}{\milli\second} is sufficient for Agricultural Platooning Services
 in a harvest scenario.
-I chose a $platoon\_data\_interval$ of \SI{50}{\milli\second} for the Agricultural Platooning Service as the $platoon\_data\_interval$
+
+I chose a $platoon\_data\_interval$ of \SI{50}{\milli\second} for the Agricultural Platooning Service
 as \textcite{smolnik_5g_2020} mention, that their requirements analysis indicated that new guidance data should at least arrive every \SI{50}{\milli\second}.
 
 \section{Application-Level-Simulation Evaluation}
@@ -433,6 +437,12 @@ To provide faster \ac{TM}s more often with guidance data,
 I decreased the $platoon\_data\_interval$ to \SI{25}{\milli\second} to ensure,
 that a \ac{TM} always stays in the harvest platoon position even at higher speeds.
 
+This $platoon\_data\_interval$ of \SI{25}{\milli\second} heads in the direction of the upper required update rate of \SIrange{10}{25}{\milli\second} for general
+vehicle platooning services in \cite{TR-22.886}.
+But the values in \cite{TR-22.886} correspond to a higher platoon sizes, a velocity of \SI{100}{\kilo\meter\per\hour} and a
+vehicle distance of \SIrange{1}{2}{\metre}.
+
+
 \begin{figure}[]%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/latency_lastUpdate25ms}
@@ -443,22 +453,28 @@ that a \ac{TM} always stays in the harvest platoon position even at higher speed
 
 The simulation runs with the same physical layer configurations as in \autoref{fig:mean_50}.
 The results displayed in \autoref{fig:mean_25} reveal, that the mean guidance data update interval is always around \SI{25}{\milli\second},
-which is the desired $platoon\_data\_interval$. The mean latency is nearly the same as in \autoref{fig:mean_50}.
+which is the desired $platoon\_data\_interval$.
+The mean latency is nearly the same as in \autoref{fig:mean_50}, which indicates, that their is still some channel capacity left for
+further data exchange.
 
-\autoref{fig:mean_50} indicates, that the mean update rate increases with the number of \ac{FH}s and \ac{TM}s and
-lower \ac{HE}-\ac{MCS} values.
-This is in line with expectations as more machines communicating in the field together with a lower data rate, increase the network utilisation, potential collisions and backoff times.
+Both simulation were based on the abstracted and simplified corn harvest scenario, which is based on the ns-3 communication model and
+abstracted implementation of the physical layer and medium access control layer in ns-3.
+In a real-world scenario, an Agricultural Platooning Service has to operate in the complex agricultural environment, which
+may impact the signal propagation and communication performance.
 
-The mean latency increases with significantly for lower \ac{HE}-\ac{MCS} values as a result of the lower data rate.
-In regards to the number of \ac{FH}s and \ac{TM}s the mean latency is not seriously affected.
+The simulated communication is based on a \ac{BW} of \SI{20}{\mega\hertz}, which offers the highest possible signal power spectral density.
+Additional robustness is gained by using \ac{STBC}, \ac{LDPC}, low \ac{MCS} values and \ac{CR}s which are encoded for example in 
+\ac{HE}-\ac{MCS}3 and available since the IEEE 802.11n standard.
+These physical layer configurations are already enough to transmit guidance data in an Agricultural Platooning Service.
 
-As the results were very promising, I additionally ran a simulation with enabled \ac{STBC} for every uniform transmission configuration
-by reducing the number of spatial streams from \num{2} to \num{1}.
-This represents the transmitted copy of data via the second spatial stream.
-\ac{STBC} would normally use the redundant copy of data to improve the reliability of the transmission by applying maximum likelihood decoding.
-This additional robustness is not represented in the simulation as it is not yet part of the ns-3 implementation of IEEE 802.11ax.
+Using IEEE 802.11ax a new service discovery transmission mode is available.
+Additionally to the lowest \ac{MCS} and \ac{CR},
+IEEE 802.11ax can apply the \ac{ER} mode with \ac{DCM} which increases robustness as shown in \autoref{sec:Robustness}
+and therefore increases the communication range.
+These physical layer amendment is designed to introduce a new level of long range communication in IEEE 802.11.
+At the moment, I am not aware of any research, which was able to measure the resulting communication range in a agricultural environment.
 
-The reduced number of spatial streams result in a lower data rate and therefore a higher mean latency.
+\todo{Field planner, Cellular, RSU }
 
 
 
