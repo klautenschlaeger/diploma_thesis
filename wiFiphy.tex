@@ -15,7 +15,7 @@ where only one other subcarrier is sending the information ``High``.
 The data is then sent as \ac{OFDM} symbols over the individual \ac{OFDM} subcarriers.
 The distance between the ``Highs`` of the subcarriers is specified as subcarrier spacing and corresponds to the reciprocal
 symbol length.
-IEEE 802.11ax increased the \ac{OFDM} symbol length from \SI{3.2}{\micro\second} for IEEE 802.11n  to a maximum of \SI{12.8}{\micro\second} \cite{sauter_wireless_2022}.
+IEEE 802.11ax increased the \ac{OFDM} symbol length from \SI{3.2}{\micro\second} for IEEE 802.11n to a maximum of \SI{12.8}{\micro\second} \cite{sauter_wireless_2022}.
 This corresponds to a subcarrier spacing of \SI{312.5}{\kilo\hertz} and \SI{78.125}{\kilo\hertz} respectively \cite{sauter_wireless_2022}.
 
 For the IEEE 802.11p and IEEE 802.11bd standards, a symbol length of \SI{6.4}{\micro\second} applies, corresponding to a subcarrier spacing of \SI{156.25}{\kilo\hertz} \cite{jacob_system-level_2020}.
@@ -26,10 +26,10 @@ so the Fast Fourier Transform size must be increased.
 
 \textcite{kauffels_wireless_2002} adds, that \ac{OFDM} can be used in the \SI{5}{\giga\hertz} frequency band since IEEE 802.11a.
 \subsubsection*{\acf{BW}}
-The frequency bands were divided into channels in order to create several transmission channels.
-This results in 13 channels in Europe in the frequency band of \SIrange{2.412}{2.482}{\giga\hertz} and 18 channels in the frequency band of \SIrange{5.180}{5.350}{\giga\hertz} and \SIrange{5.180}{5.350}{\giga\hertz}  \cite{sauter_wireless_2022}.
+The frequency bands are divided into channels in order to create several transmission channels.
+This results in 13 channels in Europe in the frequency band of \SIrange{2.412}{2.482}{\giga\hertz} and 18 channels in the frequency band of \SIrange{5.180}{5.350}{\giga\hertz} and \SIrange{5.180}{5.350}{\giga\hertz} \cite{sauter_wireless_2022}.
 Transmission channels can be combined to enable higher data rates.
-Every channel has a width called \ac{BW} and is specified in \si{\mega\hertz}.
+Every channel has a width called \ac{BW} specified in \si{\mega\hertz}.
 The possible \ac{BW}s for the IEEE 802.11 standards are shown in \autoref{tab:BW}.
 \begin{table}[!ht]
 	\centering
@@ -64,7 +64,7 @@ In order to encode as many bits as possible on one \ac{OFDM} symbol, different \
 The \ac{MCS}s for the IEEE 802.11 standards are based on \ac{PSK} or \ac{QAM}. \cite{kauffels_wireless_2002}.
 The smallest \ac{MCS} is Binary - \ac{PSK} and encodes \SI{1}{\bit} per symbol.
 IEEE 802.11ax has the most complex \ac{MCS} of \num{256} - \ac{QAM} IEEE 802.11ac to \num{1024} - \ac{QAM} and thus now encodes \SI{10}{\bit} per symbol \cite{afaqui_ieee_2017}.
-In the \ac{V2X} range, so can \ac{MCS}s from binary-\ac{PSK} to \num{256}- \ac{QAM}.
+In the \ac{V2X} standards IEEE 802.11p and IEEE 802.11bd, the \ac{MCS}s can range from binary - \ac{PSK} to \num{256} - \ac{QAM} \cite{jacob_system-level_2020}.
 
 An imaginary, theoretical transmission channel is usually specified as a square-wave signal in the frequency domain
 with limits of both minimum and maximum amplitude and cut-off frequency. \textcite{kauffels_wireless_2002} defines
@@ -135,7 +135,7 @@ For IEEE 802.11ax, this results in the HE-MCS values in \autoref{tab:HEMCS}.
 \end{comment}
 
 \subsubsection*{\acf{GI}}
-\textcite{pulimamidi_development_2007} explain the Guard Interval as a cyclic prefix of \ac{OFDM}symbols before
+\textcite{pulimamidi_development_2007} describe the Guard Interval as a cyclic prefix of \ac{OFDM}symbols before
 Inter Symbol Interference and through Inter Carrier Interference.
 Inter Symbol Interference is caused by multipath delays, where the reflected delayed previous symbol can interfere
 with the currently received symbol\cite{ravindranath_performance_2016}.
@@ -186,7 +186,7 @@ the receiver minimum input sensitivity can be lower than without using \ac{DCM}.
 input sensitivity increases as the HE-MCS value increases.
 \begin{figure}%
 	\centering
-	\includegraphics[width=0.95\textwidth]{figures/Receiver_minimum_DCM}
+	\includegraphics[width=0.75\textwidth]{figures/Receiver_minimum_DCM}
 	\caption{Receiver minimum input level sensitivity for different HE-MCS values according to \cite{noauthor_ieee_2021}, where \ac{PER} is less than \SI{10}{\percent}}%
 	\label{fig:ReceiverSensitivityDCM}%
 \end{figure}
@@ -194,7 +194,7 @@ input sensitivity increases as the HE-MCS value increases.
 A similar development of the receiver minimum input sensitivity can also be observed for higher \ac{BW}, except
 that the lowest value increases with \ac{BW}.
 
-The higher probability of achieving data is achieved at the expense of the data rate.
+The higher probability of achieving data is reached at the expense of the data rate.
 The same amount of data now takes twice as long to transmit.
 
 \cite{noauthor_ieee_2021} lists the theoretically possible data rates.
@@ -228,7 +228,7 @@ According to the authors, this is accomplished by the \ac{PPDU} containing a rep
 In addition, the authors explain that the preamble transmission power is boosted,
 to guarantee reliable transmission for longer ranges.
 The power-boost is limited to additional \SI{3}{\decibel}
-in  \cite{noauthor_ieee_2021,jacob_system-level_2020}
+in \cite{noauthor_ieee_2021,jacob_system-level_2020}
 
 The IEEE 802.11ax \cite{noauthor_ieee_2021} standard defines that the \ac{HE} \ac{ER} SU \ac{PPDU} format may only be used
 when 20 Mhz transmissions with either 242-Resource Unit with HE-MCS-0 - HE-MCS-2 or 106-Resource Unit with HE-MCS-0 are used on a spatial stream.
@@ -240,7 +240,7 @@ Optionally, the \ac{HE} \ac{ER} SU \ac{PPDU} may also be transmitted with a \ac{
 where an additional application of \ac{DCM} is forbidden.
 
 \textcite{jacob_system-level_2020} and \textcite{triwinarko_phy_2021} add, that it is planned to use
-the \ac{ER}  mode also in the IEEE 802.11bd standard.
+the \ac{ER} mode also in the IEEE 802.11bd standard.
 
 \subsubsection*{\acf{MIMO}}
 In order to further exploit the physical layer capabilities, the single transmitting and receiving antenna systems called Single-Input-Single-Output can be extended to \ac{MIMO} - systems.

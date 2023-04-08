@@ -326,14 +326,11 @@
 
 \cleardoublepage
 
-\TODO{This template is for use with \texttt{pdflatex} and \texttt{biber}. It has been tested with TeX~Live 2020 (as of 25 Oct 2020).}
-
 \input{abstract}
 
 
 
 \tableofcontents
-\TODO{The table of contents should fit on one page. When in doubt, adjust the \texttt{tocdepth} counter.}
 
 \cleardoublepage
 \pagenumbering{arabic}
@@ -364,25 +361,33 @@
 \input{cornHarvest}
 
 \section{Wireless Lans according to IEEE 802.11}
-According to \textcite{kauffels_wireless_2002} the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to Ethernet - or Token-Ring - networks.
+According to \textcite{kauffels_wireless_2002}, the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to Ethernet - or Token-Ring - networks.
 \textcite{sauter_wireless_2022} considers IEEE 802.11 also to be an implementation of Ethernet with the help of wirless radio technologies.
 The author lists the extensions to the original standard, which range from 802.11b, 802.11g, 802.11a, 802.11n, 802.11ac to the latest enhancement 802.11ax. The different IEEE 802.11 standards can operate in the  \SI{2.4}{\giga\hertz} - , \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} - frequency band.
-IEEE 802.11n is also known as \ac{HT} Wi-Fi, IEEE 802.11ac as \ac{VHT} Wi-Fi \cite{noauthor_ieee_2021-1} and IEEE 802.11ax as \ac{HE} Wi-Fi \cite{noauthor_ieee_2021}. The standards are known by these names. In addition, they are also called Wi-Fi 4, Wi-Fi 5 and Wi-Fi 6 respectively.
-\textcite{jacob_system-level_2020} fügt dazu noch hinzu, dass es zusätzlich noch die zwei Erweiterungen IEEE 802.11p and dessen Nachfolger IEEE 802.11bd gibt. Diese operieren in einem reservierten Frequency spectrum for \ac{V2X} nach den Autoren im  \SI{5.9}{\giga\hertz} frequency spectrum
+IEEE 802.11n is also known as \ac{HT} Wi-Fi, IEEE 802.11ac as \ac{VHT} Wi-Fi \cite{noauthor_ieee_2021-1} and IEEE 802.11ax as \ac{HE} Wi-Fi \cite{noauthor_ieee_2021}.
+The standards are acknowledged by these names.
+In addition, they are also called Wi-Fi 4, Wi-Fi 5 and Wi-Fi 6 respectively.
+\textcite{jacob_system-level_2020} adds that there are also two extensions IEEE 802.11p and its successor IEEE 802.11bd. These operate in a reserved frequency spectrum for \ac{V2X} according to the authors in the \SI{5.9}{\giga\hertz} frequency spectrum.
 
 \textcite{kauffels_wireless_2002} defines the following three basic architectures for IEEE 802.11.
 
-If two or more stations communicate directly without an AP, they form an ad hoc network. According to the author, this can be set up quickly and easily and is also called \ac{IBSS}.
+If two or more stations communicate directly without an AP, they form an ad hoc network.
+According to the author, this can be set up quickly and easily and is called \ac{IBSS}.
 
 The Infrastructure \ac{BSS} mode allows all stations within the range of defined range around the \ac{AP} to communicate via a central \ac{AP}. Within the area of the \ac{BSS}, all stations can move freely and communicate with one another.
 
-Since an \ac{AP} has limited range and can only cover a certain area, the \ac{ESS} was introduced. It contains a distribution system, which links several \ac{BSS} with each other.
+Since an \ac{AP} has limited range and can only cover a certain area, the \ac{ESS} was introduced.
+It contains a distribution system, which links several \ac{BSS} with each other.
 
-Thereby, the BSS coverage areas can physically overlap so that continuous connection of stations within the ESS can be provided. For a better performance the \ac{BSS} can be placed physically on top of each other. One can also have physically separate \ac{BSS}s so that these \ac{BSS}s can be linked together over long distances. According to the author, the standard does not specify a distance limit for such connections. 
+Thereby, the BSS coverage areas can physically overlap so that continuous connection of stations within the ESS can be provided.
+For a better performance the \ac{BSS} can be physically placed on top of each other.
+One can also have objectively separate \ac{BSS}s so that these \ac{BSS}s can be linked together over long distances.
+Pursuant to the author, the standard does not specify a distance limit for such connections.
 
 He also mentions, that the standard defines the following three mobility types for station in an \ac{ESS}, where a station can do no-transition and thereby stay within a \ac{BSS}, \ac{BSS}-transitioning and move from one \ac{BSS} to another \ac{BSS} within the same \ac{ESS} and \ac{ESS}-transition, where the Station moves from a \ac{ESS} to another one but no stable connection can be guaranteed.
 
-\textcite{sauter_wireless_2022} adds, that usually Ethernet is used to link \ac{AP}s in within an \ac{ESS}. But according to the author this can be replaced by a wireless connection, which is called wireless bridge.
+\textcite{sauter_wireless_2022} adds, that usually Ethernet is used to link \ac{AP}s within an \ac{ESS}.
+But according to the author this can be replaced by a wireless connection, which is called wireless bridge.
 
 To enable communication between Wifi devices, the IEEE 802.11 standard defines the following layers of the OSI model. The first layer is the physical layer.
 
