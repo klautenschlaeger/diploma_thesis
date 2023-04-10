@@ -8,24 +8,22 @@
 \item recommended length: one page.
 \end{itemize}
 This thesis investigates the suitability of modern Wi-Fi for \ac{WIC}, which describes a wireless process data exchange between agricultural machines in the field.
-The investigation is based on the example use cases Agricultural Platooning Service,
-which enables the exchange of process data to guide a vehicle in a platoon with lateral and longitudinal
+The investigation is based on the prototypical application Agricultural Platooning Service in the corn harvest scenario.
+Agricultural Platooning Services exchange of process data via \ac{WIC} to guide a vehicle in a platoon with lateral and longitudinal
 offset to a leading vehicle in the field.
-Agricultural platooning services can be used to position \ac{TM}s to optimize the loading of forage by \ac{FH}s in the corn harvest.
-This thesis investigates the suitability of modern Wi-Fi for \ac{WIC}, based on the example of the Agricultural platooning service.
-\ac{WIC} will be used to exchange guidance data between a \ac{FH} and a \ac{TM} for the positioning of overloaded grain.
+Agricultural Platooning Services can be used to guide \ac{TM}s to optimal forage overloading position of \ac{FH}s in the corn harvest.
 
-I analyzed corn harvest process data, which indicated that the \ac{TM} is usually at a distance of \SIrange{5}{6}{\meter} at every angle relative to the \ac{FH}.
+I analyzed corn harvest process data, which indicated that the overloading position is usually at a distance of \SIrange{5}{6}{\meter} at every angle relative to the \ac{FH}.
 
 A field measurement campaign in the corn harvest scenario indicated that the signal strength of Wi-Fi suffers from shadowing effects due to the machine sizes and
 multipath effects introduce additional interferences, which leaded to a \ac{PER} of \SI{30.0}{\percent}.
 Additionally, I tested the Wi-Fi range in a farming environment and found out that a communication range of \SI{820}{\meter} for the \SI{5}{\giga\hertz} band and \SI{1.2}{\kilo\meter} for the \SI{2.4}{\giga\hertz} band
-at a \ac{PER} of \SI{10.0}{\percent} is possible.
+at a \ac{PER} of \SI{10.0}{\percent} is possible. \todo{Werte sind Wunschvorstellungen, die aber mit den Ergebnissen aus dem Feldtest nach deren Durchführung korregiert werden.}
 
 I simulated different Wi-Fi physical layer configurations to analyze their impact on data rate and robustness.
 IEEE 802.11ax introduces the new \ac{ER} mode, which enables a robust and long-range communication for service discovery transmission when used with \ac{DCM}.
-The \ac{GI} of \SI{3.2}{\micro\second} in IEEE 802.11ax can be used to combat multipath effects.
-The guidance data exchange mode can be configured to use low \ac{MCS} like \ac{HE}-\ac{MCS} 1 with \ac{STBC} and \ac{LDPC} to achieve a robust communication,
+The \ac{GI} of \SI{3.2}{\micro\second} in IEEE 802.11ax can be used to combat intersymbol interferences due to multipath effects in the agricultural environment.
+The guidance data exchange mode can be configured to use low \ac{MCS} like \ac{HE}-\ac{MCS}3 with \ac{STBC} and \ac{LDPC} to achieve a robust communication,
 which enables the \ac{WIC} to meet the required latencies and message intervals for Agricultural Platooning Services in the corn harvest scenario.
 
 
@@ -40,4 +38,5 @@ which enables the \ac{WIC} to meet the required latencies and message intervals 
     Wi-Fi offers a wide range of physical layer configurations, which can be used to reduce the data rate and enable robust communication.
 
     Future work could investigate whether modern Wi-Fi can be used for other \ac{WIC} use cases.
+    IEEE 802.11bd is a new standard, which is designed for \ac{WIC} in the industrial domain.
 \end{comment}

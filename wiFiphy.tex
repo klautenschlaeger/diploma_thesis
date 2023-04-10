@@ -135,16 +135,16 @@ For IEEE 802.11ax, this results in the HE-MCS values in \autoref{tab:HEMCS}.
 \end{comment}
 
 \subsubsection*{\acf{GI}}
-\textcite{pulimamidi_development_2007} describe the Guard Interval as a cyclic prefix of \ac{OFDM}symbols before
-Inter Symbol Interference and through Inter Carrier Interference.
-Inter Symbol Interference is caused by multipath delays, where the reflected delayed previous symbol can interfere
+\textcite{pulimamidi_development_2007} describe the Guard Interval as a cyclic prefix of \ac{OFDM} symbols to prevent
+intersymbol interference and through intercarrier interference.
+intersymbol interference is caused by multipath delays, where the reflected delayed previous symbol can interfere
 with the currently received symbol\cite{ravindranath_performance_2016}.
-Similarly, Inter Carrier Interference is caused by time-varying channel resulting in a longer \ac{OFDM} symbol duration
+Similarly, intercarrier interference is caused by time-varying channel resulting in a longer \ac{OFDM} symbol duration
 \cite{van_duc_nguyen_intercarrier_2002}.
 
 
 \textcite{pulimamidi_development_2007} explain how a guard interval can prevent these interferences.
-Since the guard interval is to prevent possible interference on the following symbol, it must be at least long enough to catch all channel impulse responses with the resulting delay in the guard interval.
+Since the guard interval is designed to prevent possible interference on the following symbol, it must be at least long enough to catch all channel impulse responses with the resulting delays.
 The guard interval is then removed again at the receiver.
 This results in an attenuation of bandwidth which can be described
 by the following formula:
@@ -233,7 +233,7 @@ in \cite{noauthor_ieee_2021,jacob_system-level_2020}
 The IEEE 802.11ax \cite{noauthor_ieee_2021} standard defines that the \ac{HE} \ac{ER} SU \ac{PPDU} format may only be used
 when 20 Mhz transmissions with either 242-Resource Unit with HE-MCS-0 - HE-MCS-2 or 106-Resource Unit with HE-MCS-0 are used on a spatial stream.
 In addition, one can use \ac{DCM}.
-\textcite{sauter_wireless_2022} defines the Resource Unit as fragments of a wi-Fi channel. The number before the Resource Unit
+\textcite{sauter_wireless_2022} defines the Resource Unit as fragments of a Wi-Fi channel. The number before the Resource Unit
 indicates the number of subcarriers, which are part of the Resource Unit.
 
 Optionally, the \ac{HE} \ac{ER} SU \ac{PPDU} may also be transmitted with a \ac{GI} of \SI{800}{\nano\second},

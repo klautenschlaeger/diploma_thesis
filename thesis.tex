@@ -222,25 +222,7 @@
 	short=hTMM,
 	long=Hybrid Threat Modeling Method,
 }
-\DeclareAcronym{STRIDE}{
-	short=STRIDE,
-	long= Spoofing\, Tampering\, Repudiation\, Information disclosure\, Denial of services\, and Escalation
-	of privileges,
-}
-\DeclareAcronym{PASTA}{
-	short=PASTA,
-	long= Process for Attack Simulation and Threat Analysis,
-}
 
-\DeclareAcronym{ac}{
-	short=802.11ac,
-	long= IEEE 802.11ac,
-}
-
-\DeclareAcronym{ax}{
-	short=802.11ax,
-	long= IEEE 802.11ax,
-}
 
 \DeclareAcronym{UDP}{
 	short=UDP,
@@ -275,8 +257,8 @@
 	short=RSS,
 	long=Received Signal Strength,
 }
-\DeclareAcronym{LoS}{
-	short=LoS,
+\DeclareAcronym{LOS}{
+	short=LOS,
 	long=Line-Of-Sight,
 }
 \DeclareAcronym{SNR}{
@@ -287,10 +269,7 @@
 	short=PDR,
 	long=Packet Delivery Ratio,
 }
-\DeclareAcronym{LOS}{
-	short=LOS,
-	long=Line-of-sight,
-}
+
 \DeclareAcronym{ESS}{
 	short=ESS,
 	long=Extended Service Set,
@@ -389,7 +368,7 @@ He also mentions, that the standard defines the following three mobility types f
 \textcite{sauter_wireless_2022} adds, that usually Ethernet is used to link \ac{AP}s within an \ac{ESS}.
 But according to the author this can be replaced by a wireless connection, which is called wireless bridge.
 
-To enable communication between Wifi devices, the IEEE 802.11 standard defines the following layers of the OSI model. The first layer is the physical layer.
+To enable communication between Wi-Fi devices, the IEEE 802.11 standard defines the following layers of the OSI model. The first layer is the physical layer.
 
 
 \input{wiFiphy}
@@ -543,7 +522,7 @@ In general, modern Wi-Fi offer a variety of different parameters, to achieve the
 The new IEEE 802.11ax \ac{ER} mode combined with \ac{DCM} offers the highest robustness at low \ac{SNR}s according to my simulations, which can
 be used for long range applications.
 
-To deal with inter-symbol interferences due to multipath effects, which were considered as the main reason for a high \ac{PER} in wi-fi outdoor networks by
+To deal with intersymbol interferences due to multipath effects, which were considered as the main reason for a high \ac{PER} in wi-fi outdoor networks by
 \cite{sheth_packet_2007} and \cite{aguayo_link-level_2004}, IEEE 802.11ax offers longer \ac{GI}s of up to \SI{3200}{\nano\second}.
 My simulations show that \ac{GI} of \SI{3200}{\nano\second} is more robust against multipath effects than \ac{GI} of \SI{800}{\nano\second}, but
 reduces the theoretical achievable data rate.
@@ -554,19 +533,7 @@ increased robustness comes at the cost of a reduced theoretical data rate.
 
 The following chapter analyses the impact of the different physical layer parameters on the latency of the Application Layer.
 
-\begin{comment} 
-Fixed Wifi 6 devices: 4 Streams, 2.4, 5.0 Ghz
-Fixed Wifi bd devices: 1 Stream, 5.9 Ghz,
-
-Leave it open for future work?
-look for different chips?
-
-Auf different paper stützen?
-
-
-\end{comment}
 \chapter{Application - Level - Simulation}
-
 
 \input{platooning}
 \begin{comment}
