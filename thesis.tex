@@ -340,6 +340,8 @@
 \input{cornHarvest}
 
 \section{Wireless Lans according to IEEE 802.11}
+\todo[color=blue]{Der Teil ist wichtig für das Verständnis}
+
 According to \textcite{kauffels_wireless_2002}, the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to Ethernet - or Token-Ring - networks.
 \textcite{sauter_wireless_2022} considers IEEE 802.11 also to be an implementation of Ethernet with the help of wirless radio technologies.
 The author lists the extensions to the original standard, which range from 802.11b, 802.11g, 802.11a, 802.11n, 802.11ac to the latest enhancement 802.11ax. The different IEEE 802.11 standards can operate in the  \SI{2.4}{\giga\hertz} - , \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} - frequency band.
@@ -350,10 +352,10 @@ In addition, they are also called Wi-Fi 4, Wi-Fi 5 and Wi-Fi 6 respectively.
 
 \textcite{kauffels_wireless_2002} defines the following three basic architectures for IEEE 802.11.
 
-If two or more stations communicate directly without an AP, they form an ad hoc network.
+If two or more \acp{STA} communicate directly without an \ac{AP}, they form an ad hoc network.
 According to the author, this can be set up quickly and easily and is called \ac{IBSS}.
 
-The Infrastructure \ac{BSS} mode allows all stations within the range of defined range around the \ac{AP} to communicate via a central \ac{AP}. Within the area of the \ac{BSS}, all stations can move freely and communicate with one another.
+The Infrastructure \ac{BSS} mode allows all \ac{STA}s within the range of defined range around the \ac{AP} to communicate via a central \ac{AP}. Within the area of the \ac{BSS}, all stations can move freely and communicate with one another.
 
 Since an \ac{AP} has limited range and can only cover a certain area, the \ac{ESS} was introduced.
 It contains a distribution system, which links several \ac{BSS} with each other.
@@ -428,9 +430,10 @@ Describe Mistakes?
 
 
 \chapter{Link - Level - Simulation}
-As every used Wi-Fi device in the field experiment runs a Wi-Fi rate manager, which is responsible for the rate adaptation, the influence of
-a particular physical layer parameter on the goodput, robustness and latency can not be examined in the field experiment.
-The Milesight Router was only capable to IEEE 802.11ac physical layer parameters, which don't include the new physical layer parameters of IEEE 802.11ax:
+
+As every used Wi-Fi device in the field experiment runs a Wi-Fi rate manager, which is responsible for the rate adaptation,
+the influence of a particular physical layer parameter on the goodput, robustness and latency can not be examined in the field experiment as no particular physical layer parameter can be set.
+The Milesight Router is only capable to IEEE 802.11ac physical layer parameters, which don't include the new physical layer parameters of IEEE 802.11ax:
 \ac{ER} mode, longer \ac{GI}s, HE-\ac{MCS} \numrange{9}{11} or \ac{DCM}.
 Therefore, I simulated the influence of the different physical layer parameters on the goodput, robustness and latency.
 Simulations benefit from the flexibility and possibility of simulating different communication and network protocols \cite{kumar_simulators_2012}.
@@ -441,14 +444,18 @@ Simulations benefit from the flexibility and possibility of simulating different
 The authors distinguish between link-level and system-level simulations for simulating \ac{HE} wireless networks.
 The authors explain both methods as follows.
 
+For system-level simulation, it requires abstractions of the physical and MAC layers to simulate a system close to
+real on this basis.
+
 Link-level simulations, according to the authors,
 investigate the performance of the HE physical layer for different physical layer parameters as \ac{PER} in terms of \ac{SNR}.
 As an example, the authors cite multiple different researchers, which simulated \ac{PER} regarding \ac{SNR} and chosen \ac{MCS}.
 Link-level simulations are usually visualised in so-called waterfall plots, which represent the \ac{PER} regarding \ac{SNR} for
 different physical layer parameters.
 
-For system-level simulation, it requires abstractions of the physical and MAC layers to simulate a system close to
-real on this basis.
+\input{robustness}
+
+
 
 For the simulation of Wi-Fi, various tools are already available, such as Matlab, ns-2 and ns-3, OMNeT++, Qualnet \cite{keller_simulation_2021} or OPNet \cite{kumar_simulators_2012}.
 
@@ -503,7 +510,7 @@ Nevertheless, ns-3 is chosen as a simulation tool for the simulation of 802.11ax
 
 \input{dataRate}
 
-\input{robustness}
+
 
 \section{Link - Level - Simulation Evaluation}
 

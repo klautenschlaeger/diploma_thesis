@@ -225,16 +225,16 @@ Since IEEE 802.11ax, the \ac{ER} Mode exists, which defines the new \ac{HE} \ac{
 a single station to access point transmission.
 According to the authors, this is accomplished by the \ac{PPDU} containing a repetition of the HE-SIG-A field.
 
-In addition, the authors explain that the preamble transmission power is boosted,
+In addition, the authors explain that the preamble transmission power is boosted
 to guarantee reliable transmission for longer ranges.
 The power-boost is limited to additional \SI{3}{\decibel}
-in \cite{noauthor_ieee_2021,jacob_system-level_2020}
+in \cite{noauthor_ieee_2021,jacob_system-level_2020}.
 
 The IEEE 802.11ax \cite{noauthor_ieee_2021} standard defines that the \ac{HE} \ac{ER} SU \ac{PPDU} format may only be used
 when 20 Mhz transmissions with either 242-Resource Unit with HE-MCS-0 - HE-MCS-2 or 106-Resource Unit with HE-MCS-0 are used on a spatial stream.
 In addition, one can use \ac{DCM}.
 \textcite{sauter_wireless_2022} defines the Resource Unit as fragments of a Wi-Fi channel. The number before the Resource Unit
-indicates the number of subcarriers, which are part of the Resource Unit.
+indicates the number of subcarriers which are part of the Resource Unit.
 
 Optionally, the \ac{HE} \ac{ER} SU \ac{PPDU} may also be transmitted with a \ac{GI} of \SI{800}{\nano\second},
 where an additional application of \ac{DCM} is forbidden.
@@ -260,7 +260,7 @@ IEEE 802.11ax introduced \ac{MU}-\ac{MIMO} in the Uplink direction \cite{noautho
 MU-\ac{MIMO} DCM can also be applied in IEEE 802.11ax \cite{noauthor_ieee_2021}.
 
 Another \ac{MIMO} technique is \ac{OFDMA}, which can be utilized since IEEE 802.11ax \cite{noauthor_ieee_2021, avallone_will_2021, omar_survey_2016}.
-\textcite{avallone_will_2021} explains, \ac{OFDMA} enables an \ac{AP} to transmit data to multiple \ac{STA} simultaneously by dividing the available bandwidth into \ac{RU} and assigning each \ac{RU} to a \ac{STA}.
+\textcite{avallone_will_2021} explains, that \ac{OFDMA} enables an \ac{AP} to transmit data to multiple \ac{STA} simultaneously by dividing the available bandwidth into \ac{RU} and assigning each \ac{RU} to a \ac{STA}.
 The authors add, that \ac{OFDMA} can be used in both the uplink and downlink direction.
 The \ac{AP} can choose the best suited \ac{RU} for each \ac{STA} and thus increase the Signal-to-Interference-plus-Noise Ratio \cite{khorov_tutorial_2019}
 \textcite{behara_performance_2022} adds, that \ac{OFDMA} is designed to improve the per-user throughput in high-density networks, e.q.
@@ -300,7 +300,7 @@ IEEE 802.11ax stations can optionally use \ac{STBC} the following conditions \ci
 	\item The \ac{GI} is not \SI{0.8}{\nano\second} and the symbol length is not \SI{12.8}{\micro\second}
 \end{itemize}
 
-\cite{gast_80211n_2012} states that \ac{STBC} is only supported in one-fifth of the Wi-Fi-certified devices.
+\textcite{gast_80211n_2012} states that \ac{STBC} is only supported in \nicefrac{1}{5} of the Wi-Fi-certified devices.
 
 
 

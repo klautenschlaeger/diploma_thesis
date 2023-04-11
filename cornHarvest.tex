@@ -1,6 +1,7 @@
 \section[Use Cases for \acl{WIC}]{Harvest and Loading Processes as Use Cases for \acl{WIC}}
 \label{sec:corn_harvest_scenario}
-The Forage harvester has proven to be an essential agricultural machine for harvesting and loading forage. \textcite{seifert_feldhacksler_1962} define a forage harvester as an agricultural loading machine for nearly all types of animal feed. According to the authors, a forage harvester can load the following animal feed by mounting different cutting and loading devices: Hey, Straw, Corn, Grass and Clover.
+\todo[color=blue]{Bereits von dir gelesen.}
+The \ac{FH} has proven to be an essential agricultural machine for harvesting and loading forage. \textcite{seifert_feldhacksler_1962} define a forage harvester as an agricultural loading machine for nearly all types of animal feed. According to the authors, a forage harvester can load the following animal feed by mounting different cutting and loading devices: Hey, Straw, Corn, Grass and Clover.
 \begin{figure}%
    \centering
    \includegraphics[width=0.6\textwidth]{figures/claas_harvest_side.png}
@@ -40,7 +41,8 @@ The key figures, which are shown in \autoref{tab:DataSilageHarvest}, are depende
 The harvesting and loading processes are examples of the use of agricultural Platooning Services as described by
 \textcite{zhang_method_2009}.
 This Platooning Service creates a leader and follower system where an uncrewed agricultural machine follows a leading operated agricultural machine.
-The operated \ac{FH}, as a leader, sets the path and speed and transmits the data via \ac{WIC} to the \ac{TM}. Based on the path and speed data of the \ac{FH}, \ac{TM} follows unmanned with a longitudinal and lateral offset, as \autoref{fig:offset} displays.
+The operated \ac{FH}, as a leader, sets the path and speed and transmits the data via \ac{WIC} to the \ac{TM}.
+Based on the path and speed data of the \ac{FH}, \ac{TM} follows unmanned with a longitudinal and lateral offset, as \autoref{fig:offset} displays.
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.65\textwidth]{figures/offset_platoon.pdf}

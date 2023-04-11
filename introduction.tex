@@ -1,4 +1,4 @@
-
+\todo[color=blue]{Den Teil haben mehrere Leute Korrektur gelesen, sodass du den für den Verständnis auch nur überfliegen kannst.}
 \begin{itemize}
 \item general motivation for your work, context and goals.
 \item context: make sure to link where your work fits in
@@ -10,16 +10,14 @@ With the growing demand for increased efficiency and autonomy in the agricultura
 and digitalization of farming processes. \ac{WIC} describes a wireless connection between agricultural machines
 in the field that enables process data exchange.
 
-Given that there are many different agricultural technology companies worldwide, and a mix of their machines often cooperate in
-the individual agricultural company, demand for interoperability between agricultural machines of other brands
+Given that there are many agricultural technology companies worldwide, and a mix of their machines often cooperate in individual agricultural companies, demand for interoperability between agricultural machines of other brands
 has emerged.
 In 2008, the \ac{AEF} was founded to develop and standardize this interoperability
 \footnote{\url{https://www.aef-online.org/about-us/about-the-aef.html}}.
 
-The AEF has defined a binary unit system, the ISO 11783 standard, for agricultural machinery communication, mainly tractors and
+The AEF is known fot its developed binary unit system, the ISO 11783 standard, for agricultural machinery communication, mainly tractors and
 implements \cite{iglesias_enabling_2014}.
-According to \textcite{schlingmann_aef_2019}, the ISO 11783 standard is known as
-the ISOBUS system.
+According to \textcite{schlingmann_aef_2019}, the ISO 11783 standard is named ISOBUS system.
 
 The authors mention that the AEF is currently working on other issues.
 Among them is also \ac{WIC}.
@@ -36,13 +34,22 @@ no network connectivity around many fields.
 Nevertheless, the authors want to leave the future \ac{WIC} system open
 to cellular standards.
 
-The authors' current focus is on Wi-Fi technologies, which must first be evaluated
-for use in the agricultural environment.
+The authors' current focus is on Wi-Fi technologies, especially IEEE 802.11p.
+
+As of July 2021, the frequency spectrum of IEEE 802.11p in the United States of
+America, ranging from \SIrange{5.85}{5.925}{\giga\hertz}, has been split.
+The upper \SI{30}{\mega\hertz}
+are reserved for Intelligent transportation systems now.
+The lower \SI{45}{\mega\hertz} have
+been released for unlicensed operations \cite{fcc_use_2021}. \todo[color=yellow]{andere Länder Japan, Korea?}
+
+Since the use of IEEE 802.11p has now been partly limited by the  US Federal Communications Commission, the
+WIC project group is looking for an alternative Wi-Fi technology that enables \ac{WIC}.
 
 In my final thesis, I intend to support the progress of the \ac{WIC} project group and investigate how modern Wi-Fi can enable \ac{WIC}.
  In particular, I will focus on the current Wi-Fi standard, IEEE 802.11ax.
 During my research, I will study the use cases of \ac{WIC} in agriculture and the requirements and challenges for \ac{WIC} in agriculture.
-In order to analyze the suitability of IEEE 802.11ax to enable \ac{WIC}, I will concentrate on the example use case Agricultural Platooning Service.
+To analyze the suitability of IEEE 802.11ax to enable \ac{WIC}, I will concentrate on the example use case Agricultural Platooning Service.
 Agricultural Platooning Service enables the exchange of process data
 to guide a vehicle in a platoon with a lateral and longitudinal offset to a leading vehicle.
 
