@@ -15,22 +15,8 @@ which are designed to add additional information to the packet.
 Every added packet Tag belongs to the packet and does not change the packet size or characteristics.
 Throughout the simulation, I used packet tags to add information that needed transferring.
 
-\subsubsection*{Simulation Scenario}
 The simulation scenario is based on the corn harvest and loading scenario, which is described in \autoref{sec:corn_harvest_scenario}, where
 multiple \ac{FH}s harvest the corn and load it onto one of the \ac{TM}s.
-
-Thereby, every \ac{FH} starts in the lower left corner of the field and harvests the corn along the path,
-which is displayed in \autoref{fig:PlatooningRoute}.
-As soon as a \ac{FH} reaches a field border, it makes a U-turn and continues
-in the opposite direction.
-Every \ac{FH} harvests the corn until it reaches the end of the field in the lower right corner.
-The initial position of the \ac{TM}s is a row below the \ac{FH}s, which is displayed in \autoref{fig:PlatooningInit}.
-\begin{figure}[H]%
-   \centering
-   \includegraphics[width=0.7\textwidth]{figures/drawings-Route}
-   \caption{Path of the \acf{FH} for harvesting corn on the field}
-   \label{fig:PlatooningRoute}%
-\end{figure}
 
 An ns-3 Node represents every machine.
 Each Node has a mobility model, which describes the movement of the machine.
@@ -64,15 +50,8 @@ is sufficient to exchange the guidance data, which must still be robust against 
 I chose the parameters to balance a high robustness and high data rate.
 The uniform transmission parameters are changed in the simulation to analyze the impact on the network performance metrics.
 
-The simulation is based on the ns-3 ConstantSpeedPropagationDelayModel and the  ns-3 FriisPropagationLossModel,
-representing free-space signal propagation at the speed of light.
-\todo[]{explain?}
-The ns-3 TableBasedErrorRateModel is used to model the error rate of the physical layer.
-According to the ns-3 Wi-Fi design guide %\footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html#default-table-based-error-model-validation}},
-the TableBasedErrorRateModel derives the \ac{PER} from results form the Matlab WLAN Toolbox
-regarding the physical layer parameters and \ac{SNR}.
-The design guide recommends the TableBasedErrorRateModel for the IEEE 802.11ax standard.
-
+Similar the ns-3 simulation in \autoref{sec:DataRate}, this simulation is based on the ns-3 ConstantSpeedPropagationDelayModel, the ns-3 FriisPropagationLossModel and
+the ns-3 TableBasedErrorRateModel.
 
 \begin{table}[H]
    \centering
@@ -108,6 +87,19 @@ Every machine node runs an ns-3 Application responsible for the Agricultural Pla
 The application is identified by a unique identifier and runs a UDP socket to exchange data with other Agricultural Platooning Service applications.
 Every UDP socket can be addressed by an IP address and a port number.
 The IP address is the IP address of the machine node.
+
+Every \ac{FH} starts in the lower left corner of the field and harvests the corn along the path,
+which is displayed in \autoref{fig:PlatooningRoute}.
+As soon as a \ac{FH} reaches a field border, it makes a U-turn and continues
+in the opposite direction.
+Every \ac{FH} harvests the corn until it reaches the end of the field in the lower right corner.
+The initial position of the \ac{TM}s is a row below the \ac{FH}s, which is displayed in \autoref{fig:PlatooningInit}.
+\begin{figure}[H]%
+   \centering
+   \includegraphics[width=0.7\textwidth]{figures/drawings-Route}
+   \caption{Path of the \acf{FH} for harvesting corn on the field}
+   \label{fig:PlatooningRoute}%
+\end{figure}
 
 In the beginning, every \ac{FH} broadcasts a search request $search\_TM$ via the non-uniform transmission mode to find an empty \ac{TM} to load the corn onto according to
 to the procedure in \autoref{alg:SearchTM}.
@@ -175,7 +167,7 @@ All steps of the harvest process and Agricultural Platooning Service are summari
 
 The FH harvest process is defined by the harvest states in \autoref{tab:harvestStatesDef},
 where every harvest state represents a different \ac{PD} and \ac{FH} speed, which are derived from the key figures of a
-\ac{FH} harvesting corn with a working width of \SI{6.2}{\meter} on a \SI{80}{\hectare} field in \autoref{tab:KeyFigures}.
+\ac{FH} harvesting corn with a working width of \SI{6.2}{\meter} on a \SI{80}{\hectare} field in \cite{faustzahlen2018}.
 When the \ac{PD} is low, the \ac{FH} can harvest faster and vice versa.
 
 Starting in the harvest state H1, the \ac{FH} determines the next harvest state every \SI{50}{\milli\second}
@@ -222,8 +214,8 @@ the transition probabilities.
 	(C) edge[bend left,below]	node{0.3}	(B)
         edge[loop right]		node{0.7}	(C);
 	\end{tikzpicture}
-\caption{Markov Chain for the states \acf{PD} 0, 1 and 2, which represent the current \ac{PD} and
-harvest speed from \autoref{tab:markov_chain}.}
+\caption{Markov Chain for the Harvest States 0, 1 and 2, which represent the current \ac{PD} and
+harvest speed from \autoref{tab:harvestStatesDef}}
 \label{fig:MarkovChain}
 \end{figure}
 
@@ -364,11 +356,11 @@ of authentication and security mechanisms.
 In the Corn Harvest scenario, additional data could be, for example, the fill level of the transport machine,
 information about the environment, obstacles or other machines on the field.
 
-\textcite{zhang_method_2009} already showed, that a interval of \SI{100}{\milli\second} is sufficient for Agricultural Platooning Services
+\textcite{zhang_method_2009} already showed that a interval of \SI{100}{\milli\second} is sufficient for Agricultural Platooning Services
 in a harvest scenario.
 
 I chose a $platoon\_data\_interval$ of \SI{50}{\milli\second} for the Agricultural Platooning Service
-as \textcite{smolnik_5g_2020} mention, that their requirements analysis indicated that new guidance data should at least arrive every \SI{50}{\milli\second}.
+as \textcite{smolnik_5g_2020} mention that their requirements analysis indicated that new guidance data should at least arrive every \SI{50}{\milli\second}.
 
 \section{Application-Level-Simulation Evaluation}
 I chose the following simulation configurations for the uniform transmission of guidance data: \ac{HE}-\ac{MCS} 3, 5 and 7 and
@@ -408,7 +400,7 @@ the mean latency.
 Nevertheless, the desired $platoon\_data\_interval$ of \SI{50}{\milli\second} can be achieved when using \ac{STBC} for
 every specified \ac{HE}-\ac{MCS} value and thereby increase the reliability of the transmission.
 
-The recorded process data from the corn harvest scenario showed, that the \ac{FH} can also harvest at higher speeds around
+The recorded process data from the corn harvest scenario showed that the \ac{FH} can also harvest at higher speeds around
 \SI{10}{\kilo\meter\per\hour} than the key figures in \cite{faustzahlen2018} report.
 To test the applicability of the Agricultural Platooning Service for higher speeds, I ran a additional simulation where I changed the
 harvest states according to \autoref{tab:harvestStatesChanged}.
@@ -453,7 +445,7 @@ vehicle distance of \SIrange{1}{2}{\metre}.
 \end{figure}
 
 The simulation runs with the same physical layer configurations as in \autoref{fig:mean_50}.
-The results displayed in \autoref{fig:mean_25} reveal, that the mean guidance data update interval is always around \SI{25}{\milli\second},
+The results displayed in \autoref{fig:mean_25} reveal that the mean guidance data update interval is always around \SI{25}{\milli\second},
 which is the desired $platoon\_data\_interval$.
 The mean latency is nearly the same as in \autoref{fig:mean_50}, which indicates that there is still some channel capacity left for
 further data exchange.
@@ -466,17 +458,29 @@ may impact signal propagation and communication performance.
 The simulated communication is based on a \ac{BW} of \SI{20}{\mega\hertz}, which offers the highest possible signal power spectral density.
 Additional robustness is gained by using \ac{STBC}, \ac{LDPC}, low \ac{MCS} values and \ac{CR}s which are encoded for example in
 \ac{HE}-\ac{MCS}3 and available since the IEEE 802.11n standard.
-These physical layer configurations are already enough to transmit guidance data in an Agricultural Platooning Service.
+These physical layer configurations are enough to transmit guidance data in an Agricultural Platooning Service.
+
+Both simulations did not consider the impact of interference due to other ongoing transmissions.
+For example, \ac{WIC} Video streaming services can increase the network load and consequently in longer latencies for
+the Agricultural Platooning Service.
+A solution would be to prioritize the Agricultural Platooning Service over other services
+to ensure a certain quality of service.
+When passing houses, industrial, or farm buildings, additional Wi-Fi transmissions can be expected. The results showed that some channel capacity is still left for further data exchange. \todo{Add more information about the impact of interference.}
 
 Using IEEE 802.11ax, a new service discovery transmission mode is available.
-Additionally to the lowest \ac{MCS} and \ac{CR},
+Additionally, to the lowest \ac{MCS} and \ac{CR},
 IEEE 802.11ax can apply the \ac{ER} mode with \ac{DCM} which increases robustness as shown in \autoref{sec:Robustness}
 and therefore increases the communication range.
 This physical layer amendment is designed to introduce a new level of long-range communication in IEEE 802.11.
 At the moment, I am not aware of any research that measured the resulting communication range in an agricultural environment.
 
+If the communication range is not sufficient for service discovery, a road side unit at the field entrance can be used to exchange \ac{FH} position data
+between \acp{TM} leaving and entering the field.
+Alternatively, a field planner can be used to give an overview of where a \ac{FH} should be harvesting,
+when everything works as expected.
+These two options can provide \ac{FH} position estimations, which can be used to guide \acp{TM} to a position where they are likely
+to receive service discovery broadcasts from \acp{FH}.
 
-\todo{Field planner, Cellular, RSU }
 
 
 

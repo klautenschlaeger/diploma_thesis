@@ -131,7 +131,7 @@ The output of the channel model is the received waveform, where I added additive
 
 In the next step, the received waveform is passed through the packet detection algorithm, which is based on the
 WLAN Toolbox example wlan/HESUExample \footnote{\url{https://de.mathworks.com/help/wlan/ug/802-11ax-packet-error-rate-simulation-for-single-user-format.html}} and
-shown in an abstracted form in \autoref{alg:PacketPER}.
+shown in an abstracted form in \autoref{alg:ProcedurePER}.
 The procedure calls various functions to decode the preamble, header and payload of
 the received waveform.
 A packet error is detected, when no packet arrives, the packet delay is greater than \num{50} samples or the recovered packet data
@@ -173,7 +173,7 @@ for all HE-MCS values. The effect increases to \SI{3}{\decibel} with higher HE-M
 \end{figure}
 
 \textcite{syafei_performance_2009} simulated the effect of the \ac{FEC} procedure on the \ac{PER} for IEEE 802.11n. They
-had similar results and state, that using \ac{LDPC} instead of \ac{BCC}, a \ac{PER} of \SI{0.1}{\percent}  can be achieved at a
+had similar results and state that using \ac{LDPC} instead of \ac{BCC}, a \ac{PER} of \SI{0.1}{\percent}  can be achieved at a
 \SIrange{3.2}{6}{\decibel} higher \ac{SNR}.
 
 According to \textcite{tran_asic_2014}, this effect is also present for IEEE 802.11ac. A \ac{PER} of \SI{0.1}{\percent} can be achieved at a
@@ -221,7 +221,7 @@ The results are plotted in \autoref{fig:PER_SNR_DCM}.
    \label{fig:PER_SNR_DCM}%
 \end{figure}
 
-\textcite{khorov_ieee_2015} also mention similar figures, that \ac{DCM} increases the \ac{PER} performance by more than \SI{2}{\decibel}.
+\textcite{khorov_ieee_2015} also mention similar figures that \ac{DCM} increases the \ac{PER} performance by more than \SI{2}{\decibel}.
 
 \textcite{ryu_ber_2010} and \textcite{park_ber_2006} conducted a similar simulation, where they analyzed the bit error rate in
 regards to the normalized \ac{SNR} and whether \ac{DCM} was enabled for rayleigh fading channels.
@@ -244,7 +244,7 @@ In order to analyze the impact of the \ac{ER} mode, I set the physical layer par
 For He-MCS \num{0}, \num{1} and \num{3} I run simulations, where I enabled the
 \ac{ER} mode and compared the \ac{PER} to the \ac{PER} of the same HE-MCS values without \ac{ER} mode.
 
-The results in \autoref{fig:PER_SNR_ER} indicate, that the \ac{PER} is influenced by the \ac{ER} mode.
+The results in \autoref{fig:PER_SNR_ER} indicate that the \ac{PER} is influenced by the \ac{ER} mode.
 The difference in \ac{SNR} with \ac{ER} mode to without \ac{ER} mode, where a \ac{PER}
 of \SI{10}{\percent} is achieved, is \SIrange{1}{2}{\decibel}.
 \begin{comment}
@@ -271,14 +271,14 @@ vehicle densities, the authors remark that using \ac{DCM} and the \ac{ER} mode c
 networks with low bandwidths. The authors conclude that the \ac{ER} mode and \ac{DCM} should be used for long-range transmissions, where
 the physical layer parameters can extend the transmission range significantly.
 
-A similar simulation was conducted by \textcite{triwinarko_phy_2021}. The researchers state, that using \ac{DCM} and the
+A similar simulation was conducted by \textcite{triwinarko_phy_2021}. The researchers state that using \ac{DCM} and the
 \ac{ER} mode results in better \ac{PER} performance at lower \ac{SNR} values in \ac{LOS} and non-\ac{LOS} scenarios.
 
 \subsubsection*{\acf{STBC}}
 As aforementioned, additional robustness can be achieved by applying \ac{STBC}. In order to analyse the impact of \ac{STBC} on the \ac{PER} in regards to the \ac{SNR},
 I run the simulation for the HE-MCS values \numrange{0}{11} with and without \ac{STBC}.
 
-The results in \autoref{fig:PER_SNR_STBC} indicate, that the \ac{PER} is influenced
+The results in \autoref{fig:PER_SNR_STBC} indicate that the \ac{PER} is influenced
 by the \ac{STBC} mode. A \ac{PER} of less than \SI{10}{\percent} is possible at a \SIrange{2}{10}{\decibel} lower \ac{SNR} when using \ac{STBC} additionally.
 The impact of \ac{STBC} on the \ac{PER} grows from \SI{2}{\decibel} for HE-MCS\num{0} to \SI{10}{\decibel} for HE-MCS\num{11}.
 \begin{comment}
@@ -329,5 +329,5 @@ The simulation results can now be used to derive the following conclusion
 that a lower \ac{PER} for the \SI{2.4}{\giga\hertz} band can be accomplished
 for a given set of physical layer parameters, distance and noise floor.
 
-
-\todo{What should be chosen?}
+The simulation results indicate that modern Wi-Fi offers various physical layer parameters to enhance the robustness of the outdoor communication.
+Every physical layer configuration has also an impact on data throughput, which is the next topic to be analyzed.

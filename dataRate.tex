@@ -1,8 +1,60 @@
 \section{Data Rate}
 \label{sec:DataRate}
-As ns-3 is an open-source simulation software and was used by other researchers too in the past, I used ns-3
+For the simulation of Wi-Fi data throughput, various tools are already available, such as Matlab, ns-2 and ns-3, OMNeT++, Qualnet \cite{keller_simulation_2021} or OPNet \cite{kumar_simulators_2012}.
+
+\textcite{kumar_simulators_2012} compares different available simulators for the simulation of wireless networks and concludes that, in general, ns-2, ns-3 and OMNeT++ are the most popular simulators for academic research of wireless networks.
+\textcite{keller_simulation_2021} mentions that ns-3 keeps a more accurate Implementation of the IEEE 802.11 standard than OMNeT++.
+So far, I know that OMNeT++ supports some IEEE 802.11ac modes via the library INET Release 4.0.0 \footnote{\url{https://inet.omnetpp.org/2018-06-28-INET-4.0.0-released.html}}.
+Consequently, OMNeT++ seems unsuitable for IEEE 802.11ax simulations and I looked at ns-3.
+
+
+\subsubsection*{ns-3 Network Simulator}
+
+Ns-3 is well documented in the ns-3 manual in the \textit{./doc} - folder of  \cite{nsnam_ns-3_nodate}, where I found the following information about the simulator.
+Ns-3 is a discrete-event network simulator project which was founded in 2006.
+The ns-3 project is open source with a licence based on n GNU GPLv2 compatibility.
+It aims to provide an open, extensible network simulator for research and educational use.
+Ns-3 scripts can be written in C++ or Python.
+
+The concept of ns3 is based on the abstraction of simulated systems.
+For this purpose, the term node was introduced for basic computing devices.
+The Node class offers the possibility of installing protocol stacks and applications or adding peripheral cards and mobility models to the node.
+Applications are the abstraction of the user-level applications, representing an activity to be simulated.
+For this purpose, the applications use resources and functionalities provided by the system software of a node.
+
+Every node gets network access via the Net Device class.
+The Net Device class represents the physical interface of a node,
+which can be a network interface card or peripheral card.
+The Net Device simulates the software driver and the network interface hardware.
+
+Every Net Device is connected to a channel.
+The channel class represents the physical medium which is used to transmit data.
+The channel behaviour is based
+on the channel model, which may include interference, propagation delay and loss.
+
+The current version ns-3.37 supports IEEE 802.11ax as a standard in infrastructure and ad-hoc mode \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html}}.
+However, support for the 802.11ax standard is not yet complete.
+It is already possible to configure \ac{DCM} and \ac{STBC},
+but there is a comment in line 496 of the file \textit{he-ppdu.cc} that these are
+not yet taken into account in the current ns-3 version 3.37 \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-user.html}}.
+
+When examining the implementation of 802.11ax in ns-3, one notices that the implementation of 802.11ax in ns-3 already implements a HE ER SU \ac{PPDU} preamble, but this is never used, and one cannot activate the extended range mode.
+Therefore, some open points of 802.11ax in ns-3 still need to be implemented.
+
+\textcite{black_netsimulyzer_2021} have developed a 3D visualisation of ns-3, which visualises the simulations in 3D to make the ns-3 simulation
+scenarios tangible.
+The authors' graphical extension consists of two open source programmes.
+The NetSimulyzer ns-3 module \footnote{https://github.com/usnistgov/NetSimulyzer-ns3-module} can be integrated into the ns-3 simulation and builds a JSON file using the specified functions and configurations.
+This file contains all the data required for visualisation in the application NetSimulyzer \footnote{\url{https://github.com/usnistgov/NetSimulyzer}}.
+
+
+Nevertheless, ns-3 is chosen as a simulation tool for the simulation of 802.11ax by \cite{dolinska_new_2019}, \cite{rochim_performance_2020} and
+\cite{behara_performance_2022}.
+
+
+As ns-3 is an open-source simulation software and was used by the mentioned other researchers in the past too, I used ns-3
 to evaluate the effect of physical layer configuration on the achievable goodput between two nodes using IEEE 802.11ax Wi-Fi Netdevices
-to exchange UDP packets in Adhoc Mode.
+to exchange UDP packets in ad-hoc Mode.
 
 The setup consists of two nodes placed in static positions with a distance of \SI{20}{\metre}.
 I chose the short communication range setup with no simulated interference to enable Wi-Fi transmission without any packets lost.
@@ -32,6 +84,15 @@ The used frequency band is \SI{2.4}{\giga\hertz} or \SI{5}{\giga\hertz} as highe
 The Wi-Fi Netdevices operate in the frequency channels specified in \autoref{tab:fieldChannels}, which can be used for
 outdoor Wi-Fi communication in Germany \cite{freq_plan_24G}, \cite{freq_plan_5G}.
 
+The simulation is based on the ns-3 ConstantSpeedPropagationDelayModel and the  ns-3 FriisPropagationLossModel,
+representing free-space signal propagation at the speed of light.
+\todo[]{evtl explain?}
+The ns-3 TableBasedErrorRateModel is used to model the error rate of the physical layer.
+According to the ns-3 Wi-Fi design guide \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html\#default-table-based-error-model-validation}},
+the TableBasedErrorRateModel derives the \ac{PER} from results form the Matlab WLAN Toolbox
+regarding the physical layer parameters and \ac{SNR}.
+The design guide recommends the TableBasedErrorRateModel for the IEEE 802.11ax standard.
+
 As the Wi-Fi standard implements ACKs for every packet, every lost packet is repeated until it is received or the number of retries is
 exceeded.
 Platooning Services are time critical, so the number of retries should be as low as possible.
@@ -56,7 +117,8 @@ First, I confirmed that the theoretical data rate for the simulation's IEEE 802.
 
 I also used the MonitorSnifferRxCallback and the MonitorSnifferTxCallback of the ns-3 WifiPhy class to check the ongoing transmissions.
 Both Callback functions can be added to WifiPhy objects of Wi-FiNetDevice and are called every time a packet is received or transmitted at the Wi-Fi Netdevice.
-The function parameters are information about the packet, channel frequency and station ID and an instance of the WifiTxVector class. The WifiTxVector instance in the current ns-3 version 3.37 describes all parameters of the transmission in accordance to the TXVECTOR field of the IEEE 802.11 standard \cite{noauthor_ieee_2021}. Additionally, the function parameters of the MonitorSnifferRxCallback contain the signal strength and
+The function parameters are information about the packet, channel frequency and station ID and an instance of the WifiTxVector class.
+The WifiTxVector instance in the current ns-3 version 3.37 describes all parameters of the transmission in accordance to the TXVECTOR field of the IEEE 802.11 standard \cite{noauthor_ieee_2021}. Additionally, the function parameters of the MonitorSnifferRxCallback contain the signal strength and
 the noise power of the received packet.
 
 Using the provided information from the MonitorSnifferRxCallback and the MonitorSnifferTxCallback, I was able to comprehend the ongoing transmissions and
@@ -65,7 +127,8 @@ verify the simulation results.
 \subsubsection*{\acf{GI}}
 
 In the first simulation, I varied the \ac{GI} of the Wi-Fi Netdevices for different HE-\ac{MCS} values.
-The results are shown in \autoref{fig:Data_rate_GI}. The achieved goodput is plotted against the theoretical data rate for the different \ac{GI} values.
+The results are shown in \autoref{fig:Data_rate_GI}.
+The achieved goodput is plotted against the theoretical data rate for the different \ac{GI} values.
 The theoretical data rate is always higher than the achieved goodput of the UDP applications because the channel is also used for \ac{ACK} and ad-hoc Beacon transmissions. Due to
 these different transmissions, the goodput is lower than the theoretical data rate.
 \begin{figure}[H]
@@ -197,15 +260,15 @@ which complies with the IEEE 802.11ax standard \cite{noauthor_ieee_2021}.
 \end{figure}
 
 Other physical layer parameters, supported by the IEEE 802.11ax standard, are \ac{LDPC} and utilizing more \ac{MIMO} streams.
-The effect, that using more \ac{MIMO} streams for transmission increases the achievable goodput, is already known \cite{sauter_wireless_2022, noauthor_ieee_2021, noauthor_ieee_2021-1}.
+The effect that using more \ac{MIMO} streams for transmission increases the achievable goodput, is already known \cite{sauter_wireless_2022, noauthor_ieee_2021, noauthor_ieee_2021-1}.
 \ac{LDPC} no new effect for data rate, but more robustness which results in a lower \ac{PER}.
 
 Using a different frequency spectrum, the achievable goodput can be limited due to the lower maximum \ac{BW} of \SI{40}{\mega\hertz} in the \SI{2.4}{\giga\hertz} frequency spectrum.
 To analyze achievable goodput in the \SI{2.4}{\giga\hertz} frequency spectrum, I reran the simulations with the same configuration for \autoref{sec:STBCDataRate}, but within the \SI{2.4}{\giga\hertz} frequency spectrum.
-The results indicate, that the achievable goodput is between \SIrange{0.1}{2.7}{\mega\bit\per\second} slower than in the \SI{5}{\giga\hertz} frequency spectrum.
+The results indicate that the achievable goodput is between \SIrange{0.1}{2.7}{\mega\bit\per\second} slower than in the \SI{5}{\giga\hertz} frequency spectrum.
 
 Due to a signal extension of \SI{6}{\micro\second} in the \SI{2.4}{\giga\hertz} frequency spectrum, the transmission time is longer, which results in a lower achievable goodput.
-\cite{noauthor_ieee_2021} states, that the signal extension in the \SI{2.4}{\giga\hertz} frequency spectrum enables
+\cite{noauthor_ieee_2021} states that the signal extension in the \SI{2.4}{\giga\hertz} frequency spectrum enables
 backwards compatibility with the older 802.11 standards, which need time to write their network allocation vector register.
 \begin{comment}
 \begin{figure}[H]%
@@ -223,7 +286,7 @@ The simulation results represent an ideal scenario where only two nodes exchange
 In a real-world scenario in the agricultural domain, the number of nodes and the distance between the nodes may be higher.
 The signal propagation will be influenced by the complex agricultural environment,
 which can consist of large water areas, various obstacles and vegetation or weather conditions \cite{brinkhoff_characterization_2017}.
-In case of the corn harvest scenario, \textcite{smolnik_5g_2020} points out, that corn plants can be up to \SI{3}{\metre} high
+In case of the corn harvest scenario, \textcite{smolnik_5g_2020} points out that corn plants can be up to \SI{3}{\metre} high
 and thus influence signal propagation.
 These factors in the real-world scenario can lead to higher \ac{PER} and thus reduce the achievable goodput.
 
