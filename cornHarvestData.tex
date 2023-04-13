@@ -1,6 +1,5 @@
 \chapter{Analyzing Corn Harvest Process Data}
 \label{chap:cornHarvestData}
-\todo[color=blue]{Bereits von dir gelesen. Vielen Dank nochmal dafür.}
 To gain a better insight into requirements of the \ac{WIC} use case Agricultural Platooning Service,
 I analysed process data of a corn harvest scenario.
 
@@ -19,7 +18,7 @@ The tablets recorded the position and speed of the \ac{FH} and the \ac{TM}s ever
 During breaks, the tablets continued to capture the NMEA data stream of their GPS even if the positions and speed did not change.
 
 After recording the process data, I anonymised it.
-First, I deleted data points of the log files until the recorded accuracy of the following data points was less than
+First, I deleted data log lines of the log files until the recorded accuracy of the following data log lines was better than
 \SI{2}{\metre}.
 Then, I replaced the timestamp and the date for all data points with a continuous index.
 
@@ -102,11 +101,11 @@ platoons can be detected.
 
 \begin{figure}%
     \centering
-    \subfloat[Map]{\label{fig:setup1}\includegraphics[width=0.8\textwidth]{figures/ScreenshotToResultsPNG2.png}}%
+    \subfloat[Travel lane]{\label{fig:setup1}\includegraphics[width=0.8\textwidth]{figures/ScreenshotToResultsPNG2.png}}%
    \\
     \subfloat[Speed and Distance data]{\label{fig:setup2}\includegraphics[width=0.9\textwidth]{figures/stacked_plotted_data_platoon}}
     \caption{A \ac{FH} and a \ac{TM} in harvest and overloading scenario, which is represented as distance and speed data plotted in regards to the
-   time and which is visualised on a map as a black line and white line for the \ac{FH}, \ac{TM} respectively}%
+   time and which is visualised as a black and white travel lane for the \ac{FH}, \ac{TM} respectively}%
     \label{fig:setups12}%
 \end{figure}
 

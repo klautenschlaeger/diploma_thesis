@@ -365,9 +365,9 @@ For a better performance the \ac{BSS} can be physically placed on top of each ot
 One can also have objectively separate \ac{BSS}s so that these \ac{BSS}s can be linked together over long distances.
 Pursuant to the author, the standard does not specify a distance limit for such connections.
 
-He also mentions, that the standard defines the following three mobility types for station in an \ac{ESS}, where a station can do no-transition and thereby stay within a \ac{BSS}, \ac{BSS}-transitioning and move from one \ac{BSS} to another \ac{BSS} within the same \ac{ESS} and \ac{ESS}-transition, where the Station moves from a \ac{ESS} to another one but no stable connection can be guaranteed.
+He also mentions that the standard defines the following three mobility types for station in an \ac{ESS}, where a station can do no-transition and thereby stay within a \ac{BSS}, \ac{BSS}-transitioning and move from one \ac{BSS} to another \ac{BSS} within the same \ac{ESS} and \ac{ESS}-transition, where the Station moves from a \ac{ESS} to another one but no stable connection can be guaranteed.
 
-\textcite{sauter_wireless_2022} adds, that usually Ethernet is used to link \ac{AP}s within an \ac{ESS}.
+\textcite{sauter_wireless_2022} adds that usually Ethernet is used to link \ac{AP}s within an \ac{ESS}.
 But according to the author this can be replaced by a wireless connection, which is called wireless bridge.
 
 To enable communication between Wi-Fi devices, the IEEE 802.11 standard defines the following layers of the OSI model. The first layer is the physical layer.
@@ -455,59 +455,6 @@ different physical layer parameters.
 
 \input{robustness}
 
-
-
-For the simulation of Wi-Fi, various tools are already available, such as Matlab, ns-2 and ns-3, OMNeT++, Qualnet \cite{keller_simulation_2021} or OPNet \cite{kumar_simulators_2012}.
-
-\textcite{kumar_simulators_2012} compares different available simulators for the simulation of wireless networks and concludes that, in general, ns-2, ns-3 and OMNeT++ are the most popular simulators for academic research of wireless networks.
-\textcite{keller_simulation_2021} mentions that ns-3 keeps a more accurate Implementation of the IEEE 802.11 standard than OMNeT++.
-So far, I know that OMNeT++ supports some IEEE 802.11ac modes via the library INET Release 4.0.0 \footnote{\url{https://inet.omnetpp.org/2018-06-28-INET-4.0.0-released.html}}.
-Therefore, OMNeT++ seems unsuitable for IEEE 802.11ax simulations.
-
- 
-\subsubsection*{ns-3 Network Simulator}
-
-Ns-3 is well documented in the ns-3 manual in the \textit{./doc} - folder of  \cite{nsnam_ns-3_nodate}, where I found the following information about the simulator.
-Ns-3 is a discrete-event network simulator project which was founded in 2006.
-The ns-3 project is open source with a licence based on n GNU GPLv2 compatibility.
-It aims to provide an open, extensible network simulator for research and educational use.
-Ns-3 scripts can be written in C++ or Python.
-
-The concept of ns3 is based on the abstraction of simulated systems.
-For this purpose, the term node was introduced for basic computing devices.
-The Node class offers the possibility of installing protocol stacks and applications or adding peripheral cards and mobility models to the node.
-Applications are the abstraction of the user-level applications, representing an activity to be simulated.
-For this purpose, the applications use resources and functionalities provided by the system software of a node.
-
-Every node gets network access via the Net Device class.
-The Net Device class represents the physical interface of a node,
-which can be a network interface card or peripheral card.
-The Net Device simulates the software driver and the network interface hardware.
-
-Every Net Device is connected to a channel.
-The channel class represents the physical medium which is used to transmit data.
-The channel behaviour is based
-on the channel model, which may include interference, propagation delay and loss.
-
-The current version ns-3.37 supports IEEE 802.11ax as a standard in infrastructure and ad-hoc mode \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html}}.
-However, support for the 802.11ax standard is not yet complete.
-It is already possible to configure \ac{DCM} and \ac{STBC},
-but there is a comment in line 496 of the file \textit{he-ppdu.cc} that these are
-not yet taken into account in the current ns-3 version 3.37 \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-user.html}}.
-
-When examining the implementation of 802.11ax in ns-3, one notices that the implementation of 802.11ax in ns-3 already implements a HE ER SU \ac{PPDU} preamble, but this is never used, and one cannot activate the extended range mode.
-Therefore, some open points of 802.11ax in ns-3 still need to be implemented.
-
-\textcite{black_netsimulyzer_2021} have developed a 3D visualisation of ns-3, which visualises the simulations in 3D to make the ns-3 simulation
-scenarios tangible.
-The authors' graphical extension consists of two open source programmes.
-The NetSimulyzer ns-3 module \footnote{https://github.com/usnistgov/NetSimulyzer-ns3-module} can be integrated into the ns-3 simulation and builds a JSON file using the specified functions and configurations.
-This file contains all the data required for visualisation in the application NetSimulyzer \footnote{\url{https://github.com/usnistgov/NetSimulyzer}}.
-
-
-Nevertheless, ns-3 is chosen as a simulation tool for the simulation of 802.11ax by \cite{dolinska_new_2019}, \cite{rochim_performance_2020} and
-\cite{behara_performance_2022}.
-
 \input{dataRate}
 
 
@@ -529,7 +476,7 @@ In general, modern Wi-Fi offer a variety of different parameters, to achieve the
 The new IEEE 802.11ax \ac{ER} mode combined with \ac{DCM} offers the highest robustness at low \ac{SNR}s according to my simulations, which can
 be used for long range applications.
 
-To deal with intersymbol interferences due to multipath effects, which were considered as the main reason for a high \ac{PER} in wi-fi outdoor networks by
+To deal with intersymbol interferences due to multipath effects, which were considered as the main reason for a high \ac{PER} in  Wi-Fi outdoor networks by
 \cite{sheth_packet_2007} and \cite{aguayo_link-level_2004}, IEEE 802.11ax offers longer \ac{GI}s of up to \SI{3200}{\nano\second}.
 My simulations show that \ac{GI} of \SI{3200}{\nano\second} is more robust against multipath effects than \ac{GI} of \SI{800}{\nano\second}, but
 reduces the theoretical achievable data rate.
