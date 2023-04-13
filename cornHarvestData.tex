@@ -4,7 +4,7 @@ To gain a better insight into requirements of the \ac{WIC} use case Agricultural
 I analysed process data of a corn harvest scenario.
 
 The goal of analysing the corn harvest data was to investigate the machines moving in the working scenarios relative to each other.
-The machines' speed and distance in tracked harvest platoons data may result in new use case requirements,
+The machines' speed and distance in tracked harvest platoon data may result in new use case requirements,
 e.g.\ latency or communication range.
 The machinery movement profile can be used to identify when shadowing effects may occur in the work scenario or
 when machines meet in the field.
@@ -45,7 +45,7 @@ A \ac{TM} is in a platoon with a \ac{FH} if the distance to the \ac{FH} is less 
 nearly the same speed with a maximum
 velocity difference of \SI{5}{\km\per\hour} (\SI{1.39}{\metre\per\second}).
 The distance between \ac{TM} and \ac{FH} increases during a turning manoeuvre on the field.
-Since both machines have different curve radii in a turning manoeuvre, a different machine's speed can be observed to
+Since both machines have different curve radii in a turning manoeuvre, a different machine speeds are required to
 finish turning simultaneously.
 \textcite{smolnik_5g_2020} also describes these observations and indicates that this speed difference adds a new
 level of complexity.
@@ -63,14 +63,13 @@ It starts by searching for every \ac{TM} that could be in a harvest and overload
 the data points by the distance and speed difference between \ac{TM} and \ac{FH}.
 If the distance is less than \SI{10}{\metre}, the speed difference is less than \SI{5}{\km\per\hour}
 (\SI{1.39}{\metre\per\second}) and the \ac{FH} and \ac{TM} drive at a speed within \SIrange{5}{14}{\km\per\hour}
-(\SIrange{1.39}{3.89}{\metre\per\second}), the \ac{TM} could be harvest and overloading scenario with the \ac{FH}.
+(\SIrange{1.39}{3.89}{\metre\per\second}), the \ac{TM} could be in a harvest and overloading scenario with the \ac{FH}.
 
 In some cases, this algorithm would also detect the waiting \ac{TM}.
 To avoid this, I applied a weighted sum of distance and speed difference
 between \ac{TM} and \ac{FH} to detect the harvest and overloading scenario.
 The weights are \nicefrac{3}{5} and \nicefrac{2}{5} for the distance and speed difference, respectively, to ensure that
-the closer \ac{TM} is more likely in a harvest and overloading scenario with the \ac{FH}.
-It uses a weighted sum of distance and speed difference between \ac{FH} and \ac{TM} to detect the platooning scenarios.
+the closer \ac{TM} is more likely in a harvest and overloading scenario with the \ac{FH}, when they are moving at nearly the same speed.
 I determined the weights using the Trial-and-Error method, setting the weights and displaying
 the found platoons scenarios on the map.
 Then I adjusted the weights until the detected platoons scenarios were correct.
@@ -101,7 +100,7 @@ platoons can be detected.
 
 \begin{figure}%
     \centering
-    \subfloat[Travel lane]{\label{fig:setup1}\includegraphics[width=0.8\textwidth]{figures/ScreenshotToResultsPNG2.png}}%
+    \subfloat[Travel lane]{\label{fig:setup1}\includegraphics[width=0.8\textwidth]{figures/ScreenshotToResultsPNG2}}%
    \\
     \subfloat[Speed and Distance data]{\label{fig:setup2}\includegraphics[width=0.9\textwidth]{figures/stacked_plotted_data_platoon}}
     \caption{A \ac{FH} and a \ac{TM} in harvest and overloading scenario, which is represented as distance and speed data plotted in regards to the
@@ -137,7 +136,7 @@ For the detected data points of the platooning services from recorded data of th
 the proportion where the \ac{FH} and \ac{TM} move in a specific distance is shown in \autoref{fig:distance}.
 For the same data points, the proportion in which \ac{FH} and \ac{TM} move at a given speed is available in \autoref{fig:speed}.
 
-These analysing results show that the \ac{TM} and the \ac{FH} usually move with a distance of less than \SI{10}{\metre}.
+These results show that the \ac{TM} and the \ac{FH} usually move with a distance of less than \SI{10}{\metre}.
 In addition, the distance can also be higher, e.g. in turning manoeuvres or before the overloading process.
 
 \textcite{smolnik_5g_2020} specifies the required communication range of platooning services in the corn harvest process
@@ -150,8 +149,7 @@ This speed is significantly higher than the average speed of \SIrange{6.6}{8.1}{
 
 
 It is necessary to classify that in the year of the recorded data was little precipitation, so the corn was not dense and high,
-and the last speed value is an average value of the entire corn harvest process,
-which can be calculated from the data in \cite{faustzahlen2018}.
+and the \ac{FH} could drive faster.
 Nevertheless, the recorded data shows that a platooning service in agriculture must also be designed for higher speeds.
 
 In \autoref{fig:speed} is a local maximum at a speed of \SI{0}{\kilo\metre\per\hour}.
@@ -167,7 +165,7 @@ which is a major producer of \ac{FH} worldwide and thus can be regarded as havin
 
 \textcite{klingler_agriculture_2018} investigated the suitability of IEEE 802.11p for \ac{WIC}.
 The authors detected that shadowing effects occur in the harvest scenario.
-The authors explain the effect because another tractor or the spout of the \ac{FH} was in \ac{LOS}.
+The authors explain the effect because the spout of the \ac{FH} was in \ac{LOS}.
 \begin{figure}%
    \centering
    \begin{tikzpicture}
@@ -232,13 +230,12 @@ Such a platooning scenario can be an exception or a driving manoeuvre to start c
 
 The results reveal only a first impression of the requirements of the harvest and loading process.
 More data from around the world must be analysed to make a general statement.
-The low rainfall this year has already resulted in a low plant population.
+The low rainfall this year resulted in a low plant population.
 This field condition made a higher process speed possible.
-The data may also vary on the size of the agricultural machinery.
+The data may also vary based on the size of the agricultural machinery.
 Using a smaller \ac{FH} would result in a smaller distance between \ac{TM} and \ac{FH}.
 To make a general statement, I should use data from different years, machines or harvest and loading scenarios
 because they can reveal other initial field conditions.
-git
 
 \begin{comment}
 	\TODO{

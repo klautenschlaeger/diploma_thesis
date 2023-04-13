@@ -3,7 +3,7 @@ A constant change of the physical layer accompanies the further development of I
 \textcite{sauter_wireless_2022} mentions that all new enhancements of the physical layer of IEEE 802.11 are backward
 compatible with previous definitions of the standard.
 
-According to the Author, IEEE 802.11 initially used DSSS and FHSS as modulation methods.
+According to the Author, IEEE 802.11 initially used Direct Sequence Spread Spectrum and Frequency Hopping Spread Spectrum as modulation methods.
 Since IEEE 802.11g the modulation method \ac{OFDM} can be used in the \SI{2.4}{\giga\hertz} frequency band.
 The author explains \ac{OFDM} as follows. \ac{OFDM} divides the transmission channel into subcarriers with different
 amplitudes, frequencies and phases.
@@ -27,7 +27,7 @@ so the Fast Fourier Transform size must be increased.
 \textcite{kauffels_wireless_2002} adds that \ac{OFDM} can be used in the \SI{5}{\giga\hertz} frequency band since IEEE 802.11a.
 \subsubsection*{\acf{BW}}
 The frequency bands are divided into channels in order to create several transmission channels.
-This results in 13 channels in Europe in the frequency band of \SIrange{2.412}{2.482}{\giga\hertz} and 18 channels in the frequency band of \SIrange{5.180}{5.350}{\giga\hertz} and \SIrange{5.180}{5.350}{\giga\hertz} \cite{sauter_wireless_2022}.
+This results in 13 channels in Europe in the frequency band of \SIrange{2.412}{2.482}{\giga\hertz} and 18 channels in the frequency band of \SIrange{5.180}{5.350}{\giga\hertz} and \SIrange{5.470}{5.725}{\giga\hertz} \cite{sauter_wireless_2022}.
 Transmission channels can be combined to enable higher data rates.
 Every channel has a width called \ac{BW} specified in \si{\mega\hertz}.
 The possible \ac{BW}s for the IEEE 802.11 standards are shown in \autoref{tab:BW}.
@@ -138,7 +138,7 @@ For IEEE 802.11ax, this results in the HE-MCS values in \autoref{tab:HEMCS}.
 \textcite{pulimamidi_development_2007} describe the Guard Interval as a cyclic prefix of \ac{OFDM} symbols to prevent
 intersymbol interference and through intercarrier interference.
 Intersymbol interference is caused by multipath delays, where the reflected delayed previous symbol can interfere
-with the currently received symbol\cite{ravindranath_performance_2016}.
+with the currently received symbol \cite{ravindranath_performance_2016}.
 Similarly, intercarrier interference is caused by time-varying channel resulting in a longer \ac{OFDM} symbol duration
 \cite{van_duc_nguyen_intercarrier_2002}.
 
@@ -177,7 +177,7 @@ IEEE 802.11ax \cite{jacob_system-level_2020}, \cite{triwinarko_phy_2021}, \cite{
 At the receiver, the data copies are combined with the log-likelihood ratio.
 Thus \ac{DCM} increases the probability of receiving the data.
 
-\cite{noauthor_ieee_2021} provides a receiver minimum input sensitivity, which indicates until which RSS a packet is
+\cite{noauthor_ieee_2021} provides a receiver minimum input sensitivity, which indicates until which \ac{RSS} a packet is
 received with a probability of \SI{90}{\percent}.
 The receiver minimum input sensitivity for a \ac{BW} of
 \SI{20}{\mega\hertz} is displayed in \autoref{fig:ReceiverSensitivityDCM}.
@@ -201,7 +201,7 @@ The same amount of data now takes twice as long to transmit.
 These reveal that the maximum achievable data rate with DCM is only half of the attainable data rate without DCM.
 
 Support for \ac{DCM} is only optional in the IEEE 802.11ax standard and can only be used for HE-\ac{MCS}-\num{0},
-HE-\ac{MCS}-\num{1}, HE-\ac{MCS}-\num{3} and HE-\ac{MCS}-\num{4} for \numrange{1}{2} spatial
+HE-\ac{MCS}-\num{1}, HE-\ac{MCS}-\num{3} and HE-\ac{MCS}-\num{4} for \num{1} or \num{2} spatial
 transmission streams \cite{noauthor_ieee_2021}.
 
 \textcite{jacob_system-level_2020} and \textcite{triwinarko_phy_2021} mention plans,
@@ -248,29 +248,29 @@ In order to further exploit the physical layer capabilities, the single transmit
 from each antenna are reflected differently on objects and can thus be received from different directions at the receiver antennas.
 
 The authors explain that since IEEE 802.11n, it is possible to use up to \num{4} MIMO streams.
-This number was increased again to up to \num{8} MIMO streams in IEEE 802.11ax \cite{noauthor_ieee_2021}.
+This number was increased again up to \num{8} MIMO streams in IEEE 802.11ax \cite{noauthor_ieee_2021}.
 Since data can be sent simultaneously via each MIMO stream,
 the theoretical data rate can thus increase proportionally depending on the usable streams.
 The mechanism is called \ac{SU}-\ac{MIMO} \cite{noauthor_ieee_2021}.
 
 \textcite{sauter_wireless_2022} mentions that since IEEE 802.11ac it is possible to use Downlink \ac{MU}-\ac{MIMO},
-which allows an \ac{AP} to transmit data to multiple \ac{STA} via different available \ac{MIMO} streams simultaneously.
+which allows an \ac{AP} to transmit data to multiple \acp{STA} via different available \ac{MIMO} streams simultaneously.
 According to the authors, \ac{MU}-\ac{MIMO} can increase the network throughput.
-IEEE 802.11ax introduced \ac{MU}-\ac{MIMO} in the Uplink direction \cite{noauthor_ieee_2021}, where multiple \ac{STA} can transmit data simultaneously to the \ac{AP} via different available \ac{MIMO} streams.
+IEEE 802.11ax introduced \ac{MU}-\ac{MIMO} in the Uplink direction \cite{noauthor_ieee_2021}, where multiple \acp{STA} can transmit data simultaneously to the \ac{AP} via different available \ac{MIMO} streams.
 MU-\ac{MIMO} DCM can also be applied in IEEE 802.11ax \cite{noauthor_ieee_2021}.
 
 Another \ac{MIMO} technique is \ac{OFDMA}, which can be utilized since IEEE 802.11ax \cite{noauthor_ieee_2021, avallone_will_2021, omar_survey_2016}.
-\textcite{avallone_will_2021} explains that \ac{OFDMA} enables an \ac{AP} to transmit data to multiple \ac{STA} simultaneously by dividing the available bandwidth into \ac{RU} and assigning each \ac{RU} to a \ac{STA}.
+\textcite{avallone_will_2021} explains that \ac{OFDMA} enables an \ac{AP} to transmit data to multiple \acp{STA} simultaneously by dividing the available bandwidth into \acp{RU} and assigning each \ac{RU} to a \ac{STA}.
 The authors add that \ac{OFDMA} can be used in both the uplink and downlink direction.
-The \ac{AP} can choose the best suited \ac{RU} for each \ac{STA} and thus increase the Signal-to-Interference-plus-Noise Ratio \cite{khorov_tutorial_2019}
-\textcite{behara_performance_2022} adds that \ac{OFDMA} is designed to improve the per-user throughput in high-density networks, e.q.
+The \ac{AP} can choose the best suited \ac{RU} for each \ac{STA} and thus increase the Signal-to-Interference-plus-Noise Ratio \cite{khorov_tutorial_2019}.
+\textcite{behara_performance_2022} adds that \ac{OFDMA} is designed to improve the per-user throughput in high-density networks, e.g.
 stadiums, airports or public transportation systems.
 
 \subsubsection*{\acf{STBC}}
 \textcite{abbas_efficient_2016} further explains that \ac{MIMO} spatial streams can be utilized to enhance the
 quality of the received signal.
 The Technology is called \ac{STBC}.
-\textcite{santumon_space-time_2012} explains as follows.
+\textcite{santumon_space-time_2012} explain it as follows.
 \ac{STBC} is a technique used in Wi-Fi networks to improve the reliability and robustness of wireless communications.
 \ac{STBC} encodes multiple redundant copies of data at the transmit side, which are transmitted in different spatial streams to
 reduce fading and interference effects.
@@ -278,8 +278,8 @@ At the receiver side, these multiple copies are combined using a maximum likelih
 to retain a high-quality signal and decrease the \ac{PER}.
 
 
-Here, \textcite{stamoulis_impact_2003} has investigated the potential effect of \ac{STBC} on Wi-Fi.
-Their simulations showed that \ac{STBC} increase the range and robustness for IEEE 802.11a.
+Here, \textcite{stamoulis_impact_2003} has investigated the potential effect of \acp{STBC} on Wi-Fi.
+Their simulations showed that \acp{STBC} increase the range and robustness for IEEE 802.11a.
 In addition, the authors concluded that \ac{STBC} increases the \ac{SNR} in nearly all cases at the same throughput or
 even allows higher \ac{MCS} values to be used,
 thus allowing a higher throughput at the same \ac{SNR}.
@@ -293,7 +293,7 @@ when increasing the number of transmit antennas with \ac{STBC}.
 due to the increased robustness.
 
 
-IEEE 802.11ax stations can optionally use \ac{STBC} the following conditions \cite{noauthor_ieee_2021}:
+IEEE 802.11ax stations can optionally use \ac{STBC} under the following conditions \cite{noauthor_ieee_2021}:
 \begin{itemize}
 	\item DCM is not applied
 	\item The number of spatial streams is \num{2}

@@ -56,7 +56,7 @@ To avoid this, IEEE 802.11ax maintains two \ac{NAV}s, one for intra-\ac{BSS} and
 
 The extension IEEE 802.11e introduced a amendment of \ac{CSMACA} called \ac{EDCA} \cite{sommer_vehicular_2014} \cite{wu_ieee_2006}.
 According to \textcite{sommer_vehicular_2014}, \ac{EDCA} provides a Quality-of-Service transmission procedure, which classifies \num{4} access categories.
-Each access category has a different minimum and maximum contention window sizes and different \ac{IFS} lengths, named
+Each access category has different minimum and maximum contention window sizes and different \ac{IFS} lengths, named
 arbitration \ac{IFS}.
 \textcite{wu_ieee_2006} explains that each access category keeps its own backoff counter and frame queue.
 Every access category is handled as an independent virtual station which tries to access the medium.
@@ -64,7 +64,7 @@ When two transmissions of different access categories collide, and both contenti
 
 The four access categories are listed in \autoref{tab:access_categories}.
 
-\ac{EDCA} is integrated into the modern IEEE 802.11 standard data link layer of IEEE 802.11ac\cite{noauthor_ieee_2021-1} and IEEE 802.11ax \cite{noauthor_ieee_2021}.
+\ac{EDCA} is integrated into the modern IEEE 802.11 standard data link layer of IEEE 802.11ac \cite{noauthor_ieee_2021-1} and IEEE 802.11ax \cite{noauthor_ieee_2021}.
 
 \begin{table}[!ht]
    \centering
@@ -110,6 +110,18 @@ This procedure, called fragmentation, divides the data into up to \num{16} frame
 when a specific data length threshold is exceeded \cite{noauthor_ieee_2021}.
 The fragmented frames are transmitted by the three following different \ac{ACK} policies in \autoref{fig:ACKS}, which are described by \textcite{sauter_wireless_2022}.
 
+\begin{figure}%
+    \centering
+    \subfloat[normal ACK]{\label{fig:ACK}\includegraphics[width=0.7\textwidth]{figures/normalACKs}}%
+    \\
+    \subfloat[fragmentation]{\label{fig:Fragmentation}\includegraphics[width=0.7\textwidth]{figures/fragmentation}}%
+    \\
+    \subfloat[fragmentation and Block ACK]{\label{fig:BLOCKACK}\includegraphics[width=0.7\textwidth]{figures/BlockACK}}
+    \caption{Data transmission between a sender and receiver in regards to the time with normal \acf{ACK} \autoref{fig:ACK},
+    fragmentation \autoref{fig:Fragmentation} and additional Block \ac{ACK} \autoref{fig:BLOCKACK}}%
+    \label{fig:ACKS}%
+\end{figure}
+
 Using the standard \ac{ACK} policy, the sender applies the \ac{DCF} mechanism before sending each frame.
 The sender also waits
 for an \ac{ACK} frame from the receiver after each transmission.
@@ -122,7 +134,7 @@ Additional transmission time can be saved using the Block \ac{ACK} policy, shown
 The sender sends the first frame and waits for the \ac{ACK} frame.
 After transmitting all fragments, the sender sends the Block \ac{ACK} request.
 The receiver sends the Block \ac{ACK} frame, which contains the information of all received frames.
-Any missing frames are retransmitted.
+All missing frames are retransmitted.
 The Block \ac{ACK} frame can be sent delayed when some processing time is required.
 
 Every Block \ac{ACK} session is started with an add Block Acknowledgment (ADDBA) request frame, which is sent by the sender and
@@ -134,17 +146,6 @@ The Block \ac{ACK} session is ended with a delete Block Acknowledgment (DELBA) f
 The Block \ac{ACK} policy can be used in IEEE 802.11n \cite{noauthor_ieee_2021-1}, IEEE 802.11ac \cite{noauthor_ieee_2021-1} and IEEE 802.11ax \cite{noauthor_ieee_2021}.
 In the IEEE 802.11p standard, the Block \ac{ACK} policy can be added as an optional feature \cite{noauthor_ieee_2021-1}.
 
-\begin{figure}%
-    \centering
-    \subfloat[normal ACK]{\label{fig:ACK}\includegraphics[width=0.7\textwidth]{figures/normalACKs}}%
-    \\
-    \subfloat[fragmentation]{\label{fig:Fragmentation}\includegraphics[width=0.7\textwidth]{figures/fragmentation}}%
-    \\
-    \subfloat[fragmentation and Block ACK]{\label{fig:BLOCKACK}\includegraphics[width=0.7\textwidth]{figures/BlockACK}}
-    \caption{Data transmission between a sender and receiver in regards to the time with normal \acf{ACK} \autoref{fig:ACK},
-    fragmentation \autoref{fig:Fragmentation} and additional Block \ac{ACK} \autoref{fig:BLOCKACK}}%
-    \label{fig:ACKS}%
-\end{figure}
 
 
 
