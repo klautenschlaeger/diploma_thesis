@@ -39,9 +39,9 @@ The possible \ac{BW}s for the IEEE 802.11 standards are shown in \autoref{tab:BW
 		\midrule
 		IEEE 802.11n \cite{sauter_wireless_2022}& \SI{20}{\mega\hertz},\SI{40}{\mega\hertz}  & \SI{20}{\mega\hertz},\SI{40}{\mega\hertz} & - \\
 		\midrule
-		IEEE 802.11ac \cite{noauthor_ieee_2021-1}& -  & \SI{20}{\mega\hertz},\SI{40}{\mega\hertz}, \SI{80}{\mega\hertz},\SI{160}{\mega\hertz} & - \\
+		IEEE 802.11ac \cite{ieee_standard_2020}& -  & \SI{20}{\mega\hertz},\SI{40}{\mega\hertz}, \SI{80}{\mega\hertz},\SI{160}{\mega\hertz} & - \\
 		\midrule
-		IEEE 802.11ax \cite{noauthor_ieee_2021}&\SI{20}{\mega\hertz},\SI{40}{\mega\hertz}  & \SI{20}{\mega\hertz},\SI{40}{\mega\hertz}, \SI{80}{\mega\hertz},\SI{160}{\mega\hertz} & - \\
+		IEEE 802.11ax \cite{ieee_standard_2021ax}&\SI{20}{\mega\hertz},\SI{40}{\mega\hertz}  & \SI{20}{\mega\hertz},\SI{40}{\mega\hertz}, \SI{80}{\mega\hertz},\SI{160}{\mega\hertz} & - \\
 		\midrule
 		IEEE 802.11p \cite{jacob_system-level_2020}& - & - & \SI{10}{\mega\hertz} \\
 		\midrule
@@ -53,7 +53,7 @@ The possible \ac{BW}s for the IEEE 802.11 standards are shown in \autoref{tab:BW
 \end{table}
 
 IEEE 802.11ac and IEEE 802.11ax also enable the use of a discontinuous \ac{BW}, which combines two \SI{80}{\mega\hertz}
-channel to a \SI{160}{\mega\hertz} \ac{BW} channel \cite{noauthor_ieee_2021}, \cite{noauthor_ieee_2021-1}.
+channel to a \SI{160}{\mega\hertz} \ac{BW} channel \cite{ieee_standard_2021ax}, \cite{ieee_standard_2020}.
 
 While wider channels increase the theoretical data rate, \textcite{avallone_will_2021} mentions that narrower channels can
 boost the signal's power spectral density and thus increase the transmission range.
@@ -90,13 +90,13 @@ The authors state that \ac{LDPC} can achieve a better channel capacity performan
 This impact is also confirmed by \textcite{afaqui_ieee_2017}, who point out that \ac{LDPC} also generates higher computational cost.
 
 IEEE 802.11ax stations must support \ac{LDPC} when using the IEEE 802.11ax standard under
-the following conditions \cite{afaqui_ieee_2017,noauthor_ieee_2021} :
+the following conditions \cite{afaqui_ieee_2017,ieee_standard_2021ax} :
 \begin{itemize}
    \item The used bandwidth is greater than \SI{20}{\mega\hertz}
    \item The chosen \ac{MCS} is \num{1024}-\ac{QAM}
    \item More than four transmission channels are used for the transmission.
 \end{itemize}
-IEEE 802.11ax achieves \ac{CR} of \nicefrac{1}{2}, \nicefrac{2}{3}, \nicefrac{3}{4}, and \nicefrac{5}{6} \cite{noauthor_ieee_2021}.
+IEEE 802.11ax achieves \ac{CR} of \nicefrac{1}{2}, \nicefrac{2}{3}, \nicefrac{3}{4}, and \nicefrac{5}{6} \cite{ieee_standard_2021ax}.
 Similarly, IEEE 802.11p uses the \ac{BCC} technique, which has been superseded by \ac{LDPC} in its successor
 IEEE 802.11ax \cite{jacob_system-level_2020,krief_analysis_2020}.
 \textcite{krief_analysis_2020} argue that this step was important, as \ac{LDPC} offers better error correction
@@ -125,7 +125,7 @@ For IEEE 802.11ax, this results in the HE-MCS values in \autoref{tab:HEMCS}.
       11 & \num{1024}-\ac{QAM}& \nicefrac{5}{6}\\
       \bottomrule
    \end{tabular}
-   \caption{\ac{MCS} and \ac{CR} for HE-\ac{MCS} values \cite{noauthor_ieee_2021}}
+   \caption{\ac{MCS} and \ac{CR} for HE-\ac{MCS} values \cite{ieee_standard_2021ax}}
    \label{tab:HEMCS}
 \end{table}
 
@@ -166,18 +166,18 @@ enable better protection against multipath effects in indoor and outdoor communi
 No condition for the use of the different \ac{GI} is mentioned in \cite{deng_ieee_2017}, \cite{rochim_performance_2020} , \cite{mozaffariahrar_survey_2022} or \cite{afaqui_ieee_2017}.
 Moreover, the sources mentioned only specify a \ac{OFDM} symbol length of \SI{12.8}{\micro\second}.
 
-Nevertheless, the standard IEEE 802.11ax \cite{noauthor_ieee_2021} specifies the following rules for using the different \ac{GI}s.
+Nevertheless, the standard IEEE 802.11ax \cite{ieee_standard_2021ax} specifies the following rules for using the different \ac{GI}s.
 A \SI{1600}{\nano\second} \ac{GI} can only be used with a symbol length of \SI{6.4}{\micro\second}.
 The same applies to a \ac{GI} of \SI{800}{\nano\second}, with the optional extension for use with a symbol length of \SI{3.2}{\micro\second}.
 A \ac{GI} of \SI{3200}{\nano\second} can only be used for a symbol length of \SI{12.8}{\micro\second}.
 \subsubsection*{\acf{DCM}}
 To introduce additional robustness \ac{DCM} can be applied to the physical layer since
-IEEE 802.11ax \cite{jacob_system-level_2020}, \cite{triwinarko_phy_2021}, \cite{noauthor_ieee_2021}.
+IEEE 802.11ax \cite{jacob_system-level_2020}, \cite{triwinarko_phy_2021}, \cite{ieee_standard_2021ax}.
 \textcite{jacob_system-level_2020} describe \ac{DCM} as sending data twice over two coherent carriers.
 At the receiver, the data copies are combined with the log-likelihood ratio.
 Thus \ac{DCM} increases the probability of receiving the data.
 
-\cite{noauthor_ieee_2021} provides a receiver minimum input sensitivity, which indicates until which \ac{RSS} a packet is
+\cite{ieee_standard_2021ax} provides a receiver minimum input sensitivity, which indicates until which \ac{RSS} a packet is
 received with a probability of \SI{90}{\percent}.
 The receiver minimum input sensitivity for a \ac{BW} of
 \SI{20}{\mega\hertz} is displayed in \autoref{fig:ReceiverSensitivityDCM}.
@@ -187,7 +187,7 @@ input sensitivity increases as the HE-MCS value increases.
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/Receiver_minimum_DCM}
-	\caption{Receiver minimum input level sensitivity for different HE-MCS values according to \cite{noauthor_ieee_2021}, where \ac{PER} is less than \SI{10}{\percent}}%
+	\caption{Receiver minimum input level sensitivity for different HE-MCS values according to \cite{ieee_standard_2021ax}, where \ac{PER} is less than \SI{10}{\percent}}%
 	\label{fig:ReceiverSensitivityDCM}%
 \end{figure}
 
@@ -197,12 +197,12 @@ that the lowest value increases with \ac{BW}.
 The higher probability of achieving data is reached at the expense of the data rate.
 The same amount of data now takes twice as long to transmit.
 
-\cite{noauthor_ieee_2021} lists the theoretically possible data rates.
+\cite{ieee_standard_2021ax} lists the theoretically possible data rates.
 These reveal that the maximum achievable data rate with DCM is only half of the attainable data rate without DCM.
 
 Support for \ac{DCM} is only optional in the IEEE 802.11ax standard and can only be used for HE-\ac{MCS}-\num{0},
 HE-\ac{MCS}-\num{1}, HE-\ac{MCS}-\num{3} and HE-\ac{MCS}-\num{4} for \num{1} or \num{2} spatial
-transmission streams \cite{noauthor_ieee_2021}.
+transmission streams \cite{ieee_standard_2021ax}.
 
 \textcite{jacob_system-level_2020} and \textcite{triwinarko_phy_2021} mention plans,
 to allow using \ac{DCM} in the physical layer of IEEE 802.11bd.
@@ -213,14 +213,14 @@ to allow using \ac{DCM} in the physical layer of IEEE 802.11bd.
 	Table 27-51—Receiver minimum input level sensitivity
 	
 	Table 27-52—Minimum required adjacent and nonadjacent channel rejection levels
-	optional feature \cite{noauthor_ieee_2021}
+	optional feature \cite{ieee_standard_2021ax}
 	
-	\ac{HE} \ac{SU} \ac{PPDU} \ac{HE} \ac{ER} \ac{SU} \ac{PPDU} not for GI 800 ns \cite{noauthor_ieee_2021}
+	\ac{HE} \ac{SU} \ac{PPDU} \ac{HE} \ac{ER} \ac{SU} \ac{PPDU} not for GI 800 ns \cite{ieee_standard_2021ax}
 \end{comment}
 
 \subsubsection*{\acf{ER}}
 Since IEEE 802.11ax, the \ac{ER} Mode exists, which defines the new \ac{HE} \ac{ER} \ac{SU} \ac{PPDU} as physical layer amendment
-\cite{noauthor_ieee_2021,afaqui_ieee_2017} .
+\cite{ieee_standard_2021ax,afaqui_ieee_2017} .
 \textcite{deng_ieee_2017} explains that the \ac{HE} \ac{ER} \ac{SU} \ac{PPDU} format is intended to extend the range of
 a single station to access point transmission.
 According to the authors, this is accomplished by the \ac{PPDU} containing a repetition of the HE-SIG-A field.
@@ -228,9 +228,9 @@ According to the authors, this is accomplished by the \ac{PPDU} containing a rep
 In addition, the authors explain that the preamble transmission power is boosted
 to guarantee reliable transmission for longer ranges.
 The power-boost is limited to additional \SI{3}{\decibel}
-in \cite{noauthor_ieee_2021,jacob_system-level_2020}.
+in \cite{ieee_standard_2021ax,jacob_system-level_2020}.
 
-The IEEE 802.11ax \cite{noauthor_ieee_2021} standard defines that the \ac{HE} \ac{ER} \ac{SU} \ac{PPDU} format may only be used
+The IEEE 802.11ax \cite{ieee_standard_2021ax} standard defines that the \ac{HE} \ac{ER} \ac{SU} \ac{PPDU} format may only be used
 when 20 Mhz transmissions with either 242-Resource Unit with HE-MCS-0 - HE-MCS-2 or 106-Resource Unit with HE-MCS-0 are used on a spatial stream.
 In addition, one can use \ac{DCM}.
 \textcite{sauter_wireless_2022} defines the Resource Unit as fragments of a Wi-Fi channel. The number before the Resource Unit
@@ -248,18 +248,18 @@ In order to further exploit the physical layer capabilities, the single transmit
 from each antenna are reflected differently on objects and can thus be received from different directions at the receiver antennas.
 
 The authors explain that since IEEE 802.11n, it is possible to use up to \num{4} MIMO streams.
-This number was increased again up to \num{8} MIMO streams in IEEE 802.11ax \cite{noauthor_ieee_2021}.
+This number was increased again up to \num{8} MIMO streams in IEEE 802.11ax \cite{ieee_standard_2021ax}.
 Since data can be sent simultaneously via each MIMO stream,
 the theoretical data rate can thus increase proportionally depending on the usable streams.
-The mechanism is called \ac{SU}-\ac{MIMO} \cite{noauthor_ieee_2021}.
+The mechanism is called \ac{SU}-\ac{MIMO} \cite{ieee_standard_2021ax}.
 
 \textcite{sauter_wireless_2022} mentions that since IEEE 802.11ac it is possible to use Downlink \ac{MU}-\ac{MIMO},
 which allows an \ac{AP} to transmit data to multiple \acp{STA} via different available \ac{MIMO} streams simultaneously.
 According to the authors, \ac{MU}-\ac{MIMO} can increase the network throughput.
-IEEE 802.11ax introduced \ac{MU}-\ac{MIMO} in the Uplink direction \cite{noauthor_ieee_2021}, where multiple \acp{STA} can transmit data simultaneously to the \ac{AP} via different available \ac{MIMO} streams.
-MU-\ac{MIMO} DCM can also be applied in IEEE 802.11ax \cite{noauthor_ieee_2021}.
+IEEE 802.11ax introduced \ac{MU}-\ac{MIMO} in the Uplink direction \cite{ieee_standard_2021ax}, where multiple \acp{STA} can transmit data simultaneously to the \ac{AP} via different available \ac{MIMO} streams.
+MU-\ac{MIMO} DCM can also be applied in IEEE 802.11ax \cite{ieee_standard_2021ax}.
 
-Another \ac{MIMO} technique is \ac{OFDMA}, which can be utilized since IEEE 802.11ax \cite{noauthor_ieee_2021, avallone_will_2021, omar_survey_2016}.
+Another \ac{MIMO} technique is \ac{OFDMA}, which can be utilized since IEEE 802.11ax \cite{ieee_standard_2021ax, avallone_will_2021, omar_survey_2016}.
 \textcite{avallone_will_2021} explains that \ac{OFDMA} enables an \ac{AP} to transmit data to multiple \acp{STA} simultaneously by dividing the available bandwidth into \acp{RU} and assigning each \ac{RU} to a \ac{STA}.
 The authors add that \ac{OFDMA} can be used in both the uplink and downlink direction.
 The \ac{AP} can choose the best suited \ac{RU} for each \ac{STA} and thus increase the Signal-to-Interference-plus-Noise Ratio \cite{khorov_tutorial_2019}.
@@ -293,7 +293,7 @@ when increasing the number of transmit antennas with \ac{STBC}.
 due to the increased robustness.
 
 
-IEEE 802.11ax stations can optionally use \ac{STBC} under the following conditions \cite{noauthor_ieee_2021}:
+IEEE 802.11ax stations can optionally use \ac{STBC} under the following conditions \cite{ieee_standard_2021ax}:
 \begin{itemize}
 	\item DCM is not applied
 	\item The number of spatial streams is \num{2}

@@ -113,12 +113,12 @@ The goodput is then averaged over all simulation runs per physical layer configu
 The theoretical data rate for the different physical layer configurations is retrieved from the function ns3::WifiMode::GetDataRate().
 
 To verify the simulation software, I used different methods.
-First, I confirmed that the theoretical data rate for the simulation's IEEE 802.11ax physical layer configurations equals the theoretical data rate specified in the IEEE 802.11ax standard \cite{noauthor_ieee_2021}.
+First, I confirmed that the theoretical data rate for the simulation's IEEE 802.11ax physical layer configurations equals the theoretical data rate specified in the IEEE 802.11ax standard \cite{ieee_standard_2021ax}.
 
 I also used the MonitorSnifferRxCallback and the MonitorSnifferTxCallback of the ns-3 WifiPhy class to check the ongoing transmissions.
 Both Callback functions can be added to WifiPhy objects of Wi-FiNetDevice and are called every time a packet is received or transmitted at the Wi-Fi Netdevice.
 The function parameters are information about the packet, channel frequency and station ID and an instance of the WifiTxVector class.
-The WifiTxVector instance in the current ns-3 version 3.37 describes all parameters of the transmission in accordance to the TXVECTOR field of the IEEE 802.11 standard \cite{noauthor_ieee_2021}. Additionally, the function parameters of the MonitorSnifferRxCallback contain the signal strength and
+The WifiTxVector instance in the current ns-3 version 3.37 describes all parameters of the transmission in accordance to the TXVECTOR field of the IEEE 802.11 standard \cite{ieee_standard_2021ax}. Additionally, the function parameters of the MonitorSnifferRxCallback contain the signal strength and
 the noise power of the received packet.
 
 Using the provided information from the MonitorSnifferRxCallback and the MonitorSnifferTxCallback, I was able to comprehend the ongoing transmissions and
@@ -180,7 +180,7 @@ ConstantRateWifiManager::DoGetDataTxVector().
 The function creates a WifiTxVector instance with the parameters of the
 transmission.
 There I overwrote the preamble type to the already implemented ns3 WifiPreamble::WIFI\_PREAMBLE\_HE\_ER\_SU, when
-the \ac{ER} Mode is enabled and conditions for the \ac{ER} Mode in the IEEE 802.11ax standard \cite{noauthor_ieee_2021} are fulfilled.
+the \ac{ER} Mode is enabled and conditions for the \ac{ER} Mode in the IEEE 802.11ax standard \cite{ieee_standard_2021ax} are fulfilled.
 Ns-3 version 3.37 implements the ns3::GlobalValue, which allows users to set global values for the simulation, which can be accessed
 in every class without changing Constructor or function parameters.
 This leaves the original functionality of the ns3 code intact.
@@ -216,7 +216,7 @@ Using \ac{DCM}, the receiver would apply maximum likelihood decoding to decode t
 The results of the simulation are shown in \autoref{fig:Data_rate_DCM}, where the lost achieved goodput is plotted against
 the theoretical data rate for the different HE-\ac{MCS} values.
 The theoretical data rate while using \ac{DCM} is half of the
-theoretical data rate without \ac{DCM}, which complies with the IEEE 802.11ax standard \cite{noauthor_ieee_2021}.
+theoretical data rate without \ac{DCM}, which complies with the IEEE 802.11ax standard \cite{ieee_standard_2021ax}.
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.64\textwidth]{figures/DCM_dataRate_simulation.pdf}
@@ -251,7 +251,7 @@ using the space-time block code (STBC) to increase the robustness and reliabilit
 The results of the simulation are shown in \autoref{fig:Data_rate_STBC}, where the lost achieved goodput is plotted against
 the theoretical data rate for the different HE-\ac{MCS} values.
 The theoretical data rate while using \ac{STBC} is half of the theoretical data rate without \ac{STBC},
-which complies with the IEEE 802.11ax standard \cite{noauthor_ieee_2021}.
+which complies with the IEEE 802.11ax standard \cite{ieee_standard_2021ax}.
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.64\textwidth]{figures/STBC_dataRate_simulation}
@@ -260,7 +260,7 @@ which complies with the IEEE 802.11ax standard \cite{noauthor_ieee_2021}.
 \end{figure}
 
 Other physical layer parameters, supported by the IEEE 802.11ax standard, are \ac{LDPC} and utilizing more \ac{MIMO} streams.
-The effect that using more \ac{MIMO} streams for transmission increases the achievable goodput, is already known \cite{sauter_wireless_2022, noauthor_ieee_2021, noauthor_ieee_2021-1}.
+The effect that using more \ac{MIMO} streams for transmission increases the achievable goodput, is already known \cite{sauter_wireless_2022, ieee_standard_2021ax, ieee_standard_2020}.
 \ac{LDPC} no new effect for data rate, but more robustness which results in a lower \ac{PER}.
 
 Using a different frequency spectrum, the achievable goodput can be limited due to the lower maximum \ac{BW} of \SI{40}{\mega\hertz} in the \SI{2.4}{\giga\hertz} frequency spectrum.
@@ -268,7 +268,7 @@ To analyze achievable goodput in the \SI{2.4}{\giga\hertz} frequency spectrum, I
 The results indicate that the achievable goodput is between \SIrange{0.1}{2.7}{\mega\bit\per\second} slower than in the \SI{5}{\giga\hertz} frequency spectrum.
 
 Due to a signal extension of \SI{6}{\micro\second} in the \SI{2.4}{\giga\hertz} frequency spectrum, the transmission time is longer, which results in a lower achievable goodput.
-\cite{noauthor_ieee_2021} states that the signal extension in the \SI{2.4}{\giga\hertz} frequency spectrum enables
+\cite{ieee_standard_2009n} states that the signal extension in the \SI{2.4}{\giga\hertz} frequency spectrum enables
 backwards compatibility with the older 802.11 standards, which need time to write their network allocation vector register.
 \begin{comment}
 \begin{figure}[H]%

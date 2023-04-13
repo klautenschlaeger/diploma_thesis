@@ -52,7 +52,7 @@ the contention window size is reset to the starting value.
 To share the knowledge of a transmission time and the subsequently \ac{IFS}, a packet contains a \ac{NAV} that
 specifies the time the air transmission medium is used.
 Collisions can occur as the \ac{NAV} information can be reset by other transmissions from a different, overlapping network.
-To avoid this, IEEE 802.11ax maintains two \ac{NAV}s, one for intra-\ac{BSS} and one for inter-\ac{BSS} transmissions \cite{noauthor_ieee_2021}
+To avoid this, IEEE 802.11ax maintains two \ac{NAV}s, one for intra-\ac{BSS} and one for inter-\ac{BSS} transmissions \cite{ieee_standard_2021ax}
 
 The extension IEEE 802.11e introduced a amendment of \ac{CSMACA} called \ac{EDCA} \cite{sommer_vehicular_2014} \cite{wu_ieee_2006}.
 According to \textcite{sommer_vehicular_2014}, \ac{EDCA} provides a Quality-of-Service transmission procedure, which classifies \num{4} access categories.
@@ -64,7 +64,7 @@ When two transmissions of different access categories collide, and both contenti
 
 The four access categories are listed in \autoref{tab:access_categories}.
 
-\ac{EDCA} is integrated into the modern IEEE 802.11 standard data link layer of IEEE 802.11ac \cite{noauthor_ieee_2021-1} and IEEE 802.11ax \cite{noauthor_ieee_2021}.
+\ac{EDCA} is integrated into the modern IEEE 802.11 standard data link layer of IEEE 802.11ac \cite{ieee_standard_2020} and IEEE 802.11ax \cite{ieee_standard_2021ax}.
 
 \begin{table}[!ht]
    \centering
@@ -107,7 +107,7 @@ overhead of the \ac{RTS} and \ac{CTS} frames, which is only worth it when the da
 
 Larger frames can also be split into smaller frames to reduce the probability of collisions.
 This procedure, called fragmentation, divides the data into up to \num{16} frames
-when a specific data length threshold is exceeded \cite{noauthor_ieee_2021}.
+when a specific data length threshold is exceeded \cite{ieee_standard_2009n}.
 The fragmented frames are transmitted by the three following different \ac{ACK} policies in \autoref{fig:ACKS}, which are described by \textcite{sauter_wireless_2022}.
 
 \begin{figure}%
@@ -143,8 +143,8 @@ The receiver sends an \ac{ACK} and answers with an add Block Acknowledgment (ADD
 After the sender acknowledges the response frame, the Block \ac{ACK} session is established.
 The Block \ac{ACK} session is ended with a delete Block Acknowledgment (DELBA) frame, which is sent by the sender and acknowledged by the receiver.
 
-The Block \ac{ACK} policy can be used in IEEE 802.11n \cite{noauthor_ieee_2021-1}, IEEE 802.11ac \cite{noauthor_ieee_2021-1} and IEEE 802.11ax \cite{noauthor_ieee_2021}.
-In the IEEE 802.11p standard, the Block \ac{ACK} policy can be added as an optional feature \cite{noauthor_ieee_2021-1}.
+The Block \ac{ACK} policy can be used in IEEE 802.11n \cite{ieee_standard_2009n}, IEEE 802.11ac \cite{ieee_standard_2020} and IEEE 802.11ax \cite{ieee_standard_2021ax}.
+In the IEEE 802.11p standard, the Block \ac{ACK} policy can be added as an optional feature \cite{ieee_standard_2010p}.
 
 
 
