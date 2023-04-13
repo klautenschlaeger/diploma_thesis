@@ -2,8 +2,8 @@
 For one corn harvest scenario, \textcite{klingler_agriculture_2018} found out that the \ac{RSS} can drop due to
 shadowing effects caused by the size and shape of the \ac{FH} and the \ac{TM}.
 
-In a field experiment, I want to analyze which positions of the \ac{TM} and \ac{FH} cause the shadowing effects, which
-subsequently reduce the \ac{RSS} and how physical layer parameters like \ac{MCS} and \ac{STBC} can used to ensure a low
+In a field experiment, I want to analyze which positions of the \ac{TM} and \ac{FH} cause the shadowing effects which
+subsequently reduce the \ac{RSS}, and how physical layer parameters like \ac{MCS} and \ac{STBC} can used to ensure a low
 \ac{PER}.
 
 For the experiment, I will use a \ac{CH} instead of a \ac{FH} as it has a similar shape and size as a \ac{FH} and is available.
@@ -32,7 +32,7 @@ the robustness and communication range of Wi-Fi networks in an outdoor environme
 As the regulation in the German Law StVZO §32 Abs. 2 limits the height of
 every agricultural vehicle or combination of vehicles to less than \SI{4.0}{\metre}, the maximum antenna height is \SI{4}{\metre} above the ground. Therefore, I will mount the router on the tractor's roof at a height \SI{4}{\metre} above the ground.
 
-I set up two Wi-Fi devices on the \ac{CH}, which are two UP Squared Board \footnote{\url{https://eu.mouser.com/datasheet/2/826/UP_Square_DatasheetV0_4-3084829.pdf}} with an Intel AX210 Wi-Fi module \footnote{\url{https://docs.alfa.com.tw/datasheets/alfa-network_ait-ax210-ex_latest.pdf}}.
+I set up two Wi-Fi devices on the \ac{CH}, which are two UP Squared Boards \footnote{\url{https://eu.mouser.com/datasheet/2/826/UP_Square_DatasheetV0_4-3084829.pdf}} with an Intel AX210 Wi-Fi module \footnote{\url{https://docs.alfa.com.tw/datasheets/alfa-network_ait-ax210-ex_latest.pdf}}.
 
 Every Intel AX210 Wi-Fi module supports the IEEE 802.11ax standard for \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and is equipped with two antennas,
 which support omnidirectional transmissions in the \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and have a gain of \SI{5}{\decibel}.
@@ -64,8 +64,7 @@ At the same time, the data contains the \ac{RSS} of each antenna and the physica
 transmission, allowing each transmission's robustness to be calculated as a function of the \ac{RSS} and the physical
 layer configuration.
 
-In order to get insights on the robustness of different physical layer \ac{BW}s and used frequencies, the frequency channels in \autoref{tab:fieldChannels} are configured in the
-Every specified channel is used separately.
+In order to get insights on the robustness of using the different frequency bands, the frequency channels for a \ac{BW} of \SI{20}{\mega\hertz} in \autoref{tab:fieldChannels} are configured.
 To be able to calculate the means and standard deviations of the result for every configuration, the experiment is repeated \num{5} times for each channel,
 which means that the tractor drives \num{5} times the same path, which is displayed in \autoref{fig:fieldDrive}.
 
@@ -73,7 +72,7 @@ which means that the tractor drives \num{5} times the same path, which is displa
 	\centering
 	\begin{tabular}{>{\centering}p{2cm}p{4cm}p{4cm}}
 		\toprule
-		\ac{BW} & Channel number \SI{2.4}{\giga\hertz} & Channel number \SI{2.4}{\giga\hertz}\\
+		\ac{BW} & Channel number \SI{2.4}{\giga\hertz} & Channel number \SI{5}{\giga\hertz}\\
 		\midrule
 		\SI{20}{\mega\hertz} & \num{1}&
 		\num{100} \\
@@ -84,7 +83,7 @@ which means that the tractor drives \num{5} times the same path, which is displa
 		- & \num{106} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Frequency Channels numbers for \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} for the different \acf{BW}s of the IEEE 802.11 standard \cite{noauthor_ieee_2021-1}, which can be used for
+	\caption{Frequency channel numbers for \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} for the different \acf{BW}s of the IEEE 802.11 standard \cite{noauthor_ieee_2021-1}, which can be used for
 	outdoor communication \cite{freq_plan_24G}, \cite{freq_plan_5G} and are configured in the Milesight Industrial Router UR75 for
 	the field experiments.}
 	\label{tab:fieldChannels}
@@ -142,7 +141,8 @@ which means that the tractor drives \num{5} times the same path, which is displa
 \todo[color=blue]{Den folgenden Output erhoffe ich mir. Den Text brauchst du als groben Übergang zum nächsten Abschnitt.}
 
 The field experiment reveals that the Wi-Fi transmissions in the agricultural environment suffer from multipath effects which introduce
-additional interferences. Depending on the Wi-Fi physical layer configuration, the robustness of the transmissions is different and may result in a large number of retransmissions
+additional interferences.
+Depending on the Wi-Fi physical layer configuration, the robustness of the transmissions is different and may result in a large number of retransmissions
 as shown in \autoref{fig:retriesCount}.
 
 In the following chapter, I will analyze which physical layer

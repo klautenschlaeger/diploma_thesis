@@ -67,9 +67,9 @@ Therefore, I set the carrier frequency to \SI{5.6}{\giga\hertz}.
 The TGax-F channel sampling rate is set to \SI{20}{\mega\hertz}, which is the nominal sampling rate for the configured \ac{BW} of \SI{20}{\mega\hertz}.
 Additional parameters are left at their default values as they are irrelevant for outdoor scenarios.
 According to the MATLAB WLAN Toolbox documentation \footnote{\url{https://de.mathworks.com/help/wlan/ref/wlantgaxchannel-system-object.html}},
-the TGax-F channel model has a maximum delay of \SI{1050}{\nano\second} and root mean square delay spread of \SI{150}{\nano\second}.
+the TGax-F channel model has a maximum multipath propagation delay of \SI{1050}{\nano\second} and root mean square delay spread of \SI{150}{\nano\second}.
 
-The simulations are based on the procedure \autoref{alg:ProcedurePER}.
+The simulations are based on procedure \autoref{alg:ProcedurePER}.
 To get a \ac{PER} for every \ac{SNR} value ranging \SIrange{0}{45}{\decibel}, the procedure \autoref{alg:ProcedurePER} is executed \num{5} times for \num{500} packets each.
 All packet errors are counted, and the \ac{PER} is calculated by dividing the number of packet errors by \num{500} packets.
 A mean \ac{PER} and the confidence interval with a confidence level of
@@ -104,7 +104,7 @@ The packet is used to create a Wlan waveform based on the physical layer paramet
 
 The waveform is extended by
 \num{50} trailing zeros to ensure that packet delays can be detected by finding trailing samples unequal to null.
-When the possible maximum detectable channel delay can be calculated by
+Since the possible maximum detectable channel delay can be calculated by
 \begin{equation}\label{eq:DELAY_CHANNEL}
    \text{detectable channel delay} =
    \frac{
@@ -123,18 +123,15 @@ The results showed that the maximum seen packet delay is \num{11} samples,
 which can be transferred using \autoref{eq:DELAY_CHANNEL} to rounded maximum TGax-F channel delay of \SI{1.1}{\micro\second}.
 
 After creating the waveform and appending the trailing zeros, the waveform is passed through the TGaxF channel model to simulate the channel.
-The output of the channel model is the received waveform, where I added noise to the transmitted waveform based on the
+The output of the channel model is the received waveform, where I added noise to the received waveform based on the
 specified \ac{SNR} value and active \ac{OFDM} subcarriers.
-
-The generated waveform is then passed through the configured wlanTGaxChannel to simulate the channel.
-The output of the channel model is the received waveform, where I added additive white Gaussian noise to the transmitted waveform based on the specified \ac{SNR} value.
 
 In the next step, the received waveform is passed through the packet detection algorithm, which is based on the
 WLAN Toolbox example wlan/HESUExample \footnote{\url{https://de.mathworks.com/help/wlan/ug/802-11ax-packet-error-rate-simulation-for-single-user-format.html}} and
 shown in an abstracted form in \autoref{alg:ProcedurePER}.
 The procedure calls various functions to decode the preamble, header and payload of
 the received waveform.
-A packet error is detected, when no packet arrives, the packet delay is greater than \num{50} samples or the recovered packet data
+A packet error is detected when no packet arrives, the packet delay is greater than \num{50} samples or the recovered packet data
 is not equal to the transmitted packet data.
 
 \subsubsection*{\acf{MCS} and \acf{CR}}
@@ -151,7 +148,7 @@ The results in \autoref{fig:PER_SNR_MCS} show that the \ac{PER} decreases with h
 \end{figure}
 \textcite{paul_characterizing_2011} conducted outdoor experiments to analyse the error rate and \ac{SNR} of different IEEE 802.11n \ac{MCS} for the
 communication distances of \SI{300}{\meter}, \SI{800}{\meter} and \SI{1800}{\meter}. Their results show that \ac{SNR} decreases when the transmissions range is longer.
-Additionally, they experienced a higher error rate for higher.
+Additionally, they experienced a higher error rate for higher \acp{MCS}.
 
 The effect that the \ac{PER} decreases when a lower \ac{MCS} or \ac{CR} is used is the basis for the design of Wi-Fi rate managers.
 A rate manager is a software component that selects physical layer parameters, such as \ac{MCS} or \ac{CR}, based on the current network conditions to
@@ -163,7 +160,7 @@ analyze the influence of the FEC procedure on the \ac{PER}, I simulated the \ac{
 \numrange{0}{9} and whether \ac{LDPC} or \ac{BCC} is enabled. For higher HE-MCS values, \ac{BCC} can not be used as \ac{LDPC} is compulsory, so no comparison of the \ac{FEC} procedures is possible.
 
 The results are displayed in \autoref{fig:PER_SNR_LDPC}. The \ac{PER} decreases with higher \ac{SNR} for both \ac{FEC} procedures for all HE-MCS values as
-expected. Using \ac{LDPC} instead of \ac{BCC}, a \ac{PER} of less than \SI{10}{\percent} can be achieved at \SI{2}{\decibel} higher \ac{SNR}
+expected. Using \ac{LDPC} instead of \ac{BCC}, a \ac{PER} of less than \SI{10}{\percent} can be achieved at \SI{2}{\decibel} lower \ac{SNR}
 for all HE-MCS values. The effect increases to \SI{3}{\decibel} with higher HE-MCS values than HE-MCS \num{5}.
 \begin{figure}[H]%
    \centering
@@ -174,10 +171,10 @@ for all HE-MCS values. The effect increases to \SI{3}{\decibel} with higher HE-M
 
 \textcite{syafei_performance_2009} simulated the effect of the \ac{FEC} procedure on the \ac{PER} for IEEE 802.11n. They
 had similar results and state that using \ac{LDPC} instead of \ac{BCC}, a \ac{PER} of \SI{0.1}{\percent}  can be achieved at a
-\SIrange{3.2}{6}{\decibel} higher \ac{SNR}.
+\SIrange{3.2}{6}{\decibel} lower \ac{SNR}.
 
 According to \textcite{tran_asic_2014}, this effect is also present for IEEE 802.11ac. A \ac{PER} of \SI{0.1}{\percent} can be achieved at a
-\SI{1.1}{\decibel} higher \ac{SNR} for using \ac{LDPC} instead of \ac{BCC} for 64 - \ac{QAM}. The effect increases to \SI{1.5}{\decibel} for 256 - \ac{QAM}.
+\SI{1.1}{\decibel} lower \ac{SNR} for using \ac{LDPC} instead of \ac{BCC} for 64 - \ac{QAM}. The effect increases to \SI{1.5}{\decibel} for 256 - \ac{QAM}.
 
 \subsubsection*{\acf{GI}}
 

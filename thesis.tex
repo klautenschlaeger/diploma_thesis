@@ -324,15 +324,6 @@
 \label{sec:fundamentals}
 
 
-
-\begin{itemize}
-\item describe methods and techniques that build the basis of your work
-\item include what's needed to understand your work (e.g., techniques, protocols, models, hardware, software, ...)
-\item exclude what's not (e.g., anything you yourself did, anything your reader can be expected to know, ...)
-\item review related work(!)
-\item recommended length: approximately one third of the thesis.
-\end{itemize}
-
 \section{\acl{WIC}}
 
 \input{wic}
@@ -399,47 +390,24 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 
 \chapter{Field Measurements}
 
-\begin{comment}
-	Netcat not working no interval but connection setup easy. maybe something else
-
-iperf run unlimited?
-
-
-\end{comment}
 
 \input{fieldexperiment}
 
 
 
-\begin{comment}
-Describe Mistakes?
 
-\end{comment}
-
-\begin{comment}
-\chapter{Developed architecture / System design / Implementation / ...}
-
-\begin{itemize}
-\item describe everything you yourself did (as opposed to the fundamentals chapter, which explains what you built on)
-\item start with a theoretical approach
-\item describe the developed system/algorithm/method from a high-level point of view
-\item go ahead in presenting your developments in more detail
-\item recommended length: approximately one third of the thesis.
-\end{itemize}
-\end{comment}
 
 
 \chapter{Link - Level - Simulation}
 
 As every used Wi-Fi device in the field experiment runs a Wi-Fi rate manager, which is responsible for the rate adaptation,
-the influence of a particular physical layer parameter on the goodput, robustness and latency can not be examined in the field experiment as no particular physical layer parameter can be set.
-The Milesight Router is only capable to IEEE 802.11ac physical layer parameters, which don't include the new physical layer parameters of IEEE 802.11ax:
+the influence of a particular physical layer parameter on the data goodput, robustness and latency can not be examined in the field experiment as no particular physical layer parameter can be set.
+The Milesight Router is only capable to set IEEE 802.11ac physical layer parameters, which don't include the new physical layer parameters of IEEE 802.11ax:
 \ac{ER} mode, longer \ac{GI}s, HE-\ac{MCS} \numrange{9}{11} or \ac{DCM}.
 Therefore, I simulated the influence of the different physical layer parameters on the goodput, robustness and latency.
 Simulations benefit from the flexibility and possibility of simulating different communication and network protocols \cite{kumar_simulators_2012}.
 
-
-\textcite{omar_survey_2016} adds that simulation is also the main evaluation method for IEEE 802.11ax networks, which the IEEE 802.11ax task group considers.
+Simulations are considered the main evaluation method for IEEE 802.11ax networks by the IEEE 802.11ax task group \cite{omar_survey_2016}.
 
 The authors distinguish between link-level and system-level simulations for simulating \ac{HE} wireless networks.
 The authors explain both methods as follows.
