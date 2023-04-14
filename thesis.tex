@@ -15,7 +15,7 @@
 \usepackage{comment}
 \usepackage{algorithmicx}
 \usetikzlibrary{shapes, arrows, positioning}
-
+\newcommand{\algorithmautorefname}{Algorithm}
 \author{Karl Christian Lautenschläger}
 \birthday{29. Juni 1998}
 \birthplace{Magdeburg}
@@ -435,8 +435,8 @@ Both simulations were based on nearly ideal conditions, where the channel was no
 
 The results show the complex interplay of the different parameters in regards of the achievable goodput and robustness.
 Every mentioned parameter can be set to have the highest possible data rate, which may lead to a low robustness and vice versa.
-When the communication link is less robust, more retransmissions are required, which may to a lower goodput.
-When configured data rate is too low, the goodput is also reduced.
+When the communication link is less robust, more retransmissions are required, which may result in a lower goodput.
+When the configured data rate is too low, the goodput is also reduced.
 
 As every application has different requirements on
 latency, range, robustness and goodput, the parameters can be configured accordingly.
@@ -451,7 +451,7 @@ My simulations show that \ac{GI} of \SI{3200}{\nano\second} is more robust again
 reduces the theoretical achievable data rate.
 
 Since IEEE 802.11n, the robustness of the communication link can be increased by applying \ac{STBC}.
-But same as the IEEE 802.11ax \ac{DCM} mode, the
+But just as the IEEE 802.11ax \ac{DCM} mode, the
 increased robustness comes at the cost of a reduced theoretical data rate.
 
 The following chapter analyses the impact of the different physical layer parameters on the latency of the Application Layer.

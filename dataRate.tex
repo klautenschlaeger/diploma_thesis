@@ -262,10 +262,10 @@ which complies with the IEEE 802.11ax standard \cite{ieee_standard_2021ax}.
 
 Other physical layer parameters, supported by the IEEE 802.11ax standard, are \ac{LDPC} and utilizing more \ac{MIMO} streams.
 The effect that using more \ac{MIMO} streams for transmission increases the achievable goodput, is already known \cite{sauter_wireless_2022, ieee_standard_2021ax, ieee_standard_2020}.
-\ac{LDPC} no new effect for data rate, but more robustness which results in a lower \ac{PER}.
+\ac{LDPC} adds no new effect for the achievable goodput, but more robustness which results in a lower \ac{PER}.
 
 Using a different frequency spectrum, the achievable goodput can be limited due to the lower maximum \ac{BW} of \SI{40}{\mega\hertz} in the \SI{2.4}{\giga\hertz} frequency spectrum.
-To analyze achievable goodput in the \SI{2.4}{\giga\hertz} frequency spectrum, I reran the simulations with the same configuration for \autoref{sec:STBCDataRate}, but within the \SI{2.4}{\giga\hertz} frequency spectrum.
+To analyze achievable goodput in the \SI{2.4}{\giga\hertz} frequency spectrum, I reran the simulations with the same configuration as in \autoref{sec:STBCDataRate}, but within the \SI{2.4}{\giga\hertz} frequency spectrum.
 The results indicate that the achievable goodput is between \SIrange{0.1}{2.7}{\mega\bit\per\second} slower than in the \SI{5}{\giga\hertz} frequency spectrum.
 
 Due to a signal extension of \SI{6}{\micro\second} in the \SI{2.4}{\giga\hertz} frequency spectrum, the transmission time is longer, which results in a lower achievable goodput.
@@ -283,7 +283,7 @@ backwards compatibility with the older 802.11 standards, which need time to writ
 \end{figure}
 \end{comment}
 
-The simulation results represent an ideal scenario where only two nodes exchange data.
+The simulation results represent an ideal scenario where only two nodes exchange data. \todo{todo: maybe add more verifications here}
 In a real-world scenario in the agricultural domain, the number of nodes and the distance between the nodes may be higher.
 The signal propagation will be influenced by the complex agricultural environment,
 which can consist of large water areas, various obstacles and vegetation or weather conditions \cite{brinkhoff_characterization_2017}.
