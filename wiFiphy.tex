@@ -103,13 +103,13 @@ IEEE 802.11ax \cite{jacob_system-level_2020,krief_analysis_2020}.
 possibilities for higher communication ranges greater than \SI{50}{\metre}.
 
 Together with the \ac{MCS}, the \ac{FEC} \ac{CR} form a physical layer specification, which is named after the specific standard.
-For IEEE 802.11ax, this results in the HE-MCS values in \autoref{tab:HEMCS}.
+For IEEE 802.11ax, this results in the \ac{HE}-\ac{MCS} values in \autoref{tab:HEMCS}.
 
 \begin{table}[!ht]
    \centering
    \begin{tabular}{>{\raggedright}p{2cm}p{3cm}p{2cm}}
       \toprule
-      HE-MCS index & \acf{MCS} & \acf{CR} \\
+      \ac{HE}-\ac{MCS} index & \acf{MCS} & \acf{CR} \\
       \midrule
       \num{0} & Binary \ac{PSK}& \nicefrac{1}{2}\\
       1 & Quadrature \ac{PSK}& \nicefrac{1}{2}\\
@@ -125,7 +125,7 @@ For IEEE 802.11ax, this results in the HE-MCS values in \autoref{tab:HEMCS}.
       11 & \num{1024}-\ac{QAM}& \nicefrac{5}{6}\\
       \bottomrule
    \end{tabular}
-   \caption{\ac{MCS} and \ac{CR} for HE-\ac{MCS} values \cite{ieee_standard_2021ax}}
+   \caption{\ac{MCS} and \ac{CR} for \ac{HE}-\ac{MCS} values \cite{ieee_standard_2021ax}}
    \label{tab:HEMCS}
 \end{table}
 
@@ -183,11 +183,11 @@ The receiver minimum input sensitivity for a \ac{BW} of
 \SI{20}{\mega\hertz} is displayed in \autoref{fig:ReceiverSensitivityDCM}.
 It demonstrates that when using \ac{DCM},
 the receiver minimum input sensitivity can be lower than without using \ac{DCM}. The effect on the receiver minimum
-input sensitivity increases as the HE-MCS value increases.
+input sensitivity increases as the \ac{HE}-\ac{MCS} value increases.
 \begin{figure}%
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/Receiver_minimum_DCM}
-	\caption{Receiver minimum input level sensitivity for different HE-MCS values according to \cite{ieee_standard_2021ax}, where \ac{PER} is less than \SI{10}{\percent}}%
+	\caption{Receiver minimum input level sensitivity for different \ac{HE}-\ac{MCS} values according to \cite{ieee_standard_2021ax}, where \ac{PER} is less than \SI{10}{\percent}}%
 	\label{fig:ReceiverSensitivityDCM}%
 \end{figure}
 
@@ -198,10 +198,10 @@ The higher probability of achieving data is reached at the expense of the data r
 The same amount of data now takes twice as long to transmit.
 
 \cite{ieee_standard_2021ax} lists the theoretically possible data rates.
-These reveal that the maximum achievable data rate with DCM is only half of the attainable data rate without DCM.
+These reveal that the maximum achievable data rate with \ac{DCM} is only half of the attainable data rate without DCM.
 
-Support for \ac{DCM} is only optional in the IEEE 802.11ax standard and can only be used for HE-\ac{MCS}-\num{0},
-HE-\ac{MCS}-\num{1}, HE-\ac{MCS}-\num{3} and HE-\ac{MCS}-\num{4} for \num{1} or \num{2} spatial
+Support for \ac{DCM} is only optional in the IEEE 802.11ax standard and can only be used for \ac{HE}-\ac{MCS}-\num{0},
+\ac{HE}-\ac{MCS}-\num{1}, \ac{HE}-\ac{MCS}-\num{3} and \ac{HE}-\ac{MCS}-\num{4} for \num{1} or \num{2} spatial
 transmission streams \cite{ieee_standard_2021ax}.
 
 \textcite{jacob_system-level_2020} and \textcite{triwinarko_phy_2021} mention plans,
@@ -223,7 +223,7 @@ Since IEEE 802.11ax, the \ac{ER} Mode exists, which defines the new \ac{HE} \ac{
 \cite{ieee_standard_2021ax,afaqui_ieee_2017} .
 \textcite{deng_ieee_2017} explains that the \ac{HE} \ac{ER} \ac{SU} \ac{PPDU} format is intended to extend the range of
 a single station to access point transmission.
-According to the authors, this is accomplished by the \ac{PPDU} containing a repetition of the HE-SIG-A field.
+According to the authors, this is accomplished by the \ac{PPDU} containing a repetition of the \ac{HE}-SIG-A field.
 
 In addition, the authors explain that the preamble transmission power is boosted
 to guarantee reliable transmission for longer ranges.
@@ -231,7 +231,7 @@ The power-boost is limited to additional \SI{3}{\decibel}
 in \cite{ieee_standard_2021ax,jacob_system-level_2020}.
 
 The IEEE 802.11ax \cite{ieee_standard_2021ax} standard defines that the \ac{HE} \ac{ER} \ac{SU} \ac{PPDU} format may only be used
-when 20 Mhz transmissions with either 242-Resource Unit with HE-MCS-0 - HE-MCS-2 or 106-Resource Unit with HE-MCS-0 are used on a spatial stream.
+when 20 Mhz transmissions with either 242-Resource Unit with \ac{HE}-MCS-0 - \ac{HE}-MCS-2 or 106-Resource Unit with \ac{HE}-MCS-0 are used on a spatial stream.
 In addition, one can use \ac{DCM}.
 \textcite{sauter_wireless_2022} defines the Resource Unit as fragments of a Wi-Fi channel. The number before the Resource Unit
 indicates the number of subcarriers which are part of the Resource Unit.
@@ -257,7 +257,7 @@ The mechanism is called \ac{SU}-\ac{MIMO} \cite{ieee_standard_2021ax}.
 which allows an \ac{AP} to transmit data to multiple \acp{STA} via different available \ac{MIMO} streams simultaneously.
 According to the authors, \ac{MU}-\ac{MIMO} can increase the network throughput.
 IEEE 802.11ax introduced \ac{MU}-\ac{MIMO} in the Uplink direction \cite{ieee_standard_2021ax}, where multiple \acp{STA} can transmit data simultaneously to the \ac{AP} via different available \ac{MIMO} streams.
-MU-\ac{MIMO} DCM can also be applied in IEEE 802.11ax \cite{ieee_standard_2021ax}.
+MU-\ac{MIMO} \ac{DCM} can also be applied in IEEE 802.11ax \cite{ieee_standard_2021ax}.
 
 Another \ac{MIMO} technique is \ac{OFDMA}, which can be utilized since IEEE 802.11ax \cite{ieee_standard_2021ax, avallone_will_2021, omar_survey_2016}.
 \textcite{avallone_will_2021} explains that \ac{OFDMA} enables an \ac{AP} to transmit data to multiple \acp{STA} simultaneously by dividing the available bandwidth into \acp{RU} and assigning each \ac{RU} to a \ac{STA}.
@@ -295,7 +295,7 @@ due to the increased robustness.
 
 IEEE 802.11ax stations can optionally use \ac{STBC} under the following conditions \cite{ieee_standard_2021ax}:
 \begin{itemize}
-	\item DCM is not applied
+	\item \ac{DCM} is not applied
 	\item The number of spatial streams is \num{2}
 	\item The \ac{GI} is not \SI{0.8}{\nano\second} and the symbol length is not \SI{12.8}{\micro\second}
 \end{itemize}
@@ -309,5 +309,5 @@ In addition to the physical layer parameters already discussed, other technologi
 Beamforming
 OFDMA
 Group addressed frames
-HE Capabilities nur so gut, wie das schlechteste Glied
+\ac{HE} Capabilities nur so gut, wie das schlechteste Glied
 \end{comment}

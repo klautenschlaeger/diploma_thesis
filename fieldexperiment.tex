@@ -41,10 +41,10 @@ The boards are mounted on the roof of the \ac{CH} next to one another at a heigh
 The router on the tractor sets up a Wi-Fi \ac{AP}.
 One of the boards on the \ac{CH} connects to the \ac{AP} of the router as a Wi-Fi \ac{STA} and hosts an iperf3 \footnote{\url{https://iperf.fr/}} server.
 A notebook is connected via LAN to the router and runs an iperf3 client, which connects to the iperf3 server on the \ac{CH}.
-The iperf3 client sends \SI{100}{\byte} UDP packets every \SI{100}{\milli\second} to the iperf3 server on the \ac{CH}.
+The iperf3 client sends \SI{100}{\byte} \ac{UDP} packets every \SI{100}{\milli\second} to the iperf3 server on the \ac{CH}.
 The server records the received packets.
 
-Many different Wi-Fi transmissions arise through the iperf3 UDP packets, the Wi-Fi manager of the Milesight Industrial Router, and the Intel AX210 Wi-Fi card.
+Many different Wi-Fi transmissions arise through the iperf3 \ac{UDP} packets, the Wi-Fi manager of the Milesight Industrial Router, and the Intel AX210 Wi-Fi card.
 These transmissions can be RTS/CTS, ACK, Data, Beacon or Probe request frame, displayed in \autoref{fig:fieldWifi}.
 Through testing, I found out that the Wi-Fi manager of the Wi-Fi devices can apply VHT \ac{MCS} \numrange{0}{9} and \ac{STBC} as physical layer configurations.
 
@@ -57,7 +57,7 @@ Through testing, I found out that the Wi-Fi manager of the Wi-Fi devices can app
 \end{figure}
 
 The other UP Squared Board on the \ac{CH} uses the Wi-Fi card in the monitor mode and records every transmission in the \SI{5.6}{\giga\hertz} band using tcpdump \footnote{\url{https://www.tcpdump.org/}}.
-Since the UP Squared board is placed next to the other board on the roof of the \ac{CH}, it can record the same signals the other board receives in the UDP transmission.
+Since the UP Squared board is placed next to the other board on the roof of the \ac{CH}, it can record the same signals the other board receives in the \ac{UDP} transmission.
 The tcpdump records are in pcap - format, which can be analyzed using Wireshark\footnote{\url{https://www.wireshark.org/}}.
 Using Wireshark, I can identify possible retransmissions to calculate a \ac{PER}.
 At the same time, the data contains the \ac{RSS} of each antenna and the physical layer parameters for every

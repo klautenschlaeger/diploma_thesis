@@ -13,6 +13,7 @@
 \usetikzlibrary{quotes,angles}
 \usepackage{nicefrac}
 \usepackage{comment}
+\usepackage{algorithmicx}
 \usetikzlibrary{shapes, arrows, positioning}
 
 \author{Karl Christian Lautenschläger}
@@ -403,7 +404,7 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 As every used Wi-Fi device in the field experiment runs a Wi-Fi rate manager, which is responsible for the rate adaptation,
 the influence of a particular physical layer parameter on the data goodput, robustness and latency can not be examined in the field experiment as no particular physical layer parameter can be set.
 The Milesight Router is only capable to set IEEE 802.11ac physical layer parameters, which don't include the new physical layer parameters of IEEE 802.11ax:
-\ac{ER} mode, longer \ac{GI}s, HE-\ac{MCS} \numrange{9}{11} or \ac{DCM}.
+\ac{ER} mode, longer \ac{GI}s, \ac{HE}-\ac{MCS} \numrange{9}{11} or \ac{DCM}.
 Therefore, I simulated the influence of the different physical layer parameters on the goodput, robustness and latency.
 Simulations benefit from the flexibility and possibility of simulating different communication and network protocols \cite{kumar_simulators_2012}.
 
@@ -416,7 +417,7 @@ For system-level simulation, it requires abstractions of the physical and MAC la
 real on this basis.
 
 Link-level simulations, according to the authors,
-investigate the performance of the HE physical layer for different physical layer parameters as \ac{PER} in terms of \ac{SNR}.
+investigate the performance of the \ac{HE} physical layer for different physical layer parameters as \ac{PER} in terms of \ac{SNR}.
 As an example, the authors cite multiple different researchers, which simulated \ac{PER} regarding \ac{SNR} and chosen \ac{MCS}.
 Link-level simulations are usually visualised in so-called waterfall plots, which represent the \ac{PER} regarding \ac{SNR} for
 different physical layer parameters.

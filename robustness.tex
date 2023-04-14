@@ -18,12 +18,12 @@ I also decided to use Matlab because besides \cite{sheela_performance_2022}, \ci
 \cite{jin_efficient_2021} have also considered
 the MATLAB WLAN Toolbox to be suitable for IEEE 802.11ax simulations.
 
-The MATLAB WLAN Toolbox \footnote{\url{https://de.mathworks.com/products/wlan.html?s_tid=AO_PR_info}} is an add-on to simulate, analyze, and test wireless LAN communications systems.
+The MATLAB WLAN Toolbox \footnote{\url{https://de.mathworks.com/products/wlan.html?s_tid=AO_PR_info}} is an add-on to simulate, analyze, and test wireless LAN communication systems.
 The WLAN Toolbox supports a wide range of IEEE 802.11 standards.
 Since Release R2019b \footnote{\url{https://de.mathworks.com/help/wlan/release-notes.html}}, the WLAN Toolbox supports the Signal Recovery, Packet Extension and Physical Layer abstractions to simulate IEEE 802.11ax networks.
 
 My robustness analysis is based on the WLAN Toolbox example wlan/HESUExample \footnote{\url{https://de.mathworks.com/help/wlan/ug/802-11ax-packet-error-rate-simulation-for-single-user-format.html}} to simulate the \ac{PER} of point-to-point IEEE 802.11ax networks for
-a specified \ac{SNR} values.
+ specified \ac{SNR} values.
 
 First, I set the IEEE 802.11ax physical layer parameters using the wlanHEConfig object,
 where I define the default settings in \autoref{tab:robustnessDefaultSettings}.
@@ -51,7 +51,9 @@ where I define the default settings in \autoref{tab:robustnessDefaultSettings}.
 
 Next, I chose a channel model to simulate the channel.
 The WLAN Toolbox supports a wide range of channel models, such as wlanTGaxChannel, wlanTGnChannel, wlanTGacChannel, and wlanTGnChannel.
-The wlanTGaxChannel model supports \num{6} different channel models for IEEE 802.11ax networks, named TGax-A, TGax-B, TGax-C, TGax-D, TGax-E, and TGax-F,
+The TGax channel models are \ac{MIMO} broadband channel models for IEEE 802.11ax networks, which include spatial channel models, doppler effects,
+path loss, building penetration loss and shadowing effects \cite{TGAXCHANNEL}.
+The wlanTGaxChannel model supports \num{6} different sub-channel models, named TGax-A, TGax-B, TGax-C, TGax-D, TGax-E, and TGax-F,
 where the TGax-F channel model is suitable for pseudo-outdoor scenarios \cite{TGAXCHANNEL}.
 The TGax channel models were used for Matlab Wlan Toolbox simulations by \cite{sheela_performance_2022}, \cite{cao_efficient_2022} and \cite{jin_efficient_2021}.
 
@@ -135,14 +137,14 @@ A packet error is detected when no packet arrives, the packet delay is greater t
 is not equal to the transmitted packet data.
 
 \subsubsection*{\acf{MCS} and \acf{CR}}
-In the first simulation run, I analyzed the influence of a chosen set of HE-MCS values on the \ac{PER} regarding the \ac{SNR}.
-The results in \autoref{fig:PER_SNR_MCS} show that the \ac{PER} decreases with higher \ac{SNR} for all HE-MCS values. The
-\ac{PER} decreases at lower \ac{SNR} values for lower HE-MCS values. Increasing the HE-MCS value by \num{2} increases the \ac{SNR}, where a \ac{PER} of less than
+In the first simulation run, I analyzed the influence of a chosen set of \ac{HE}-\ac{MCS} values on the \ac{PER} regarding the \ac{SNR}.
+The results in \autoref{fig:PER_SNR_MCS} show that the \ac{PER} decreases with higher \ac{SNR} for all \ac{HE}-\ac{MCS} values. The
+\ac{PER} decreases at lower \ac{SNR} values for lower \ac{HE}-\ac{MCS} values. Increasing the \ac{HE}-\ac{MCS} value by \num{2} increases the \ac{SNR}, where a \ac{PER} of less than
 \SI{10}{\percent} is achieved, by \SIrange{5}{6}{\decibel}.
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.74\textwidth]{figures/MCS_PER_to_SNR.pdf}
-   \caption{Simulated PER regarding SNR for chosen HE-MCS values for IEEE 802.11ax physical layer parameters
+   \caption{Simulated PER regarding SNR for chosen \ac{HE}-\ac{MCS} values for IEEE 802.11ax physical layer parameters
          of a GI of 3200 ns, a bandwidth of 20 MHz and \num{2} spatial streams.}
    \label{fig:PER_SNR_MCS}%
 \end{figure}
@@ -156,16 +158,16 @@ achieve the best possible throughput. Known rate managers of the Linux kernel ar
 
 \subsubsection*{\acf{FEC}}
 Another parameter that influences the \ac{PER} is the forward error correction (FEC) procedure choice. To
-analyze the influence of the FEC procedure on the \ac{PER}, I simulated the \ac{PER} in regards to the \ac{SNR} for HE-MCS
-\numrange{0}{9} and whether \ac{LDPC} or \ac{BCC} is enabled. For higher HE-MCS values, \ac{BCC} can not be used as \ac{LDPC} is compulsory, so no comparison of the \ac{FEC} procedures is possible.
+analyze the influence of the FEC procedure on the \ac{PER}, I simulated the \ac{PER} in regards to the \ac{SNR} for \ac{HE}-\ac{MCS}
+\numrange{0}{9} and whether \ac{LDPC} or \ac{BCC} is enabled. For higher \ac{HE}-\ac{MCS} values, \ac{BCC} can not be used as \ac{LDPC} is compulsory, so no comparison of the \ac{FEC} procedures is possible.
 
-The results are displayed in \autoref{fig:PER_SNR_LDPC}. The \ac{PER} decreases with higher \ac{SNR} for both \ac{FEC} procedures for all HE-MCS values as
+The results are displayed in \autoref{fig:PER_SNR_LDPC}. The \ac{PER} decreases with higher \ac{SNR} for both \ac{FEC} procedures for all \ac{HE}-\ac{MCS} values as
 expected. Using \ac{LDPC} instead of \ac{BCC}, a \ac{PER} of less than \SI{10}{\percent} can be achieved at \SI{2}{\decibel} lower \ac{SNR}
-for all HE-MCS values. The effect increases to \SI{3}{\decibel} with higher HE-MCS values than HE-MCS \num{5}.
+for all \ac{HE}-\ac{MCS} values. The effect increases to \SI{3}{\decibel} with higher \ac{HE}-\ac{MCS} values than \ac{HE}-\ac{MCS} \num{5}.
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.74\textwidth]{figures/LDPC_PER_to_SNR.pdf}
-   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen HE-\ac{MCS} values and whether \ac{LDPC} or \ac{BCC} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a bandwidth of \SI{20}{\mega\hertz} and 2 spatial streams}%
+   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether \ac{LDPC} or \ac{BCC} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a bandwidth of \SI{20}{\mega\hertz} and 2 spatial streams}%
    \label{fig:PER_SNR_LDPC}%
 \end{figure}
 
@@ -179,18 +181,18 @@ According to \textcite{tran_asic_2014}, this effect is also present for IEEE 802
 \subsubsection*{\acf{GI}}
 
 Robustness against intercarrier and intersymbol interference can be achieved using a longer \ac{GI} \cite{pulimamidi_development_2007}. In order to analyse the impact of the \ac{GI} on the \ac{PER},
-I simulated the \ac{PER} regarding the \ac{SNR} for different HE-MCS values and \ac{GI}s. The results for a \ac{GI} of \SI{3200}{\nano\second} and \SI{800}{\nano\second} are plotted in \autoref{fig:PER_SNR_GI}.
-As expected, the \ac{PER} decreases with higher \ac{SNR} for all HE-MCS values. Using a \ac{GI} of \SI{3200}{\nano\second} instead of \SI{800}{\nano\second} no significant difference of \ac{PER} in regards to the \ac{SNR} can be observed for HE-\ac{MCS} values lower than \num{5}.
-Increasing the HE-\ac{MCS} value, the robustness of the \ac{MCS} sinks and the effect of the intercarrier interference and intersymbol interference increases.
+I simulated the \ac{PER} regarding the \ac{SNR} for different \ac{HE}-\ac{MCS} values and \ac{GI}s. The results for a \ac{GI} of \SI{3200}{\nano\second} and \SI{800}{\nano\second} are plotted in \autoref{fig:PER_SNR_GI}.
+As expected, the \ac{PER} decreases with higher \ac{SNR} for all \ac{HE}-\ac{MCS} values. Using a \ac{GI} of \SI{3200}{\nano\second} instead of \SI{800}{\nano\second} no significant difference of \ac{PER} in regards to the \ac{SNR} can be observed for \ac{HE}-\ac{MCS} values lower than \num{5}.
+Increasing the \ac{HE}-\ac{MCS} value, the robustness of the \ac{MCS} sinks and the effect of the intercarrier interference and intersymbol interference increases.
 As the maximum channel delay for the Tgax-F channel model is \SI{1050}{\nano\second}, the channel delay can be longer than the \ac{GI} of \SI{800}{\nano\second}. This
-can result in intersymbol interference, which results in a higher \ac{PER} for higher HE-\ac{MCS} values.
-For HE-\ac{MCS}\num{5}, a \ac{PER} of less than \SI{10}{\percent} can be achieved at \SI{1}{\decibel} lower \ac{SNR} for a \ac{GI} of \SI{3200}{\nano\second} instead of \SI{800}{\nano\second}. The effect increases
-with higher HE-\ac{MCS} values.
+can result in intersymbol interference, which results in a higher \ac{PER} for higher \ac{HE}-\ac{MCS} values.
+For \ac{HE}-\ac{MCS}\num{5}, a \ac{PER} of less than \SI{10}{\percent} can be achieved at \SI{1}{\decibel} lower \ac{SNR} for a \ac{GI} of \SI{3200}{\nano\second} instead of \SI{800}{\nano\second}. The effect increases
+with higher \ac{HE}-\ac{MCS} values.
 
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.74\textwidth]{figures/GI_PER_to_SNR.pdf}
-   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen HE-\ac{MCS} values and whether a \ac{GI} of \SI{800}{\nano\second} or \SI{3200}{\nano\second} is enabled for IEEE 802.11ax physical layer parameters of a bandwidth of \SI{20}{\mega\hertz} and 2 spatial streams}%
+   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether a \ac{GI} of \SI{800}{\nano\second} or \SI{3200}{\nano\second} is enabled for IEEE 802.11ax physical layer parameters of a bandwidth of \SI{20}{\mega\hertz} and 2 spatial streams}%
    \label{fig:PER_SNR_GI}%
 \end{figure}
 \textcite{patil_ieee_2020} conducted similar simulations for IEEE 802.11n.
@@ -204,17 +206,18 @@ which are predecessors of the TGax-F channel model \cite{TGAXCHANNEL}.
 
 
 \subsubsection*{\acf{DCM}}
-Next, I simulated the \ac{PER} in regards to the \ac{SNR}  and whether \ac{DCM} is enabled for the specified HE-\ac{MCS} values. Dabei habe ich für die SImulation die möglichen
-HE-MCS \num{0},\num{1},\num{3} and \num{4} aus dem IEEE 802.11ax Standard verwendet.
+Next, I simulated the \ac{PER} in regards to the \ac{SNR}  and whether \ac{DCM} is enabled for the specified \ac{HE}-\ac{MCS} values.
+I have used the possible \ac{HE}-\ac{MCS} \num{0},\num{1},\num{3} and \num{4} from the IEEE 802.11ax standard \cite{ieee_standard_2021ax} for the
+simulation of \ac{DCM}.
 
 The results indicate that using \ac{DCM} can achieve the same \ac{PER} at lower \ac{SNR} values compared to not using \ac{DCM}. A \ac{PER} of less than \SI{10}{\percent} can be achieved at
 a \SI{2}{\decibel} lower \ac{SNR} when using \ac{DCM}.
-The effect increases to \SI{4}{\decibel} for higher HE-\ac{MCS}\num{4}.
+The effect increases to \SI{4}{\decibel} for \ac{HE}-\ac{MCS} values higher \ac{HE}-\ac{MCS}\num{4}.
 The results are plotted in \autoref{fig:PER_SNR_DCM}.
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.65\textwidth]{figures/DCM_PER_to_SNR.pdf}
-   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen HE-\ac{MCS} values and whether \ac{DCM} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
+   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether \ac{DCM} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
    \label{fig:PER_SNR_DCM}%
 \end{figure}
 
@@ -229,17 +232,17 @@ The authors transmit the 16-\ac{QAM} symbols and a redundant copy
 of the 16-\ac{QAM} symbols via orthogonal subcarriers.
 At the receiver, the authors combine the copies and retrieve the transmitted
 information using the Maximum likelihood criterion.
-The results of the author show that a better bite error rate can be achieved while applying
+The results of the authors show that a better bit error rate can be achieved while applying
 \ac{DCM} than sending the information via two Quadrature \ac{PSK} or 16-\ac{QAM} modulated symbols without \ac{DCM}.
 
 
 
 \subsubsection*{\acf{ER}}
-For a HE-MCS \num{0} and \num{1} the \ac{ER} range mode can be applied additional to \ac{DCM}, when one spatial stream is used \cite{ieee_standard_2021ax}.
+For a \ac{HE}-\ac{MCS} \num{0} and \num{1} the \ac{ER} mode can be applied additional to \ac{DCM}, when one spatial stream is used \cite{ieee_standard_2021ax}.
 In order to analyze the impact of the \ac{ER} mode, I set the physical layer parameters to a \ac{GI} of
-\SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and one spatial streams.
-For He-MCS \num{0}, \num{1} and \num{3} I run simulations, where I enabled the
-\ac{ER} mode and compared the \ac{PER} to the \ac{PER} of the same HE-MCS values without \ac{ER} mode.
+\SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and one spatial stream.
+For He-\ac{MCS} \num{0}, \num{1} and \num{3} I ran simulations, where I enabled the
+\ac{ER} mode and compared the \ac{PER} to the \ac{PER} of the same \ac{HE}-\ac{MCS} values without \ac{ER} mode.
 
 The results in \autoref{fig:PER_SNR_ER} indicate that the \ac{PER} is influenced by the \ac{ER} mode.
 The difference in \ac{SNR} with \ac{ER} mode to without \ac{ER} mode, where a \ac{PER}
@@ -250,34 +253,39 @@ of \SI{10}{\percent} is achieved, is \SIrange{1}{2}{\decibel}.
 \begin{figure}%
    \centering
    \includegraphics[width=0.74\textwidth]{figures/ER_PER_to_SNR.pdf}
-   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen HE-\ac{MCS} values and whether Extended Range or \ac{DCM}
+   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether Extended Range or \ac{DCM}
    is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}
    \label{fig:PER_SNR_ER}%
 \end{figure}
 
-Additionally, I simulated the impact of applying the \ac{ER} mode and \ac{DCM} for the allowed HE-MCS values \num{0} and \num{1}.
+Additionally, I simulated the impact of applying the \ac{ER} mode and \ac{DCM} for the allowed \ac{HE}-\ac{MCS} values \num{0} and \num{1}.
 Applying \ac{DCM} additionally makes the transmission more robust.
 As it is displayed in \autoref{fig:PER_SNR_ER},
 a \ac{PER} of less than \SI{10}{\percent} can be achieved at a \SIrange{4}{5}{\decibel} lower \ac{SNR} when using \ac{DCM} and \ac{ER} mode together instead
 of using \ac{ER} mode alone.
 
 \textcite{jacob_system-level_2020} conducted a simulation, where they analysed the effect of \ac{DCM} and \ac{ER} on the \ac{PER} for
-IEEE 802.11bd in vehicular environments to the transmission range. The authors found out that the using \ac{DCM} and \ac{ER} can
-increase the transmission range for \ac{LOS} by \SI{65}{\percent} for a \ac{PER} greater than \num{0.1}. After additional analysis with higher
+IEEE 802.11bd in vehicular environments to the transmission range.
+The authors found out that using \ac{DCM} and \ac{ER} can
+increase the transmission range for \ac{LOS} by \SI{65}{\percent} for a \ac{PER} lower than \num{0.1}.
+After additional analysis with higher
 vehicle densities, the authors remark that using \ac{DCM} and the \ac{ER} mode causes channel congestion in \ac{CSMACA} based
-networks with low bandwidths. The authors conclude that the \ac{ER} mode and \ac{DCM} should be used for long-range transmissions, where
+networks with low bandwidths.
+The authors conclude that the \ac{ER} mode and \ac{DCM} should be used for long-range transmissions, where
 the physical layer parameters can extend the transmission range significantly.
 
-A similar simulation was conducted by \textcite{triwinarko_phy_2021}. The researchers state that using \ac{DCM} and the
+A similar simulation was conducted by \textcite{triwinarko_phy_2021}.
+The researchers state that using \ac{DCM} and the
 \ac{ER} mode results in better \ac{PER} performance at lower \ac{SNR} values in \ac{LOS} and non-\ac{LOS} scenarios.
 
 \subsubsection*{\acf{STBC}}
-As aforementioned, additional robustness can be achieved by applying \ac{STBC}. In order to analyse the impact of \ac{STBC} on the \ac{PER} in regards to the \ac{SNR},
-I run the simulation for the HE-MCS values \numrange{0}{11} with and without \ac{STBC}.
+As aforementioned, additional robustness can be achieved by applying \ac{STBC}.
+In order to analyse the impact of \ac{STBC} on the \ac{PER} in regards to the \ac{SNR},
+I run the simulation for the \ac{HE}-\ac{MCS} values \numrange{0}{11} with and without \ac{STBC}.
 
 The results in \autoref{fig:PER_SNR_STBC} indicate that the \ac{PER} is influenced
 by the \ac{STBC} mode. A \ac{PER} of less than \SI{10}{\percent} is possible at a \SIrange{2}{10}{\decibel} lower \ac{SNR} when using \ac{STBC} additionally.
-The impact of \ac{STBC} on the \ac{PER} grows from \SI{2}{\decibel} for HE-MCS\num{0} to \SI{10}{\decibel} for HE-MCS\num{11}.
+The impact of \ac{STBC} on the \ac{PER} grows from \SI{2}{\decibel} for \ac{HE}-\ac{MCS}\num{0} to \SI{10}{\decibel} for \ac{HE}-\ac{MCS}\num{11}.
 \begin{comment}
    {'mcs0_stbc.csv': [7.0, 5.0], 'mcs2_stbc.csv': [16.0, 8.0], 'mcs9_stbc.csv': [36.0, 26.0],
       'mcs7_stbc.csv': [30.0, 20.0], 'mcs5_stbc.csv': [26.0, 18.0], 'mcs1_stbc.csv': [11.0, 6.0], 'mcs11_stbc.csv': [41.0, 31.0]}
@@ -286,27 +294,27 @@ The impact of \ac{STBC} on the \ac{PER} grows from \SI{2}{\decibel} for HE-MCS\n
 \begin{figure}%
    \centering
    \includegraphics[width=0.74\textwidth]{figures/STBC_PER_to_SNR.pdf}
-   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen HE-\ac{MCS} values and whether \ac{STBC} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
+   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether \ac{STBC} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
    \label{fig:PER_SNR_STBC}%
 \end{figure}
 \textcite{stamoulis_impact_2003} analysed the impact of \ac{STBC} on the bit error rate for IEEE 802.11a in regards to the \ac{SNR}. Their simulation was based
 on a HiperLAN/2 channel with \num{2} antennas. They used HiperLAN/2 because it has a physical layer similar to IEEE 802.11a.
-The authors found that applying \ac{STBC} results in a lower bit error rate for a given \ac{SNR} value. The authors conclude that \ac{STBC} can be used to
+The authors found that applying \ac{STBC} results in a lower bit error rate for a given \ac{SNR} value. The authors conclude that \ac{STBC} can be used to increase the
+robustness of the transmission.
+
 \textcite{santumon_space-time_2012} and \textcite{tarokh_space-time_1999} conducted simulations, where they analyzed the effect of \ac{STBC} on the bit error rate for
-wireless communication systems. In general, the authors found out that \ac{STBC} can be used to increase the bit error rate for a given \ac{SNR} value for different
+wireless communication systems. In general, the authors found out that \ac{STBC} can be used to decrease the bit error rate for a given \ac{SNR} value for different
 \ac{MCS} values. Additionally, the authors remark that the impact of \ac{STBC} on the bit error rate grows with the number of antennas.
 However, the number of antennas is limited to \num{2} for IEEE 802.11ax \cite{ieee_standard_2021ax}.
 
-The robustness analysis results indicate which \ac{PER} decreases can be achieved by applying the different physical layer parameters.
-The intensity of the impact varies depending on the environment and the actual communication channel.
-
+\subsubsection*{\SI{2.4}{\giga\hertz} Frequency band}
 I conducted the same simulations for the frequency band of \SI{2.4}{\giga\hertz}. Using the same physical layer parameters in
 the \SI{2.4}{\giga\hertz} band achieve a similar \ac{PER} in regards to the \ac{SNR} and chosen physical layer parameters
 as in the \SI{5}{\giga\hertz} band.
 
 But how does the effect of the frequency bands on the \ac{PER} in regards to the \ac{SNR} differ?
 Taking the Friis transmission model \cite{shaw_radiometry_2013} into account, the \ac{RSS} for omnidirectional antennas can be calculated with the distance $d$,
-receiving antenna gain $G_{R}$, transmitting antenna gain $G_{T}$ and transmission power $P_{T}$  as follows:
+receiving antenna gain $G_{R}$, wavelength $\lambda$, transmitting antenna gain $G_{T}$ and transmission power $P_{T}$  as follows:
 \begin{equation}
    RSS = P_{T} * G_{T} * G_{R} * \frac{\lambda^2}{(4 * \pi * d)^2}.
 \end{equation}
@@ -322,9 +330,10 @@ Converting the equation to $d$ results in the following equation:
 The equation shows that a lower frequency results in a higher \ac{RSS} for a given distance.
 This means that the \SI{2.4}{\giga\hertz} band can achieve a higher \ac{SNR} for a given distance and noise floor
 compared to the \SI{5}{\giga\hertz} band.
-The simulation results can now be used to derive the following conclusion
-that a lower \ac{PER} for the \SI{2.4}{\giga\hertz} band can be accomplished
-for a given set of physical layer parameters, distance and noise floor.
+The following conclusion can be derived from the equation: The \SI{2.4}{\giga\hertz} band can accomplish
+a lower \ac{PER} for a given set of physical layer parameters, distance and noise floor.
 
-The simulation results indicate that modern Wi-Fi offers various physical layer parameters to enhance the robustness of the outdoor communication.
+The simulation results indicate that modern Wi-Fi offers various physical layer parameters to enhance the
+robustness of the outdoor communication.
+The intensity of the impact varies depending on the environment and the actual communication channel.
 Every physical layer configuration has also an impact on data throughput, which is the next topic to be analyzed.

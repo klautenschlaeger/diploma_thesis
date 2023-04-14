@@ -10,9 +10,9 @@ Consequently, OMNeT++ seems unsuitable for IEEE 802.11ax simulations and I looke
 
 \subsubsection*{ns-3 Network Simulator}
 
-Ns-3 is well documented in the ns-3 manual in the \textit{./doc} - folder of  \cite{nsnam_ns-3_nodate}, where I found the following information about the simulator.
+Ns-3 is well documented in the ns-3 manual in the \textit{./doc} - folder of  \cite{henderson_ns-3-dev_2023}, where I found the following information about the simulator.
 Ns-3 is a discrete-event network simulator project which was founded in 2006.
-The ns-3 project is open source with a licence based on n GNU GPLv2 compatibility.
+The ns-3 project is open source with a licence based on GNU GPLv2 compatibility.
 It aims to provide an open, extensible network simulator for research and educational use.
 Ns-3 scripts can be written in C++ or Python.
 
@@ -38,7 +38,7 @@ It is already possible to configure \ac{DCM} and \ac{STBC},
 but there is a comment in line 496 of the file \textit{he-ppdu.cc} that these are
 not yet taken into account in the current ns-3 version 3.37 \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-user.html}}.
 
-When examining the implementation of 802.11ax in ns-3, one notices that the implementation of 802.11ax in ns-3 already implements a HE ER SU \ac{PPDU} preamble, but this is never used, and one cannot activate the extended range mode.
+When examining the implementation of 802.11ax in ns-3, one notices that the implementation of 802.11ax in ns-3 already implements a \ac{HE} \ac{ER} SU \ac{PPDU} preamble, but this is never used, and one cannot activate the extended range mode.
 Therefore, some open points of 802.11ax in ns-3 still need to be implemented.
 
 \textcite{black_netsimulyzer_2021} have developed a 3D visualisation of ns-3, which visualises the simulations in 3D to make the ns-3 simulation
@@ -48,13 +48,13 @@ The NetSimulyzer ns-3 module \footnote{https://github.com/usnistgov/NetSimulyzer
 This file contains all the data required for visualisation in the application NetSimulyzer \footnote{\url{https://github.com/usnistgov/NetSimulyzer}}.
 
 
-Nevertheless, ns-3 is chosen as a simulation tool for the simulation of 802.11ax by \cite{dolinska_new_2019}, \cite{rochim_performance_2020} and
+Ns-3 is chosen as a simulation tool for the simulation of 802.11ax by \cite{dolinska_new_2019}, \cite{rochim_performance_2020} and
 \cite{behara_performance_2022}.
 
 
 As ns-3 is an open-source simulation software and was used by the mentioned other researchers in the past too, I used ns-3
 to evaluate the effect of physical layer configuration on the achievable goodput between two nodes using IEEE 802.11ax Wi-Fi Netdevices
-to exchange UDP packets in ad-hoc Mode.
+to exchange \ac{UDP} packets in ad-hoc Mode.
 
 The setup consists of two nodes placed in static positions with a distance of \SI{20}{\metre}.
 I chose the short communication range setup with no simulated interference to enable Wi-Fi transmission without any packets lost.
@@ -79,7 +79,7 @@ Every node is equipped with an IEEE 802.11ax Wi-Fi NetDevice, which is configure
    \label{tab:SimulationDataRate}
 \end{table}
 
-A Constant Rate Wi-Fi Manager is used to set a constant data rate according to the fixed HE-\ac{MCS} for data, non-uniform and control data transmissions.
+A Constant Rate Wi-Fi Manager is used to set a constant data rate according to the fixed \ac{HE}-\ac{MCS} for data, non-uniform and control data transmissions.
 The used frequency band is \SI{2.4}{\giga\hertz} or \SI{5}{\giga\hertz} as higher frequencies are less resistant to shadowing and fading, and a higher data rate is not needed for the \ac{WIC} use cases.
 The Wi-Fi Netdevices operate in the frequency channels specified in \autoref{tab:fieldChannels}, which can be used for
 outdoor Wi-Fi communication in Germany \cite{freq_plan_24G}, \cite{freq_plan_5G}.
@@ -89,7 +89,7 @@ representing free-space signal propagation at the speed of light.
 \todo[]{evtl explain?}
 The ns-3 TableBasedErrorRateModel is used to model the error rate of the physical layer.
 According to the ns-3 Wi-Fi design guide \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html\#default-table-based-error-model-validation}},
-the TableBasedErrorRateModel derives the \ac{PER} from results form the Matlab WLAN Toolbox
+the TableBasedErrorRateModel derives the \ac{PER} from results of the Matlab WLAN Toolbox
 regarding the physical layer parameters and \ac{SNR}.
 The design guide recommends the TableBasedErrorRateModel for the IEEE 802.11ax standard.
 
@@ -99,14 +99,14 @@ Platooning Services are time critical, so the number of retries should be as low
 This is why additional retransmission mechanisms like TCP are not needed.
 Therefore, the chosen transport layer protocol is UDP.
 
-One node operates a UDP server, and the other is a UDP client.
-The client sends \SI{1000}{\byte} UDP packets to the server every \SI{0.1}{\micro\second}.
+One node operates a \ac{UDP} server, and the other is a \ac{UDP} client.
+The client sends \SI{1000}{\byte} \ac{UDP} packets to the server every \SI{0.1}{\micro\second}.
 This packet interval
 ensures that the packet queue of the client is never empty after starting the simulation.
 The server receives the packets and sends an ACK back to the client.
 
 For every physical layer configuration, the simulation runs five times for \SI{5}{\second}.
-The goodput for every simulation run is calculated by dividing the number of received bytes at the UDP Server by the simulation time.
+The goodput for every simulation run is calculated by dividing the number of received bytes at the \ac{UDP} Server by the simulation time.
 The goodput is then averaged over all simulation runs per physical layer configuration, and the confidence interval with a confidence level of
 \SI{95}{\percent} is calculated.
 
@@ -126,25 +126,26 @@ verify the simulation results.
 
 \subsubsection*{\acf{GI}}
 
-In the first simulation, I varied the \ac{GI} of the Wi-Fi Netdevices for different HE-\ac{MCS} values.
+In the first simulation, I varied the \ac{GI} of the Wi-Fi Netdevices for different \ac{HE}-\ac{MCS} values.
 The results are shown in \autoref{fig:Data_rate_GI}.
 The achieved goodput is plotted against the theoretical data rate for the different \ac{GI} values.
-The theoretical data rate is always higher than the achieved goodput of the UDP applications because the channel is also used for \ac{ACK} and ad-hoc Beacon transmissions. Due to
+The theoretical data rate is always higher than the achieved goodput of the \ac{UDP} applications because the channel is also used for \ac{ACK} and ad-hoc Beacon transmissions. Due to
 these different transmissions, the goodput is lower than the theoretical data rate.
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.64\textwidth]{figures/gi_dataRate_simulation.pdf}
-   \caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode with \num{2} \acf{MIMO} streams and a bandwidth of \SI{80}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen HE-\acf{MCS} value}%
+   \caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode
+   with \num{2} \acf{MIMO} streams and a bandwidth of \SI{80}{\mega\hertz} in regards to the chosen \acf{GI} and \ac{HE}-\ac{MCS} value}%
    \label{fig:Data_rate_GI}%
 \end{figure}
 
 The achieved goodput decreases as the \ac{GI} length increases.
-This effect can be characterized by the formula above.
+This effect can be characterized by \autoref{eq:GI}.
 The bandwidth attenuation for the possible \ac{GI} lengths is displayed in \autoref{tab:GIbandwidthAttenuation}.
 The effect of the bandwidth attenuation for the different \ac{GI} lengths can be observed in the mean achieved goodput in
 \autoref{tab:GIbandwidthAttenuation}, where the decrease of the mean goodput reflects the bandwidth attenuation of the decreasing \ac{GI} length.
 
-A similar effect can be observed whit higher HE-\ac{MCS} values.
+A similar effect can be observed with higher \ac{HE}-\ac{MCS} values.
 \begin{table}[H]
    \centering
    \begin{tabular}{>{\centering}p{3cm}p{3cm}p{3cm}}
@@ -160,7 +161,7 @@ A similar effect can be observed whit higher HE-\ac{MCS} values.
       \SI{80}{\percent} \\
       \bottomrule
    \end{tabular}
-   \caption{\acf{BW} attenuation and mean goodput for HE-\ac{MCS}0 in regards to \acf{GI} length}
+   \caption{\acf{BW} attenuation and mean goodput for \ac{HE}-\ac{MCS}0 in regards to \acf{GI} length}
    \label{tab:GIbandwidthAttenuation}
 \end{table}
 
@@ -172,7 +173,7 @@ channel loss due to interference.
 \subsubsection*{\acf{ER} Mode}
 
 In the following simulation, I analyzed the effect of the \ac{ER} Mode on the goodput of the IEEE 802.11ax physical layer.
-As mentioned in ns-3 Version 3.37, the \ac{ER} Mode is implemented as an \ac{HE} Capability with the new extended WifiPreamble.
+As mentioned in ns-3 Version 3.37, the \ac{ER} Mode is implemented as a \ac{HE} Capability with the new extended WifiPreamble.
 But the new preamble in the \ac{HE} \ac{ER} SU \ac{PPDU} format is not used in ns-3 version 3.37.
 
 As I was using the ConstantRateWifiManager, all parameters for the data transmission are set in the function
@@ -189,38 +190,38 @@ I used the ns3::GlobalValue to create an instance named HE\_ER\_Mode, which is s
 to overwrite the preamble type.
 
 Via the MonitorSnifferRxCallback and the MonitorSnifferTxCallback, I was able to verify that the ns3 WifiPreamble::WIFI\_PREAMBLE\_HE\_ER\_SU was used
-for data transmission, when the following conditions were met: a) the \ac{ER} Mode is enabled, b) the number of spatial streams is \num{1}, c) the HE-\ac{MCS} value is less than \num{3} and
+for data transmission, when the following conditions were met: a) the \ac{ER} Mode is enabled, b) the number of spatial streams is \num{1}, c) the \ac{HE}-\ac{MCS} value is less than \num{3} and
 d) the \ac{BW} is \SI{20}{\mega\hertz}.
 
-The simulation results are shown in \autoref{fig:Data_rate_ER}, where the lost achieved goodput is plotted against the theoretical data rate for the different HE-\ac{MCS} values.
+The simulation results are shown in \autoref{fig:Data_rate_ER}, where the reduction of achieved goodput is plotted against the theoretical data rate for the different \ac{HE}-\ac{MCS} values.
 The lost goodput is calculated by subtracting the achieved goodput when using the \ac{HE} \ac{ER} mode from the achieved goodput when using the normal \ac{HE} SU mode.
-The only difference between \ac{HE} SU and \ac{HE} \ac{ER} SU transmissions is the preamble, which repeats the HE-SIG-A field in the \ac{HE} \ac{ER} SU \ac{PPDU} format.
+The only difference between \ac{HE} SU and \ac{HE} \ac{ER} SU transmissions is the preamble, which repeats the \ac{HE}-SIG-A field in the \ac{HE} \ac{ER} SU \ac{PPDU} format.
 This results in a longer transmission time, reflecting the lower achieved goodput for the \ac{ER} Mode.
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.64\textwidth]{figures/ER_dataRate_simulation.pdf}
-   \caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode with a \acf{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{20}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen HE-\ac{MCS} value}%
+   \caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode with a \acf{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{20}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen \ac{HE}-\ac{MCS} value}%
    \label{fig:Data_rate_ER}%
 \end{figure}
 The effect increases with smaller packet sizes because the longer preamble transmission time is more significant for smaller packets.
-For higher HE-\ac{MCS} values, more achievable goodput is lost because longer transmission time for the preamble could have
+For higher \ac{HE}-\ac{MCS} values, more achievable goodput is lost because longer transmission time for the preamble could have
 been used more \ac{OFDM} symbol transmissions, where more data is coded onto a symbol.
 
 \subsubsection*{\acf{DCM}}
 Using the \ac{DCM} in the IEEE 802.11ax physical layer also affects the achievable goodput.
 As aforementioned, the \ac{DCM} is not supported by ns-3 version 3.37.
 Therefore, I implemented the \ac{DCM} for this simulation in the ns-3 version 3.37 by transmitting a payload of twice the size, which represents the original payload and a
-copy of it for the HE-\ac{MCS} values 0, 1, 3 and 4, where \ac{MCS} is allowed.
+copy of it for the \ac{HE}-\ac{MCS} values 0, 1, 3 and 4, where \ac{MCS} is allowed.
 Using \ac{DCM}, the receiver would apply maximum likelihood decoding to decode the original payload with a higher probability.
 
 The results of the simulation are shown in \autoref{fig:Data_rate_DCM}, where the lost achieved goodput is plotted against
-the theoretical data rate for the different HE-\ac{MCS} values.
+the theoretical data rate for the different \ac{HE}-\ac{MCS} values.
 The theoretical data rate while using \ac{DCM} is half of the
 theoretical data rate without \ac{DCM}, which complies with the IEEE 802.11ax standard \cite{ieee_standard_2021ax}.
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.64\textwidth]{figures/DCM_dataRate_simulation.pdf}
-   \caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{20}{\mega\hertz} and \num{2} spatial streams  in regards to the number of the chosen HE-\acf{MCS} value and whether \acf{DCM} is enabled}%
+   \caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{20}{\mega\hertz} and \num{2} spatial streams  in regards to the number of the chosen \ac{HE}-\acf{MCS} value and whether \acf{DCM} is enabled}%
    \label{fig:Data_rate_DCM}%
 \end{figure}
 
@@ -249,13 +250,13 @@ Therefore, I reduced the number of
 \ac{MIMO} streams from \num{2} to \num{1} when the \ac{STBC} is enabled. \ac{STBC} would transmit a redundant copy of the data on the second antenna, which would be combined
 using the space-time block code (STBC) to increase the robustness and reliability of the transmission.
 The results of the simulation are shown in \autoref{fig:Data_rate_STBC}, where the lost achieved goodput is plotted against
-the theoretical data rate for the different HE-\ac{MCS} values.
+the theoretical data rate for the different \ac{HE}-\ac{MCS} values.
 The theoretical data rate while using \ac{STBC} is half of the theoretical data rate without \ac{STBC},
 which complies with the IEEE 802.11ax standard \cite{ieee_standard_2021ax}.
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.64\textwidth]{figures/STBC_dataRate_simulation}
-   \caption{Achieved Goodput and theoretical Datarate of two IEEE 802.11ax stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{20}{\mega\hertz} and 2 spatial streams  in regards to the number of the chosen HE-\acf{MCS} value and whether \acf{STBC} is enabled}%
+   \caption{Achieved Goodput and theoretical Datarate of two IEEE 802.11ax stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{20}{\mega\hertz} and 2 spatial streams  in regards to the number of the chosen \ac{HE}-\acf{MCS} value and whether \acf{STBC} is enabled}%
    \label{fig:Data_rate_STBC}%
 \end{figure}
 
@@ -276,7 +277,7 @@ backwards compatibility with the older 802.11 standards, which need time to writ
    \includegraphics[width=0.95\textwidth]{figures/STBC_dataRate_simulation24}
    \caption{Achieved Goodput and theoretical Datarate of two IEEE 802.11ax stations in Ad-Hoc Mode with for IEEE 802.11ax
       physical layer parameters of a \acf{GI} of \SI{3200}{\nano\second}, a \acf{BW} of \SI{20}{\mega\hertz} and 2 spatial streams,
-      \ac{STBC} enabled and in regards to the number of the chosen HE-\acf{MCS} value and whether the
+      \ac{STBC} enabled and in regards to the number of the chosen \ac{HE}-\acf{MCS} value and whether the
       \SI{2.4}{\giga\hertz} or \SI{5}{\giga\hertz} frequency spectrum is used}%
    \label{fig:Data_rate_STBC24}%
 \end{figure}
