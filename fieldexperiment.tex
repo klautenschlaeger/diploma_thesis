@@ -84,7 +84,7 @@ which means that the tractor drives \num{5} times the same path, which is displa
 		\bottomrule
 	\end{tabular}
 	\caption{Frequency channel numbers for \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} for the different \acf{BW}s of the IEEE 802.11 standard \cite{ieee_standard_2021ax}, which can be used for
-	outdoor communication \cite{freq_plan_24G}, \cite{freq_plan_5G} and are configured in the Milesight Industrial Router UR75 for
+	outdoor communication \cite{freq_plan_24G}, \cite{freq_plan_5G} and can be configured in the Milesight Industrial Router UR75 for
 	the field experiments.}
 	\label{tab:fieldChannels}
 \end{table}
@@ -92,6 +92,31 @@ which means that the tractor drives \num{5} times the same path, which is displa
 \todo[color=blue]{Feldversuche kommen nächste Woche D.h. hier fehlt dann noch alles.}
 
 \subsubsection*{Trial Run}
+
+Since it rained a lot before the planned field experiments, I did a trial run to ensure that the experiment works as expected
+and I get the data I need.
+I mounted the Wi-Fi devices on the \ac{TM} and the \ac{CH} as shown in \autoref{fig:trailrunPositions} and
+started the iperf3 client and server on the \ac{CH} and the \ac{TM} respectively.
+During the trial run, the machines kept the same positions on a yard at the university.
+To vary the recorded \ac{RSS}, I moved the Wi-Fi antennas of the Wi-Fi devices on the \ac{CH} simultaneously to
+different positions.
+I varied the \ac{BW} between \SIrange{20}{80}{\mega\hertz} in reference to \autoref{tab:fieldChannels}.
+
+The trial run was partly successful.
+The monitoring Wi-Fi device blocked any try to configure monitoring channels with higher \ac{BW}s than \SI{20}{\mega\hertz}.
+Therefore, I could only record data for a \ac{BW} of \SI{20}{\mega\hertz}.
+The recorded data was filtered to only contain the \ac{UDP} packets sent by the iperf3 client on the \ac{TM}
+and displayed in \autoref{fig:trailrunIperf}.
+
+It is visible, that the Wi-Fi rate manager on the Milesight Industrial Router UR75 does not use \ac{STBC} and varies
+the \ac{MCS} between \numrange{5}{8} and the \ac{GI} between \SIrange{400}{800}{\nano\second}.
+Due to moving the antennas, the \ac{RSS} varies until I placed the antennas at a suitable fixed position at the end of the trial run.
+As soon as the \ac{RSS} drops significantly at around \SIrange{25}{50}{\second}, the wi-fi rate manager switches to a lower \ac{MCS} and a longer
+\ac{GI} to increase the robustness of the transmission.
+This results in a less retransmissions.
+
+
+
 
 \begin{figure}[H]%
 	\centering
@@ -102,41 +127,13 @@ which means that the tractor drives \num{5} times the same path, which is displa
 
 \begin{figure}[H]%
 	\centering
-	\includegraphics[width=0.98\textwidth]{figures/wireless5}
-	\caption{All QoS data transmissions between the Wi-Fi \acf{AP} on the \acf{TM} and the Wi-Fi \ac{STA} on the \acf{CH} in a trialrun}
-	\label{fig:trailrunAll}%
-\end{figure}
-
-\begin{figure}[H]%
-	\centering
-	\includegraphics[width=0.98\textwidth]{figures/wireless5_lan}
+	\includegraphics[width=0.98\textwidth]{figures/wireless5_144}
 	\caption{All QoS data transmissions between the Wi-Fi \acf{AP} on the \acf{TM} and the Wi-Fi \ac{STA} on the \acf{CH} in a trialrun,
 	which were initiated by the iperf3 client on the \acf{TM}}
 	\label{fig:trailrunIperf}%
 \end{figure}
 
-\begin{figure}[H]%
-	\centering
-	\includegraphics[width=0.98\textwidth]{figures/wireless5_ap}
-	\caption{QoS data transmissions between the Wi-Fi \acf{AP} on the \acf{TM} and the Wi-Fi \ac{STA} on the \acf{CH} in a trialrun,
-	which were initiated by \ac{AP}}
-	\label{fig:trailrunAP}%
-\end{figure}
 
-\begin{figure}[H]%
-	\centering
-	\includegraphics[width=0.98\textwidth]{figures/wireless5_lan}
-	\caption{All QoS data transmissions between the Wi-Fi \acf{AP} on the \acf{TM} and the Wi-Fi \ac{STA} on the \acf{CH} in a trialrun,
-	which were initiated by the Wi-Fi \ac{STA} on the \ac{CH}}
-	\label{fig:trailrunNode}%
-\end{figure}
-
-\begin{figure}[H]%
-	\centering
-	\includegraphics[width=0.8\textwidth]{figures/All_retries}
-	\caption{Percentage of retransmissions for every transmission in the trialrun}
-	\label{fig:retriesCount}%
-\end{figure}
 
 \todo[color=blue]{Den folgenden Output erhoffe ich mir. Den Text brauchst du als groben Übergang zum nächsten Abschnitt.}
 
