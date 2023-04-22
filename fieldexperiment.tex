@@ -89,7 +89,7 @@ which means that the tractor drives \num{5} times the same path, which is displa
 	\label{tab:fieldChannels}
 \end{table}
 
-\subsubsection*{Trial Run}
+\section{Trial Run}
 
 Since it rained a lot before the planned field experiments, I did a trial run to ensure that the experiment worked as expected and I got the data I needed.
 I mounted the Wi-Fi devices on the \ac{TM} and the \ac{CH} as shown in \autoref{fig:trailrunPositions} and
@@ -157,7 +157,7 @@ Additionally, the communication is less robust, which results in the high percen
 
 In the end, I could not conduct the proposed field experiments due to the rainy weather, which led to very wet agricultural fields.
 
-\subsubsection*{Wi-Fi Range Measurements}
+\section{Wi-Fi Range Measurements}
 Instead, I conducted a range measurement in an outdoor environment on an abandoned airfield near Mahlwinkel (52°23'17.9"N 11°50'35.4"E) in Saxony-Anhalt, Germany,
 which can be seen in \autoref{fig:rangeEnvironment}.
 The airfield was surrounded by grassland, wind turbines, a solar park and forests, which describe a typical environment for agricultural machines.
@@ -218,21 +218,35 @@ This effect can also be detected in the \ac{PER} values of beacon frames.
 The Milesight Industrial Router UR75 broadcasts every \SI{100}{\milli\second} the \ac{AP} beacon frame, which is used by Wi-Fi devices to
 authenticate and associate with the \ac{AP}.
 This beacon frame interval is defined in the recorded beacon frames and allows me to
-calculate the \ac{PER} of the beacon frames as I know the every \si{\second} \num{10} beacon frames should be received by the monitoring device.
+calculate the \ac{PER} of the beacon frames as every \si{\second} \num{10} beacon frames should be received by the monitoring device.
 The \ac{PER} of the beacon frames is shown in \autoref{fig:rangemeasurementResults} and indicates that no beacon frame was received at
-a distance of around \SIrange{650}{750}{\metre}.
+a distance of around \SIrange{650}{750}{\metre}, because the \ac{RSS} values dropped below the sensitivity of the Wi-Fi devices.
 
 Every beacon frame is transmitted in the IEEE 802.11a standard with a data rate of \SI{6}{\mega\bit\per\second}, which can also be received
 by older Wi-Fi devices.
-A data rate of \SI{6}{\mega\bit\per\second} refers to Binary \ac{PSK} modulation with a \ac{CR} of \nicefrac{1}{2} \cite{IEEE802.11a}.
+A data rate of \SI{6}{\mega\bit\per\second} refers to Binary \ac{PSK} modulation with a \ac{CR} of \nicefrac{1}{2} \cite{ieee_standard_1999}.
 This \ac{MCS} and \ac{CR} combination is the most robust combination, which caused the low \ac{PER} values of the beacon frames over
 the large communication range of up to \SI{2.5}{\kilo\metre}.
 However, at the end of the communication range, the \ac{PER} values of the beacon frames
-started to increase, which indicates that the Wi-Fi transmission started to suffer from multipath, shadowing and fading effects.
+started to increase, because the \ac{RSS} values suffer more from multipath, shadowing and fading effects and are not high enough to
+to be sensed by the Wi-Fi devices.
 
+\section{Field Measurements Evaluation}
 
+The achieved Wi-Fi transmission range may be dependent on the antenna height. \textcite{brinkhoff_characterization_2017} concluded that
+the antenna height has a significant impact on the Wi-Fi transmission range.
+They state, that the Wi-Fi transmission range increases
+with the antenna height, because the Wi-Fi transmissions are less affected by obstacles and the Fresnel zone is less obstructed.
+This effect is available until a maximum antenna height of \SI{50}{\metre} by the authors.
 
-The \ac{WIC} uses cases require reliable communication between the agricultural machines to exchange data with the specific required data rate, range and latency for each use case.
+In regard to antenna height, future field experiments should be conducted to find the optimal antenna height for agricultural machines.
+Antennas heights can be built retractable and extendable to stay below the maximum allowed height of \SI{4}{\metre} for agricultural machines in Germany on
+public roads and to be able to extend the antenna height to the optimal height for the Wi-Fi transmission range in agricultural fields.
+
+\todo{Ground reflection coefficient beton grass,  permeability,  conductance, permittivity of grass, permittivity of concrete, permittivity of air, permittivity of water}
+
+\ac{WIC} uses cases require reliable communication between the agricultural machines to exchange data
+with each use case's specific required data rate, range, and latency.
 
 The range measurements indicate that the Wi-Fi transmissions can be received up to a distance of \SI{2.5}{\kilo\metre},
 which is sufficient to cover substantial agricultural fields.
@@ -240,7 +254,14 @@ However, Wi-Fi transmissions suffer from multipath, shadowing and fading effects
 when the physical layer configuration is oriented towards a high data rate instead of high robustness as it was
 in the trial run.
 
-In the following chapter, I will analyze which physical layer
-configurations are suitable for the agricultural environment in order to establish reliable communication,
-which meets the data rate, range and latency requirements of Agricultural Platooning Services.
+As every used Wi-Fi device in the field experiment runs a Wi-Fi rate manager, which is responsible for the rate adaptation,
+the influence of a particular physical layer parameter on the data goodput, robustness and latency can not be examined in the field experiment as no particular physical layer parameter can be set.
+The Milesight Router is only capable of setting IEEE 802.11ac physical layer parameters, which don't include the new physical layer parameters of IEEE 802.11ax:
+\ac{ER} mode, longer \ac{GI}s, \ac{HE}-\ac{MCS} \numrange{9}{11} or \ac{DCM}.
 
+Taking \ac{DCM} as an example, the impact on the Wi-Fi receiver minimum input level sensitivity was mentioned in \autoref{fig:ReceiverSensitivityDCM}. \ac{DCM}
+increases the robustness of the Wi-Fi transmissions and therefore allows a lower receiver minimum input level sensitivity to be used.
+
+In the following chapter, I will analyze in simulations which physical layer
+configurations are suitable for the agricultural environment to establish reliable communications,
+which meets the data rate, range and latency requirements of Agricultural Platooning Services.
