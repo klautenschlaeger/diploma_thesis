@@ -86,7 +86,8 @@ outdoor Wi-Fi communication in Germany \cite{freq_plan_24G}, \cite{freq_plan_5G}
 
 The simulation is based on the ns-3 ConstantSpeedPropagationDelayModel and the  ns-3 FriisPropagationLossModel,
 representing free-space signal propagation at the speed of light.
-\todo[]{evtl explain?}
+The FriisPropagationLossModel is suitable for outdoor scenarios with a clear \ac{LOS} between the nodes.
+As both nodes are only \SI{20}{\metre} apart a transmission in the \ac{LOS} is possible.
 The ns-3 TableBasedErrorRateModel is used to model the error rate of the physical layer.
 According to the ns-3 Wi-Fi design guide \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html\#default-table-based-error-model-validation}},
 the TableBasedErrorRateModel derives the \ac{PER} from results of the Matlab WLAN Toolbox
@@ -283,7 +284,7 @@ backwards compatibility with the older 802.11 standards, which need time to writ
 \end{figure}
 \end{comment}
 
-The simulation results represent an ideal scenario where only two nodes exchange data. \todo{todo: maybe add more verifications here}
+The simulation results represent an ideal scenario where only two nodes exchange data.
 In a real-world scenario in the agricultural domain, the number of nodes and the distance between the nodes may be higher.
 The signal propagation will be influenced by the complex agricultural environment,
 which can consist of large water areas, various obstacles and vegetation or weather conditions \cite{brinkhoff_characterization_2017}.
