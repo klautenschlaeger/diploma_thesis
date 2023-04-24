@@ -8,9 +8,9 @@
     \item recommended length: one page.
     \end{itemize}
 \end{comment}
-
+\todo[color=yellow]{WIC mit oder ohne komplett: AEF beide schreibweisen. Mehrheit ohne}
 This thesis investigates the suitability of modern Wi-Fi for \ac{WIC}, which describes a wireless process data exchange between agricultural machines in the field.
-The investigation is based on the prototypical application Agricultural Platooning Service in the corn harvest scenario, which exchanges guidance data via \ac{WIC} to lead \ac{TM}s to the overloading positions of forage from \ac{FH}s.
+The investigation is based on the prototypical application Agricultural Platooning Service in the corn harvest scenario, which exchanges guidance data via \ac{WIC} to lead \acp{TM} to the overloading positions of forage from \ac{FH}s.
 
 I analyzed corn harvest process data, which indicated that the overloading position is usually at a distance below \SI{10}{\metre} at every angle relative to the \ac{FH}.
 
@@ -21,7 +21,7 @@ Therefore, Wi-Fi rate managers should be configured to enable robust communicati
 I simulated different Wi-Fi physical layer configurations to analyze their impact on data rate and robustness.
 IEEE 802.11ax introduces the new \ac{ER} mode, enabling robust and long-range communication for service discovery transmission when used with \ac{DCM}.
 The \ac{GI} of \SI{3.2}{\micro\second} in IEEE 802.11ax can be used to combat intersymbol interferences due to multipath effects in the agricultural environment.
-The guidance data exchange mode can be configured to use low \ac{MCS} like \ac{HE}-\ac{MCS}3 with \ac{STBC} and \ac{LDPC} to achieve a robust communication,
+The guidance data exchange mode can be configured to use low \acp{MCS} like \ac{HE}-\ac{MCS}3 with \ac{STBC} and \ac{LDPC} to achieve a robust communication,
 which enables the \ac{WIC} to meet the required latencies and message intervals for Agricultural Platooning Services in the corn harvest scenario.
 
 In this thesis, I showed that IEEE 802.11ax provides many configurations to enable robust communications which meet the requirements of the use case Agricultural Platooning Services.

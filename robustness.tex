@@ -100,12 +100,10 @@ I chose the same approach to visualise the results of my robustness analysis.
 \IF {$txData$ != $rxData$}
     \STATE $numPacketErrors \gets numPacketErrors + 1$
 \ENDIF
-
 \end{algorithmic}
-\caption{Procedure to detect packet errors \todo[color=yellow]{=0? weg}}
+\caption{Procedure to detect packet errors}
 \label{alg:ProcedurePER}
 \end{algorithm}
-
 The \autoref{alg:ProcedurePER} starts with the creation of a random packet of the specified length of \SI{1000}{\byte}.
 The packet is used to create a Wlan waveform based on the physical layer parameters specified in the wlanHEConfig object using the wlanWaveformGenerator function.
 
