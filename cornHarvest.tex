@@ -7,7 +7,7 @@ The \ac{FH} has proven to be an essential agricultural machine for harvesting an
    \caption{\acf{FH} and \acf{TM} in a corn harvesting and loading process}%
    \label{fig:normal}%
 \end{figure}
-
+\TODO{Ref: Photograph from CLAAS KGaA mbH}
 In the harvesting and loading process, a \ac{TM} typically drives alongside or behind the \ac{FH} so that the \ac{FH} can load the harvested goods onto the trailer of the \ac{TM} using the spout. Drivers operate both machines and try to keep the speed and distance so that the spout throws the harvested goods into the trailer of the TM. An image of a corn harvesting and loading process can be seen in \autoref{fig:normal}.
 
 Taking a corn harvest scenario as an example, some key figures are represented in \cite{faustzahlen2018}, a standard reference book in agricultural literature. This book contains key figures on farming processes, which 80 experts have compiled.
@@ -18,6 +18,7 @@ The key figures, which are shown in \autoref{tab:DataSilageHarvest}, are depende
       \toprule
       \acf{PD}&\SI{20}{\tonne\per\hectare}&\SI{30}{\tonne\per\hectare} & \SI{50}{\tonne\per\hectare}\\
       \midrule
+      Required \acf{TM} & 5 & 7 & 10\\
       Harvested volume in \si{\cubic\metre\per\hour} &
       \num{285.7}-\num{333.3}
       & \num{428.6}-\num{500.0} &
@@ -31,7 +32,8 @@ The key figures, which are shown in \autoref{tab:DataSilageHarvest}, are depende
       \num{208.5} \\
       \bottomrule
    \end{tabular}
-   \caption{Key figures of corn harvest of a \acf{FH} with a working width of \SI{6.2}{\metre} in a \SI{80}{\hectare}-field in regards to \acf{PD}  \cite{faustzahlen2018}}
+   \caption{Key figures of corn harvest of a \acf{FH} with a working width of \SI{6.2}{\metre} in a
+   \SI{80}{\hectare}-field in regards to \acf{PD} calculated from \cite{faustzahlen2018}}
    \label{tab:DataSilageHarvest}
 \end{table}
 
@@ -65,7 +67,12 @@ In addition, \ac{TM}s can be guided to the \ac{FH}s in a targeted manner so that
 At the same time, the harvest and loading processes are examples of the video streaming \ac{WIC} use case.
 During these harvest and loading processes, the spout of the \ac{FH} must be controlled to set the loading position of the forage into the trailer of the \ac{TM}.
 
-According to \textcite{murcia_quadrotor_2014}, different spout guidance and control systems have been developed to automate the filling of the trailer. Spout guidance and control systems use a camera attached to the spout to determine the fill volume at each point of the trailer via machine vision and set the spout to fill the empty parts accordingly. The author describes Autofill - systems from Claas and Intellifill - systems from CNH Industrial as examples of spout guidance systems.
+According to \textcite{murcia_quadrotor_2014}, different spout guidance and control systems have been developed
+to automate the filling of the trailer.
+Spout guidance and control systems use a camera attached to the spout to determine the fill volume at each point of the
+trailer via machine vision and set the spout to fill the empty parts accordingly.
+The author describes Autofill from CLAAS and Intellifill from CNH Industrial as examples of
+spout guidance systems.
 
 Streaming the video of a camera at the spout from the \ac{FH} to the \ac{TM} would be a practical application of the video streaming use case in the harvesting process. If the \ac{TM} driver can watch a live stream of the trailer's fill level, he will always be
 informed and knows when the trailer is fully loaded and can drive the forage back to the

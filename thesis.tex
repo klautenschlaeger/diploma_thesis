@@ -115,7 +115,7 @@
 
 \DeclareAcronym{DCF}{
 	short=DCF,
-	long=Distribution Coordination Function,
+	long=Distributed Coordination Function,
 }
 \DeclareAcronym{DIFS}{
 	short=DIFS,
@@ -334,15 +334,15 @@
 \section{Wireless Lans according to IEEE 802.11}
 
 
-According to \textcite{kauffels_wireless_2002}, the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to Ethernet - or Token-Ring - networks.
-\textcite{sauter_wireless_2022} considers IEEE 802.11 also to be an implementation of Ethernet with the help of wirless radio technologies.
+According to \textcite[41]{kauffels_wireless_2002}, the first version of the Standard IEEE 802.11 was published in 1999 to enable a wireless alternative to Ethernet - or Token-Ring - networks.
+\textcite[265-268]{sauter_wireless_2022} considers IEEE 802.11 also to be an implementation of Ethernet with the help of wirless radio technologies.
 The author lists the extensions to the original standard, which range from 802.11b, 802.11g, 802.11a, 802.11n, 802.11ac to the latest enhancement 802.11ax. The different IEEE 802.11 standards can operate in the  \SI{2.4}{\giga\hertz} - , \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} - frequency band.
-IEEE 802.11n is also known as \ac{HT} Wi-Fi, IEEE 802.11ac as \ac{VHT} Wi-Fi \cite{ieee_standard_2020} and IEEE 802.11ax as \ac{HE} Wi-Fi \cite{ieee_standard_2021ax}.
+IEEE 802.11n is also known as \ac{HT} Wi-Fi \cite{ieee_standard_2009n}, IEEE 802.11ac as \ac{VHT} Wi-Fi \cite{ieee_standard_2020} and IEEE 802.11ax as \ac{HE} Wi-Fi \cite{ieee_standard_2021ax}.
 The standards are acknowledged by these names.
 In addition, they are also called Wi-Fi 4, Wi-Fi 5 and Wi-Fi 6 respectively.
 \textcite{jacob_system-level_2020} adds that there are also two extensions IEEE 802.11p and its successor IEEE 802.11bd. These operate in a reserved frequency spectrum for \ac{V2X} according to the authors in the \SI{5.9}{\giga\hertz} frequency spectrum.
 
-\textcite{kauffels_wireless_2002} defines the following three basic architectures for IEEE 802.11.
+\textcite[42,43,178-180]{kauffels_wireless_2002} defines the following three basic architectures for IEEE 802.11.
 
 If two or more \acp{STA} communicate directly without an \ac{AP}, they form an ad hoc network.
 According to the author, this can be set up quickly and easily and is called \ac{IBSS}.
@@ -355,11 +355,11 @@ It contains a distribution system, which links several \ac{BSS} with each other.
 Thereby, the BSS coverage areas can physically overlap so that continuous connection of stations within the ESS can be provided.
 For a better performance the \ac{BSS} can be physically placed on top of each other.
 One can also have objectively separate \ac{BSS}s so that these \ac{BSS}s can be linked together over long distances.
-Pursuant to the author, the standard does not specify a distance limit for such connections.
+According to the author, the standard does not specify a distance limit for such connections.
 
 He also mentions that the standard defines the following three mobility types for station in an \ac{ESS}, where a station can do no-transition and thereby stay within a \ac{BSS}, \ac{BSS}-transitioning and move from one \ac{BSS} to another \ac{BSS} within the same \ac{ESS} and \ac{ESS}-transition, where the Station moves from an \ac{ESS} to another one but no stable connection can be guaranteed.
 
-\textcite{sauter_wireless_2022} adds that usually Ethernet is used to link \ac{AP}s within an \ac{ESS}.
+\textcite[272, 273]{sauter_wireless_2022} adds that usually Ethernet is used to link \ac{AP}s within an \ac{ESS}.
 But according to the author this can be replaced by a wireless connection, which is called wireless bridge.
 
 To enable communication between Wi-Fi devices, the IEEE 802.11 standard defines the physical and the MAC layer of the OSI model. The first layer is the physical layer.
@@ -399,7 +399,7 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 
 
 
-\chapter{Link - Level - Simulation}
+\chapter{Link Level Simulation}
 
 Simulations benefit from the flexibility and possibility of simulating different communication and network protocols \cite{kumar_simulators_2012}.
 
@@ -423,7 +423,7 @@ different physical layer parameters.
 
 
 
-\section{Link - Level - Simulation Evaluation}
+\section{Link Level Simulation Evaluation}
 
 The past two sections gave an overview of impact of the different parameters on the achievable goodput and robustness of the IEEE 802.11ax standard.
 Both simulations were based on nearly ideal conditions, where the channel was not affected by any interference from other devices.
@@ -451,7 +451,7 @@ increased robustness comes at the cost of a reduced theoretical data rate.
 
 The following chapter analyses the impact of the different physical layer parameters on the latency of the Application Layer.
 
-\chapter{Application - Level - Simulation}
+\chapter{Application Level Simulation}
 
 \input{platooning}
 \begin{comment}
