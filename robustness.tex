@@ -57,14 +57,14 @@ The wlanTGaxChannel model supports \num{6} different sub-channel models, named T
 where the TGax-F channel model is suitable for pseudo-outdoor scenarios \cite{TGAXCHANNEL}.
 The TGax channel models were used for Matlab Wlan Toolbox simulations by \cite{sheela_performance_2022}, \cite{cao_efficient_2022} and \cite{jin_efficient_2021}.
 
-\cite{TGAXCHANNEL} and \cite{omar_survey_2016} list that the IEEE 802.11ax task group has also implemented the channel models UMa and UMi for outdoor urban scenarios.
+The IEEE 802.11ax task group has also implemented the channel models UMa and UMi for outdoor urban scenarios \cite{TGAXCHANNEL, omar_survey_2016}.
 However, the WLAN Toolbox does not support these channel models, and they are intended for urban scenarios.
 
 
 
 As I want to simulate outdoor scenarios, I chose the most appropriate channel model TGax-F, which is suitable for pseudo-outdoor scenarios \cite{TGAXCHANNEL}.
 The wlanTGaxChannel model supports configuring the \ac{BW}, the number of transmit and receive antennas, which I set equal to the configuration of the wlanHEConfig object.
-\cite{freq_plan_24G} and \cite{freq_plan_5G} allow outdoor transmission in the frequency range of \SI{5.725}{\giga\hertz} to \SI{5.825}{\giga\hertz}.
+Wi-Fi outdoor transmission in the frequency range of \SI{5.725}{\giga\hertz} to \SI{5.825}{\giga\hertz} \cite{freq_plan_5G}.
 Therefore, I set the carrier frequency to \SI{5.6}{\giga\hertz}.
 The TGax-F channel sampling rate is set to \SI{20}{\mega\hertz}, which is the nominal sampling rate for the configured \ac{BW} of \SI{20}{\mega\hertz}.
 Additional parameters are left at their default values as they are irrelevant for outdoor scenarios.
@@ -76,6 +76,11 @@ To get a \ac{PER} for every \ac{SNR} value ranging \SIrange{0}{45}{\decibel}, th
 All packet errors are counted, and the \ac{PER} is calculated by dividing the number of packet errors by \num{500} packets.
 A mean \ac{PER} and the confidence interval with a confidence level of
 \SI{95}{\percent} is calculated of the \ac{PER} values of the \num{5} iterations.
+
+\textcite{omar_survey_2016} mentions, that link level simulation results are usually visualised in so-called waterfall plots, which represent the \ac{PER} regarding \ac{SNR} for
+different physical layer parameters.
+I chose the same approach to visualise the results of my robustness analysis.
+
 \begin{algorithm}
 \begin{algorithmic}[1]
 \REQUIRE Global variable $numPacketErrors$
@@ -87,7 +92,6 @@ A mean \ac{PER} and the confidence interval with a confidence level of
 \IF {no packet detected}
     \STATE $numPacketErrors \gets numPacketErrors + 1$
 \ENDIF
-
 \STATE Detect packet delay $delay$
 \IF {$delay$ > \num{50} samples}
     \STATE $numPacketErrors \gets numPacketErrors + 1$
@@ -96,8 +100,9 @@ A mean \ac{PER} and the confidence interval with a confidence level of
 \IF {$txData$ != $rxData$}
     \STATE $numPacketErrors \gets numPacketErrors + 1$
 \ENDIF
+
 \end{algorithmic}
-\caption{Procedure to detect packet errors}
+\caption{Procedure to detect packet errors \todo[color=yellow]{=0? weg}}
 \label{alg:ProcedurePER}
 \end{algorithm}
 

@@ -13,7 +13,8 @@
 \usetikzlibrary{quotes,angles}
 \usepackage{nicefrac}
 \usepackage{comment}
-\usepackage{algorithmicx}
+%\usepackage{algorithmic,algcompatible}
+\usepackage{algpseudocode}
 \usetikzlibrary{shapes, arrows, positioning}
 \newcommand{\algorithmautorefname}{Algorithm}
 \author{Karl Christian Lautenschläger}
@@ -414,8 +415,7 @@ real on this basis.
 Link-level simulations, according to the authors,
 investigate the performance of the \ac{HE} physical layer for different physical layer parameters as \ac{PER} in terms of \ac{SNR}.
 As an example, the authors cite multiple different researchers, which simulated \ac{PER} regarding \ac{SNR} and chosen \ac{MCS}.
-Link-level simulations are usually visualised in so-called waterfall plots, which represent the \ac{PER} regarding \ac{SNR} for
-different physical layer parameters.
+
 
 \input{robustness}
 

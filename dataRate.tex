@@ -9,7 +9,7 @@ Consequently, OMNeT++ seems unsuitable for IEEE 802.11ax simulations and I looke
 
 
 \subsubsection*{ns-3 Network Simulator}
-
+\todo[color=yellow]{fundamentals of ns-3}
 Ns-3 is well documented in the ns-3 manual in the \textit{./doc} - folder of  \cite{henderson_ns-3-dev_2023}, where I found the following information about the simulator.
 Ns-3 is a discrete-event network simulator project which was founded in 2006.
 The ns-3 project is open source with a licence based on GNU GPLv2 compatibility.
@@ -130,8 +130,10 @@ verify the simulation results.
 In the first simulation, I varied the \ac{GI} of the Wi-Fi Netdevices for different \ac{HE}-\ac{MCS} values.
 The results are shown in \autoref{fig:Data_rate_GI}.
 The achieved goodput is plotted against the theoretical data rate for the different \ac{GI} values.
-The theoretical data rate is always higher than the achieved goodput of the \ac{UDP} applications because the channel is also used for \ac{ACK} and ad-hoc Beacon transmissions. Due to
-these different transmissions, the goodput is lower than the theoretical data rate.
+The theoretical data rate is always higher than the achieved goodput of the \ac{UDP} applications because Wi-Fi devices
+cannot transmit data during other ongoing transmissions and the corresponding \acp{IFS}.
+These transmissions can be \ac{ACK} and ad-hoc Beacon transmissions.
+Due to this waiting time, the goodput is lower than the theoretical data rate.
 \begin{figure}[H]
    \centering
    \includegraphics[width=0.64\textwidth]{figures/gi_dataRate_simulation.pdf}
@@ -201,7 +203,8 @@ This results in a longer transmission time, reflecting the lower achieved goodpu
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.64\textwidth]{figures/ER_dataRate_simulation.pdf}
-   \caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode with a \acf{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{20}{\mega\hertz} in regards to the number of \acf{MIMO} streams and the chosen \ac{HE}-\ac{MCS} value}%
+   \caption{Lost Goodput between two Wi-Fi6 stations in Ad-Hoc Mode with a
+   \acf{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{20}{\mega\hertz} in regards to \acf{HE}-\acf{MCS} when enabling the \ac{ER} mode}%
    \label{fig:Data_rate_ER}%
 \end{figure}
 The effect increases with smaller packet sizes because the longer preamble transmission time is more significant for smaller packets.
