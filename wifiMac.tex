@@ -9,7 +9,7 @@ According to \textcite[207]{kauffels_wireless_2002}, the MAC functionalities cov
 The author explains that every \ac{AP} send beacon frames periodically to synchronise its stations in the \ac{BSS} and that the beacon frame contains the \ac{SSID}, which identifies the \ac{BSS} or \ac{ESS} of the station.
 \textcite[275-276]{sauter_wireless_2022} adds that a beacon frame contains a \SI{16}{\bit} - long capability information element. Each bit here signals that the \ac{AP} provides a particular function or has a specific feature.
 
-\textcite[220,221]{kauffels_wireless_2002} explains a station's network entry procedure.
+\textcite[220,221]{kauffels_wireless_2002} explains the following station's network entry procedure.
 A station can use the passive or the active scanning mode.
 The station listens for a beacon frame in the various transmission channels in passive scanning mode.
 Alternatively, a station can send a probe frame in active scanning mode.
@@ -28,7 +28,7 @@ The author points out that Shared Key Authentication is no longer used today.
 authenticate new stations.
 
 After the authentication process, the station receives a time-synchronisation function with a timestamp, the physical layer
-parameter configuration and the \ac{SSID} of the \ac{BSS} or \ac{ESS}.
+parameter configuration and the \ac{SSID} of the \ac{BSS} or \ac{ESS} \cite[220]{kauffels_wireless_2002}.
 The \ac{STA} can start the media access method now.
 
 The IEEE 802.11 standard describes the two media access methods \ac{DCF} and \ac{PCF}.
@@ -41,8 +41,8 @@ Various access priorities are implemented by different \ac{IFS} lengths \cite[12
 
 Since data transmission via the air transmission medium is very vulnerable to errors,
 the standard IEEE 802.11 requires that each received unicast packet be confirmed with an \ac{ACK} frame \cite[120]{sommer_vehicular_2014}.
-\TODO{add sources}
-\textcite[284]{sauter_wireless_2022} explains \ac{DCF} \ac{IFS} as the time after an transmission, which ensures that an \ac{ACK} frame can be sent before another station uses the same channel to send a data frame.
+
+\textcite[284]{sauter_wireless_2022} explains \ac{DCF} \ac{IFS} as the time after a transmission, which ensures that an \ac{ACK} frame can be sent before another station uses the same channel to send a data frame.
 If the channel is busy, the station waits until the channel is free again.
 \textcite[284-285]{sauter_wireless_2022} describes this backoff procedure as follows: each ready-to-transmit device determines
 a random backoff time from a time interval called the contention window.
@@ -53,21 +53,25 @@ The author adds that in case of such a faulty transmission, the contention windo
 the contention window size is reset to the starting value.
 
 To share the knowledge of a transmission time and the subsequently \ac{IFS}, a packet contains a \ac{NAV} that
-specifies the time the air transmission medium is used \cite[284]{sauter_wireless_2022}.
+specifies when the air transmission medium is used \cite[284]{sauter_wireless_2022}.
 Collisions can occur as the \ac{NAV} information can be reset by other transmissions from a different, overlapping network.
 To avoid this, IEEE 802.11ax maintains two \ac{NAV}s, one for intra-\ac{BSS} and one for inter-\ac{BSS} transmissions \cite{ieee_standard_2021ax}
 
 The extension IEEE 802.11e introduced a amendment of \ac{CSMACA} called \ac{EDCA} \cite[121]{sommer_vehicular_2014} \cite{wu_ieee_2006}.
-According to \textcite[121]{sommer_vehicular_2014}, \ac{EDCA} provides a Quality-of-Service transmission procedure, which classifies \num{4} access categories.
-Each access category has different minimum and maximum contention window sizes and different \ac{IFS} lengths, named
+According to \textcite[121]{sommer_vehicular_2014}, \ac{EDCA} provides a Quality-of-Service transmission procedure,
+which classifies \num{4} access categories.
+The authors state that each access category has different minimum and maximum contention window sizes and different \ac{IFS} lengths, named
 arbitration \ac{IFS}.
+
 \textcite{wu_ieee_2006} explains that each access category keeps its own backoff counter and frame queue.
-Every access category is handled as an independent virtual station which tries to access the medium.
-When two transmissions of different access categories collide, and both contention windows are set to zero simultaneously, the \ac{EDCA} mechanism ensures that the access category with the higher priority wins.
+According to the authors, every access category is handled as an independent virtual station which tries to access the medium.
+When two transmissions of different access categories collide, and both contention windows are set to zero simultaneously,
+the \ac{EDCA} mechanism ensures that the access category with the higher priority wins.
 
 The four access categories are listed in \autoref{tab:access_categories}.
 
-\ac{EDCA} is integrated into the modern IEEE 802.11 standard data link layer of IEEE 802.11ac \cite{ieee_standard_2020} and IEEE 802.11ax \cite{ieee_standard_2021ax}.
+\ac{EDCA} is integrated into the modern IEEE 802.11 standard data link layer of IEEE 802.11ac \cite{ieee_standard_2020}
+and IEEE 802.11ax \cite{ieee_standard_2021ax}.
 
 \begin{table}[!ht]
    \centering
@@ -95,9 +99,8 @@ In case of simultaneous transmission of both stations, interferences around the 
    \label{fig:hidden_station}%
 \end{figure}
 
-
-To prevent the hidden station problem, \textcite[282-283]{sauter_wireless_2022} explains that a \ac{STA} can access the medium
-via the \ac{RTS}/ac{CTS} mechanism.
+To prevent the hidden station problem, \textcite[282-283]{sauter_wireless_2022} explains how a \ac{STA} can access the medium
+via the \ac{RTS}/\ac{CTS} mechanism.
 The \ac{STA} sends a \ac{RTS} frame to the \ac{AP} and waits for a \ac{CTS} frame.
 After receiving the \ac{CTS} frame, the \ac{STA} has reserved the medium for a specific time and can send its data frame.
 The successful transmission of the data frame is confirmed with an \ac{ACK} frame.
@@ -105,7 +108,7 @@ To avoid another \ac{STA} accessing the medium during the \ac{RTS} and \ac{CTS} 
 shorter than the \ac{DCF} \ac{IFS}.
 This mechanism allows the \ac{AP} to send the \ac{CTS} frame before another \ac{STA} can access the medium.
 
-\textcite[283]{sauter_wireless_2022} states that the \ac{RTS}/\ac{CTS} mechanism is usually not configured because it introduces additional
+But the author states that the \ac{RTS}/\ac{CTS} mechanism is usually not configured because it introduces additional
 overhead of the \ac{RTS} and \ac{CTS} frames, which is only worth it when the data frame is large.
 
 Larger frames can also be split into smaller frames to reduce the probability of collisions.
@@ -126,8 +129,8 @@ The fragmented frames are transmitted by the three following different \ac{ACK} 
 \end{figure}
 
 Using the standard \ac{ACK} policy, the sender applies the \ac{DCF} mechanism before sending each frame.
-The sender also waits
-for an \ac{ACK} frame from the receiver after each transmission.
+After each transmission, the sender also waits
+for an \ac{ACK} frame from the receiver.
 
 Instead of operating in the \ac{DCF} mode, the sender
 can also send the next frame after waiting for the \ac{SIFS} time when the \ac{ACK} frame has been received.
@@ -140,7 +143,8 @@ The receiver sends the Block \ac{ACK} frame, which contains the information of a
 All missing frames are retransmitted.
 The Block \ac{ACK} frame can be sent delayed when some processing time is required.
 
-Every Block \ac{ACK} session is started with an add Block Acknowledgment (ADDBA) request frame, which is sent by the sender and
+The IEEE 802.11 standard defines how every Block \ac{ACK} session is started and ended \cite{ieee_standard_2009n, ieee_standard_2021ax}.
+Every Block \ac{ACK} session is started with an add Block Acknowledgment (ADDBA) request frame, which the sender sends and
 contains the session parameters.
 The receiver sends an \ac{ACK} and answers with an add Block Acknowledgment (ADDBA) response frame.
 After the sender acknowledges the response frame, the Block \ac{ACK} session is established.
@@ -148,6 +152,7 @@ The Block \ac{ACK} session is ended with a delete Block Acknowledgment (DELBA) f
 
 The Block \ac{ACK} policy can be used in IEEE 802.11n \cite{ieee_standard_2009n}, IEEE 802.11ac \cite{ieee_standard_2020} and IEEE 802.11ax \cite{ieee_standard_2021ax}.
 In the IEEE 802.11p standard, the Block \ac{ACK} policy can be added as an optional feature \cite{ieee_standard_2010p}.
+
 
 
 
