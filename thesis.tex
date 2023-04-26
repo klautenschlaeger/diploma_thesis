@@ -382,6 +382,8 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 
 \end{comment}
 
+\input{simulation}
+
 \section{Related Work}
 \input{relatedWorkWIC}
 
@@ -402,9 +404,7 @@ Analoger Kanal Störungen: thermisches Rauschen, Nebensprechen, Impulsstörungen
 
 Simulations benefit from the flexibility and possibility of simulating different communication and network protocols \cite{kumar_simulators_2012}.
 
-Simulations are considered the main evaluation method for IEEE 802.11ax networks by the IEEE 802.11ax task group \cite{omar_survey_2016}.
-
-The authors distinguish between link-level and system-level simulations for simulating \ac{HE} wireless networks.
+\textcite{omar_survey_2016} distinguish between link-level and system-level simulations for simulating \ac{HE} wireless networks.
 The authors explain both methods as follows.
 
 For system-level simulation, it requires abstractions of the physical and MAC layers to simulate a system close to
@@ -436,7 +436,8 @@ latency, range, robustness and goodput, the parameters can be configured accordi
 
 In general, modern Wi-Fi offer a variety of different parameters, to achieve the best possible performance for the specific application.
 The new IEEE 802.11ax \ac{ER} mode combined with \ac{DCM} offers the highest robustness at low \ac{SNR}s according to my simulations, which can
-be used for long range applications. The robustness simulation indicated, that the \ac{ER} mode and \ac{DCM} could extend the range, which was measured in the field experiment.
+be used for long range applications.
+The robustness simulation indicated, that the \ac{ER} mode and \ac{DCM} could extend the range, which was measured in the field experiment.
 
 To deal with intersymbol interferences due to multipath effects, which were considered as the main reason for a high \ac{PER} in  Wi-Fi outdoor networks by
 \cite{sheth_packet_2007} and \cite{aguayo_link-level_2004}, IEEE 802.11ax offers longer \ac{GI}s of up to \SI{3200}{\nano\second}.
