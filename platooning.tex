@@ -2,18 +2,12 @@
 
 After I analyzed the impact on data rate and robustness of the physical layer parameters, I will simulate a platooning scenario in ns-3 to find the influence of the physical layer configuration on the network performance.
 
-
 The network performance metric consists of the latency, which describes the time needed to transmit the data
 on the application layer, and the update rate of the platooning service, which defines how long ago a new position update
 was received by the \ac{TM} in the Platooning Service.
 
 Ns-3 is suitable for this simulation because it supports application layer-level simulation.
 Via the extension Netsimulyzer, a graphical user interface is available to visualize the simulation results.
-
-Any packets in ns-3 can be tagged with a ns-3 Packet Tag \footnote{\url{https://www.nsnam.org/docs/release/3.36/doxygen/classns3_1_1_tag.html}},
-which are designed to add additional information to the packet.
-Every added ns-3 Packet Tag belongs to the packet and does not change the packet size or characteristics.
-Throughout the simulation, I used ns-3 Packet Tags to add information that needed transferring.
 
 The simulation scenario is based on the corn harvest and loading scenario, which is described in \autoref{sec:corn_harvest_scenario}, where
 multiple \ac{FH}s harvest the corn and load it onto one of the \ac{TM}s.
@@ -29,29 +23,6 @@ The Wi-Fi data rate is managed by a Constant Rate Wi-Fi Manager, which has a non
 transmission mode and a data mode for unicast transmissions.
 The transmission modes are configured according
 to the parameters in \autoref{tab:SimulationParametersWiFi}.
-
-The parameters are chosen from the results of the physical layer analysis of \autoref{sec:DataRate} and \autoref{sec:Robustness}.
-Non-unicast transmissions are used to broadcast the Agricultural Platooning Service advertisements.
-
-The non-unicast transmission parameters enable the longest possible
-transmission range, which results in the lowest data rate.
-Since no high data rate is required to advertise the Service, I chose the parameters to maximize the transmission range.
-As aforementioned, ns-3 does not support \ac{DCM} at the moment.
-In order to implement \ac{DCM} in the simulation, I doubled the data length for \ac{DCM} enabled transmissions to
-represent the overhead of transmitting redundant copies of data for \ac{DCM}. \ac{DCM} would utilize the copies to determine the
-correct data via maximum likelihood decoding.
-As a result, the communication would be more robust, as shown in \autoref{sec:Robustness}.
-This effect is not included in the current version of the simulation.
-
-Guidance data in the Agricultural Platooning Service is exchanged between the \ac{FH} and the \ac{TM} via the
-unicast transmission mode.
-The process data in \autoref{chap:cornHarvestData} reflects that a short transmission range
-is sufficient to exchange the guidance data, which must still be robust against multipath effects.
-I chose the parameters to balance a high robustness and high data rate.
-The unicast transmission parameters are changed in the simulation to analyze the impact on the network performance metrics.
-
-Similar the ns-3 simulation in \autoref{sec:DataRate}, this simulation is based on the ns-3 ConstantSpeedPropagationDelayModel, the ns-3 FriisPropagationLossModel and
-the ns-3 TableBasedErrorRateModel.
 
 \begin{table}[H]
    \centering
@@ -82,11 +53,37 @@ the ns-3 TableBasedErrorRateModel.
    \label{tab:SimulationParametersWiFi}
 \end{table}
 
+The parameters are chosen from the results of the physical layer analysis of \autoref{sec:DataRate} and \autoref{sec:Robustness}.
+Non-unicast transmissions are used to broadcast the Agricultural Platooning Service advertisements.
+
+The non-unicast transmission parameters enable the longest possible
+transmission range, which results in the lowest data rate.
+Since no high data rate is required to advertise the Service, I chose the parameters to maximize the transmission range.
+As aforementioned, ns-3 does not support \ac{DCM} at the moment.
+In order to implement \ac{DCM} in the simulation, I doubled the data length for \ac{DCM} enabled transmissions to
+represent the overhead of transmitting redundant copies of data for \ac{DCM}. \ac{DCM} would utilize the copies to determine the
+correct data via maximum likelihood decoding.
+As a result, the communication would be more robust, as shown in \autoref{sec:Robustness}.
+This effect is not included in the current version of the simulation.
+
+Guidance data in the Agricultural Platooning Service is exchanged between the \ac{FH} and the \ac{TM} via the
+unicast transmission mode.
+The process data in \autoref{chap:cornHarvestData} reflects that a short transmission range
+is sufficient to exchange the guidance data, which must still be robust against multipath effects.
+I chose the parameters to balance a high robustness and high data rate.
+The unicast transmission parameters are changed in the simulation to analyze the impact on the network performance metrics.
+
+Similar the ns-3 simulation in \autoref{sec:DataRate}, this simulation is based on the ns-3 ConstantSpeedPropagationDelayModel, the ns-3 FriisPropagationLossModel and
+the ns-3 TableBasedErrorRateModel.
+
+
 \subsubsection*{Agricultural Platooning Service}
 Every machine node runs an ns-3 Application responsible for the Agricultural Platooning Service.
 The application is identified by a unique identifier and runs a \ac{UDP} socket to exchange data with other Agricultural Platooning Service applications.
 Every \ac{UDP} socket can be addressed by an IP address and a port number.
 The IP address is the IP address of the machine node.
+
+Throughout the simulation, I used ns-3 Packet Tags \footnote{\url{https://www.nsnam.org/docs/release/3.36/doxygen/classns3_1_1_tag.html}} to add information to packets that needed transferring between Agricultural Platooning Service applications.
 
 Every \ac{FH} starts in the lower left corner of the field and harvests the corn along the path,
 which is displayed in \autoref{fig:PlatooningRoute}.

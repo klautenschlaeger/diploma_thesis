@@ -3,8 +3,24 @@
 
 \todo[color=yellow]{fundamentals of network simulation ? Intro -> Aufzählung anderer verweis warum nur ns3}
 
-Simulations are considered the main evaluation method for IEEE 802.11ax networks by the IEEE 802.11ax task group \cite{omar_survey_2016}.
+Network simulations are considered the main evaluation method for IEEE 802.11ax networks by the IEEE 802.11ax task group \cite{omar_survey_2016}.
+According to \textcite{Dorathy} network simulation can analyze the performance of network applications and routing protocols in various scenarios.
+\textcite{kumar} argue that network simulation is a cost-effective and flexible method to evaluate the performance of a network protocol.
 
+The authors define the following \num{4} steps to build a network simulation:
+\begin{itemize}
+    \item Simulation model, which defines the network components and their behaviour
+    \item Simulation scenario, which describes the network topology and the traffic model
+    \item Data collection of the simulation results
+    \item Analysis, verification and visualization of the simulation results
+\end{itemize}
+
+Various tools are already available, such as Matlab, ns-2 and ns-3, OMNeT++, Qualnet \cite{keller_simulation_2021} or OPNet \cite{kumar_simulators_2012}.
+\textcite{kumar_simulators_2012} compares different available simulators for the simulation of wireless networks and concludes that,
+in general, ns-2, ns-3 and OMNeT++ are the most popular simulators for academic research of wireless networks.
+\textcite{keller_simulation_2021} mentions that ns-3 keeps a more accurate Implementation of the IEEE 802.11 standard than OMNeT++.
+So far, I know that OMNeT++ supports some IEEE 802.11ac modes via the library INET Release 4.0.0 \footnote{\url{https://inet.omnetpp.org/2018-06-28-INET-4.0.0-released.html}}.
+Consequently, OMNeT++ seems unsuitable for IEEE 802.11ax simulations and I looked at ns-3.
 
 \subsubsection*{ns-3 Network Simulator}
 \todo[color=yellow]{fundamentals of ns-3}
@@ -30,6 +46,10 @@ The channel class represents the physical medium which is used to transmit data.
 The channel behaviour is based
 on the channel model, which may include interference, propagation delay and loss.
 
+Any packets in ns-3 can be tagged with a ns-3 Packet Tag \footnote{\url{https://www.nsnam.org/docs/release/3.36/doxygen/classns3_1_1_tag.html}},
+which are designed to add additional information to the packet.
+Every added ns-3 Packet Tag belongs to the packet and does not change the packet size or characteristics.
+
 The current version ns-3.37 supports IEEE 802.11ax as a standard in infrastructure and ad-hoc mode \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html}}.
 However, support for the 802.11ax standard is not yet complete.
 It is already possible to configure \ac{DCM} and \ac{STBC},
@@ -44,3 +64,4 @@ scenarios tangible.
 The authors' graphical extension consists of two open source programmes.
 The NetSimulyzer ns-3 module \footnote{https://github.com/usnistgov/NetSimulyzer-ns3-module} can be integrated into the ns-3 simulation and builds a JSON file using the specified functions and configurations.
 This file contains all the data required for visualisation in the application NetSimulyzer \footnote{\url{https://github.com/usnistgov/NetSimulyzer}}.
+
