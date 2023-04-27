@@ -25,15 +25,15 @@ Each Node has a mobility model, which describes the movement of the machine.
 In order to exchange data between the machines, every machine is equipped with an  ns-3 IEEE 802.11ax WifiNetDevice.
 Every Wi-Fi Device runs in Ad-Hoc mode to enable direct communication
 between the machines.
-The Wi-Fi data rate is managed by a Constant Rate Wi-Fi Manager, which has a non-uniform
-transmission mode and a data mode for uniform transmissions.
+The Wi-Fi data rate is managed by a Constant Rate Wi-Fi Manager, which has a non-unicast
+transmission mode and a data mode for unicast transmissions.
 The transmission modes are configured according
 to the parameters in \autoref{tab:SimulationParametersWiFi}.
 
 The parameters are chosen from the results of the physical layer analysis of \autoref{sec:DataRate} and \autoref{sec:Robustness}.
-Non-uniform transmissions are used to broadcast the Agricultural Platooning Service advertisements.
+Non-unicast transmissions are used to broadcast the Agricultural Platooning Service advertisements.
 
-The non-uniform transmission parameters enable the longest possible
+The non-unicast transmission parameters enable the longest possible
 transmission range, which results in the lowest data rate.
 Since no high data rate is required to advertise the Service, I chose the parameters to maximize the transmission range.
 As aforementioned, ns-3 does not support \ac{DCM} at the moment.
@@ -44,11 +44,11 @@ As a result, the communication would be more robust, as shown in \autoref{sec:Ro
 This effect is not included in the current version of the simulation.
 
 Guidance data in the Agricultural Platooning Service is exchanged between the \ac{FH} and the \ac{TM} via the
-uniform transmission mode.
+unicast transmission mode.
 The process data in \autoref{chap:cornHarvestData} reflects that a short transmission range
 is sufficient to exchange the guidance data, which must still be robust against multipath effects.
 I chose the parameters to balance a high robustness and high data rate.
-The uniform transmission parameters are changed in the simulation to analyze the impact on the network performance metrics.
+The unicast transmission parameters are changed in the simulation to analyze the impact on the network performance metrics.
 
 Similar the ns-3 simulation in \autoref{sec:DataRate}, this simulation is based on the ns-3 ConstantSpeedPropagationDelayModel, the ns-3 FriisPropagationLossModel and
 the ns-3 TableBasedErrorRateModel.
@@ -67,12 +67,12 @@ the ns-3 TableBasedErrorRateModel.
       Antenna Gain & \SI{5}{\dB}\\
       Maximum retries & \num{3}\\
        & \\
-      Uniform Transmission Parameters & \\
+      Unicast Transmission Parameters & \\
       \midrule
       \ac{MCS} & \num{5}\\
       Number \ac{MIMO} Streams & \num{2}\\
        & \\
-      Non-Uniform Transmission Parameters & \\
+      Non-Unicast Transmission Parameters & \\
       \midrule
       Broadcast \ac{MCS} & \num{0}\\
       \ac{ER} mode enabled & True\\
@@ -101,7 +101,7 @@ The initial position of the \ac{TM}s is a row below the \ac{FH}s, which is displ
    \label{fig:PlatooningRoute}%
 \end{figure}
 
-In the beginning, every \ac{FH} broadcasts a search request $search\_TM$ via the non-uniform transmission mode to find an empty \ac{TM} to load the corn onto according to
+In the beginning, every \ac{FH} broadcasts a search request $search\_TM$ via the non-unicast transmission mode to find an empty \ac{TM} to load the corn onto according to
 to the procedure in \autoref{alg:SearchTM}.
 As shown in \autoref{fig:PlatooningInit}, multiple \ac{TM}s receive the search request and answer with
 their current fill level of the \ac{TM}'s trailer.
@@ -332,7 +332,7 @@ that the simulation is ending properly and that the \ac{FH} switches the waiting
 from the fully loaded \ac{TM}.
 
 Using the provided information from the ns-3 MonitorSnifferRxCallback and MonitorSnifferTxCallback I was able to review ongoing transmissions and
-whether the specified physical layer parameters are used correctly for non-uniform and uniform traffic.
+whether the specified physical layer parameters are used correctly for non-unicast and unicast traffic.
 
 Every simulation runs \num{2} \ac{TM}s per \ac{FH}.
 This does not correspond to the key figures of 10 \ac{TM}s per \ac{FH} in the corn harvest scenario \cite{faustzahlen2018},
@@ -363,7 +363,7 @@ I chose a $platoon\_data\_interval$ of \SI{50}{\milli\second} for the Agricultur
 as \textcite{smolnik_5g_2020} mention that their requirements analysis indicated that new guidance data should at least arrive every \SI{50}{\milli\second}.
 
 \section{Application Level Simulation Evaluation}
-I chose the following simulation configurations for the uniform transmission of guidance data: \ac{HE}-\ac{MCS} 3, 5 and 7 and
+I chose the following simulation configurations for the unicast transmission of guidance data: \ac{HE}-\ac{MCS} 3, 5 and 7 and
 \ac{STBC} either enabled or disabled.
 Every simulation configuration runs \num{5} times, where every \ac{FH} harvests \SI{1}{\hectare} of corn, which equals to roughly
 \num{2.5} \ac{TM} loads.
@@ -388,7 +388,7 @@ configuration.
 
 The confidence interval for the mean update rate is always below \SI{2}{\micro\second}.
 The mean latency is always below \SI{0.6}{\milli\second}.
-Using higher \ac{HE}-\ac{MCS} values reduces the mean latency of
+Using higher \ac{HE}-\ac{MCS} values significantly reduces the mean latency of
 the Agricultural Platooning Service data exchange.
 
 Applying \ac{STBC} additionally increases the mean latency compared to
@@ -449,6 +449,7 @@ The results displayed in \autoref{fig:mean_25} reveal that the mean guidance dat
 which is the desired $platoon\_data\_interval$.
 The mean latency is nearly the same as in \autoref{fig:mean_50}, which indicates that there is still some channel capacity left for
 further data exchange.
+Again, as the number of \acp{TM} and \acp{FH} increases, the mean latency increases slightly.
 
 Both simulations were based on the abstracted and simplified corn harvest scenario, which is based on the ns-3 communication model and
 abstracted implementation of the physical layer and MAC layer in ns-3.
