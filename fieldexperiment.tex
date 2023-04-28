@@ -1,4 +1,4 @@
-\autoref{fig:bearing_fh_tm} shows that the \ac{TM} can be positioned at various distances and angles in relation to the \ac{FH}.
+\autoref{fig:bearing} shows that the \ac{TM} can be positioned at various distances and angles in relation to the \ac{FH}.
 For one corn harvest scenario, \textcite{klingler_agriculture_2018} found out that the \ac{RSS} can drop due to
 shadowing effects caused by the size and shape of the \ac{FH} and the \ac{TM}.
 
@@ -15,10 +15,11 @@ The tractor will start \SI{50}{\metre} behind the \ac{CH}, advance to the \ac{CH
 speed of \SIrange{1}{5}{\kilo\metre\per\hour} (\SIrange{0.28}{1.39}{\metre\per\second}) as shown in \autoref{fig:fieldDrive}.
 \begin{figure}[]%
 	\centering
-	\includegraphics[width=0.2\textwidth]{figures/FieldExperimentDrive}
+	\includegraphics[width=0.21\textwidth]{figures/FieldExperimentDrive}
 	\caption{Path around the static \acf{CH}, which the \acf{TM} will drive during the experiment to mimic various overloading positions}%
 	\label{fig:fieldDrive}
 \end{figure}
+
 While driving along the specified path, the tractor will mimic various overloading positions, where shadowing effects can occur. After the tractor has passed the \ac{CH},
 it will drive back to its starting position, and the experiment will be repeated with different overloading distances between the \ac{CH} and the tractor.
 
@@ -91,14 +92,14 @@ which means that the tractor drives \num{5} times the same path, which is displa
 
 \section{Trial Run}
 
-Since it rained a lot before the planned field experiments, I did a trial run to ensure that the experiment worked as expected and I got the data I needed.
+To ensure that the experiment setup worked, I did a trial run and I got the data I needed as expected.
 I mounted the Wi-Fi devices on the \ac{TM} and the \ac{CH} as shown in \autoref{fig:trailrunPositions} and
 started the iperf3 client and server on the \ac{CH} and the \ac{TM} respectively.
 During the trial run, the machines kept the same positions in a yard at the university.
 To vary the recorded \ac{RSS}, I simultaneously moved the Wi-Fi antennas of the Wi-Fi devices on the \ac{CH} to
 different positions.
-I varied the \ac{BW} between \SIrange{20}{80}{\mega\hertz} in reference to \autoref{tab:fieldChannels}.
-\begin{figure}[]%
+I varied the used \ac{BW} of the \ac{AP} between \SIrange{20}{80}{\mega\hertz} in reference to \autoref{tab:fieldChannels}.
+\begin{figure}[H]%
    \centering
    \includegraphics[width=0.5\textwidth]{figures/trainRun}
    \caption{Position of the Wi-Fi Devices on the \ac{TM} and the \ac{CH} during the trialrun}
@@ -111,8 +112,6 @@ Therefore, I could only record data for a \ac{BW} of \SI{20}{\mega\hertz}.
 The recorded data contains \ac{RSS}, physical layer configuration and MAC layer information of every received packet.
 This can be used to find shadowing and fading effects, which may occur in the corn harvest scenario.
 
-
-
 The recorded data was filtered to contain only the \ac{UDP} packets sent by the iperf3 client on the \ac{TM}
 and displayed in \autoref{fig:trailrunIperf}.
 It is visible that the Wi-Fi rate manager on the Milesight Industrial Router UR75 does not use \ac{STBC} and varies
@@ -123,8 +122,8 @@ As soon as the \ac{RSS} drops significantly at around \SIrange{25}{50}{\second},
 
 \begin{figure}[]%
    \centering
-   \includegraphics[width=0.98\textwidth]{figures/wireless5_144}
-   \caption{All QoS data transmissions between the Wi-Fi \acf{AP} on the \acf{TM} and the Wi-Fi \ac{STA} on the \acf{CH} in a trial run,
+   \includegraphics[width=0.95\textwidth]{figures/wireless5_144}
+   \caption{All data transmissions between the Wi-Fi \acf{AP} on the \acf{TM} and the Wi-Fi \ac{STA} on the \acf{CH} in a trial run,
    which were initiated by the iperf3 client on the \acf{TM}}
    \label{fig:trailrunIperf}%
 \end{figure}
@@ -155,7 +154,7 @@ This translates to a theoretical data rate of \SI{173.3}{\mega\bit\per\second}, 
 every \SI{100}{\milli\second}.
 Additionally, the communication is less robust, which results in the high percentage of \SI{25}{\percent} of known retransmissions.
 
-In the end, I could not conduct the proposed field experiments due to the rainy weather, which led to very wet agricultural fields.
+In the end, I could not conduct the proposed field experiments due to the rainy weather in the last \num{3} month of working period, which led to very wet agricultural fields.
 
 \section{Wi-Fi Range Measurements}
 Instead, I conducted a range measurement in an outdoor environment on an abandoned airfield near Mahlwinkel (52°23'17.9"N 11°50'35.4"E) in Saxony-Anhalt, Germany,
@@ -171,7 +170,6 @@ The airfield was surrounded by grassland, wind turbines, a solar park and forest
 I set up the Wi-Fi devices according to the setup above, where I replaced the \ac{CH} with a \SI{4}{\metre} wooden antenna mast and
 the \ac{TM} with a roof extension on top of a car rack to reach a height of \SI{4}{\metre}.
 The setup is shown in \autoref{fig:rangemeasurementSetup}.
-
 \begin{figure}[]%
    \centering
    \includegraphics[width=0.6\textwidth]{figures/rangeMeasurementSetup}
@@ -179,6 +177,7 @@ The setup is shown in \autoref{fig:rangemeasurementSetup}.
    maximum allowed height of agricultural machines in Germany}
    \label{fig:rangemeasurementSetup}%
 \end{figure}
+
 The two Wi-Fi devices are mounted on the wooden antenna mast and were configured to run the iperf3 server and the monitoring mode.
 I connected a \ac{GPS} receiver to the monitoring device and recorded the static position of the wooden antenna mast.
 The wooden extension on top of the car rack carried the Wi-Fi router with the iperf3 client and an \ac{GPS} receiver to record the car's position every
