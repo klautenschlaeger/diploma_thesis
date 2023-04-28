@@ -1,14 +1,7 @@
 \section{Data Rate}
 \label{sec:DataRate}
-For the simulation of Wi-Fi data throughput, various tools are already available, such as Matlab, ns-2 and ns-3, OMNeT++, Qualnet \cite{keller_simulation_2021} or OPNet \cite{kumar_simulators_2012}.
-
-\textcite{kumar_simulators_2012} compares different available simulators for the simulation of wireless networks and concludes that, in general, ns-2, ns-3 and OMNeT++ are the most popular simulators for academic research of wireless networks.
-\textcite{keller_simulation_2021} mentions that ns-3 keeps a more accurate Implementation of the IEEE 802.11 standard than OMNeT++.
-So far, I know that OMNeT++ supports some IEEE 802.11ac modes via the library INET Release 4.0.0 \footnote{\url{https://inet.omnetpp.org/2018-06-28-INET-4.0.0-released.html}}.
-Consequently, OMNeT++ seems unsuitable for IEEE 802.11ax simulations and I looked at ns-3.
-
-Ns-3 is chosen as a simulation tool for the simulation of 802.11ax by \cite{dolinska_new_2019}, \cite{rochim_performance_2020} and
-\cite{behara_performance_2022}.
+\cite{dolinska_new_2019}, \cite{rochim_performance_2020} and
+\cite{behara_performance_2022} used ns-3 to simulate the performance of IEEE 802.11ax in different scenarios.
 
 As ns-3 is an open-source simulation software and was used by the mentioned other researchers in the past too, I used ns-3
 to evaluate the effect of physical layer configuration on the achievable goodput between two nodes using IEEE 802.11ax Wi-Fi Netdevices
@@ -45,8 +38,10 @@ outdoor Wi-Fi communication in Germany \cite{freq_plan_24G}, \cite{freq_plan_5G}
 The simulation is based on the ns-3 ConstantSpeedPropagationDelayModel and the  ns-3 FriisPropagationLossModel,
 representing free-space signal propagation at the speed of light.
 The FriisPropagationLossModel is suitable for outdoor scenarios with a clear \ac{LOS} between the nodes.
-As both nodes are only \SI{20}{\metre} apart a transmission in the \ac{LOS} is possible.
-The ns-3 TableBasedErrorRateModel is used to model the error rate of the physical layer.
+As the two nodes are only \SI{20}{\metre} apart, a transmission in the
+in the \ac{LOS} is possible.
+
+The ns-3 TableBasedErrorRateModel is used to model the physical layer error rate.
 According to the ns-3 Wi-Fi design guide \footnote{\url{https://www.nsnam.org/docs/models/html/wifi-design.html\#default-table-based-error-model-validation}},
 the TableBasedErrorRateModel derives the \ac{PER} from results of the Matlab WLAN Toolbox
 regarding the physical layer parameters and \ac{SNR}.

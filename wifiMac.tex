@@ -68,11 +68,7 @@ When two transmissions of different access categories collide, and both contenti
 the \ac{EDCA} mechanism ensures that the access category with the higher priority wins.
 
 The four access categories are listed in \autoref{tab:access_categories}.
-
-\ac{EDCA} is integrated into the modern IEEE 802.11 standard data link layer of IEEE 802.11ac \cite{ieee_standard_2020}
-and IEEE 802.11ax \cite{ieee_standard_2021ax}.
-
-\begin{table}[!ht]
+\begin{table}[H]
    \centering
    \begin{tabular}{>{\raggedright}p{2.5cm}p{3.2cm}}
       \toprule
@@ -88,10 +84,13 @@ and IEEE 802.11ax \cite{ieee_standard_2021ax}.
    \label{tab:access_categories}
 \end{table}
 
+\ac{EDCA} is integrated into the modern IEEE 802.11 standard data link layer of IEEE 802.11ac \cite{ieee_standard_2020}
+and IEEE 802.11ax \cite{ieee_standard_2021ax}.
+
 In various network architectures, the "hidden station"-problem may occur.
 As you can see in \autoref{fig:hidden_station}, Station A cannot sense a transmission of station B and vice versa.
 In case of simultaneous transmission of both stations, interferences around the \ac{AP} may occur.
-\begin{figure}%
+\begin{figure}[H]%
    \centering
    \includegraphics[width=0.75\textwidth]{figures/hidden_station.pdf}
    \caption{Hidden Station Problem, where interferences at the \acf{AP} can occur, when \acf{STA} A and B send simultaneously}%
