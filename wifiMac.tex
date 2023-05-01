@@ -2,7 +2,6 @@
 
 The next layer in the OSI model is the Data Link Layer.
 The Data Link Layer consists of MAC and LLC functionalities.
-\todo[color=yellow]{What is LLC? Logic Link Control?}
 
 
 According to \textcite[207]{kauffels_wireless_2002}, the MAC functionalities cover network entry, authentication, and media access methods.
@@ -69,11 +68,7 @@ When two transmissions of different access categories collide, and both contenti
 the \ac{EDCA} mechanism ensures that the access category with the higher priority wins.
 
 The four access categories are listed in \autoref{tab:access_categories}.
-
-\ac{EDCA} is integrated into the modern IEEE 802.11 standard data link layer of IEEE 802.11ac \cite{ieee_standard_2020}
-and IEEE 802.11ax \cite{ieee_standard_2021ax}.
-
-\begin{table}[!ht]
+\begin{table}[H]
    \centering
    \begin{tabular}{>{\raggedright}p{2.5cm}p{3.2cm}}
       \toprule
@@ -89,10 +84,13 @@ and IEEE 802.11ax \cite{ieee_standard_2021ax}.
    \label{tab:access_categories}
 \end{table}
 
+\ac{EDCA} is integrated into the modern IEEE 802.11 standard data link layer of IEEE 802.11ac \cite{ieee_standard_2020}
+and IEEE 802.11ax \cite{ieee_standard_2021ax}.
+
 In various network architectures, the "hidden station"-problem may occur.
 As you can see in \autoref{fig:hidden_station}, Station A cannot sense a transmission of station B and vice versa.
 In case of simultaneous transmission of both stations, interferences around the \ac{AP} may occur.
-\begin{figure}%
+\begin{figure}[H]%
    \centering
    \includegraphics[width=0.75\textwidth]{figures/hidden_station.pdf}
    \caption{Hidden Station Problem, where interferences at the \acf{AP} can occur, when \acf{STA} A and B send simultaneously}%
@@ -124,7 +122,7 @@ The fragmented frames are transmitted by the three following different \ac{ACK} 
     \\
     \subfloat[fragmentation and Block ACK]{\label{fig:BLOCKACK}\includegraphics[width=0.7\textwidth]{figures/BlockACK}}
     \caption{Data transmission between a sender and receiver in regards to the time with normal \acf{ACK} \autoref{fig:ACK},
-    fragmentation \autoref{fig:Fragmentation} and additional Block \ac{ACK} \autoref{fig:BLOCKACK}}%
+    fragmentation \autoref{fig:Fragmentation} and additional Block \acs{ACK} \autoref{fig:BLOCKACK}}%
     \label{fig:ACKS}%
 \end{figure}
 

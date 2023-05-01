@@ -2,18 +2,12 @@
 
 After I analyzed the impact on data rate and robustness of the physical layer parameters, I will simulate a platooning scenario in ns-3 to find the influence of the physical layer configuration on the network performance.
 
-
 The network performance metric consists of the latency, which describes the time needed to transmit the data
 on the application layer, and the update rate of the platooning service, which defines how long ago a new position update
 was received by the \ac{TM} in the Platooning Service.
 
 Ns-3 is suitable for this simulation because it supports application layer-level simulation.
 Via the extension Netsimulyzer, a graphical user interface is available to visualize the simulation results.
-
-Any packets in ns-3 can be tagged with a ns-3 Packet Tag \footnote{\url{https://www.nsnam.org/docs/release/3.36/doxygen/classns3_1_1_tag.html}},
-which are designed to add additional information to the packet.
-Every added ns-3 Packet Tag belongs to the packet and does not change the packet size or characteristics.
-Throughout the simulation, I used ns-3 Packet Tags to add information that needed transferring.
 
 The simulation scenario is based on the corn harvest and loading scenario, which is described in \autoref{sec:corn_harvest_scenario}, where
 multiple \ac{FH}s harvest the corn and load it onto one of the \ac{TM}s.
@@ -25,33 +19,10 @@ Each Node has a mobility model, which describes the movement of the machine.
 In order to exchange data between the machines, every machine is equipped with an  ns-3 IEEE 802.11ax WifiNetDevice.
 Every Wi-Fi Device runs in Ad-Hoc mode to enable direct communication
 between the machines.
-The Wi-Fi data rate is managed by a Constant Rate Wi-Fi Manager, which has a non-uniform
-transmission mode and a data mode for uniform transmissions.
+The Wi-Fi data rate is managed by a Constant Rate Wi-Fi Manager, which has a non-unicast
+transmission mode and a data mode for unicast transmissions.
 The transmission modes are configured according
 to the parameters in \autoref{tab:SimulationParametersWiFi}.
-
-The parameters are chosen from the results of the physical layer analysis of \autoref{sec:DataRate} and \autoref{sec:Robustness}.
-Non-uniform transmissions are used to broadcast the Agricultural Platooning Service advertisements.
-
-The non-uniform transmission parameters enable the longest possible
-transmission range, which results in the lowest data rate.
-Since no high data rate is required to advertise the Service, I chose the parameters to maximize the transmission range.
-As aforementioned, ns-3 does not support \ac{DCM} at the moment.
-In order to implement \ac{DCM} in the simulation, I doubled the data length for \ac{DCM} enabled transmissions to
-represent the overhead of transmitting redundant copies of data for \ac{DCM}. \ac{DCM} would utilize the copies to determine the
-correct data via maximum likelihood decoding.
-As a result, the communication would be more robust, as shown in \autoref{sec:Robustness}.
-This effect is not included in the current version of the simulation.
-
-Guidance data in the Agricultural Platooning Service is exchanged between the \ac{FH} and the \ac{TM} via the
-uniform transmission mode.
-The process data in \autoref{chap:cornHarvestData} reflects that a short transmission range
-is sufficient to exchange the guidance data, which must still be robust against multipath effects.
-I chose the parameters to balance a high robustness and high data rate.
-The uniform transmission parameters are changed in the simulation to analyze the impact on the network performance metrics.
-
-Similar the ns-3 simulation in \autoref{sec:DataRate}, this simulation is based on the ns-3 ConstantSpeedPropagationDelayModel, the ns-3 FriisPropagationLossModel and
-the ns-3 TableBasedErrorRateModel.
 
 \begin{table}[H]
    \centering
@@ -67,12 +38,12 @@ the ns-3 TableBasedErrorRateModel.
       Antenna Gain & \SI{5}{\dB}\\
       Maximum retries & \num{3}\\
        & \\
-      Uniform Transmission Parameters & \\
+      Unicast Transmission Parameters & \\
       \midrule
       \ac{MCS} & \num{5}\\
       Number \ac{MIMO} Streams & \num{2}\\
        & \\
-      Non-Uniform Transmission Parameters & \\
+      Non-Unicast Transmission Parameters & \\
       \midrule
       Broadcast \ac{MCS} & \num{0}\\
       \ac{ER} mode enabled & True\\
@@ -82,11 +53,37 @@ the ns-3 TableBasedErrorRateModel.
    \label{tab:SimulationParametersWiFi}
 \end{table}
 
+The parameters are chosen from the results of the physical layer analysis of \autoref{sec:DataRate} and \autoref{sec:Robustness}.
+Non-unicast transmissions are used to broadcast the Agricultural Platooning Service advertisements.
+
+The non-unicast transmission parameters enable the longest possible
+transmission range, which results in the lowest data rate.
+Since no high data rate is required to advertise the Service, I chose the parameters to maximize the transmission range.
+As aforementioned, ns-3 does not support \ac{DCM} at the moment.
+In order to implement \ac{DCM} in the simulation, I doubled the data length for \ac{DCM} enabled transmissions to
+represent the overhead of transmitting redundant copies of data for \ac{DCM}. \ac{DCM} would utilize the copies to determine the
+correct data via maximum likelihood decoding.
+As a result, the communication would be more robust, as shown in \autoref{sec:Robustness}.
+This effect is not included in the current version of the simulation.
+
+Guidance data in the Agricultural Platooning Service is exchanged between the \ac{FH} and the \ac{TM} via the
+unicast transmission mode.
+The process data in \autoref{chap:cornHarvestData} reflects that a short transmission range
+is sufficient to exchange the guidance data, which must still be robust against multipath effects.
+I chose the parameters to balance a high robustness and high data rate.
+The unicast transmission parameters are changed in the simulation to analyze the impact on the network performance metrics.
+
+Similar the ns-3 simulation in \autoref{sec:DataRate}, this simulation is based on the ns-3 ConstantSpeedPropagationDelayModel, the ns-3 FriisPropagationLossModel and
+the ns-3 TableBasedErrorRateModel.
+
+
 \subsubsection*{Agricultural Platooning Service}
 Every machine node runs an ns-3 Application responsible for the Agricultural Platooning Service.
 The application is identified by a unique identifier and runs a \ac{UDP} socket to exchange data with other Agricultural Platooning Service applications.
 Every \ac{UDP} socket can be addressed by an IP address and a port number.
 The IP address is the IP address of the machine node.
+
+Throughout the simulation, I used ns-3 Packet Tags \footnote{\url{https://www.nsnam.org/docs/release/3.36/doxygen/classns3_1_1_tag.html}} to add information to packets that needed transferring between Agricultural Platooning Service applications.
 
 Every \ac{FH} starts in the lower left corner of the field and harvests the corn along the path,
 which is displayed in \autoref{fig:PlatooningRoute}.
@@ -101,7 +98,7 @@ The initial position of the \ac{TM}s is a row below the \ac{FH}s, which is displ
    \label{fig:PlatooningRoute}%
 \end{figure}
 
-In the beginning, every \ac{FH} broadcasts a search request $search\_TM$ via the non-uniform transmission mode to find an empty \ac{TM} to load the corn onto according to
+In the beginning, every \ac{FH} broadcasts a search request $search\_TM$ via the non-unicast transmission mode to find an empty \ac{TM} to load the corn onto according to
 to the procedure in \autoref{alg:SearchTM}.
 As shown in \autoref{fig:PlatooningInit}, multiple \ac{TM}s receive the search request and answer with
 their current fill level of the \ac{TM}'s trailer.
@@ -193,7 +190,7 @@ the transition probabilities.
         & \SI{6.65}{\kilo\metre\per\hour} (\SI{1.845}{\metre\per\second}) \\
 		\bottomrule
 	\end{tabular}
-	\caption{Corn harvest states, which define a range of \acf{PD}s and \acf{FH} speeds, where the data is derived from
+	\caption{Corn harvest states, which define a range of \acfp{PD} and \acf{FH} speeds, where the data is derived from
 	key figures \cite{faustzahlen2018}}
 	\label{tab:harvestStatesDef}
 \end{table}
@@ -317,7 +314,7 @@ Every node was displayed as the Netsimulyzer model of a landdrone, where all \ac
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/platooningScreen}
 	\caption{Screenshot of the simulation visualization in Netsimulyzer, where a blue \acf{TM} is unloading in the back in front of the farm cuboid,
-		two red \acp{TM} are in a Agricultural Platooning Service with the black \acf{FH}s,
+		two red \acp{TM} are in a Agricultural Platooning Service with the black \acfp{FH},
 		a green \ac{TM} is empty and waiting for a new $search\_TM$ request and a yellow \ac{TM} is in waiting position behind a black \ac{FH}.}
 	\label{fig:PlatooningScreenshot}%
 \end{figure}
@@ -332,7 +329,7 @@ that the simulation is ending properly and that the \ac{FH} switches the waiting
 from the fully loaded \ac{TM}.
 
 Using the provided information from the ns-3 MonitorSnifferRxCallback and MonitorSnifferTxCallback I was able to review ongoing transmissions and
-whether the specified physical layer parameters are used correctly for non-uniform and uniform traffic.
+whether the specified physical layer parameters are used correctly for non-unicast and unicast traffic.
 
 Every simulation runs \num{2} \ac{TM}s per \ac{FH}.
 This does not correspond to the key figures of 10 \ac{TM}s per \ac{FH} in the corn harvest scenario \cite{faustzahlen2018},
@@ -363,7 +360,7 @@ I chose a $platoon\_data\_interval$ of \SI{50}{\milli\second} for the Agricultur
 as \textcite{smolnik_5g_2020} mention that their requirements analysis indicated that new guidance data should at least arrive every \SI{50}{\milli\second}.
 
 \section{Application Level Simulation Evaluation}
-I chose the following simulation configurations for the uniform transmission of guidance data: \ac{HE}-\ac{MCS} 3, 5 and 7 and
+I chose the following simulation configurations for the unicast transmission of guidance data: \ac{HE}-\ac{MCS} 3, 5 and 7 and
 \ac{STBC} either enabled or disabled.
 Every simulation configuration runs \num{5} times, where every \ac{FH} harvests \SI{1}{\hectare} of corn, which equals to roughly
 \num{2.5} \ac{TM} loads.
@@ -378,7 +375,8 @@ The results for defined metrics latency and data update rate are shown in \autor
 \begin{figure}[]%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/latency_lastUpdate50ms}
-	\caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service in regards to the number of \ac{FH}s and \ac{TM}s and
+	\caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service
+	in regards to the number of \acfp{FH} and \acfp{TM} and
 	the chosen \ac{HE}-\ac{MCS} value for a $platoon\_data\_interval$ of \SI{50}{\milli\second}.}
 	\label{fig:mean_50}%
 \end{figure}
@@ -388,7 +386,7 @@ configuration.
 
 The confidence interval for the mean update rate is always below \SI{2}{\micro\second}.
 The mean latency is always below \SI{0.6}{\milli\second}.
-Using higher \ac{HE}-\ac{MCS} values reduces the mean latency of
+Using higher \ac{HE}-\ac{MCS} values significantly reduces the mean latency of
 the Agricultural Platooning Service data exchange.
 
 Applying \ac{STBC} additionally increases the mean latency compared to
@@ -419,7 +417,8 @@ harvest states according to \autoref{tab:harvestStatesChanged}.
         & \SI{10}{\kilo\metre\per\hour} (\SI{2.78}{\metre\per\second}) \\
 		\bottomrule
 	\end{tabular}
-	\caption{Corn harvest states, which define a range of \acf{PD}s from \cite{faustzahlen2018} and \acf{FH} speeds, which I set higher than the key figures in \cite{faustzahlen2018} specify to
+	\caption{Corn harvest states, which define a range of \acf{PD}s from \cite{faustzahlen2018} and \acf{FH} speeds,
+	which I set higher than the key figures in \cite{faustzahlen2018} specify to
 	increase the requirements on the Agricultural Platooning Service.}
 	\label{tab:harvestStatesChanged}
 \end{table}
@@ -439,7 +438,8 @@ vehicle distance of \SIrange{1}{2}{\metre}.
 \begin{figure}[]%
    \centering
    \includegraphics[width=0.95\textwidth]{figures/latency_lastUpdate25ms}
-   \caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service in regards to the number of \ac{FH}s and \ac{TM}s and
+   \caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service in
+   regards to the number of \acfp{FH} and \acfp{TM} and
    the chosen \ac{HE}-\ac{MCS} value for a $platoon\_data\_interval$ of \SI{25}{\milli\second}.}
    \label{fig:mean_25}%
 \end{figure}
@@ -449,6 +449,7 @@ The results displayed in \autoref{fig:mean_25} reveal that the mean guidance dat
 which is the desired $platoon\_data\_interval$.
 The mean latency is nearly the same as in \autoref{fig:mean_50}, which indicates that there is still some channel capacity left for
 further data exchange.
+Again, as the number of \acp{TM} and \acp{FH} increases, the mean latency increases slightly.
 
 Both simulations were based on the abstracted and simplified corn harvest scenario, which is based on the ns-3 communication model and
 abstracted implementation of the physical layer and MAC layer in ns-3.

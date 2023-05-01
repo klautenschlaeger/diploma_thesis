@@ -103,7 +103,7 @@ platoons can be detected.
     \subfloat[Travel lane]{\label{fig:setup1}\includegraphics[width=0.8\textwidth]{figures/ScreenshotToResultsPNG2}}%
    \\
     \subfloat[Speed and Distance data]{\label{fig:setup2}\includegraphics[width=0.9\textwidth]{figures/stacked_plotted_data_platoon}}
-    \caption{A \ac{FH} and a \ac{TM} in harvest and overloading scenario, which is represented as distance and speed data plotted in regards to the
+    \caption{A \acf{FH} and a \acf{TM} in harvest and overloading scenario, which is represented as distance and speed data plotted in regards to the
    time and which is visualised as a black and white travel lane for the \ac{FH}, \ac{TM} respectively}%
     \label{fig:setups12}%
 \end{figure}
@@ -122,13 +122,13 @@ In the end, when the \ac{TM} is full and leaves the harvest and overloading scen
 
 \begin{figure}%
    \centering
-   \includegraphics[width=0.85\textwidth]{figures/distanceHarvestScenario}
+   \includegraphics[width=0.89\textwidth]{figures/distanceHarvestScenario}
    \caption{Distribution of time proportions where a given distance was between \acf{FH} and \acf{TM} in a harvest platoon scenario.}%
    \label{fig:distance}%
 \end{figure}
 \begin{figure}%
    \centering
-   \includegraphics[width=0.85\textwidth]{figures/speedHarvestScenario}
+   \includegraphics[width=0.89\textwidth]{figures/speedHarvestScenario}
    \caption{Distribution of time proportions where \acf{FH} and \acf{TM} drove with a certain speed in a harvest platoon scenario}%
    \label{fig:speed}%
 \end{figure}
@@ -145,7 +145,6 @@ as less than \SI{30}{\metre}.
 One notable observation in \autoref{fig:speed} is that the \ac{FH} and \ac{TM}s in the corn harvesting platooning scenario
 often travel at a speed of approximately \SI{10}{\kilo\metre\per\hour}.
 This speed is significantly higher than the average speed of \SIrange{6.6}{8.1}{\kilo\metre\per\hour} (\SIrange{1.9}{2.2}{\metre\per\second}) of a \ac{FH} operating on a \SI{80}{\hectare} field, which is calculated from \cite{faustzahlen2018}.
-\todo[color=yellow]{Berechnung aufschreiben... }
 \textcite{nedelcu_influence_2020} report a optimal working speed of \SIrange{2.6}{6.3}{\kilo\metre\per\hour} (\SIrange{0.73}{1.75}{\metre\per\second}) for a \ac{FH} which depends on the \ac{PD}.
 
 
@@ -189,7 +188,7 @@ The authors explain the effect because the spout of the \ac{FH} was in \ac{LOS}.
       pic["$Relative\ Bearing$", draw, <-, angle eccentricity=1.8, angle radius=1.5cm]
       {angle=b--a--c};
    \end{tikzpicture}
-   \caption{Relative bearing between \ac{FH} and \ac{TM} which is calculated using the previous location of \ac{FH} by using $\beta$ and $\alpha$ for \autoref{eq:RelativeBearing}}%
+   \caption{Relative bearing between \acf{FH} and \acf{TM} which is calculated using the previous location of \ac{FH} by using $\beta$ and $\alpha$ for \autoref{eq:RelativeBearing}}%
    \label{fig:bearing_fh_tm}%
 \end{figure}
 I reviewed the recorded position data to get an overview of the \ac{TM}'s position relative to the \ac{FH} in the overloading process. The relative bearing is the angle between the position of the \ac{TM} and the heading of the position of the \ac{FH}. Using the previous position of the \ac{FH}, the relative bearing between \ac{FH} and \ac{TM} can be calculated with the angles $\alpha$ and $\beta$ in \autoref{fig:bearing_fh_tm} as:
@@ -216,7 +215,7 @@ When there is a greater distance between \ac{TM} and \ac{FH}, the \ac{TM} is usu
 \SIrange{157.5}{187.5}{\degree}.
 At these moments, the \ac{TM} is empty and closes up to the \ac{FH} to operate in a overloading c together.
 
-\begin{figure}[H]%
+\begin{figure}%
    \centering
    \includegraphics[width=0.8\textwidth]{figures/claas_harvest_behind}
    \caption{Photograph from CLAAS KGaA mbH: \acf{FH} and \acf{TM} start cutting a new field section}%
@@ -237,8 +236,6 @@ The data may also vary based on the size of the agricultural machinery.
 Using a smaller \ac{FH} would result in a smaller distance between \ac{TM} and \ac{FH}.
 To make a general statement, I should use data from different years, machines or harvest and loading scenarios
 because they can reveal other initial field conditions.
-
-\TODO{Einordnen in andere Scenarios}
 
 \begin{comment}
 

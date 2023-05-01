@@ -48,7 +48,7 @@ The possible \ac{BW}s for the IEEE 802.11 standards are shown in \autoref{tab:BW
 		IEEE 802.11bd \cite{jacob_system-level_2020}& - & - & \SI{10}{\mega\hertz},\SI{20}{\mega\hertz} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Available \ac{BW}s for the IEEE 802.11 standards per frequency band.}
+	\caption{Available \acfp{BW} for the IEEE 802.11 standards per frequency band.}
 	\label{tab:BW}
 \end{table}
 
@@ -105,7 +105,7 @@ possibilities for higher communication ranges greater than \SI{50}{\metre}.
 Together with the \ac{MCS}, the \ac{FEC} \ac{CR} form a physical layer specification, which is named after the specific standard.
 For IEEE 802.11ax, this results in the \ac{HE}-\ac{MCS} values in \autoref{tab:HEMCS}.
 
-\begin{table}[!ht]
+\begin{table}[H]
    \centering
    \begin{tabular}{>{\raggedright}p{2cm}p{3cm}p{2cm}}
       \toprule
@@ -128,11 +128,6 @@ For IEEE 802.11ax, this results in the \ac{HE}-\ac{MCS} values in \autoref{tab:H
    \caption{\ac{MCS} and \ac{CR} for \ac{HE}-\ac{MCS} values \cite{ieee_standard_2021ax}}
    \label{tab:HEMCS}
 \end{table}
-
-\begin{comment}
-	{Wellenausbreitung, Überlagerungseffekte, Reflexsion, Reflexsion nicht bei Metall}
-
-\end{comment}
 
 \subsubsection*{\acf{GI}}
 \textcite{pulimamidi_development_2007} describe the Guard Interval as a cyclic prefix of \ac{OFDM} symbols to prevent
@@ -244,9 +239,9 @@ received with a probability of \SI{90}{\percent}.
 The receiver minimum input sensitivity for a \ac{BW} of
 \SI{20}{\mega\hertz} is displayed in \autoref{fig:ReceiverSensitivityDCM}.
 It demonstrates that when using \ac{DCM},
-the receiver minimum input sensitivity can be lower than without using \ac{DCM}. The effect on the receiver minimum
-input sensitivity increases as the \ac{HE}-\ac{MCS} value increases.
-\begin{figure}%
+the receiver minimum input sensitivity can be lower than without using \ac{DCM}.
+The effect on the receiver minimum input sensitivity increases as the \ac{HE}-\ac{MCS} value increases.
+\begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/Receiver_minimum_DCM}
 	\caption{Receiver minimum input level sensitivity for different \ac{HE}-\ac{MCS} values according to \cite{ieee_standard_2021ax}, where \ac{PER} is less than \SI{10}{\percent}}%

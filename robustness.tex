@@ -147,8 +147,8 @@ The results in \autoref{fig:PER_SNR_MCS} show that the \ac{PER} decreases with h
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.74\textwidth]{figures/MCS_PER_to_SNR.pdf}
-   \caption{Simulated PER regarding SNR for chosen \ac{HE}-\ac{MCS} values for IEEE 802.11ax physical layer parameters
-         of a GI of 3200 ns, a bandwidth of 20 MHz and \num{2} spatial streams.}
+   \caption{Simulated \ac{PER} regarding SNR for chosen \acf{HE}-\acf{MCS} values for IEEE 802.11ax physical layer parameters
+         of a GI of 3200 ns, a \ac{BW} of 20 MHz and \num{2} spatial streams.}
    \label{fig:PER_SNR_MCS}%
 \end{figure}
 \textcite{paul_characterizing_2011} conducted outdoor experiments to analyse the error rate and \ac{SNR} of different IEEE 802.11n \ac{MCS} for the
@@ -157,7 +157,7 @@ Additionally, they experienced a higher error rate for higher \acp{MCS}.
 
 The effect that the \ac{PER} decreases when a lower \ac{MCS} or \ac{CR} is used is the basis for the design of Wi-Fi rate managers.
 A rate manager is a software component that selects physical layer parameters, such as \ac{MCS} or \ac{CR}, based on the current network conditions to
-achieve the best possible throughput. Known rate managers of the Linux kernel are the minstrel or the minstrel HT rate manager.
+achieve the best possible throughput. Known rate managers of the Linux kernel are the minstrel or the minstrel \ac{HT} rate manager.
 
 \subsubsection*{\acf{FEC}}
 Another parameter that influences the \ac{PER} is the forward error correction (FEC) procedure choice. To
@@ -170,7 +170,9 @@ for all \ac{HE}-\ac{MCS} values. The effect increases to \SI{3}{\decibel} with h
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.74\textwidth]{figures/LDPC_PER_to_SNR.pdf}
-   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether \ac{LDPC} or \ac{BCC} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a bandwidth of \SI{20}{\mega\hertz} and 2 spatial streams}%
+   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether \acf{LDPC} or
+   \acf{BCC} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second},
+      a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
    \label{fig:PER_SNR_LDPC}%
 \end{figure}
 
@@ -195,7 +197,7 @@ with higher \ac{HE}-\ac{MCS} values.
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.74\textwidth]{figures/GI_PER_to_SNR.pdf}
-   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether a \ac{GI} of \SI{800}{\nano\second} or \SI{3200}{\nano\second} is enabled for IEEE 802.11ax physical layer parameters of a bandwidth of \SI{20}{\mega\hertz} and 2 spatial streams}%
+   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether a \acf{GI} of \SI{800}{\nano\second} or \SI{3200}{\nano\second} is enabled for IEEE 802.11ax physical layer parameters of a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
    \label{fig:PER_SNR_GI}%
 \end{figure}
 \textcite{patil_ieee_2020} conducted similar simulations for IEEE 802.11n.
@@ -220,7 +222,7 @@ The results are plotted in \autoref{fig:PER_SNR_DCM}.
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.65\textwidth]{figures/DCM_PER_to_SNR.pdf}
-   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether \ac{DCM} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
+   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether \acf{DCM} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
    \label{fig:PER_SNR_DCM}%
 \end{figure}
 
@@ -256,10 +258,11 @@ of \SI{10}{\percent} is achieved, is \SIrange{1}{2}{\decibel}.
 \begin{figure}%
    \centering
    \includegraphics[width=0.74\textwidth]{figures/ER_PER_to_SNR.pdf}
-   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether Extended Range or \ac{DCM}
+   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether \acf{ER} mode or \acf{DCM}
    is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}
    \label{fig:PER_SNR_ER}%
 \end{figure}
+\TODO{EXTEND all auch PER and SNR oder just DCM? or my own like TM and FH}
 
 Additionally, I simulated the impact of applying the \ac{ER} mode and \ac{DCM} for the allowed \ac{HE}-\ac{MCS} values \num{0} and \num{1}.
 Applying \ac{DCM} additionally makes the transmission more robust.
@@ -273,7 +276,7 @@ The authors found out that using \ac{DCM} and \ac{ER} can
 increase the transmission range for \ac{LOS} by \SI{65}{\percent} for a \ac{PER} lower than \num{0.1}.
 After additional analysis with higher
 vehicle densities, the authors remark that using \ac{DCM} and the \ac{ER} mode causes channel congestion in \ac{CSMACA} based
-networks with low bandwidths.
+networks with low \acp{BW}.
 The authors conclude that the \ac{ER} mode and \ac{DCM} should be used for long-range transmissions, where
 the physical layer parameters can extend the transmission range significantly.
 
@@ -297,7 +300,7 @@ The impact of \ac{STBC} on the \ac{PER} grows from \SI{2}{\decibel} for \ac{HE}-
 \begin{figure}%
    \centering
    \includegraphics[width=0.74\textwidth]{figures/STBC_PER_to_SNR.pdf}
-   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether \ac{STBC} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
+   \caption{Simulated \ac{PER} in regards to \ac{SNR} for chosen \ac{HE}-\ac{MCS} values and whether \acf{STBC} is enabled for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams}%
    \label{fig:PER_SNR_STBC}%
 \end{figure}
 \textcite{stamoulis_impact_2003} analysed the impact of \ac{STBC} on the bit error rate for IEEE 802.11a in regards to the \ac{SNR}. Their simulation was based
