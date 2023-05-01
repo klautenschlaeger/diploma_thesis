@@ -33,6 +33,7 @@ the robustness and communication range of Wi-Fi networks in an outdoor environme
 As the regulation in the German Law StVZO §32 Abs. 2 limits the height of
 every agricultural vehicle or combination of vehicles to less than \SI{4.0}{\metre}, the maximum antenna height is \SI{4}{\metre} above the ground. Therefore, I will mount the router on the tractor's roof at a height \SI{4}{\metre} above the ground.
 
+
 I set up two Wi-Fi devices on the \ac{CH}, which are two UP Squared Boards \footnote{\url{https://eu.mouser.com/datasheet/2/826/UP_Square_DatasheetV0_4-3084829.pdf}} with an Intel AX210 Wi-Fi module \footnote{\url{https://docs.alfa.com.tw/datasheets/alfa-network_ait-ax210-ex_latest.pdf}}.
 
 Every Intel AX210 Wi-Fi module supports the IEEE 802.11ax standard for \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and is equipped with two antennas,
@@ -84,7 +85,7 @@ which means that the tractor drives \num{5} times the same path, which is displa
 		- & \num{106} \\
 		\bottomrule
 	\end{tabular}
-	\caption{Frequency channel numbers for \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} for the different \acf{BW}s of the IEEE 802.11 standard \cite{ieee_standard_2021ax}, which can be used for
+	\caption{Frequency channel numbers for \SI{2.4}{\giga\hertz} and \SI{5}{\giga\hertz} for the different \acfp{BW} of the IEEE 802.11 standard \cite{ieee_standard_2021ax}, which can be used for
 	outdoor communication \cite{freq_plan_24G}, \cite{freq_plan_5G} and can be configured in the Milesight Industrial Router UR75 for
 	the field experiments.}
 	\label{tab:fieldChannels}
@@ -240,6 +241,11 @@ the antenna height has a significant impact on the Wi-Fi transmission range.
 They state, that the Wi-Fi transmission range increases
 with the antenna height, because the Wi-Fi transmissions are less affected by obstacles and the Fresnel zone is less obstructed.
 This effect is available until a maximum antenna height of \SI{50}{\metre} by the authors.
+
+\textcite{krause_network_2021} performed simulations and measurements for network planning and coverage optimization of mobile campus networks for agricultural and construction site scenarios.
+They assume tractor heights of \SI{3.5}{\meters} where an antenna can be mounted.
+They conclude that higher antenna heights increase the fraction where a \ac{LOS} is available, resulting in
+to a higher data rate and less shadowing.
 
 In regard to antenna height, future field experiments should be conducted to find the optimal antenna height for agricultural machines.
 Antennas heights can be built retractable and extendable to stay below the maximum allowed height of \SI{4}{\metre} for agricultural machines in Germany on

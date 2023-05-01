@@ -1,5 +1,3 @@
-
-
 Since my undergraduate thesis \footnote{https://github.com/klautenschlaeger/mvsc} about \textit{
 Wirelessly Networked Coordination of Automatic Section Control for Agricultural Machines}
 , I have been working on the topic of \ac{WIC}. I conducted both field experiments and
@@ -18,6 +16,16 @@ the underlying technologies 3GPP LTE and 5G V2X and IEEE 802.11p. The authors im
 as according to their technical analysis, this technology already fulfils the requirements for data rate, latency
 and the number of participants. The authors report that the project results demonstrated that achieved
 latencies were five times lower than the defined maximum latency of \SI{50}{\milli\second} for Agricultural Platooning Services.
+
+In the research project \textit{LANDNETZ} \textcite{hecker_aspects_2022} investigated how campus networks can be applied to the
+agricultural domain.
+Their campus network is based on a \textit{LANDNETZ} network trailer, which provides a 5G standalone network,
+Wi-Fi and LoRaWAN.
+Among other use cases, they want to use these technologies to exchange data between agricultural machines.
+The data to be exchanged consists of control, video and sensor data per agricultural machine.
+The authors note that each use case in the agricultural domain has its own data rate, periodicity,
+and latency requirements.
+Their current research focuses on the use of 5G standalone networks.
 
 Further research on \ac{WIC} is not based on cellular networks. \textcite{zhang_method_2009} used IEEE 802.15.4 to implement a
 prototype of an Agricultural Platooning Service, where the developed system exchanges relevant control data between a leading tractor
@@ -87,6 +95,4 @@ For the MAC layer with its \ac{CSMACA} mechanism,\textcite{aust_outdoor_2015} st
 can cause a higher number of packet collisions. They refer to to findings of \cite{paul_characterizing_2011} and recommend
 using Block Acknowledgement and Frame Aggregation. These mechanisms introduce a medium access control frame overhead, which cost less transmission time than
 retransmission of a whole frame or a single acknowledgment frame.
-
-\todo{landnetz}
 

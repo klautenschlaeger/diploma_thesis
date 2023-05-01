@@ -190,7 +190,7 @@ the transition probabilities.
         & \SI{6.65}{\kilo\metre\per\hour} (\SI{1.845}{\metre\per\second}) \\
 		\bottomrule
 	\end{tabular}
-	\caption{Corn harvest states, which define a range of \acf{PD}s and \acf{FH} speeds, where the data is derived from
+	\caption{Corn harvest states, which define a range of \acfp{PD} and \acf{FH} speeds, where the data is derived from
 	key figures \cite{faustzahlen2018}}
 	\label{tab:harvestStatesDef}
 \end{table}
@@ -314,7 +314,7 @@ Every node was displayed as the Netsimulyzer model of a landdrone, where all \ac
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/platooningScreen}
 	\caption{Screenshot of the simulation visualization in Netsimulyzer, where a blue \acf{TM} is unloading in the back in front of the farm cuboid,
-		two red \acp{TM} are in a Agricultural Platooning Service with the black \acf{FH}s,
+		two red \acp{TM} are in a Agricultural Platooning Service with the black \acfp{FH},
 		a green \ac{TM} is empty and waiting for a new $search\_TM$ request and a yellow \ac{TM} is in waiting position behind a black \ac{FH}.}
 	\label{fig:PlatooningScreenshot}%
 \end{figure}
@@ -375,7 +375,8 @@ The results for defined metrics latency and data update rate are shown in \autor
 \begin{figure}[]%
 	\centering
 	\includegraphics[width=0.95\textwidth]{figures/latency_lastUpdate50ms}
-	\caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service in regards to the number of \ac{FH}s and \ac{TM}s and
+	\caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service
+	in regards to the number of \acfp{FH} and \acfp{TM} and
 	the chosen \ac{HE}-\ac{MCS} value for a $platoon\_data\_interval$ of \SI{50}{\milli\second}.}
 	\label{fig:mean_50}%
 \end{figure}
@@ -416,7 +417,8 @@ harvest states according to \autoref{tab:harvestStatesChanged}.
         & \SI{10}{\kilo\metre\per\hour} (\SI{2.78}{\metre\per\second}) \\
 		\bottomrule
 	\end{tabular}
-	\caption{Corn harvest states, which define a range of \acf{PD}s from \cite{faustzahlen2018} and \acf{FH} speeds, which I set higher than the key figures in \cite{faustzahlen2018} specify to
+	\caption{Corn harvest states, which define a range of \acf{PD}s from \cite{faustzahlen2018} and \acf{FH} speeds,
+	which I set higher than the key figures in \cite{faustzahlen2018} specify to
 	increase the requirements on the Agricultural Platooning Service.}
 	\label{tab:harvestStatesChanged}
 \end{table}
@@ -436,7 +438,8 @@ vehicle distance of \SIrange{1}{2}{\metre}.
 \begin{figure}[]%
    \centering
    \includegraphics[width=0.95\textwidth]{figures/latency_lastUpdate25ms}
-   \caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service in regards to the number of \ac{FH}s and \ac{TM}s and
+   \caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service in
+   regards to the number of \acfp{FH} and \acfp{TM} and
    the chosen \ac{HE}-\ac{MCS} value for a $platoon\_data\_interval$ of \SI{25}{\milli\second}.}
    \label{fig:mean_25}%
 \end{figure}
