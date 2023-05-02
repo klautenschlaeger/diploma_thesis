@@ -45,6 +45,7 @@ One of the boards on the \ac{CH} connects to the \ac{AP} of the router as a Wi-F
 A notebook is connected via LAN to the router and runs an iperf3 client, which connects to the iperf3 server on the \ac{CH}.
 The iperf3 client sends \SI{100}{\byte} \ac{UDP} packets every \SI{100}{\milli\second} to the iperf3 server on the \ac{CH}.
 The server records the received packets.
+\textcite{paul_characterizing_2011} and \textcite{klingler_agriculture_2018} also used iperf3 to create \ac{UDP} traffic for their experiments.
 
 Many different Wi-Fi transmissions arise through the iperf3 \ac{UDP} packets, the Wi-Fi manager of the Milesight Industrial Router, and the Intel AX210 Wi-Fi card.
 These transmissions can be RTS/CTS, ACK, Data, Beacon or Probe request frame, displayed in \autoref{fig:fieldWifi}.
@@ -222,6 +223,32 @@ calculate the \ac{PER} of the beacon frames as every \si{\second} \num{10} beaco
 The \ac{PER} of the beacon frames is shown in \autoref{fig:rangemeasurementResults} and indicates that no beacon frame was received at
 a distance of around \SIrange{650}{750}{\metre}, because the \ac{RSS} values dropped below the sensitivity of the Wi-Fi devices.
 
+\textcite{brinkhoff_characterization_2017} detected a similar effect at a range measurement with Wi-Fi on a rice field.
+Inceasing the Antenna height,
+resulted in a lower \ac{RSSI} values at a certain distance.
+The authors explained this effect with the two-ray ground reflection on the water surface of the rice field,
+which caused destructive interference with the direct ray.
+
+The authors cite the following formula from \cite{rappaport_wireless_nodate} to find the distance, where local maxima
+of destructive interference occurs and \ac{RSS} is at a minimum.
+The distances $d$ can be calculated as a function of antenna heights
+$h_r$ and $h_t$, the wavelength $\lambda$ and $k = 1, 2, 3, \dots$:
+\begin{equation}\label{eq:destructiveInterference}
+   \text{d} =
+   \frac{
+      2 \times h_r \times h_t
+   }{
+      \lambda \times k
+   }
+   \cdot
+\end{equation}
+
+Using \autoref{eq:destructiveInterference} with antenna heights of \SI{4}{\metre} and a wavelength of \SI{0.054}{\metre} for a frequency of \SI{5.6}{\giga\hertz},
+the distances at which there are local minima of \ac{RSS} are \SI{199}{\metre}, \SI{299}{\metre}, and \SI{597}{\metre}.
+The calculated distances are close to the measured distances of \SI{193}{\metre}, \SI{299}{\metre} and \SI{664}{\metre}.
+
+This indicates that the measured effect is close to the theoretical two-ray ground reflection model.
+
 Every beacon frame is transmitted in the IEEE 802.11a standard with a data rate of \SI{6}{\mega\bit\per\second}, which can also be received
 by older Wi-Fi devices.
 A data rate of \SI{6}{\mega\bit\per\second} refers to Binary \ac{PSK} modulation with a \ac{CR} of \nicefrac{1}{2} \cite{ieee_standard_1999}.
@@ -231,8 +258,27 @@ However, at the end of the communication range, the \ac{PER} values of the beaco
 started to increase, because the \ac{RSS} values suffer more from fading effects and are not high enough to
 to be sensed by the Wi-Fi devices.
 
+\textcite{paul_characterizing_2011} conducted a similar range measurement with Wi-Fi devices across fields. Their
+results for a continuous measurement over a distance of \SI{500}{\metre} revealed an approximate logarithmic decrease
+in \ac{RSSI} values with increasing distance, with little two-ray ground reflection effects.
+The satellite image of their measurement area shows a flat landscape with fields growing various crops.
+In a second experiment, they measured a range of \SI{1. 8}{\kilo\metre} with a corresponding maximum throughput of
+\SI{40.8}{\mega\bit\per\second}.
+
+Similar to my range measurements the authors results indicate that long range Wi-Fi transmissions are possible. The achieved throughput of \SI{40.8}{\mega\bit\per\second} of
+the authors leaves space for other physical layer configurations, which can be used to increase robustness and Wi-Fi range.
+
+In general, \textcite{brinkhoff_characterization_2017} was also able to fit a logarithmic path loss model to their measurement results
+for their Wi-Fi range measurement over different fields with different crops. However at the rice field, they detected
+two-ray ground reflection effects from the water surface, which caused local maxima of destructive interference at certain distances.
+
+This shows that my measurement results could have been different if I had done the range measurement in normal field.
+The ground reflection effects would have been less significant, and the \ac{RSSI} values would have decreased logarithmically,
+resulting in a lower \ac{PER} at a distance of \SIrange{650}{750}{\metre}.
+
+
 The Wi-Fi rate manager on the Milesight Industrial Router UR75 used a \ac{VHT} \ac{MCS}0 for the \ac{UDP} data transmissions over this long communication distances, which also refers to a Binary \ac{PSK} modulation with a \ac{CR} of \nicefrac{1}{2}.
-Additionally, it applied \ac{STBC} to increase the robustness of the Wi-Fi transmissions.
+Additionally, it applied \ac{STBC} to increase the robustness of the Wi-Fi transmissions. This configuration resulted in a theoretical data rate of \SI{6.5}{\mega\bit\per\second} \cite{ieee_standard_2020}.
 
 \section{Field Measurements Evaluation}
 
@@ -242,16 +288,17 @@ They state, that the Wi-Fi transmission range increases
 with the antenna height, because the Wi-Fi transmissions are less affected by obstacles and the Fresnel zone is less obstructed.
 This effect is available until a maximum antenna height of \SI{50}{\metre} by the authors.
 
-\textcite{krause_network_2021} performed simulations and measurements for network planning and coverage optimization of mobile campus networks for agricultural and construction site scenarios.
-They assume tractor heights of \SI{3.5}{\meters} where an antenna can be mounted.
+\textcite{krause_network_2021} performed simulations and measurements for network planning and coverage optimization
+of mobile campus networks for agricultural and construction site scenarios.
+They assume tractor heights of \SI{3. 5}{\metre} where an antenna can be mounted.
 They conclude that higher antenna heights increase the fraction where a \ac{LOS} is available, resulting in
-to a higher data rate and less shadowing.
+a higher data rate and less shadowing.
 
-In regard to antenna height, future field experiments should be conducted to find the optimal antenna height for agricultural machines.
-Antennas heights can be built retractable and extendable to stay below the maximum allowed height of \SI{4}{\metre} for agricultural machines in Germany on
-public roads and to be able to extend the antenna height to the optimal height for the Wi-Fi transmission range in agricultural fields.
-
-\todo{Ground reflection coefficient beton grass,  permeability,  conductance, permittivity of grass, permittivity of concrete, permittivity of air, permittivity of water}
+With regard to antenna height, future field experiments should be conducted to find the optimal antenna height for
+agricultural machines.
+Antenna masts can be built retractable and extendable to stay below the maximum allowed height of \SI{4}{\metre} for
+agricultural machines on public roads in Germany and to be able to extend the antenna height to the optimal height
+for the Wi-Fi transmission range in agricultural fields.
 
 \ac{WIC} uses cases require reliable communication between the agricultural machines to exchange data
 with each use case's specific required data rate, range, and latency.
@@ -273,6 +320,3 @@ increases the robustness of the Wi-Fi transmissions and therefore allows a lower
 In the following chapter, I will analyze in simulations which physical layer
 configurations are suitable for the agricultural environment to establish reliable communications,
 which meets the data rate, range and latency requirements of Agricultural Platooning Services.
-
-\TODO{PAUL 1800m, Pflanzen Felder Log Distance, iperf, Guard Interval}
-\TODO{Brinkhoff, log distance, far over 1000m, the higher the better, higher ground reflection and not log distance anymore}
