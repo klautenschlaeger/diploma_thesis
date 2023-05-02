@@ -10,11 +10,11 @@ The machinery movement profile can be used to identify when shadowing effects ma
 when machines meet in the field.
 
 To get GPS data of the corn harvest,
-I collected GPS tracks of a \ac{FH} and two to three \ac{TM}s harvesting corn on a field in Germany for two days in September.
+I collected GPS tracks of a \ac{FH} and two to three \acp{TM} harvesting corn on a field in Germany for two days in September.
 The workflow for collecting the corn harvest process data was as follows.
 I handed out the tablets to the drivers, which left the farm with the tablets in the driver's cabs to drive to
 the field in the morning.
-The tablets recorded the position and speed of the \ac{FH} and the \ac{TM}s every second of the day.
+The tablets recorded the position and speed of the \ac{FH} and the \acp{TM} every second of the day.
 During breaks, the tablets continued to capture the NMEA data stream of their GPS even if the positions and speed did not change.
 
 After recording the process data, I anonymised it.
@@ -31,14 +31,14 @@ I initially plotted all the positions in a polyline for each machine
 on a map in the dashboard.
 An added slider allows one to set a time interval that narrows down the data points for
 display in the dashboard.
-In addition, one could select which \ac{TM}s are displayed next to the \ac{FH}.
-For the chosen time interval, the distance and velocity difference between the selected \ac{TM}s and the \ac{FH} were
+In addition, one could select which \acp{TM} are displayed next to the \ac{FH}.
+For the chosen time interval, the distance and velocity difference between the selected \acp{TM} and the \ac{FH} were
 plotted in graphs as time histories.
 In the dashboard, I could get an overview of the machine's behaviour
 before, during, and after the overloading scenario.
 The overview shows that a \ac{FH} is nearly always in the overloading process with a \ac{TM}.
 In doing so, the \ac{FH} may occasionally stay in the same place if the cutter is clogged or there is a
-transition of \ac{TM}s where a full \ac{TM} moves away from the \ac{FH} and an empty \ac{TM} catches up to the
+transition of \acp{TM} where a full \ac{TM} moves away from the \ac{FH} and an empty \ac{TM} catches up to the
 \ac{FH} to take over the forage.
 
 A \ac{TM} is in a platoon with a \ac{FH} if the distance to the \ac{FH} is less \SI{10}{\metre} and they are moving at
@@ -142,7 +142,7 @@ In addition, the distance can also be higher, e.g. in turning manoeuvres or befo
 \textcite{smolnik_5g_2020} specifies the required communication range of platooning services in the corn harvest process
 as less than \SI{30}{\metre}.
 
-One notable observation in \autoref{fig:speed} is that the \ac{FH} and \ac{TM}s in the corn harvesting platooning scenario
+One notable observation in \autoref{fig:speed} is that the \ac{FH} and \acp{TM} in the corn harvesting platooning scenario
 often travel at a speed of approximately \SI{10}{\kilo\metre\per\hour}.
 This speed is significantly higher than the average speed of \SIrange{6.6}{8.1}{\kilo\metre\per\hour} (\SIrange{1.9}{2.2}{\metre\per\second}) of a \ac{FH} operating on a \SI{80}{\hectare} field, which is calculated from \cite{faustzahlen2018}.
 \textcite{nedelcu_influence_2020} report a optimal working speed of \SIrange{2.6}{6.3}{\kilo\metre\per\hour} (\SIrange{0.73}{1.75}{\metre\per\second}) for a \ac{FH} which depends on the \ac{PD}.

@@ -10,7 +10,7 @@ Ns-3 is suitable for this simulation because it supports application layer-level
 Via the extension Netsimulyzer, a graphical user interface is available to visualize the simulation results.
 
 The simulation scenario is based on the corn harvest and loading scenario, which is described in \autoref{sec:corn_harvest_scenario}, where
-multiple \ac{FH}s harvest the corn and load it onto one of the \ac{TM}s.
+multiple \acp{FH} harvest the corn and load it onto one of the \acp{TM}.
 
 An ns-3 Node represents every machine.
 Each Node has a mobility model, which describes the movement of the machine.
@@ -90,7 +90,7 @@ which is displayed in \autoref{fig:PlatooningRoute}.
 As soon as a \ac{FH} reaches a field border, it makes a U-turn and continues
 in the opposite direction.
 Every \ac{FH} harvests the corn until it reaches the end of the field in the lower right corner.
-The initial position of the \ac{TM}s is a row below the \ac{FH}s, which is displayed in \autoref{fig:PlatooningInit}.
+The initial position of the \acp{TM} is a row below the \acp{FH}, which is displayed in \autoref{fig:PlatooningInit}.
 \begin{figure}[H]%
    \centering
    \includegraphics[width=0.7\textwidth]{figures/drawings-Route}
@@ -100,7 +100,7 @@ The initial position of the \ac{TM}s is a row below the \ac{FH}s, which is displ
 
 In the beginning, every \ac{FH} broadcasts a search request $search\_TM$ via the non-unicast transmission mode to find an empty \ac{TM} to load the corn onto according to
 to the procedure in \autoref{alg:SearchTM}.
-As shown in \autoref{fig:PlatooningInit}, multiple \ac{TM}s receive the search request and answer with
+As shown in \autoref{fig:PlatooningInit}, multiple \acp{TM} receive the search request and answer with
 their current fill level of the \ac{TM}'s trailer.
 The \ac{FH} chooses the \ac{TM} with the lowest fill level and sends a connection request to the \ac{TM}.
 As soon as the \ac{TM} receives the connection request, it answers with a connection response.
@@ -109,8 +109,8 @@ When no \ac{TM} answers the search request, the \ac{FH} repeats the search reque
 
 \begin{figure}[H]%
    \centering
-   \includegraphics[width=0.7\textwidth]{figures/platoonINIT}
-   \caption{Start position of the \acf{FH}s and \acf{TM}s, where a \ac{FH} broadcasts a search request to find
+   \includegraphics[width=0.83\textwidth]{figures/platoonINIT}
+   \caption{Start position of the \acfp{FH} and \acfp{TM}, where a \ac{FH} broadcasts a search request to find
    a \ac{TM} to load the corn onto}
    \label{fig:PlatooningInit}%
 \end{figure}
@@ -119,7 +119,7 @@ When no \ac{TM} answers the search request, the \ac{FH} repeats the search reque
 \begin{algorithmic}[1]
 \REQUIRE Defined $search\_TM\_interval$, $search\_TM\_packet\_length$
 \STATE Create packet $search\_TM$ of length $search\_TM\_packet\_length$ bytes
-\STATE Broadcast $search\_TM$ to all \acs{TM}s
+\STATE Broadcast $search\_TM$ to all \acp{TM}
 \IF {no \acs{TM} ansers}
     \STATE Repeat Broadcasting $search\_TM$ every $search\_TM\_interval$ seconds
 \ELSE
@@ -256,7 +256,7 @@ the recorded process data in \autoref{chap:cornHarvestData}.
 
 \begin{figure}[]%
 	\centering
-	\includegraphics[width=0.6\textwidth]{figures/platoonHALF}
+	\includegraphics[width=0.65\textwidth]{figures/platoonHALF}
 	\caption{\acf{TM} position left of the \acf{FH} for overloading, where the \ac{TM} is half full and the
 		\ac{FH} starts \autoref{alg:SearchTM} to search for a next empty \ac{TM},
 		which can later take over the loading position.}
@@ -273,8 +273,8 @@ soon as the \ac{TM}, where the \ac{FH} is currently loading onto, is full.
 
 \begin{figure}[]%
 	\centering
-	\includegraphics[width=0.33\textwidth]{figures/platoonFULL}
-	\caption{Change of \acf{TM}s in the Application Agricultural Platooning Service, where $TM\_1$
+	\includegraphics[width=0.39\textwidth]{figures/platoonFULL}
+	\caption{Change of \acfp{TM} in the Application Agricultural Platooning Service, where $TM\_1$
 	is full and leaves the field while the empty $TM\_2$ takes over the overloading position.}
 	\label{fig:PlatooningFull}%
 \end{figure}
@@ -308,8 +308,8 @@ shown in \autoref{fig:PlatooningRoute}.
 Each corn harvest scenario is visualized to ensure the correctness of the simulation.
 The visualizations are created with the ns-3 extension Netsimulyzer.
 The corn field is marked as a black rectangle. Next to the lower left corner there is a cuboid which marks the location of the silo.
-Every node was displayed as the Netsimulyzer model of a landdrone, where all \ac{FH}s are black and the
-\ac{TM}s are either red, green, yellow or blue, depending on the \ac{TM} state.
+Every node was displayed as the Netsimulyzer model of a landdrone, where all \acp{FH} are black and the
+\acp{TM} are either red, green, yellow or blue, depending on the \ac{TM} state.
 \begin{figure}[H]%
 	\centering
 	\includegraphics[width=0.75\textwidth]{figures/platooningScreen}
@@ -331,9 +331,9 @@ from the fully loaded \ac{TM}.
 Using the provided information from the ns-3 MonitorSnifferRxCallback and MonitorSnifferTxCallback I was able to review ongoing transmissions and
 whether the specified physical layer parameters are used correctly for non-unicast and unicast traffic.
 
-Every simulation runs \num{2} \ac{TM}s per \ac{FH}.
-This does not correspond to the key figures of 10 \ac{TM}s per \ac{FH} in the corn harvest scenario \cite{faustzahlen2018},
-but is sufficient as there is no communication of \ac{TM}s while transporting the harvested crop to the farm currently planned.
+Every simulation runs \num{2} \acp{TM} per \ac{FH}.
+This does not correspond to the key figures of 10 \acp{TM} per \ac{FH} in the corn harvest scenario \cite{faustzahlen2018},
+but is sufficient as there is no communication of \acp{TM} while transporting the harvested crop to the farm currently planned.
 For this reason, I have set the simulation so that a full \ac{TM} is empty again after \SI{10}{\second} at the disconnect position.
 This is a reasonable value, as it ensures that every time a \ac{FH} starts a $search\_TM$ request, there is a \ac{TM} in range to connect to.
 
@@ -374,9 +374,9 @@ The results for defined metrics latency and data update rate are shown in \autor
 
 \begin{figure}[]%
 	\centering
-	\includegraphics[width=0.95\textwidth]{figures/latency_lastUpdate50ms}
+	\includegraphics[width=0.98\textwidth]{figures/latency_lastUpdate50ms}
 	\caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service
-	in regards to the number of \acfp{FH} and \acfp{TM} and
+	in regards to the number of \acfp{FH} and \acfp{TM}, enabled \ac{STBC} and
 	the chosen \ac{HE}-\ac{MCS} value for a $platoon\_data\_interval$ of \SI{50}{\milli\second}.}
 	\label{fig:mean_50}%
 \end{figure}
@@ -417,15 +417,15 @@ harvest states according to \autoref{tab:harvestStatesChanged}.
         & \SI{10}{\kilo\metre\per\hour} (\SI{2.78}{\metre\per\second}) \\
 		\bottomrule
 	\end{tabular}
-	\caption{Corn harvest states, which define a range of \acf{PD}s from \cite{faustzahlen2018} and \acf{FH} speeds,
+	\caption{Corn harvest states, which define a range of \acfp{PD} from \cite{faustzahlen2018} and \acf{FH} speeds,
 	which I set higher than the key figures in \cite{faustzahlen2018} specify to
 	increase the requirements on the Agricultural Platooning Service.}
 	\label{tab:harvestStatesChanged}
 \end{table}
 
 As I increased the \ac{FH} speed, which leads each harvest platoon, the whole platoon harvests the field faster.
-Therefore, all \ac{TM}s move faster.
-To provide faster \ac{TM}s more often with guidance data,
+Therefore, all \acp{TM} move faster.
+To provide faster \acp{TM} more often with guidance data,
 I decreased the $platoon\_data\_interval$ to \SI{25}{\milli\second} to ensure,
 that a \ac{TM} always stays in the harvest platoon position even at higher speeds.
 
@@ -437,10 +437,9 @@ vehicle distance of \SIrange{1}{2}{\metre}.
 
 \begin{figure}[]%
    \centering
-   \includegraphics[width=0.95\textwidth]{figures/latency_lastUpdate25ms}
-   \caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service in
-   regards to the number of \acfp{FH} and \acfp{TM} and
-   the chosen \ac{HE}-\ac{MCS} value for a $platoon\_data\_interval$ of \SI{25}{\milli\second}.}
+   \includegraphics[width=0.98\textwidth]{figures/latency_lastUpdate25ms}
+   \caption{Similar to \autoref{fig:mean_50}, mean latency and mean guidance data update interval of the Application Agricultural Platooning Service
+   with the same configuration are shown but for a different $platoon\_data\_interval$ of \SI{25}{\milli\second}.}
    \label{fig:mean_25}%
 \end{figure}
 

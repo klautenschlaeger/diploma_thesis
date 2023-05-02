@@ -89,7 +89,7 @@ These transmissions can be \ac{ACK} and ad-hoc Beacon transmissions.
 Due to this waiting time, the goodput is lower than the theoretical data rate.
 \begin{figure}[H]
    \centering
-   \includegraphics[width=0.64\textwidth]{figures/gi_dataRate_simulation.pdf}
+   \includegraphics[width=0.69\textwidth]{figures/gi_dataRate_simulation.pdf}
    \caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode
    with \num{2} \acf{MIMO} streams and a bandwidth of \SI{80}{\mega\hertz} in regards to the chosen \acf{GI} and \ac{HE}-\ac{MCS} value}%
    \label{fig:Data_rate_GI}%
@@ -155,7 +155,7 @@ The only difference between \ac{HE} SU and \ac{HE} \ac{ER} SU transmissions is t
 This results in a longer transmission time, reflecting the lower achieved goodput for the \ac{ER} Mode.
 \begin{figure}[H]%
    \centering
-   \includegraphics[width=0.64\textwidth]{figures/ER_dataRate_simulation.pdf}
+   \includegraphics[width=0.69\textwidth]{figures/ER_dataRate_simulation.pdf}
    \caption{Lost Goodput between two Wi-Fi6 stations in Ad-Hoc Mode with a
    \acf{GI} of \SI{3200}{\nano\second} and a bandwidth of \SI{20}{\mega\hertz} in regards to \acf{HE}-\acf{MCS} when enabling the \ac{ER} mode}%
    \label{fig:Data_rate_ER}%
@@ -177,7 +177,7 @@ The theoretical data rate while using \ac{DCM} is half of the
 theoretical data rate without \ac{DCM}, which complies with the IEEE 802.11ax standard \cite{ieee_standard_2021ax}.
 \begin{figure}[H]%
    \centering
-   \includegraphics[width=0.64\textwidth]{figures/DCM_dataRate_simulation.pdf}
+   \includegraphics[width=0.69\textwidth]{figures/DCM_dataRate_simulation.pdf}
    \caption{Achieved Goodput and theoretical Datarate of two Wi-Fi6 stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and \num{2} spatial streams  in regards to the number of the chosen \ac{HE}-\ac{MCS} value and whether \acf{DCM} is enabled}%
    \label{fig:Data_rate_DCM}%
 \end{figure}
@@ -212,7 +212,7 @@ The theoretical data rate while using \ac{STBC} is half of the theoretical data 
 which complies with the IEEE 802.11ax standard \cite{ieee_standard_2021ax}.
 \begin{figure}[H]%
    \centering
-   \includegraphics[width=0.64\textwidth]{figures/STBC_dataRate_simulation}
+   \includegraphics[width=0.69\textwidth]{figures/STBC_dataRate_simulation}
    \caption{Achieved Goodput and theoretical Datarate of two IEEE 802.11ax stations in Ad-Hoc Mode with for IEEE 802.11ax physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams  in regards to the number of the chosen \ac{HE}-\ac{MCS} value and whether \acf{STBC} is enabled}%
    \label{fig:Data_rate_STBC}%
 \end{figure}
@@ -228,17 +228,6 @@ The results indicate that the achievable goodput is between \SIrange{0.1}{2.7}{\
 Due to a signal extension of \SI{6}{\micro\second} in the \SI{2.4}{\giga\hertz} frequency spectrum, the transmission time is longer, which results in a lower achievable goodput.
 \cite{ieee_standard_2009n} states that the signal extension in the \SI{2.4}{\giga\hertz} frequency spectrum enables
 backwards compatibility with the older 802.11 standards, which need time to write their network allocation vector register.
-\begin{comment}
-\begin{figure}[H]%
-   \centering
-   \includegraphics[width=0.95\textwidth]{figures/STBC_dataRate_simulation24}
-   \caption{Achieved Goodput and theoretical Datarate of two IEEE 802.11ax stations in Ad-Hoc Mode with for IEEE 802.11ax
-      physical layer parameters of a \ac{GI} of \SI{3200}{\nano\second}, a \ac{BW} of \SI{20}{\mega\hertz} and 2 spatial streams,
-      \ac{STBC} enabled and in regards to the number of the chosen \ac{HE}-\ac{MCS} value and whether the
-      \SI{2.4}{\giga\hertz} or \SI{5}{\giga\hertz} frequency spectrum is used}%
-   \label{fig:Data_rate_STBC24}%
-\end{figure}
-\end{comment}
 
 The simulation results represent an ideal scenario where only two nodes exchange data.
 In a real-world scenario in the agricultural domain, the number of nodes and the distance between the nodes may be higher.
