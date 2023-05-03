@@ -153,12 +153,12 @@ All steps of the harvest process and Agricultural Platooning Service are summari
 	\STATE Create packet $TM\_data$ of length $platoon\_data\_packet\_length$ bytes, which contains the \ac{TM} fill level and the new guidance position
 	\STATE Send $TM\_data$ to \ac{TM}
 	\IF {\ac{TM} fill level is half full}
-		\STATE Start \autoref{alg:SearchTM} to search for new \ac{TM}
+		\STATE Start \autoref{alg:SearchTM} to search for a new \ac{TM}
 	\ENDIF
 \ENDIF
 \end{algorithmic}
 \caption{Procedure of the \acf{FH} to send the \acf{TM} fill level and the \ac{TM} guidance position every
-\textit{platoon\_data\_interval}}.
+\textit{platoon\_data\_interval}}
 \label{alg:UpdateTM}
 \end{algorithm}
 
@@ -266,7 +266,7 @@ If the \ac{TM} fill level is half full, the \ac{FH} starts \autoref{alg:SearchTM
 to search for a new \ac{TM} to load the corn onto.
 This process is visualized in \autoref{fig:PlatooningHF}.
 As soon as the \ac{FH} finds a new \ac{TM}, the \ac{FH} connects to the new \ac{TM} and starts sending
-the \ac{TM} guidance positions, which place the \ac{TM} \SI{12}{\metre} behind the \ac{FH}.
+the \ac{TM} guidance positions, which places the \ac{TM} \SI{14}{\metre} behind the \ac{FH}.
 The \ac{FH} continues harvesting until the \ac{TM} is fully loaded.
 Meanwhile, the new \ac{TM} is waiting behind the \ac{FH} and can take over the loading position next to the \ac{FH} as
 soon as the \ac{TM}, where the \ac{FH} is currently loading onto, is full.
@@ -292,10 +292,10 @@ shown in \autoref{fig:PlatooningRoute}.
 		Parameters & \\
 		\midrule
 		\textit{search\_TM\_interval} & \SI{1}{\second}\\
-		\textit{search\_TM\_packet\_length} & \SI{0.5}{\kilo\byte}\\
+		\textit{search\_TM\_packet\_length} & \SI{0.25}{\kilo\byte}\\
 		\textit{platoon\_data\_interval} & \SI{50}{\milli\second}\\
 		\textit{platoon\_data\_packet\_length} & \SI{1}{\kilo\byte}\\
-		Platoon Overloading Distance & \SI{5}{\meter}\\
+		Platoon Overloading Distance & \SI{7}{\meter}\\
 		\ac{FH} Working Width & \SI{6.2}{\meter}\\
 		\ac{TM} Volume & \SI{50}{\cubic\meter}\\
 		\bottomrule
@@ -376,7 +376,7 @@ The results for defined metrics latency and data update rate are shown in \autor
 	\centering
 	\includegraphics[width=0.98\textwidth]{figures/latency_lastUpdate50ms}
 	\caption{Mean latency and mean guidance data update interval of the Application Agricultural Platooning Service
-	in regards to the number of \acfp{FH} and \acfp{TM}, enabled \ac{STBC} and
+	in regards to the number of \acfp{FH} and \acfp{TM}, enabled \acf{STBC} and
 	the chosen \ac{HE}-\ac{MCS} value for a $platoon\_data\_interval$ of \SI{50}{\milli\second}.}
 	\label{fig:mean_50}%
 \end{figure}
@@ -431,7 +431,7 @@ that a \ac{TM} always stays in the harvest platoon position even at higher speed
 
 This $platoon\_data\_interval$ of \SI{25}{\milli\second} heads in the direction of the upper required update rate of \SIrange{10}{25}{\milli\second} for general
 vehicle platooning services in \cite{TR-22.886}.
-But the values in \cite{TR-22.886} correspond to higher platoon sizes, a velocity of \SI{100}{\kilo\meter\per\hour} and a
+But the values in \cite{TR-22.886} correspond to higher platoon sizes, a velocity of \SI{100}{\kilo\meter\per\hour} (\SI{27.78}{\meter\per\second}) and a
 vehicle distance of \SIrange{1}{2}{\metre}.
 
 
