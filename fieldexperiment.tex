@@ -37,7 +37,7 @@ every agricultural vehicle or combination of vehicles to less than \SI{4.0}{\met
 I set up two Wi-Fi devices on the \ac{CH}, which are two UP Squared Boards \footnote{\url{https://eu.mouser.com/datasheet/2/826/UP_Square_DatasheetV0_4-3084829.pdf}} with an Intel AX210 Wi-Fi module \footnote{\url{https://docs.alfa.com.tw/datasheets/alfa-network_ait-ax210-ex_latest.pdf}}.
 
 Every Intel AX210 Wi-Fi module supports the IEEE 802.11ax standard for \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and is equipped with two antennas,
-which support omnidirectional transmissions in the \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and have a gain of \SI{5}{\decibel}.
+which support omnidirectional transmissions in the \SI{2.4}{\giga\hertz}, \SI{5}{\giga\hertz} and \SI{6}{\giga\hertz} band and have a gain of \SI{5}{\deci\belisotopic}.
 The boards are mounted on the roof of the \ac{CH} next to one another at a height \SI{4}{\metre} above the ground too.
 
 The router on the tractor sets up a Wi-Fi \ac{AP}.
@@ -225,7 +225,7 @@ a distance of around \SIrange{650}{750}{\metre}, because the \ac{RSS} values dro
 
 \textcite{brinkhoff_characterization_2017} detected a similar effect at a range measurement with Wi-Fi on a rice field.
 Inceasing the Antenna height,
-resulted in a lower \ac{RSSI} values at a certain distance.
+resulted in a lower \ac{RSS} values at a certain distance.
 The authors explained this effect with the two-ray ground reflection on the water surface of the rice field,
 which caused destructive interference with the direct ray.
 
@@ -260,7 +260,7 @@ to be sensed by the Wi-Fi devices.
 
 \textcite{paul_characterizing_2011} conducted a similar range measurement with Wi-Fi devices across fields. Their
 results for a continuous measurement over a distance of \SI{500}{\metre} revealed an approximate logarithmic decrease
-in \ac{RSSI} values with increasing distance, with little two-ray ground reflection effects.
+in \ac{RSS} values with increasing distance, with little two-ray ground reflection effects.
 The satellite image of their measurement area shows a flat landscape with fields growing various crops.
 In a second experiment, they measured a range of \SI{1. 8}{\kilo\metre} with a corresponding maximum throughput of
 \SI{40.8}{\mega\bit\per\second}.
@@ -273,7 +273,7 @@ for their Wi-Fi range measurement over different fields with different crops. Ho
 two-ray ground reflection effects from the water surface, which caused local maxima of destructive interference at certain distances.
 
 This shows that my measurement results could have been different if I had done the range measurement in normal field.
-The ground reflection effects would have been less significant, and the \ac{RSSI} values would have decreased logarithmically,
+The ground reflection effects would have been less significant, and the \ac{RSS} values would have decreased logarithmically,
 resulting in a lower \ac{PER} at a distance of \SIrange{650}{750}{\metre}.
 
 

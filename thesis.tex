@@ -13,6 +13,7 @@
 \usetikzlibrary{quotes,angles}
 \usepackage{nicefrac}
 \usepackage{comment}
+
 \usetikzlibrary{shapes, arrows, positioning}
 \newcommand{\algorithmautorefname}{Algorithm}
 \author{Karl Christian Lautenschläger}
@@ -158,7 +159,6 @@
 	short=PD,
 	long=Plant Density,
 	long-plural-form=Plant Densities,
-
 }
 \DeclareAcronym{WIC}{
 	short=WIC,
@@ -298,6 +298,9 @@
 \acrodef{ADAC}{German Automobile Association}{foreign={Allgemeiner Deutscher Automobilclub}}
 \acrodef{CANhashing}[CAN]{Content Addressable Network}{extra={when referring to the distributed hash table}}
 \acrodef{CANproto}[CAN]{Controller Area Network}{extra={when referring to the bus protocol}}
+
+\DeclareSIUnit{\belisotopic}{Bi}
+\DeclareSIUnit{\dBi}{\deci\belisotopic}
 
 \begin{document}
 
