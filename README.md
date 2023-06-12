@@ -30,7 +30,7 @@ Full Thesis: [thesis.pdf](thesis.pdf)
 ### Used Software: 
 TBD
 
-#### Simulation: 
+### Please cite as:
 
-##### Agricultural Platooning Service Simulation
+Karl Christian Lautenschläger, “Suitability of Modern Wi-Fi for Wireless-Infield-Communication of Agricultural Machines,” Diploma Thesis (Diplomarbeit), Faculty of Computer Science, TU Dresden, Germany, June 2023
 
