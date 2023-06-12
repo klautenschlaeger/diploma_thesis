@@ -1,0 +1,47 @@
+\chapter{Conclusion}
+\acresetall
+\begin{comment}
+    \begin{itemize}
+    \item summarize again what your paper did, but now emphasize more the results, and comparisons
+    \item write conclusions that can be drawn from the results found and the discussion presented in the paper
+    \item future work (be very brief, explain what, but not much how, do not speculate about results or impact)
+    \item recommended length: one page.
+    \end{itemize}
+\end{comment}
+This thesis investigates the suitability of modern Wi-Fi for \ac{WIC}, which describes a wireless data exchange between agricultural machines in the field.
+The investigation is based on the prototypical application Agricultural Platooning Service in the corn harvest scenario, which exchanges guidance data via \ac{WIC} to lead \acp{TM} to the overloading positions of forage from \acp{FH}.
+
+I analyzed corn harvest process data, which indicated that the overloading position is usually at a distance below \SI{10}{\metre} at \SIrange{30}{90}{\degree} relative to the \ac{FH}.
+
+A field measurement campaign in a farming environment indicated Wi-Fi communication can range up to \SI{2500}{\metre} in a line-of-sight scenario.
+However, signal strength can suffer from multipath, shadowing and fading effects due to the agricultural environment and the machine sizes.
+Therefore, Wi-Fi rate managers should be configured to enable robust communication instead of maximizing the data rate.
+
+I simulated different Wi-Fi physical layer configurations to analyze their impact on data rate and robustness.
+IEEE 802.11ax introduces the new \ac{ER} mode, enabling robust and long-range communication for service discovery transmission when used with \ac{DCM}.
+The \ac{GI} of \SI{3.2}{\micro\second} in IEEE 802.11ax can be used to combat intersymbol interferences due to multipath effects in the agricultural environment.
+The guidance data exchange mode can be configured to use low \acp{MCS} like \ac{HE}-\ac{MCS}3 with \ac{STBC} and \ac{LDPC} to achieve a robust communication,
+which enables the \ac{WIC} to meet the required latencies and message intervals for Agricultural Platooning Services in the corn harvest scenario.
+
+In this thesis, I showed that IEEE 802.11ax provides many configurations to enable robust communications which meet the requirements of the use case Agricultural Platooning Services.
+
+
+
+\begin{comment}
+    Untersuchen, welche Routing protocols
+    Wi-Fi offers a wide range of physical layer configurations, which can be used to reduce the data rate and enable robust communication.
+
+    Future work could investigate whether modern Wi-Fi can be used for other \ac{WIC} use cases.
+    IEEE 802.11bd is a new standard, which is designed for \ac{WIC} in the industrial domain.
+
+
+    Guten Tag Herr Professor Sommer,
+
+Anbei finden Sie die aktuelle Version meiner Diplomarbeit, welche nun auch die Feldversuche enthält. Wenn Sie noch nicht auf die Diplomarbeit schauen konnten oder noch vor Kapitel 4 Field Measurements sind, können Sie gerne auf die aktuelle Version im Anhang wechseln.
+
+Die PDF musste ich komprimieren, weil sie sonst zu groß war. Wenn Sie eine unkomprimierte Version lieber wollen, kann ich ihnen gerne einen Zugang zum Git-Repro geben.
+
+Vielen Dank,
+
+Karl Lautenschläger
+\end{comment}

@@ -1,0 +1,62 @@
+With the growing demand for increased efficiency and autonomy in the agricultural domain, \ac{WIC} has emerged as a key technology to improve the automation
+and digitalization of farming processes. \ac{WIC} describes a wireless connection between agricultural machines
+in the field that enables process data exchange.
+
+Given that there are many agricultural technology companies worldwide, and a mix of their machines often cooperate in individual agricultural companies, demand for interoperability between agricultural machines of different brands
+has emerged.
+In 2008, the \ac{AEF} was founded to develop and standardize this interoperability
+\footnote{\url{https://www.aef-online.org/about-us/about-the-aef.html}}.
+
+The AEF is known for developing the ISO 11783 standard, a bus communication system between agricultural machinery, mainly tractors and
+implements \cite{iglesias_enabling_2014}.
+According to \textcite{schlingmann_aef_2019}, the ISO 11783 standard is named ISOBUS system.
+
+The authors mention that the AEF is currently working on other issues.
+Among them is also \ac{WIC}.
+The associated project group \ac{WIC} develops and standardizes solutions for \ac{M2M} wireless
+communication between cooperating agricultural machines.
+
+In order to implement \ac{WIC}, the \ac{WIC} project group has been searching for a suitable technology
+that can realize the required data rates, latencies, robustness, and high transmission range.
+The plans to implement \ac{WIC} are written down by \textcite{schlingmann_challenges_2017}, members of the \ac{WIC} project group.
+The authors consider the fundamental use of cellular networks as very problematic
+because, according to \cite{itu2016facts}, only \SI{30}{\percent} of the land surface has network coverage.
+For this reason, one major concern is that the required data cannot be exchanged because there is
+no network connectivity around many fields.
+Nevertheless, the authors want to leave the future \ac{WIC} system open
+to cellular standards.
+
+The authors' current focus is on Wi-Fi technologies, especially IEEE 802.11p.
+
+As of July 2021, the frequency spectrum of IEEE 802.11p in the United States of
+America, ranging from \SIrange{5.85}{5.925}{\giga\hertz}, has been split.
+The upper \SI{30}{\mega\hertz}
+are reserved for Intelligent transportation systems now.
+The lower \SI{45}{\mega\hertz} have
+been released for unlicensed operations \cite{fcc_use_2021}.
+
+Since the use of IEEE 802.11p has now been partly limited by the  US Federal Communications Commission, the
+WIC project group is looking for an alternative Wi-Fi technology that enables \ac{WIC}.
+
+In this thesis, I intend to support the progress of the \ac{WIC} project group and investigate how modern Wi-Fi can enable \ac{WIC}.
+ In particular, I will focus on the current Wi-Fi standard, IEEE 802.11ax.
+During my research, I will study the use cases of \ac{WIC} in agriculture and the requirements and challenges for \ac{WIC} in agriculture.
+To analyze the suitability of IEEE 802.11ax to enable \ac{WIC}, I will concentrate on the example use case Agricultural Platooning Service.
+Agricultural Platooning Service enables the exchange of process data
+to guide a vehicle in a platoon with a lateral and longitudinal offset to a leading vehicle.
+
+In the beginning, I will analyze agricultural process data to find the requirements and challenges of the mentioned use case.
+I will complement these with insights from past research on \ac{WIC} in agriculture and wireless technologies
+in the agriculture domain in general.
+
+The suitability of IEEE 802.11ax for \ac{WIC} depends on whether the required data rates, latencies, high
+transmission ranges and robustness in the harsh agricultural environment can be achieved.
+
+By understanding past limitations of Wi-Fi technologies for outdoor communication networks
+and exploring how IEEE 802.11ax addresses these limitations, I will investigate how IEEE 802.11ax can be configured.
+
+For this purpose, I will conduct field experiments to detect the influence of the agricultural environment on the robustness and range of IEEE 802.11ax.
+As all physical layer parameters of IEEE 802.11ax are configurable, I will simulate how the capabilities of IEEE 802.11ax affect the data rate and the robustness of the wireless connection.
+After learning suitable parameter settings for the physical and MAC layer of IEEE 802.11ax, I will simulate the use case
+Agricultural Platooning Service to determine whether the requirements and challenges
+can be met by IEEE 802.11ax.
