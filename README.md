@@ -28,9 +28,9 @@ the corn harvest scenario.
 Full Thesis: [thesis.pdf](thesis.pdf)
 
 ### Used Software: 
-
+TBD
 
 #### Simulation: 
 
 ##### Agricultural Platooning Service Simulation
-Evaluation: 
+
